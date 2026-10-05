@@ -1,22 +1,22 @@
-'use client';
-import React from 'react';
-import styles from './Badge.module.css';
+"use client"
+import React from "react"
+import styles from "./Badge.module.css"
 
-export type BadgeVariant = 'solid' | 'outline';
-export type BadgeColor = 'ink' | 'paper' | 'ochre' | 'caramel';
-export type BadgeSize = 'sm' | 'md';
+export type BadgeVariant = "solid" | "outline"
+export type BadgeColor = "ink" | "paper" | "ochre" | "caramel"
+export type BadgeSize = "sm" | "md"
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  variant?: BadgeVariant;
-  color?: BadgeColor;
-  size?: BadgeSize;
-  children: React.ReactNode;
+  variant?: BadgeVariant
+  color?: BadgeColor
+  size?: BadgeSize
+  children: React.ReactNode
 }
 
 export function Badge({
-  variant = 'solid',
-  color = 'ink',
-  size = 'sm',
+  variant = "solid",
+  color = "ink",
+  size = "sm",
   className,
   children,
   ...rest
@@ -31,10 +31,10 @@ export function Badge({
         className,
       ]
         .filter(Boolean)
-        .join(' ')}
+        .join(" ")}
       {...rest}
     >
       {children}
     </span>
-  );
+  )
 }

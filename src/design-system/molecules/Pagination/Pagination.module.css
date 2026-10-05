@@ -15,7 +15,7 @@
   background-color: transparent;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--color-ink);
+  color: var(--text-primary);
   cursor: pointer;
   transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
   text-transform: uppercase;
@@ -23,22 +23,22 @@
 }
 
 .btn:hover:not(:disabled) {
-  border-color: var(--color-ink);
+  border-color: var(--border-strong);
 }
 
 .btn:disabled {
-  color: var(--color-sand);
+  color: var(--text-secondary);
   cursor: not-allowed;
 }
 
 .active {
-  background-color: var(--color-ink);
-  color: var(--color-paper);
-  border-color: var(--color-ink);
+  background-color: var(--border-strong);
+  color: var(--bg-base);
+  border-color: var(--border-strong);
 }
 
 .arrow {
-  border-color: var(--color-neutral);
+  border-color: var(--border-base);
 }
 
 .ellipsis {
@@ -48,6 +48,6 @@
   width: 36px;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--color-sand);
+  color: var(--text-secondary);
   user-select: none;
 }

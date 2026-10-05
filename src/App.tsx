@@ -1,8 +1,8 @@
-'use client';
-import { RouterProvider } from 'react-router';
-import { ThemeProvider } from './design-system/context/ThemeContext';
-import { ToastProvider } from './design-system/molecules/Toast';
-import { router } from './app/routes';
+"use client"
+import { RouterProvider } from "react-router"
+import { ThemeProvider } from "./design-system/context/ThemeContext"
+import { ToastProvider } from "./design-system/molecules/Toast"
+import { router } from "./app/routes"
 
 export default function App() {
   return (
@@ -11,5 +11,5 @@ export default function App() {
         <RouterProvider router={router} />
       </ToastProvider>
     </ThemeProvider>
-  );
+  )
 }

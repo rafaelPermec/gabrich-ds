@@ -1,17 +1,21 @@
-'use client';
-import React from 'react';
-import styles from './Divider.module.css';
+"use client"
+import React from "react"
+import styles from "./Divider.module.css"
 
-export type DividerOrientation = 'horizontal' | 'vertical';
-export type DividerColor = 'neutral' | 'border-dark' | 'ink' | 'paper' | 'ochre';
+export type DividerOrientation = "horizontal" | "vertical"
+export type DividerColor = "neutral" | "border-dark" | "ink" | "paper" | "ochre"
 
 export interface DividerProps {
-  orientation?: DividerOrientation;
-  color?: DividerColor;
-  className?: string;
+  orientation?: DividerOrientation
+  color?: DividerColor
+  className?: string
 }
 
-export function Divider({ orientation = 'horizontal', color = 'neutral', className }: DividerProps) {
+export function Divider({
+  orientation = "horizontal",
+  color = "neutral",
+  className,
+}: DividerProps) {
   return (
     <hr
       className={[
@@ -21,8 +25,8 @@ export function Divider({ orientation = 'horizontal', color = 'neutral', classNa
         className,
       ]
         .filter(Boolean)
-        .join(' ')}
+        .join(" ")}
       aria-orientation={orientation}
     />
-  );
+  )
 }

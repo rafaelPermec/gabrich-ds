@@ -18,7 +18,7 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  border: var(--border-ink);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-full);
   background-color: transparent;
   flex-shrink: 0;
@@ -34,7 +34,7 @@
 }
 
 .input:checked + .control .dot {
-  background-color: var(--color-ink);
+  background-color: var(--border-strong);
 }
 
 .input:focus-visible + .control {
@@ -54,7 +54,7 @@
 .label {
   font-family: var(--font-body);
   font-size: var(--text-base);
-  color: var(--color-ink);
+  color: var(--text-primary);
   cursor: pointer;
   user-select: none;
   line-height: var(--leading-normal);

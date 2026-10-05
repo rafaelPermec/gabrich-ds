@@ -1,19 +1,19 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Breadcrumb } from './Breadcrumb';
+import type { Meta, StoryObj } from "@storybook/react-vite"
+import { Breadcrumb } from "./Breadcrumb"
 
 const meta = {
-  title: 'Molecules/Breadcrumb',
+  title: "Molecules/Breadcrumb",
   component: Breadcrumb,
   args: {
     items: [
-      { label: 'Início', href: '#' },
-      { label: 'Portfólio', href: '#' },
-      { label: 'Still life' },
+      { label: "Início", href: "#" },
+      { label: "Portfólio", href: "#" },
+      { label: "Still life" },
     ],
   },
-} satisfies Meta<typeof Breadcrumb>;
+} satisfies Meta<typeof Breadcrumb>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const Default: Story = {};
+export const Default: Story = {}

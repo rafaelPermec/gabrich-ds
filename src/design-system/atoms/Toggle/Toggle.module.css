@@ -78,6 +78,6 @@
 .label {
   font-family: var(--font-body);
   font-size: var(--text-base);
-  color: var(--color-ink);
+  color: var(--text-primary);
   line-height: var(--leading-normal);
 }

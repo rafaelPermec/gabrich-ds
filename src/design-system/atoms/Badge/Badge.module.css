@@ -67,3 +67,14 @@
   color: var(--color-caramel);
   border-color: var(--color-caramel);
 }
+
+:global(html.dark) .variant-outline.color-ink {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+:global(html.dark) .variant-solid.color-ink {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  border-color: var(--color-paper);
+}

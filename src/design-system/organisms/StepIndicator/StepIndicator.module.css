@@ -129,13 +129,13 @@
 
 /* Status: current */
 .status-current .disk {
-  background-color: var(--color-ink);
+  background-color: var(--border-strong);
   border-color: var(--color-ochre);
   color: var(--color-ochre);
   outline: 2px solid var(--color-ochre);
   outline-offset: 2px;
 }
-.status-current .label { color: var(--color-ink); }
+.status-current .label { color: var(--text-primary); }
 
 /* Dark */
 .dark .label { color: var(--color-paper); }

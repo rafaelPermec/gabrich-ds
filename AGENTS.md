@@ -9,7 +9,8 @@ Design system da Débora Gabrich — React 19 + Vite 8 + TypeScript, estilizado 
 - `pnpm storybook` — Storybook em http://localhost:6006
 - `pnpm build-storybook` — build estático apenas do Storybook (`dist/storybook-static/`)
 - `pnpm typecheck` — validação de tipos TypeScript
-- `pnpm format` — formatação com oxfmt
+- `pnpm lint` — análise estática com ESLint
+- `pnpm lint:fix` (ou `pnpm format`) — correção automática com ESLint
 
 ## Deploy na Vercel
 

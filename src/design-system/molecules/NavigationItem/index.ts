@@ -1,2 +1,2 @@
-export { NavigationItem } from './NavigationItem';
-export type { NavigationItemProps } from './NavigationItem';
+export { NavigationItem } from "./NavigationItem"
+export type { NavigationItemProps } from "./NavigationItem"

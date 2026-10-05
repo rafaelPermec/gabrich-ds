@@ -16,7 +16,7 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
-  color: var(--color-ink);
+  color: var(--text-primary);
 }
 
 .value {
@@ -24,12 +24,12 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
-  color: var(--color-cocoa-matte);
+  color: var(--text-secondary);
 }
 
 .track {
   width: 100%;
-  background-color: var(--color-neutral);
+  background-color: var(--border-base);
   border-radius: var(--radius-none);
   overflow: hidden;
 }
@@ -40,6 +40,6 @@
   transition: width 400ms ease;
 }
 
-.color-ink { background-color: var(--color-ink); }
+.color-ink { background-color: var(--border-strong); }
 .color-ochre { background-color: var(--color-ochre); }
 .color-caramel { background-color: var(--color-caramel); }

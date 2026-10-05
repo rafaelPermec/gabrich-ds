@@ -1,24 +1,24 @@
-'use client';
-import React from 'react';
-import styles from './ListItem.module.css';
+"use client"
+import React from "react"
+import styles from "./ListItem.module.css"
 
-export type ListItemLeadingType = 'icon' | 'avatar' | 'number' | 'dot';
+export type ListItemLeadingType = "icon" | "avatar" | "number" | "dot"
 
 export interface ListItemProps extends React.HTMLAttributes<HTMLDivElement> {
-  label: string;
-  sublabel?: string;
-  leading?: React.ReactNode;
-  leadingType?: ListItemLeadingType;
-  trailing?: React.ReactNode;
-  clickable?: boolean;
-  divider?: boolean;
+  label: string
+  sublabel?: string
+  leading?: React.ReactNode
+  leadingType?: ListItemLeadingType
+  trailing?: React.ReactNode
+  clickable?: boolean
+  divider?: boolean
 }
 
 export function ListItem({
   label,
   sublabel,
   leading,
-  leadingType = 'dot',
+  leadingType = "dot",
   trailing,
   clickable = false,
   divider = true,
@@ -29,18 +29,22 @@ export function ListItem({
     <div
       className={[
         styles.item,
-        clickable ? styles.clickable : '',
-        divider ? styles.divider : '',
+        clickable ? styles.clickable : "",
+        divider ? styles.divider : "",
         className,
       ]
         .filter(Boolean)
-        .join(' ')}
-      role={clickable ? 'button' : undefined}
+        .join(" ")}
+      role={clickable ? "button" : undefined}
       tabIndex={clickable ? 0 : undefined}
       {...rest}
     >
       {leading && (
-        <span className={[styles.leading, styles[`leading-${leadingType}`]].join(' ')}>
+        <span
+          className={[styles.leading, styles[`leading-${leadingType}`]].join(
+            " ",
+          )}
+        >
           {leading}
         </span>
       )}
@@ -50,5 +54,5 @@ export function ListItem({
       </div>
       {trailing && <span className={styles.trailing}>{trailing}</span>}
     </div>
-  );
+  )
 }

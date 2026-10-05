@@ -1,25 +1,25 @@
-'use client';
-import React from 'react';
-import styles from './Footer.module.css';
+"use client"
+import React from "react"
+import styles from "./Footer.module.css"
 
 export interface FooterLinkGroup {
-  title: string;
-  links: Array<{ label: string; href: string }>;
+  title: string
+  links: Array<{ label: string; href: string }>
 }
 
 export interface FooterProps {
-  logoText?: string;
-  logo?: React.ReactNode;
-  tagline?: string;
-  groups?: FooterLinkGroup[];
-  copyright?: string;
-  social?: Array<{ label: string; href: string; icon: React.ReactNode }>;
-  dark?: boolean;
-  className?: string;
+  logoText?: string
+  logo?: React.ReactNode
+  tagline?: string
+  groups?: FooterLinkGroup[]
+  copyright?: string
+  social?: Array<{ label: string; href: string; icon: React.ReactNode }>
+  dark?: boolean
+  className?: string
 }
 
 export function Footer({
-  logoText = 'débora gabrich',
+  logoText = "débora gabrich",
   logo,
   tagline,
   groups = [],
@@ -28,10 +28,14 @@ export function Footer({
   dark = true,
   className,
 }: FooterProps) {
-  const year = new Date().getFullYear();
+  const year = new Date().getFullYear()
 
   return (
-    <footer className={[styles.footer, dark ? styles.dark : styles.light, className].filter(Boolean).join(' ')}>
+    <footer
+      className={[styles.footer, dark ? styles.dark : styles.light, className]
+        .filter(Boolean)
+        .join(" ")}
+    >
       <div className={styles.inner}>
         <div className={styles.brand}>
           <div className={styles.logo}>
@@ -41,7 +45,14 @@ export function Footer({
           {social.length > 0 && (
             <div className={styles.social}>
               {social.map((item) => (
-                <a key={item.label} href={item.href} className={styles.socialLink} aria-label={item.label} target="_blank" rel="noopener noreferrer">
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className={styles.socialLink}
+                  aria-label={item.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {item.icon}
                 </a>
               ))}
@@ -57,7 +68,9 @@ export function Footer({
                 <ul className={styles.groupLinks}>
                   {group.links.map((link) => (
                     <li key={link.href}>
-                      <a href={link.href} className={styles.groupLink}>{link.label}</a>
+                      <a href={link.href} className={styles.groupLink}>
+                        {link.label}
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -73,5 +86,5 @@ export function Footer({
         </p>
       </div>
     </footer>
-  );
+  )
 }

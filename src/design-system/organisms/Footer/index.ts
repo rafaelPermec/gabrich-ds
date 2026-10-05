@@ -1,2 +1,2 @@
-export { Footer } from './Footer';
-export type { FooterProps, FooterLinkGroup } from './Footer';
+export { Footer } from "./Footer"
+export type { FooterProps, FooterLinkGroup } from "./Footer"

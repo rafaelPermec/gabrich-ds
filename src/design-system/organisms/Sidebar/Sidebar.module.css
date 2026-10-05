@@ -27,7 +27,7 @@
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: var(--tracking-tight);
-  color: var(--color-ink);
+  color: var(--text-primary);
   white-space: nowrap;
 }
 
@@ -38,14 +38,14 @@
   width: 28px;
   height: 28px;
   cursor: pointer;
-  color: var(--color-sand);
+  color: var(--text-secondary);
   background: none;
   border: none;
   flex-shrink: 0;
   border-radius: var(--radius-none);
   transition: color var(--transition-fast);
 }
-.toggle:hover { color: var(--color-ink); }
+.toggle:hover { color: var(--text-primary); }
 
 .nav {
   flex: 1;
@@ -92,10 +92,10 @@
   min-height: 36px;
 }
 
-.item:hover { color: var(--color-ink); background-color: var(--color-neutral); }
+.item:hover { color: var(--text-primary); background-color: var(--bg-subtle); }
 
 .itemActive {
-  color: var(--color-ink);
+  color: var(--text-primary);
   font-weight: 600;
   background-color: var(--accent-subtle);
 }

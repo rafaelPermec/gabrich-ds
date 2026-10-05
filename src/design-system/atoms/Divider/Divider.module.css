@@ -20,3 +20,5 @@
 .color-ink { background-color: var(--color-ink); }
 .color-paper { background-color: var(--color-paper); }
 .color-ochre { background-color: var(--color-ochre); }
+
+:global(html.dark) .color-ink { background-color: var(--color-border-dark); }

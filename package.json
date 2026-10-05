@@ -10,7 +10,9 @@
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o dist/storybook-static",
-    "format": "oxfmt"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "eslint . --fix"
   },
   "dependencies": {
     "motion": "^14.0.0",
@@ -19,6 +21,7 @@
     "react-router": "^8.4.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@storybook/addon-a11y": "^10.6.1",
     "@storybook/addon-docs": "^10.6.1",
     "@storybook/react-vite": "^10.6.1",
@@ -27,10 +30,14 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^6.0.0",
-    "oxfmt": "^0.2.0",
+    "eslint": "^10.12.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "remark-gfm": "^4.0.1",
     "storybook": "^10.6.1",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.0",
+    "typescript-eslint": "^8.71.0",
     "vite": "^8.0.5"
   }
 }

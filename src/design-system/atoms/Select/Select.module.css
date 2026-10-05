@@ -13,9 +13,9 @@
 .select {
   width: 100%;
   border-radius: var(--radius-none);
-  border: var(--border-ink);
-  background-color: var(--color-paper);
-  color: var(--color-ink);
+  border: 1px solid var(--border-strong);
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
   font-family: var(--font-body);
   font-size: var(--text-base);
   appearance: none;

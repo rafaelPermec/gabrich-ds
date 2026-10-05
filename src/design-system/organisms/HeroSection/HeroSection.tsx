@@ -1,19 +1,19 @@
-'use client';
-import React from 'react';
-import styles from './HeroSection.module.css';
+"use client"
+import React from "react"
+import styles from "./HeroSection.module.css"
 
 export interface HeroSectionProps {
-  eyebrow?: string;
-  title: string;
-  titleAccent?: string;
-  subtitle?: string;
-  body?: string;
-  primaryAction?: React.ReactNode;
-  secondaryAction?: React.ReactNode;
-  image?: React.ReactNode;
-  dark?: boolean;
-  centered?: boolean;
-  className?: string;
+  eyebrow?: string
+  title: string
+  titleAccent?: string
+  subtitle?: string
+  body?: string
+  primaryAction?: React.ReactNode
+  secondaryAction?: React.ReactNode
+  image?: React.ReactNode
+  dark?: boolean
+  centered?: boolean
+  className?: string
 }
 
 export function HeroSection({
@@ -34,21 +34,21 @@ export function HeroSection({
       className={[
         styles.hero,
         dark ? styles.dark : styles.light,
-        centered ? styles.centered : '',
-        image ? styles.withImage : '',
+        centered ? styles.centered : "",
+        image ? styles.withImage : "",
         className,
       ]
         .filter(Boolean)
-        .join(' ')}
+        .join(" ")}
     >
       <div className={styles.inner}>
         <div className={styles.content}>
-          {eyebrow && (
-            <span className={styles.eyebrow}>{eyebrow}</span>
-          )}
+          {eyebrow && <span className={styles.eyebrow}>{eyebrow}</span>}
           <h1 className={styles.title}>
             {title}
-            {titleAccent && <span className={styles.titleAccent}> {titleAccent}</span>}
+            {titleAccent && (
+              <span className={styles.titleAccent}> {titleAccent}</span>
+            )}
           </h1>
           {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
           {body && <p className={styles.body}>{body}</p>}
@@ -62,5 +62,5 @@ export function HeroSection({
         {image && <div className={styles.image}>{image}</div>}
       </div>
     </section>
-  );
+  )
 }

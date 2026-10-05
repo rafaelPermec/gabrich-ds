@@ -1,8 +1,9 @@
 .card {
-  border: var(--border-light);
+  border: var(--border-width) solid var(--border-base);
   border-radius: var(--radius-none);
   overflow: hidden;
-  background-color: transparent;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
   display: flex;
   flex-direction: column;
   transition: border-color var(--transition-fast);
@@ -32,7 +33,7 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
-  color: var(--color-cocoa-matte);
+  color: var(--text-secondary);
 }
 .dark .label { color: var(--color-sand); }
 
@@ -51,7 +52,7 @@
   letter-spacing: var(--tracking-tight);
   line-height: var(--leading-snug);
   text-transform: lowercase;
-  color: var(--color-ink);
+  color: var(--text-primary);
 }
 .dark .title { color: var(--color-paper); }
 
@@ -60,7 +61,7 @@
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);
-  color: var(--color-cocoa-matte);
+  color: var(--text-secondary);
 }
 .dark .bodyText { color: var(--color-sand); }
 
@@ -79,7 +80,7 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
-  color: var(--color-cocoa-matte);
+  color: var(--text-secondary);
 }
 .dark .statLabel { color: var(--color-sand); }
 

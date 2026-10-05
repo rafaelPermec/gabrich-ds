@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { fn } from 'storybook/test';
-import { ActionDisk } from './ActionDisk';
-import { IconArrow, IconPlus } from '../../utils/storyFixtures';
+import type { Meta, StoryObj } from "@storybook/react-vite"
+import { fn } from "storybook/test"
+import { ActionDisk } from "./ActionDisk"
+import { IconArrow, IconPlus } from "../../utils/storyFixtures"
 
 const meta = {
-  title: 'Atoms/ActionDisk',
+  title: "Atoms/ActionDisk",
   component: ActionDisk,
   parameters: {
     docs: {
@@ -14,29 +14,33 @@ const meta = {
       },
     },
   },
-  args: { label: 'Avançar', children: <IconArrow />, onClick: fn() },
+  args: { label: "Avançar", children: <IconArrow />, onClick: fn() },
   argTypes: {
-    size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },
-    variant: { control: 'inline-radio', options: ['filled', 'outline'] },
+    size: { control: "inline-radio", options: ["sm", "md", "lg"] },
+    variant: { control: "inline-radio", options: ["filled", "outline"] },
     children: { control: false },
   },
-} satisfies Meta<typeof ActionDisk>;
+} satisfies Meta<typeof ActionDisk>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
-export const Default: Story = {};
+export const Default: Story = {}
 
-export const Outline: Story = { args: { variant: 'outline', children: <IconPlus />, label: 'Adicionar' } };
+export const Outline: Story = {
+  args: { variant: "outline", children: <IconPlus />, label: "Adicionar" },
+}
 
 export const Sizes: Story = {
   render: (args) => (
-    <div style={{ display: 'flex', gap: 'var(--space-4)', alignItems: 'center' }}>
+    <div
+      style={{ display: "flex", gap: "var(--space-4)", alignItems: "center" }}
+    >
       <ActionDisk {...args} size="sm" />
       <ActionDisk {...args} size="md" />
       <ActionDisk {...args} size="lg" />
     </div>
   ),
-};
+}
 
-export const Disabled: Story = { args: { disabled: true } };
+export const Disabled: Story = { args: { disabled: true } }

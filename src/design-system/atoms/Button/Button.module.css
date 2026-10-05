@@ -47,9 +47,9 @@
 
 /* Variants */
 .variant-filled {
-  background-color: var(--color-ink);
-  color: var(--color-paper);
-  border-color: var(--color-ink);
+  background-color: var(--border-strong);
+  color: var(--bg-base);
+  border-color: var(--border-strong);
 }
 .variant-filled:hover:not(:disabled) {
   background-color: var(--color-ochre);
@@ -59,26 +59,26 @@
 
 .variant-outline {
   background-color: transparent;
-  color: var(--color-ink);
-  border-color: var(--color-ink);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
 }
 .variant-outline:hover:not(:disabled) {
-  background-color: var(--color-ink);
-  color: var(--color-paper);
+  background-color: var(--border-strong);
+  color: var(--bg-base);
 }
 
 .variant-ghost {
   background-color: transparent;
-  color: var(--color-ink);
+  color: var(--text-primary);
   border-color: transparent;
 }
 .variant-ghost:hover:not(:disabled) {
-  border-color: var(--color-ink);
+  border-color: var(--border-strong);
 }
 
 .variant-text {
   background-color: transparent;
-  color: var(--color-ink);
+  color: var(--text-primary);
   border-color: transparent;
   padding: 0;
   height: auto;

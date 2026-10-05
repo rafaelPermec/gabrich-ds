@@ -25,9 +25,9 @@
 
 /* Variants */
 .variant-filled {
-  background-color: var(--color-ink);
-  color: var(--color-paper);
-  border: var(--border-width) solid var(--color-ink);
+  background-color: var(--border-strong);
+  color: var(--bg-base);
+  border: var(--border-width) solid var(--border-strong);
 }
 .variant-filled:hover:not(:disabled) {
   background-color: var(--color-ochre);
@@ -37,10 +37,10 @@
 
 .variant-outline {
   background-color: transparent;
-  color: var(--color-ink);
-  border: var(--border-width) solid var(--color-ink);
+  color: var(--text-primary);
+  border: var(--border-width) solid var(--border-strong);
 }
 .variant-outline:hover:not(:disabled) {
-  background-color: var(--color-ink);
-  color: var(--color-paper);
+  background-color: var(--border-strong);
+  color: var(--bg-base);
 }

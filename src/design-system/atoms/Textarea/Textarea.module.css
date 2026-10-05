@@ -10,9 +10,9 @@
   min-height: 120px;
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-none);
-  border: var(--border-ink);
+  border: 1px solid var(--border-strong);
   background-color: transparent;
-  color: var(--color-ink);
+  color: var(--text-primary);
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);

@@ -1,16 +1,16 @@
-'use client';
-import React from 'react';
-import styles from './NavigationItem.module.css';
+"use client"
+import React from "react"
+import styles from "./NavigationItem.module.css"
 
 export interface NavigationItemProps {
-  label: string;
-  href?: string;
-  icon?: React.ReactNode;
-  badge?: string | number;
-  active?: boolean;
-  disabled?: boolean;
-  onClick?: () => void;
-  className?: string;
+  label: string
+  href?: string
+  icon?: React.ReactNode
+  badge?: string | number
+  active?: boolean
+  disabled?: boolean
+  onClick?: () => void
+  className?: string
 }
 
 export function NavigationItem({
@@ -25,12 +25,12 @@ export function NavigationItem({
 }: NavigationItemProps) {
   const sharedClass = [
     styles.item,
-    active ? styles.active : '',
-    disabled ? styles.disabled : '',
+    active ? styles.active : "",
+    disabled ? styles.disabled : "",
     className,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ")
 
   const content = (
     <>
@@ -38,19 +38,19 @@ export function NavigationItem({
       <span className={styles.label}>{label}</span>
       {badge !== undefined && <span className={styles.badge}>{badge}</span>}
     </>
-  );
+  )
 
   if (href) {
     return (
       <a
         href={href}
         onClick={onClick}
-        aria-current={active ? 'page' : undefined}
+        aria-current={active ? "page" : undefined}
         className={sharedClass}
       >
         {content}
       </a>
-    );
+    )
   }
 
   return (
@@ -58,10 +58,10 @@ export function NavigationItem({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      aria-current={active ? 'page' : undefined}
+      aria-current={active ? "page" : undefined}
       className={sharedClass}
     >
       {content}
     </button>
-  );
+  )
 }

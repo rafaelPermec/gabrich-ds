@@ -302,3 +302,53 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: inherit;
   font-size: inherit;
 }
+
+/* ── Tables & Storybook Docs Styling ────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-4) 0;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  border: var(--border-width) solid var(--border-base);
+}
+
+th {
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--bg-surface);
+  border-bottom: 2px solid var(--border-strong);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--text-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: var(--border-width) solid var(--border-base);
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+tr:nth-child(even) td {
+  background-color: var(--bg-subtle-alpha);
+}
+
+tbody tr:hover td {
+  background-color: var(--bg-hover);
+}
+
+:not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background-color: var(--bg-subtle-alpha);
+  color: var(--text-primary);
+  padding: 2px 6px;
+  border-radius: var(--radius-none);
+  border: var(--border-width) solid var(--border-base);
+}
+

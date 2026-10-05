@@ -6,7 +6,7 @@
   font-family: var(--font-body);
   font-size: var(--text-base);
   font-weight: 500;
-  color: var(--color-cocoa-matte);
+  color: var(--text-secondary);
   border-radius: var(--radius-none);
   border: none;
   background: transparent;
@@ -19,12 +19,12 @@
 }
 
 .item:hover:not(.disabled) {
-  color: var(--color-ink);
-  background-color: var(--color-neutral);
+  color: var(--text-primary);
+  background-color: var(--bg-subtle);
 }
 
 .active {
-  color: var(--color-ink);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
