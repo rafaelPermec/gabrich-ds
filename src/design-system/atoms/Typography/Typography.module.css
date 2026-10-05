@@ -92,7 +92,6 @@
   letter-spacing: var(--tracking-tight);
   line-height: var(--leading-tight);
   text-transform: lowercase;
-  color: var(--text-primary);
   transition: color var(--transition-base);
 }
 
