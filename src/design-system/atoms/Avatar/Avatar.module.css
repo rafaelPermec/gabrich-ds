@@ -1,0 +1,34 @@
+.avatar {
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background-color: var(--color-caramel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.size-sm { width: 32px; height: 32px; }
+.size-md { width: 44px; height: 44px; }
+.size-lg { width: 64px; height: 64px; }
+.size-xl { width: 96px; height: 96px; }
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.initials {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-paper);
+  letter-spacing: var(--tracking-wide);
+  user-select: none;
+}
+
+.size-lg .initials { font-size: var(--text-base); }
+.size-xl .initials { font-size: var(--text-md); }

@@ -1,0 +1,83 @@
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-4);
+  border: var(--border-width) solid;
+  border-radius: var(--radius-none);
+  border-left-width: 4px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.description {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  color: currentColor;
+  background: none;
+  border: none;
+  padding: 2px;
+}
+
+/* ── Semantic state variants ──────────────────────────────────────────────── */
+.variant-info {
+  background-color: var(--color-info-bg);
+  border-color: var(--color-info);
+  color: var(--text-secondary);
+}
+.variant-info .icon { color: var(--color-info); }
+.variant-info .title { color: var(--color-info); }
+
+.variant-success {
+  background-color: var(--color-success-bg);
+  border-color: var(--color-success);
+  color: var(--text-primary);
+}
+.variant-success .icon { color: var(--color-success); }
+.variant-success .title { color: var(--color-success); }
+
+.variant-warning {
+  background-color: var(--color-warning-bg);
+  border-color: var(--color-warning);
+  color: var(--text-primary);
+}
+.variant-warning .icon { color: var(--color-warning); }
+.variant-warning .title { color: var(--color-warning); }
+
+.variant-error {
+  background-color: var(--color-error-bg);
+  border-color: var(--color-error);
+  color: var(--text-primary);
+}
+.variant-error .icon { color: var(--color-error); }
+.variant-error .title { color: var(--color-error); }

@@ -1,0 +1,45 @@
+.wrapper {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 100;
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  padding: 6px 10px;
+  border-radius: var(--radius-none);
+  white-space: nowrap;
+  pointer-events: none;
+  line-height: 1.4;
+}
+
+.placement-top {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.placement-bottom {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.placement-left {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.placement-right {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}

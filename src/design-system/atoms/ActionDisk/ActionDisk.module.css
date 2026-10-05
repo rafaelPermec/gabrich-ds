@@ -1,0 +1,46 @@
+.disk {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  flex-shrink: 0;
+  outline: none;
+}
+
+.disk:focus-visible {
+  outline: 2px solid var(--color-ochre);
+  outline-offset: 2px;
+}
+
+/* Sizes */
+.size-sm { width: 52px; height: 52px; }
+.size-md { width: 72px; height: 72px; }
+.size-lg { width: 96px; height: 96px; }
+
+.size-sm svg { width: 18px; height: 18px; }
+.size-md svg { width: 22px; height: 22px; }
+.size-lg svg { width: 28px; height: 28px; }
+
+/* Variants */
+.variant-filled {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  border: var(--border-width) solid var(--color-ink);
+}
+.variant-filled:hover:not(:disabled) {
+  background-color: var(--color-ochre);
+  border-color: var(--color-ochre);
+  color: var(--color-ink);
+}
+
+.variant-outline {
+  background-color: transparent;
+  color: var(--color-ink);
+  border: var(--border-width) solid var(--color-ink);
+}
+.variant-outline:hover:not(:disabled) {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}

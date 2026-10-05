@@ -1,0 +1,10 @@
+{
+  "description": "Create a comprehensive design system with atomic design principles, featuring a full documentation page showcasing all components for developers.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
