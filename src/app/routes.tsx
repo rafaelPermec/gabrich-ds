@@ -24,6 +24,7 @@ export const router = createBrowserRouter([
       },
       { path: 'verticais', Component: Verticals },
       { path: 'storybook', Component: Storybook },
+      { path: 'storybooks', Component: Storybook },
       { path: '*', Component: NotFound },
     ],
   },
