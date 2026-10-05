@@ -8,6 +8,7 @@ import {
   staggerItem,
 } from "../design-system/utils/motionVariants"
 import styles from "./Home.module.css"
+import { ActionDisk } from "@/design-system"
 
 const total = registry.filter((e) => e.category !== "foundations").length
 const stories = registry.reduce((n, e) => n + e.stories.length, 0)
@@ -72,9 +73,12 @@ export function Home() {
                 <span className={styles.rowTitle}>{c.label.toLowerCase()}</span>
                 <span className={styles.rowBlurb}>{c.blurb}</span>
                 <span className={styles.count}>{n}</span>
-                <span className={styles.disk} aria-hidden="true">
-                  →
-                </span>
+                <ActionDisk
+                  aria-hidden="true"
+                  size="sm"
+                  variant="filled"
+                  className={styles.disk}
+                />
               </Link>
             </motion.li>
           )
