@@ -88,7 +88,7 @@
   --bg-subtle: var(--color-neutral);
   --text-primary: var(--color-ink);
   --text-secondary: var(--color-cocoa-matte);
-  --text-muted: var(--color-sand);
+  --text-muted: var(--color-cocoa-matte);
   --border-base: var(--color-neutral);
   --border-strong: var(--color-ink);
   --accent-primary: var(--color-ochre);
@@ -122,7 +122,7 @@ html.dark {
   --bg-subtle: var(--color-border-dark);
   --text-primary: var(--color-paper);
   --text-secondary: var(--color-sand);
-  --text-muted: var(--color-border-dark);
+  --text-muted: var(--color-sand);
   --border-base: var(--color-border-dark);
   --border-strong: var(--color-paper);
   --accent-primary: var(--color-ochre);
@@ -149,7 +149,7 @@ html.dark {
     --bg-subtle: var(--color-border-dark);
     --text-primary: var(--color-paper);
     --text-secondary: var(--color-sand);
-    --text-muted: var(--color-border-dark);
+    --text-muted: var(--color-sand);
     --border-base: var(--color-border-dark);
     --border-strong: var(--color-paper);
     --accent-primary: var(--color-ochre);
@@ -352,3 +352,21 @@ tbody tr:hover td {
   border: var(--border-width) solid var(--border-base);
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
+  
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+  
+::-webkit-scrollbar-thumb {
+  background: var(--border-base);
+  border-radius: 6px;
+  border: 3px solid var(--bg-base);
+}
+  
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-base);
+}
+    

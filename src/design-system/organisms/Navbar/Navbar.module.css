@@ -21,7 +21,10 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: var(--border-width) solid;
+  border-bottom: var(--border-width) solid var(--border-base);
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  transition: background-color var(--transition-base), border-color var(--transition-base), color var(--transition-base);
 }
 
 .dark {
@@ -31,13 +34,13 @@
 }
 
 .light {
-  background-color: var(--bg-base);
+  background-color: var(--bg-surface);
   border-bottom-color: var(--border-base);
   color: var(--text-primary);
 }
 
 .inner {
-  max-width: 1240px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 var(--space-6);
   height: 64px;
@@ -46,8 +49,8 @@
   gap: var(--space-8);
 }
 
-@media (min-width: 1024px) {
-  .inner { padding: 0 var(--space-16); }
+@media (min-width: 768px) {
+  .inner { padding: 0 var(--space-12); }
 }
 
 .logo {
@@ -55,6 +58,7 @@
   align-items: center;
   flex-shrink: 0;
   text-decoration: none;
+  color: currentColor;
 }
 
 .logoText {
@@ -80,13 +84,14 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wider);
-  color: currentColor;
+  color: var(--text-secondary);
   text-decoration: none;
   transition: color var(--transition-fast);
   white-space: nowrap;
 }
 
 .dark .link { color: var(--color-sand); }
+.light .link { color: var(--text-secondary); }
 .link:hover { color: var(--color-ochre); }
 .linkActive { color: var(--color-ochre) !important; }
 
@@ -103,32 +108,52 @@
 .hamburger {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: var(--icon-click-area, 44px);
+  min-height: var(--icon-click-area, 44px);
   gap: 5px;
   cursor: pointer;
   background: none;
   border: none;
-  padding: 4px;
+  padding: var(--space-2);
+  color: var(--text-primary);
+  border-radius: var(--radius-none);
 }
 @media (min-width: 768px) { .hamburger { display: none; } }
 
 .bar {
   display: block;
   width: 22px;
-  height: 1px;
-  background-color: var(--color-sand);
-  transition: transform var(--transition-base), opacity var(--transition-base);
+  height: 2px;
+  background-color: currentColor;
+  transition: transform var(--transition-base), opacity var(--transition-base), background-color var(--transition-base);
 }
 
-.barOpen:first-child { transform: translateY(6px) rotate(45deg); }
+.dark .bar { background-color: var(--color-sand); }
+.light .bar { background-color: var(--color-ink); }
+
+.barOpen:first-child { transform: translateY(7px) rotate(45deg); }
 .barMidOpen { opacity: 0; }
-.barOpen:last-child { transform: translateY(-6px) rotate(-45deg); }
+.barOpen:last-child { transform: translateY(-7px) rotate(-45deg); }
 
 .mobileMenu {
-  border-top: var(--border-width) solid var(--color-border-dark);
+  border-top: var(--border-width) solid var(--border-base);
   display: flex;
   flex-direction: column;
   padding: var(--space-4) var(--space-6);
   gap: var(--space-2);
+  background-color: var(--bg-base);
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+}
+.dark .mobileMenu {
+  background-color: var(--color-ink);
+  border-top-color: var(--color-border-dark);
+}
+.light .mobileMenu {
+  background-color: var(--bg-surface);
+  border-top-color: var(--border-base);
 }
 @media (min-width: 768px) { .mobileMenu { display: none; } }
 
@@ -137,13 +162,35 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wider);
-  color: var(--color-sand);
+  color: var(--text-secondary);
   text-decoration: none;
   padding: var(--space-3) 0;
-  border-bottom: var(--border-width) solid var(--color-border-dark);
+  border-bottom: var(--border-width) solid var(--border-base);
+  transition: color var(--transition-fast);
+}
+.dark .mobileLink {
+  color: var(--color-sand);
+  border-bottom-color: var(--color-border-dark);
+}
+.light .mobileLink {
+  color: var(--text-secondary);
+  border-bottom-color: var(--border-base);
+}
+.mobileLink:hover { color: var(--color-ochre); }
+.mobileLink.linkActive {
+  color: var(--color-ochre) !important;
+  font-weight: 700;
 }
 .mobileLink:last-of-type { border-bottom: none; }
 
 .mobileCta {
   padding-top: var(--space-4);
+  border-top: var(--border-width) solid var(--border-base);
+  margin-top: var(--space-2);
+}
+.dark .mobileCta {
+  border-top-color: var(--color-border-dark);
+}
+.light .mobileCta {
+  border-top-color: var(--border-base);
 }

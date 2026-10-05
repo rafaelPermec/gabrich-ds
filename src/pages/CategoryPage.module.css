@@ -1,6 +1,7 @@
 .head {
   padding: var(--space-16) 0 var(--space-8);
   border-bottom: 1px solid var(--border-base);
+  background-color: var(--bg-base);
 }
 .eyebrow {
   display: flex;
@@ -34,9 +35,10 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
-  color: var(--color-caramel);
+  color: var(--accent-primary);
   text-decoration: none;
   border-bottom: 1px solid currentColor;
   padding-bottom: 2px;
+  transition: color var(--transition-fast);
 }
-.sbLink:hover { color: var(--color-ochre); }
+.sbLink:hover { color: var(--accent-warm); }

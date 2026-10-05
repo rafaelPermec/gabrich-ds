@@ -5,7 +5,17 @@ import styles from "./Typography.module.css"
 type TextSize = "xs" | "sm" | "base" | "md" | "lg" | "xl" | "2xl"
 type TextFont = "body" | "mono" | "sub"
 type TextWeight = 300 | 400 | 500 | 600 | 700
-type TextColor = "ink" | "paper" | "ochre" | "caramel" | "cocoa-matte" | "sand" | "cocoa-deep"
+type TextColor =
+  | "primary"
+  | "secondary"
+  | "muted"
+  | "ink"
+  | "paper"
+  | "ochre"
+  | "caramel"
+  | "cocoa-matte"
+  | "sand"
+  | "cocoa-deep"
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6
 type HeadingSize = "display" | "xl" | "lg" | "md" | "sm" | "xs"
 type HeadingFont = "display" | "sub"
@@ -25,7 +35,7 @@ export function Text({
   size = "base",
   font = "body",
   weight = 400,
-  color = "ink",
+  color = "primary",
   uppercase = false,
   className,
   children,
@@ -63,7 +73,7 @@ export function Heading({
   level = 2,
   size = "lg",
   font = "display",
-  color = "ink",
+  color = "primary",
   className,
   children,
   ...rest

@@ -1,4 +1,11 @@
-.page { padding: 0 var(--space-6) var(--space-24); max-width: 1360px; width: 100%; margin: 0 auto; }
+.page {
+  padding: 0 var(--space-6) var(--space-24);
+  max-width: 1360px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+}
 @media (min-width: 768px) { .page { padding: 0 var(--space-12) var(--space-24); } }
 
 .mono {
@@ -31,7 +38,7 @@
 }
 
 /* seletor de vertical */
-.switcher { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border-top: 1px solid var(--border-strong); }
+.switcher { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border-top: 1px solid var(--border-strong); background-color: var(--bg-base); }
 .tab {
   all: unset;
   box-sizing: border-box;
@@ -47,8 +54,8 @@
 }
 .tab:hover { color: var(--text-primary); padding-left: var(--space-6); }
 .tab:focus-visible { outline: 2px solid var(--color-ochre); outline-offset: -2px; }
-.tabActive { background: var(--color-ink); color: var(--color-paper); }
-.tabActive:hover { color: var(--color-paper); padding-left: var(--space-4); }
+.tabActive { background: var(--border-strong); color: var(--bg-base); }
+.tabActive:hover { color: var(--bg-base); padding-left: var(--space-4); }
 .tabNum { grid-area: n; font-family: var(--font-mono); font-size: var(--text-xs); align-self: center; }
 .tabName {
   grid-area: name;
@@ -67,8 +74,8 @@
   margin-top: var(--space-2);
   color: var(--color-ochre);
 }
-:global(html.dark) .tabActive { background: var(--color-paper); color: var(--color-ink); }
-:global(html.dark) .tabActive .tabBase { color: var(--color-caramel); }
+:global(html.dark) .tabActive { background: var(--border-strong); color: var(--bg-base); }
+:global(html.dark) .tabActive .tabBase { color: var(--color-ochre); }
 
 /* palco da vertical */
 .stage {
@@ -180,22 +187,20 @@
 /* specimen: documento */
 .paperSheet {
   background: var(--bg-surface);
-  color: var(--color-ink);
-  border: 1px solid var(--color-neutral);
+  color: var(--text-primary);
+  border: 1px solid var(--border-base);
   padding: var(--space-8);
   display: grid;
   gap: var(--space-6);
-  --text-primary: var(--color-ink);
-  --text-secondary: var(--color-cocoa-matte);
-  --border-base: var(--color-neutral);
+  transition: background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base);
 }
 @media (min-width: 900px) { .paperSheet { padding: var(--space-12) 104px; } }
 .sheetHead {
   display: flex; justify-content: space-between; align-items: center; gap: var(--space-4);
   padding-bottom: var(--space-3);
-  border-bottom: 1px solid var(--color-ink);
+  border-bottom: 1px solid var(--border-strong);
 }
-.sheetTitle { font-family: var(--font-display); font-weight: 900; font-size: var(--text-2xl); letter-spacing: -0.03em; line-height: 1; margin: 0; }
+.sheetTitle { font-family: var(--font-display); font-weight: 900; font-size: var(--text-2xl); letter-spacing: -0.03em; line-height: 1; margin: 0; color: var(--text-primary); }
 .sheetFoot { display: grid; gap: var(--space-6); align-items: end; }
 @media (min-width: 700px) { .sheetFoot { grid-template-columns: 1fr auto; } }
 .progressStack { display: grid; gap: var(--space-6); }
@@ -206,9 +211,11 @@
   all: unset; box-sizing: border-box; cursor: pointer;
   display: grid; gap: var(--space-2); align-content: space-between;
   border: 1px solid var(--border-base); padding: 0 0 var(--space-3);
-  transition: border-color var(--transition-fast), transform var(--transition-fast);
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  transition: border-color var(--transition-fast), transform var(--transition-fast), background-color var(--transition-fast);
 }
-.subBtn .mono { padding: 0 var(--space-3); }
+.subBtn .mono { padding: 0 var(--space-3); color: var(--text-secondary); }
 .subBtn:hover { border-color: var(--border-strong); }
 .subBtn:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 2px; }
 .subOn { border-color: var(--border-strong); box-shadow: inset 0 -4px 0 var(--accent-primary); }

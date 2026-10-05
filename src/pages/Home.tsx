@@ -87,19 +87,43 @@ export function Home() {
 
       <section className={styles.facts} aria-label="Em números">
         <div>
-          <strong>{total}</strong>
+          <motion.strong
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.32, 0, 0.15, 1] }}
+          >
+            {total}
+          </motion.strong>
           <span>componentes</span>
         </div>
         <div>
-          <strong>{stories}</strong>
+          <motion.strong
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.32, 0, 0.15, 1] }}
+          >
+            {stories}
+          </motion.strong>
           <span>stories</span>
         </div>
         <div>
-          <strong>3</strong>
+          <motion.strong
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.32, 0, 0.15, 1] }}
+          >
+            3
+          </motion.strong>
           <span>verticais — portfólio, documento, curso</span>
         </div>
         <div>
-          <strong>2</strong>
+          <motion.strong
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.32, 0, 0.15, 1] }}
+          >
+            2
+          </motion.strong>
           <span>temas, um sistema semântico</span>
         </div>
       </section>

@@ -39,7 +39,7 @@ import { NavigationItem } from "../design-system/molecules/NavigationItem"
 import { Breadcrumb } from "../design-system/molecules/Breadcrumb"
 import { Pagination } from "../design-system/molecules/Pagination"
 import { Alert } from "../design-system/molecules/Alert"
-import { ToastProvider, useToast } from "../design-system/molecules/Toast"
+import { useToast } from "../design-system/molecules/Toast"
 import { Modal } from "../design-system/molecules/Modal"
 import { Tabs } from "../design-system/molecules/Tabs"
 import { Accordion } from "../design-system/molecules/Accordion"
@@ -254,7 +254,7 @@ export function ThemeToggle() {
     { value: "system", label: "Sistema" },
   ]
   return (
-    <div style={{ display: "flex", gap: "8px" }}>
+    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
       {options.map((o) => (
         <Button
           key={o.value}
@@ -613,6 +613,9 @@ export const registry: Entry[] = [
         Render: () => (
           <>
             <div className={styles.col}>
+              <Text color="primary">primary — cor principal adaptável ao tema</Text>
+              <Text color="secondary">secondary — cor secundária adaptável ao tema</Text>
+              <Text color="muted">muted — texto atenuado para legendas e rótulos</Text>
               <Text color="ink">preto tinta — cor base padrão</Text>
               <Text color="caramel">caramelo — área quente</Text>
               <Text color="ochre">ocre — acento, máx 1x por peça</Text>

@@ -25,14 +25,16 @@ export function Footer({
   groups = [],
   copyright,
   social = [],
-  dark = true,
+  dark,
   className,
 }: FooterProps) {
   const year = new Date().getFullYear()
+  const themeClass =
+    dark !== undefined ? (dark ? styles.dark : styles.light) : ""
 
   return (
     <footer
-      className={[styles.footer, dark ? styles.dark : styles.light, className]
+      className={[styles.footer, themeClass, className]
         .filter(Boolean)
         .join(" ")}
     >

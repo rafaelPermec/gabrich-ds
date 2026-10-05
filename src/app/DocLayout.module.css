@@ -1,4 +1,10 @@
-.layout { display: flex; flex: 1; }
+.layout {
+  display: flex;
+  flex: 1;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  min-height: calc(100vh - 64px);
+}
 
 .sidebar {
   display: none;
@@ -15,6 +21,8 @@
   min-width: 0;
   max-width: 960px;
   padding: 0 var(--space-6) var(--space-24);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
 }
 @media (min-width: 768px) { .main { padding: 0 var(--space-12) var(--space-24); } }
 

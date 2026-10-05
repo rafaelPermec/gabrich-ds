@@ -1,5 +1,8 @@
 .footer {
-  border-top: var(--border-width) solid;
+  border-top: var(--border-width) solid var(--border-base);
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  transition: background-color var(--transition-base), border-color var(--transition-base), color var(--transition-base);
 }
 
 .dark {
@@ -52,8 +55,10 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
-  color: var(--color-sand);
+  color: var(--text-secondary);
 }
+.dark .tagline { color: var(--color-sand); }
+.light .tagline { color: var(--color-cocoa-matte); }
 
 .social {
   display: flex;
@@ -66,8 +71,8 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  color: var(--color-sand);
-  border: var(--border-width) solid var(--color-border-dark);
+  color: var(--text-secondary);
+  border: var(--border-width) solid var(--border-base);
   border-radius: var(--radius-none);
   transition: color var(--transition-fast), border-color var(--transition-fast);
   text-decoration: none;
@@ -75,6 +80,14 @@
 .socialLink:hover {
   color: var(--color-ochre);
   border-color: var(--color-ochre);
+}
+.dark .socialLink {
+  color: var(--color-sand);
+  border-color: var(--color-border-dark);
+}
+.light .socialLink {
+  color: var(--color-cocoa-matte);
+  border-color: var(--color-neutral);
 }
 
 .groups {
@@ -89,9 +102,11 @@
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
   font-weight: 700;
-  color: var(--color-sand);
+  color: var(--text-primary);
   margin-bottom: var(--space-4);
 }
+.dark .groupTitle { color: var(--color-sand); }
+.light .groupTitle { color: var(--color-ink); }
 
 .groupLinks {
   display: flex;
@@ -102,25 +117,33 @@
 .groupLink {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--color-sand);
+  color: var(--text-secondary);
   text-decoration: none;
   transition: color var(--transition-fast);
   line-height: var(--leading-normal);
 }
-.groupLink:hover { color: var(--color-paper); }
+.groupLink:hover { color: var(--color-ochre); }
+.dark .groupLink { color: var(--color-sand); }
+.dark .groupLink:hover { color: var(--color-paper); }
+.light .groupLink { color: var(--color-cocoa-matte); }
+.light .groupLink:hover { color: var(--color-ink); }
 
 .bottom {
-  border-top: var(--border-width) solid var(--color-border-dark);
+  border-top: var(--border-width) solid var(--border-base);
   padding: var(--space-4) var(--space-6);
   max-width: 1240px;
   margin: 0 auto;
   width: 100%;
 }
+.dark .bottom { border-top-color: var(--color-border-dark); }
+.light .bottom { border-top-color: var(--color-neutral); }
 
 .copyright {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
-  color: var(--color-border-dark);
+  color: var(--text-secondary);
 }
+.dark .copyright { color: var(--color-sand); }
+.light .copyright { color: var(--color-cocoa-matte); }

@@ -1,6 +1,8 @@
 .text {
   font-family: var(--font-body);
   line-height: var(--leading-relaxed);
+  color: var(--text-primary);
+  transition: color var(--transition-base);
 }
 
 /* Sizes */
@@ -31,13 +33,55 @@
 .weight-700 { font-weight: 700; }
 
 /* Colors */
-.color-ink { color: var(--color-ink); }
+.color-primary { color: var(--text-primary); }
+.color-secondary { color: var(--text-secondary); }
+.color-muted { color: var(--text-muted); }
+
+.color-ink {
+  color: var(--color-ink);
+}
+:global(html.dark) .color-ink,
+:global([data-theme="dark"]) .color-ink,
+:global([class*="demoStageDark"]) .color-ink {
+  color: var(--text-primary);
+}
+
 .color-paper { color: var(--color-paper); }
 .color-ochre { color: var(--color-ochre); }
-.color-caramel { color: var(--color-caramel); }
-.color-cocoa-matte { color: var(--color-cocoa-matte); }
-.color-sand { color: var(--color-sand); }
-.color-cocoa-deep { color: var(--color-cocoa-deep); }
+
+.color-caramel {
+  color: var(--color-caramel);
+}
+:global(html.dark) .color-caramel,
+:global([data-theme="dark"]) .color-caramel,
+:global([class*="demoStageDark"]) .color-caramel {
+  color: var(--color-ochre);
+}
+
+.color-cocoa-matte {
+  color: var(--color-cocoa-matte);
+}
+:global(html.dark) .color-cocoa-matte,
+:global([data-theme="dark"]) .color-cocoa-matte,
+:global([class*="demoStageDark"]) .color-cocoa-matte {
+  color: var(--text-secondary);
+}
+
+.color-sand {
+  color: var(--color-sand);
+}
+:global(html:not(.dark)) .color-sand {
+  color: var(--text-secondary);
+}
+
+.color-cocoa-deep {
+  color: var(--color-cocoa-deep);
+}
+:global(html.dark) .color-cocoa-deep,
+:global([data-theme="dark"]) .color-cocoa-deep,
+:global([class*="demoStageDark"]) .color-cocoa-deep {
+  color: var(--text-secondary);
+}
 
 .uppercase { text-transform: uppercase; }
 
@@ -48,6 +92,8 @@
   letter-spacing: var(--tracking-tight);
   line-height: var(--leading-tight);
   text-transform: lowercase;
+  color: var(--text-primary);
+  transition: color var(--transition-base);
 }
 
 .heading-display { font-size: var(--text-display); }

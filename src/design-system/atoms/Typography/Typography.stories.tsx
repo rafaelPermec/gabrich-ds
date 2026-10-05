@@ -13,7 +13,7 @@ const meta = {
       },
     },
   },
-  args: { children: "Fotografia de produto", level: 1, size: "xl" },
+  args: { children: "Fotografia de produto", level: 1, size: "xl", color: "primary" },
   argTypes: {
     level: { control: "inline-radio", options: [1, 2, 3, 4, 5, 6] },
     size: {
@@ -24,6 +24,9 @@ const meta = {
     color: {
       control: "select",
       options: [
+        "primary",
+        "secondary",
+        "muted",
         "ink",
         "paper",
         "ochre",

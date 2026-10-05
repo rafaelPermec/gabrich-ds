@@ -1,54 +1,77 @@
-"use client"
-import { NavLink, Outlet, useLocation } from "react-router"
+import React from "react"
+import { Outlet, useLocation, useNavigate } from "react-router"
+import { Navbar, type NavbarLink } from "../design-system/organisms/Navbar"
 import { Footer } from "../design-system/organisms/Footer"
 import { ThemeToggle, categories } from "../docs/registry"
 import styles from "./Layout.module.css"
 
-const links = [
-  ...categories.map((c) => ({ to: c.path, label: c.label })),
-  { to: "/verticais", label: "Verticais" },
-  { to: "/storybook", label: "Storybook" },
-]
-
 export function Layout() {
   const { pathname } = useLocation()
+  const navigate = useNavigate()
   const isStorybook = pathname.startsWith("/storybook")
+
+  const isModifiedEvent = (e: React.MouseEvent) =>
+    e.metaKey || e.altKey || e.ctrlKey || e.shiftKey || e.button !== 0
+
+  const links: NavbarLink[] = [
+    ...categories.map((c) => ({
+      href: c.path,
+      label: c.label.toLowerCase(),
+      active: pathname === c.path,
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (!isModifiedEvent(e)) {
+          e.preventDefault()
+          navigate(c.path)
+        }
+      },
+    })),
+    {
+      href: "/verticais",
+      label: "verticais",
+      active: pathname === "/verticais",
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (!isModifiedEvent(e)) {
+          e.preventDefault()
+          navigate("/verticais")
+        }
+      },
+    },
+    {
+      href: "/storybook",
+      label: "storybook",
+      active: pathname.startsWith("/storybook"),
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (!isModifiedEvent(e)) {
+          e.preventDefault()
+          navigate("/storybook")
+        }
+      },
+    },
+  ]
 
   return (
     <div className={styles.app}>
-      <a href="#main-content" className={styles.skip}>
-        Pular para o conteúdo
-      </a>
-      <header className={styles.header}>
-        <NavLink
-          to="/"
-          className={styles.brand}
-          aria-label="Início — Débora Gabrich Design System"
-        >
-          <span className={styles.mark} aria-hidden="true">
-            dg
+      <Navbar
+        logo={
+          <span className={styles.brand}>
+            <span className={styles.mark} aria-hidden="true">
+              dg
+            </span>
+            <span className={styles.brandText}>
+              design system <em>v3</em>
+            </span>
           </span>
-          <span className={styles.brandText}>
-            design system <em>v3</em>
-          </span>
-        </NavLink>
-        <nav aria-label="Principal" className={styles.nav}>
-          {links.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              className={({ isActive }) =>
-                [styles.link, isActive ? styles.active : ""].join(" ")
-              }
-            >
-              {l.label}
-            </NavLink>
-          ))}
-        </nav>
-        <div className={styles.tools}>
-          <ThemeToggle />
-        </div>
-      </header>
+        }
+        logoHref="/"
+        onLogoClick={(e) => {
+          if (!isModifiedEvent(e)) {
+            e.preventDefault()
+            navigate("/")
+          }
+        }}
+        links={links}
+        cta={<ThemeToggle />}
+      />
 
       <div id="main-content" className={styles.content}>
         <Outlet />
@@ -57,7 +80,6 @@ export function Layout() {
       {!isStorybook && (
         <Footer
           tagline="design system — fotografia de produtos"
-          dark
           copyright={`© ${new Date().getFullYear()} Débora Gabrich. componentes sob licença MIT.`}
         />
       )}

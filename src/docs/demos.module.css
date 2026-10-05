@@ -2,13 +2,15 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-paper);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
 }
 
 .layout {
   display: flex;
   flex: 1;
   min-height: 0;
+  background-color: var(--bg-base);
 }
 
 /* Doc sidebar */
@@ -31,6 +33,7 @@
   min-width: 0;
   padding: 0 var(--space-6) var(--space-24);
   max-width: 900px;
+  background-color: var(--bg-base);
 }
 
 @media (min-width: 768px) {
@@ -70,7 +73,7 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
-  color: var(--color-sand);
+  color: var(--text-muted);
   width: 60px;
   flex-shrink: 0;
 }
@@ -92,7 +95,7 @@
 .swatchColor {
   height: 64px;
   border-radius: var(--radius-none);
-  border: var(--border-light);
+  border: var(--border-width) solid var(--border-base);
 }
 
 .swatchInfo {
@@ -105,7 +108,7 @@
   font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: 600;
-  color: var(--color-ink);
+  color: var(--text-primary);
 }
 
 .swatchHex {
@@ -113,13 +116,13 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
-  color: var(--color-cocoa-matte);
+  color: var(--text-secondary);
 }
 
 .swatchRole {
   font-family: var(--font-body);
   font-size: var(--text-xs);
-  color: var(--color-sand);
+  color: var(--text-muted);
 }
 
 /* Spacing demo */
@@ -141,7 +144,7 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
-  color: var(--color-sand);
+  color: var(--text-muted);
   width: 36px;
   flex-shrink: 0;
 }
@@ -173,7 +176,7 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
-  color: var(--color-cocoa-matte);
+  color: var(--text-secondary);
   text-align: center;
   line-height: var(--leading-normal);
 }

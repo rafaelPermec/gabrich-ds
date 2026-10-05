@@ -6,11 +6,14 @@ export interface NavbarLink {
   label: string
   href: string
   active?: boolean
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void
 }
 
 export interface NavbarProps {
   logo?: React.ReactNode
   logoText?: string
+  logoHref?: string
+  onLogoClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void
   links?: NavbarLink[]
   cta?: React.ReactNode
   dark?: boolean
@@ -20,16 +23,29 @@ export interface NavbarProps {
 export function Navbar({
   logo,
   logoText = "dg",
+  logoHref = "/",
+  onLogoClick,
   links = [],
   cta,
-  dark = true,
+  dark,
   className,
 }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const themeClass =
+    dark !== undefined ? (dark ? styles.dark : styles.light) : ""
+
+  React.useEffect(() => {
+    if (!mobileOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false)
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [mobileOpen])
 
   return (
     <header
-      className={[styles.navbar, dark ? styles.dark : styles.light, className]
+      className={[styles.navbar, themeClass, className]
         .filter(Boolean)
         .join(" ")}
     >
@@ -38,7 +54,12 @@ export function Navbar({
       </a>
 
       <div className={styles.inner}>
-        <a href="/" className={styles.logo} aria-label="Home">
+        <a
+          href={logoHref}
+          className={styles.logo}
+          aria-label="Home"
+          onClick={onLogoClick}
+        >
           {logo ?? <span className={styles.logoText}>{logoText}</span>}
         </a>
 
@@ -51,6 +72,7 @@ export function Navbar({
                 .filter(Boolean)
                 .join(" ")}
               aria-current={link.active ? "page" : undefined}
+              onClick={link.onClick}
             >
               {link.label}
             </a>
@@ -62,7 +84,7 @@ export function Navbar({
           <button
             className={styles.hamburger}
             aria-expanded={mobileOpen}
-            aria-label="Abrir menu"
+            aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
             aria-controls="mobile-menu"
             onClick={() => setMobileOpen((v) => !v)}
           >
@@ -107,7 +129,10 @@ export function Navbar({
                 .filter(Boolean)
                 .join(" ")}
               aria-current={link.active ? "page" : undefined}
-              onClick={() => setMobileOpen(false)}
+              onClick={(e) => {
+                link.onClick?.(e)
+                setMobileOpen(false)
+              }}
             >
               {link.label}
             </a>
