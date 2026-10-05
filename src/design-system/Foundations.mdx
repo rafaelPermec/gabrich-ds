@@ -1,0 +1,121 @@
+import { Meta, ColorPalette, ColorItem, Typeset } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Tokens" />
+
+# Tokens
+
+Fonte da verdade: `src/index.css`. Espelho em TypeScript: `src/design-system/tokens/index.ts`.
+
+## Cores primitivas
+
+<ColorPalette>
+  <ColorItem
+    title="Principais"
+    subtitle="60% base · 30% segunda · 10% acento"
+    colors={{
+      'Preto tinta · --color-ink': '#0B0B0B',
+      'Cacau profundo · --color-cocoa-deep': '#2E2118',
+      'Caramelo · --color-caramel': '#8A5F3A',
+      'Ocre · --color-ochre': '#CCAA66',
+    }}
+  />
+  <ColorItem
+    title="Secundárias"
+    subtitle="Uma por peça (Papel combina com tudo)"
+    colors={{
+      'Papel · --color-paper': '#F4F0E8',
+      'Cacau fosco · --color-cocoa-matte': '#644D3D',
+      'Areia · --color-sand': '#BFB09B',
+      'Neutro · --color-neutral': '#D3CABB',
+      'Filete escuro · --color-border-dark': '#4A423A',
+    }}
+  />
+  <ColorItem
+    title="Estados · light"
+    subtitle="--color-{error,warning,success,info}"
+    colors={{ error: '#B3261E', warning: '#F29900', success: '#2E7D32', info: '#CCAA66' }}
+  />
+  <ColorItem
+    title="Estados · dark"
+    subtitle="Overrides em html.dark"
+    colors={{ error: '#F2B8B5', warning: '#FFD966', success: '#A8D5AA', info: '#CCAA66' }}
+  />
+</ColorPalette>
+
+## Tokens semânticos
+
+Componentes devem consumir **apenas** tokens semânticos; eles mudam com o tema e com a vertical.
+
+| Token | Light | Dark |
+|---|---|---|
+| `--bg-base` | `--color-paper` | `--color-ink` |
+| `--bg-surface` | `#ffffff` | `--color-cocoa-deep` |
+| `--bg-subtle` | `--color-neutral` | `--color-border-dark` |
+| `--text-primary` | `--color-ink` | `--color-paper` |
+| `--text-secondary` | `--color-cocoa-matte` | `--color-sand` |
+| `--text-muted` | `--color-sand` | `--color-border-dark` |
+| `--border-base` | `--color-neutral` | `--color-border-dark` |
+| `--border-strong` | `--color-ink` | `--color-paper` |
+| `--accent-primary` | `--color-ochre` | `--color-ochre` |
+| `--accent-warm` | `--color-caramel` | `--color-caramel` |
+
+### Alphas e overlays
+
+| Token | Uso |
+|---|---|
+| `--overlay-heavy` | Backdrop de Modal, overlay do PortfolioGrid |
+| `--overlay-mid` | Overlay do Drawer |
+| `--gradient-ink-overlay` | Gradiente sobre fotos |
+| `--bg-subtle-alpha` | Zebra de tabela, fundos de demo |
+| `--bg-hover` | Hover de linhas |
+| `--accent-subtle` · `--accent-mid` | Realces em ocre |
+| `--skeleton-shimmer` | Brilho do Skeleton |
+
+## Tipografia
+
+<Typeset
+  fontFamily="'Urbanist', sans-serif"
+  fontWeight={900}
+  fontSizes={[80, 64, 48, 36, 28]}
+  sampleText="LUZ E MATÉRIA"
+/>
+
+<Typeset fontFamily="'Tenor Sans', serif" fontSizes={[28, 21, 17]} sampleText="Cada produto tem uma luz que é só dele." />
+
+<Typeset
+  fontFamily="'Manrope', sans-serif"
+  fontSizes={[17, 15, 12]}
+  sampleText="Manrope sustenta parágrafos longos: 15–17px, entrelinha 1,65, até 68 caracteres por linha."
+/>
+
+<Typeset fontFamily="'Space Mono', monospace" fontSizes={[12, 10]} sampleText="FICHA TÉCNICA · 01 · F/8 · 1/125" />
+
+| Família | Token | Uso |
+|---|---|---|
+| Urbanist | `--font-display` | Títulos display (contingência da Balgin) |
+| Tenor Sans | `--font-sub` | Subtítulos, frases de abertura |
+| Manrope | `--font-body` | Texto corrido, navegação |
+| Space Mono | `--font-mono` | Etiquetas, numeração, dados — sempre caixa alta |
+
+Escala: `--text-xs` 10 · `--text-sm` 12 · `--text-base` 15 · `--text-md` 17 · `--text-lg` 21 · `--text-xl` 28 · `--text-2xl` 36 · `--text-3xl` 48 · `--text-4xl` 64 · `--text-display` 80.
+
+## Espaçamento (grade de 4px)
+
+<div style={{ display: 'grid', gap: 8 }}>
+  {[1, 2, 3, 4, 6, 8, 12, 16, 24].map((n) => (
+    <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 16, fontFamily: 'Space Mono, monospace', fontSize: 12 }}>
+      <code style={{ width: 96 }}>--space-{n}</code>
+      <span style={{ width: 48 }}>{n * 4}px</span>
+      <span style={{ height: 12, width: n * 4, background: '#CCAA66' }} />
+    </div>
+  ))}
+</div>
+
+## Forma
+
+| Token | Valor | Gesto |
+|---|---|---|
+| `--radius-none` | `0` | **Enquadra** — card, foto, etiqueta, tabela, botão traçado |
+| `--radius-full` | `9999px` | **Marca** — disco de ação, numeração, avatar, marcador |
+
+Qualquer raio intermediário (4, 6, 8, 12, 16px…) está **fora do sistema**.

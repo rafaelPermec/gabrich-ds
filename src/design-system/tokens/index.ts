@@ -63,8 +63,48 @@ export const stateColors = {
   infoBg: 'rgba(204, 170, 102, 0.10)',
 } as const;
 
+export const fontSizes = {
+  xs: '10px',
+  sm: '12px',
+  base: '15px',
+  md: '17px',
+  lg: '21px',
+  xl: '28px',
+  '2xl': '36px',
+  '3xl': '48px',
+  '4xl': '64px',
+  display: '80px',
+} as const;
+
+export const lineHeights = {
+  tight: 0.9,
+  snug: 1.1,
+  normal: 1.35,
+  relaxed: 1.65,
+} as const;
+
+export const letterSpacing = {
+  tight: '-0.03em',
+  normal: '0',
+  wide: '0.1em',
+  wider: '0.16em',
+  widest: '0.2em',
+} as const;
+
+export const overlayTokens = {
+  overlayHeavy: 'var(--overlay-heavy)',
+  overlayMid: 'var(--overlay-mid)',
+  gradientInkOverlay: 'var(--gradient-ink-overlay)',
+  bgSubtleAlpha: 'var(--bg-subtle-alpha)',
+  bgHover: 'var(--bg-hover)',
+  accentSubtle: 'var(--accent-subtle)',
+  accentMid: 'var(--accent-mid)',
+  skeletonShimmer: 'var(--skeleton-shimmer)',
+} as const;
+
 export type ColorToken = keyof typeof colors;
 export type SpacingToken = keyof typeof spacing;
+export type FontSizeToken = keyof typeof fontSizes;
 export type DGVertical = 'portfolio' | 'document' | 'course' | 'blackfriday';
 
 // ─── Escopos temáticos (submarcas e Black Friday) ──────────────────────────

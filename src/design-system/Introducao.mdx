@@ -1,0 +1,46 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introdução" />
+
+# Débora Gabrich · Design System
+
+Fotografia de produtos e direção criativa. Este Storybook documenta os tokens e os 40 componentes
+do sistema (17 atoms · 15 molecules · 8 organisms), construídos em React + CSS Modules.
+
+## Como usar a toolbar
+
+- **Tema** — alterna Light / Dark aplicando a classe `light`/`dark` no `<html>`, exatamente como o `ThemeProvider` do app.
+- **Vertical** — envolve a story em `.vertical-portfolio`, `.vertical-document`, `.vertical-course` ou `.vertical-blackfriday`, que remapeiam os tokens semânticos.
+- **Accessibility** — o painel do addon a11y roda verificações axe em cada story.
+
+## Regras-mãe
+
+1. **Forma** — só existem dois raios: `0` (canto reto, "enquadra") e `9999px` (círculo/pílula, "marca"). Nunca raio intermediário. Foto nunca leva raio.
+2. **Cor** — proporção 60% base / 30% segunda principal / 10% acento. O ocre nunca passa de 10% da área.
+3. **Texto em cor cheia** — troque a cor, nunca reduza a opacidade.
+4. **Tokens sempre** — componentes usam `var(--...)` de `src/index.css`; nada de cor hardcoded.
+
+## Importando
+
+```tsx
+import { Button, Card, ThemeProvider, ToastProvider } from '@/design-system';
+
+export function App() {
+  return (
+    <ThemeProvider>
+      <ToastProvider position="top-right">
+        <Button variant="filled">Ver portfólio</Button>
+      </ToastProvider>
+    </ThemeProvider>
+  );
+}
+```
+
+## Estrutura
+
+| Pasta | Conteúdo |
+|---|---|
+| `src/index.css` | Tokens CSS (primitivos, semânticos, estados, alphas, dark mode, verticais) |
+| `src/design-system/tokens` | Tokens espelhados em TypeScript |
+| `src/design-system/atoms` · `molecules` · `organisms` | Componentes com `*.stories.tsx` co-located |
+| `src/imports/sistema_visual_debora_gabrich.md` | Manual de identidade visual |
