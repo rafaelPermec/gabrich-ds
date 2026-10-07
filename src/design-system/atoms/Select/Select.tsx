@@ -49,7 +49,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             {...rest}
           >
             {placeholder && (
-              <option value="" disabled>
+              <option value="" selected disabled>
                 {placeholder}
               </option>
             )}

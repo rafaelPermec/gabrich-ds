@@ -975,6 +975,17 @@ export const registry: Entry[] = [
                 error
                 errorMessage="Selecione um status válido"
               />
+              <Select
+                options={[
+                  { value: "editorial", label: "Editorial" },
+                  { value: "lookbook", label: "Lookbook" },
+                  { value: "ecommerce", label: "E-commerce" },
+                ]}
+                disabled
+                error
+                placeholder="Bloqueado"
+                errorMessage="Campo bloqueado"
+              />
             </div>
           </>
         ),

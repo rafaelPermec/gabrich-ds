@@ -1,6 +1,19 @@
 "use client"
-import React from "react"
+import React, { SVGProps } from "react"
 import styles from "./Icon.module.css"
+import { IconSelector, IconSelectorDTO } from "@/design-system/icons/icon-selector"
+
+const iconBase: SVGProps<SVGSVGElement> = {
+  width: "100%",
+  height: "100%",
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.6,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  "aria-hidden": true,
+}
 
 export type IconSize = 16 | 20 | 24 | 32
 export type IconColor = "ink" | "paper" | "ochre" | "caramel" | "sand" | "current"
@@ -11,6 +24,7 @@ export interface IconProps {
   label?: string
   className?: string
   children: React.ReactNode
+  icon?: keyof IconSelectorDTO;
 }
 
 export function Icon({
@@ -19,7 +33,9 @@ export function Icon({
   label,
   className,
   children,
-}: IconProps) {
+  icon
+}: Readonly<IconProps>) {
+  const CurrentIcon = icon ? IconSelector[icon] : undefined;
   return (
     <span
       className={[
@@ -34,7 +50,16 @@ export function Icon({
       aria-label={label}
       aria-hidden={!label}
     >
-      {children}
+      {CurrentIcon ? (
+        <CurrentIcon
+        {...iconBase}
+        width={size}
+        height={size}
+        color={color}
+        />
+      ) : (
+        children
+      )}
     </span>
   )
 }

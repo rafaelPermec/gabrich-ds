@@ -3,6 +3,7 @@
 :root {
   /* Colors */
   --color-ink: #0B0B0B;
+  --color-ink-off: #1C1C1C;
   --color-cocoa-deep: #2E2118;
   --color-caramel: #8A5F3A;
   --color-ochre: #CCAA66;
@@ -118,7 +119,7 @@
 /* ── Dark mode ─────────────────────────────────────────────────────────────── */
 html.dark {
   --bg-base: var(--color-ink);
-  --bg-surface: var(--color-cocoa-deep);
+  --bg-surface: var(--color-ink-off);
   --bg-subtle: var(--color-border-dark);
   --text-primary: var(--color-paper);
   --text-secondary: var(--color-sand);
@@ -145,7 +146,7 @@ html.dark {
 @media (prefers-color-scheme: dark) {
   html:not(.light) {
     --bg-base: var(--color-ink);
-    --bg-surface: var(--color-cocoa-deep);
+    --bg-surface: var(--color-ink-off);
     --bg-subtle: var(--color-border-dark);
     --text-primary: var(--color-paper);
     --text-secondary: var(--color-sand);

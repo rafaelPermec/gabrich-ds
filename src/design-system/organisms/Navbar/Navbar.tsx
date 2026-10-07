@@ -29,10 +29,10 @@ export function Navbar({
   cta,
   dark,
   className,
-}: NavbarProps) {
+}: Readonly<NavbarProps>) {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const themeClass =
-    dark !== undefined ? (dark ? styles.dark : styles.light) : ""
+  const isDark = dark ? styles.dark : styles.light;
+  const themeClass = dark !== undefined ? isDark : ""
 
   React.useEffect(() => {
     if (!mobileOpen) return
