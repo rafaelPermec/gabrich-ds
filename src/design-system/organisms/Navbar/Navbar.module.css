@@ -88,12 +88,54 @@
   text-decoration: none;
   transition: color var(--transition-fast);
   white-space: nowrap;
+
+  cursor: pointer;
+  position: relative;
+
+    & > svg {
+      transform: scale(0.6);
+      & > path {
+        stroke: var(--color-ochre);
+        transition: all 0.5s ease;
+      }
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      background-color: var(--color-ochre);
+      transform: scale(0);
+      transform-origin: left;
+      transition: transform 0.8s ease;
+    }
+
+    &:hover {
+      color: var(--color-ochre);
+      &:after {
+        transform: scale(1);
+      }
+    }
 }
 
 .dark .link { color: var(--color-sand); }
 .light .link { color: var(--text-secondary); }
-.link:hover { color: var(--color-ochre); }
-.linkActive { color: var(--color-ochre) !important; }
+.linkActive { 
+  color: var(--color-ochre) !important;
+      &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      background-color: var(--color-ochre);
+      transform: scale(1);
+    }
+}
 
 .actions {
   display: flex;

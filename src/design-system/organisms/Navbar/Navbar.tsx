@@ -112,7 +112,7 @@ export function Navbar({
       </div>
 
       {mobileOpen && (
-        <div
+        <nav
           id="mobile-menu"
           className={styles.mobileMenu}
           role="navigation"
@@ -138,7 +138,7 @@ export function Navbar({
             </a>
           ))}
           {cta && <div className={styles.mobileCta}>{cta}</div>}
-        </div>
+        </nav>
       )}
     </header>
   )

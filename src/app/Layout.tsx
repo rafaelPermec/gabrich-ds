@@ -58,7 +58,7 @@ export function Layout() {
               dg
             </span>
             <span className={styles.brandText}>
-              design system <em>v3</em>
+              gabrich d.sys <em>v3</em>
             </span>
           </span>
         }
