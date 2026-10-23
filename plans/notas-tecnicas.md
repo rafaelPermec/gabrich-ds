@@ -1,0 +1,48 @@
+# Notas técnicas
+
+Decisões de "como" já tomadas na conversa ou definidas no Manual Final 2026 · VIGENTE v2 que não viraram ADR. Cada item indica o PRD a que se refere.
+
+- `src/index.css` continua sendo a fonte da verdade dos tokens CSS; componentes usam só `var(--…)`, nunca valor fixo. · `fundamentos-manual-v2`
+- Nomes dos tokens iguais aos do manual: cores `--dg-*`, `--ne-*`, `--lp-*`, `--mqc-*`, `--adf-*`, `--bf-*` (2 · 01); espaçamento `--esp-1` a `--esp-24`; raio `--raio-reto`, `--raio-card`, `--raio-disco`; `--fio`; `--container`, `--colunas`, `--gutter`, `--dobra-desktop`, `--dobra-mobile` (2 · 03). · `fundamentos-manual-v2`
+- Os temas são aplicados por `[data-tema="…"]` e definem os 12 tokens de componente de 2 · 01 (`--fundo`, `--card`, `--fio-card`, `--texto`, `--texto-apoio`, `--acento`, `--botao`, `--botao-texto`, `--botao-hover`, `--desabilitado`, `--divisoria`, `--selo-garantia`). · `fundamentos-manual-v2`
+- Os temas ficam também num módulo TypeScript, a escrever, com `temaScope(id)` devolvendo os tokens de componente e `temaExtras(id)` os extras do tema. · `fundamentos-manual-v2`
+- Os tokens antigos usados pelos componentes genéricos (`--color-*`, `--space-*`, `--radius-*`, `--bg-*`, `--text-*`) continuam disponíveis para eles, sem uso pelos componentes do manual. · `fundamentos-manual-v2`
+- Nos temas das submarcas e da Black, os tokens de erro, aviso e sucesso apontam para `--texto` ou `--acento`. · `fundamentos-manual-v2`
+- O raio de 6px do scrollbar do app de documentação passa para `--raio-reto` (0). · `fundamentos-manual-v2`
+- Fontes pelo Google Fonts com o link de 2 · 06: Urbanist 300/600/700/900, Tenor Sans, Montserrat 200/300/600/700, Parkinsans 700, Manrope 300/400/600, Space Mono 400/700 e Nothing You Could Do. Sai a Archivo Narrow. · `fundamentos-manual-v2`
+- Black Mango por `@font-face`, a partir de `public/fonts/BlackMango-Regular.otf` (origem: `exportacoes-2026/sistema/fontes/black-mango/`). · `fundamentos-manual-v2`
+- Balgin e Balgin Text: nenhum `@font-face`; logos e o título BLACK FRIDAY como SVG de `exportacoes-2026/`. · `fundamentos-manual-v2`
+- Recuo lateral do container: 120 / 64 / 40 / 24px por largura de tela. · `fundamentos-manual-v2`
+- Tailwind v4 continua instalado e não importado; o design system não depende dele. · `fundamentos-manual-v2`
+- O formato de oferta usa a chave dos cursos na ordem c, l, a (`a`, `l`, `c`, `la`, `ca`, `cl`, `cla`). · `dados-dinamicos-e-mocks`
+- Ids de checkout: `#checkout-<slug>` e `#checkout-bf26-<slug>`, com os slugs `antes-da-foto`, `luz-na-pratica`, `mais-que-um-click`, `luz-antes-da-foto`, `click-antes-da-foto`, `click-luz` e `completo` (2 · 07). · `dados-dinamicos-e-mocks`
+- O link de checkout, quando existir, substitui o id; sem link, o botão usa o id. · `dados-dinamicos-e-mocks`
+- As funções de fase (`faseCampanha`, `blackFridayAberta`, `janelaContador`) recebem as datas como parâmetro, em vez de ler datas fixas. · `dados-dinamicos-e-mocks`
+- Datas da campanha em horário de Brasília (UTC−03:00). · `dados-dinamicos-e-mocks`
+- Mocks a escrever (`ofertas`, `campanha`, `quiz`, `depoimentos`, `antesDepois`, `modulos`) com os valores do manual; preços e slugs de referência em `_src/logic.js` da cópia offline do manual. · `dados-dinamicos-e-mocks`
+- Imagens lidas por `asset(path)`, com `setAssetsBase(url)` para trocar a base. · `dados-dinamicos-e-mocks`
+- Arquivos do manual copiados para `public/`: `exportacoes-2026/`, logos originais dos cursos, `assets/dep2/`, `assets/antes-depois/`, `assets/paginas/`, `assets/plan/` e `assets/lnp/f/`. · `dados-dinamicos-e-mocks`
+- Botão: alturas 56/48/44, padding 24/24/16, fonte 14/13/12; hover pelo `--botao-hover` do tema; variante `accent` e prop `width` ("mobile" = coluna toda no celular); sem escala no toque. · `atomos-manual-v2`
+- Etiqueta: tamanho `sm` (site e Black: 9px, 4 × 8, +0,08em) e `md` (peça da marca mãe: 8 × 12, altura mínima 28); cor `accent`. · `atomos-manual-v2`
+- Hover do botão no card de preço claro: inverte (fundo na cor do texto do curso). · `atomos-manual-v2`
+- Logo do curso em máscara (uma cor), a partir dos PNGs originais de cada curso. · `atomos-manual-v2`
+- As cores, fontes, logos e marcadores de cada card de preço (escuro e claro) ficam num módulo de tokens próprio; cada cor de 2 · 05.05b é um token, nunca HEX solto. · `componentes-de-oferta`
+- Card de preço com as props `curso` (a / l / c / ne), `blackFriday` e `claro`. · `componentes-de-oferta`
+- Faixa de fase: estática na página "cursos"; rolante e com contador nas páginas dos cursos. · `componentes-de-oferta`
+- Contador: versão em linha no cabeçalho ("05d 14h 22m 08s"); para leitores de tela, rótulo "contador" (convenção ARIA do W3C), com os números ocultos. · `componentes-de-oferta`
+- Selo de garantia: placeholder no lugar do ícone "aprovação" até o arquivo chegar; a troca é a última tarefa do projeto. · `atomos-manual-v2`
+- Quiz: a lógica fica numa função `resolverQuiz`; a prop `blackFriday` troca a versão; `links` e `capas` entram por props. · `quiz-cursos`
+- A lógica do quiz é comparada com o protótipo do manual nas 16.000 combinações (perguntas 1 a 4 × ex-aluno × normal/Black). Protótipo: `quizResult`/`quizScores` em `Quiz Cursos.dc.html` e `result()` em `_src/logic.js`, na cópia offline do manual. · `quiz-cursos`
+- Depoimentos: grade masonry de 3 colunas no desktop e carrossel no celular. · `componentes-de-prova`
+- Vídeo de depoimento: iframe `https://www.youtube.com/embed/ID?rel=0` com `referrerpolicy="strict-origin-when-cross-origin"` (sem ele aparece o "Erro 153"); capa `https://i.ytimg.com/vi/ID/hqdefault.jpg` antes do clique. · `componentes-de-prova`
+- Antes e depois com `touch-action: pan-y` para não bloquear a rolagem; setas do teclado movem a linha 5% por toque. · `componentes-de-prova`
+- Faixa rolante: ~40px/s (uma volta a cada 30s), pausa no hover e para com `prefers-reduced-motion`. · `componentes-de-prova`
+- Lista de módulos e depoimentos medem a largura com `ResizeObserver`; na primeira renderização, assumem desktop. · `componentes-de-conteudo`
+- Lista de módulos vira acordeão abaixo de 720px de largura da seção. · `componentes-de-conteudo`
+- Folheador: uma página por vez abaixo de 520px; clique, setas ou arrastar. · `componentes-de-conteudo`
+- Prática animada: com `prefers-reduced-motion`, renderiza o estado final (prática preenchida). · `componentes-de-conteudo`
+- Stories co-located ao componente (`*.stories.tsx`, CSF3, `tags: ['autodocs']`). · `documentacao-manual-v2`
+- Status de aprovação de cada componente num arquivo único de status, lido pelo Storybook. · `documentacao-manual-v2`
+- Toolbar do Storybook: seletor de tema com os 10 temas do manual (sai o seletor de vertical antigo) e seletor de fase da campanha. · `documentacao-manual-v2`
+- Comandos sempre com `pnpm` (`dev`, `build`, `storybook`, `build-storybook`, `typecheck`, `lint`, `lint:fix`). · `documentacao-manual-v2`
+- Deploy na Vercel: output `dist`, build `pnpm build` (app Vite + Storybook estático em `dist/storybook-static/`). · `documentacao-manual-v2`
