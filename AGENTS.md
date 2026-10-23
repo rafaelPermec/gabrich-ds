@@ -68,3 +68,4 @@ Fora de escopo: as páginas de venda reais e os componentes genéricos (ficam co
 - Decisões: `plans/adr/`
 - Decisões técnicas por PRD: `plans/notas-tecnicas.md`
 - PRDs e specs: `plans/prd/`, `plans/specs/` (specs nascem no `/prd-to-code`)
+- Skills do projeto: `.agents/skills/SELECTED.md`
