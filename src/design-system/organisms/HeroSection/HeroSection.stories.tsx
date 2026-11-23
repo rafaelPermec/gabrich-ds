@@ -32,7 +32,7 @@ export const WithImage: Story = {
   args: {
     image: (
       <img
-        src={photo("still", "#2E2118")}
+        src={photo("still", "dg-cacau-profundo")}
         alt="Still de produto em fundo cacau"
         style={{ width: "100%", height: "100%", objectFit: "cover" }}
       />

@@ -131,9 +131,9 @@ Sem dados de usuário nem segredos. Fontes externas só do Google Fonts (já em 
 - **Arquivos prováveis:** `src/pages/verticals/BlackFriday.tsx`, `src/pages/verticals/Submarcas.tsx`, `src/pages/verticals/shared.tsx`, `src/design-system/utils/storyFixtures.tsx`, `src/docs/registry.tsx`, `src/design-system/Foundations.mdx`, `src/design-system/atoms/Avatar/Avatar.stories.tsx`, `src/design-system/organisms/HeroSection/HeroSection.stories.tsx`, `src/design-system/organisms/PortfolioGrid/PortfolioGrid.stories.tsx`, `tests/auditoria/hex.spec.ts`
 - **Cobre:** RF11 (demos), RF12, RF14; CA12, CA14
 - **Pronto quando:**
-  - [ ] suíte completa (`pnpm test`) verde, CA14 incluído
-  - [ ] `pnpm typecheck`, `pnpm lint`, `pnpm build-storybook` sem erro; addon a11y sem violação crítica
-- **Status:** [ ] pendente
+  - [x] suíte completa (`pnpm test`) verde, CA14 incluído
+  - [x] `pnpm typecheck`, `pnpm lint`, `pnpm build-storybook` sem erro; addon a11y sem violação crítica
+- **Status:** [x] concluída (2026-11-23)
 
 ## 8. Notas de implementação
 | Data | Task | Nota (desvio, decisão nova, hipótese de bug confirmada) |
@@ -154,3 +154,7 @@ Sem dados de usuário nem segredos. Fontes externas só do Google Fonts (já em 
 | 2026-11-23 | T4 | Escopo das auditorias de raio e fio (CA8/CA9): `src/index.css`, `src/design-system/fundamentos/`, `src/pages/`, `src/docs/`, `src/app/`. Os 6 componentes do manual (pill e spinner de 2px do Button) entram no PRD `atomos-manual-v2`; o fio de erro de 2px (ADR 0004) entra na auditoria junto com o campo de formulário. Sombra é proibida em todo `src/`. Exceção nomeada no teste: cantoneiras de 0.09em do wordmark em `Submarcas.module.css` (desenho de logo; sai quando virar imagem, R19). CA7 olha as seções "Manual vigente" de `src/index.css` e `fundamentos/`, e proíbe `--space-*` ali. |
 | 2026-11-23 | T4 | Pegadinha: Storybook órfão na 6006 (de execução interrompida do Playwright) é reaproveitado pelo `reuseExistingServer` e, com HMR depois de editar `src/index.css`, duplica o `@import` do Google Fonts e quebra o CA5+CA6. Encerre o processo e rode de novo. |
 | 2026-11-23 | T4 | Revisão Padrões (Codex): `src/docs/registry.tsx` tem estilos inline com medidas fixas (demos de sidebar e de drawer), que já existiam antes da T4. Ficam para a T5, que já mexe no arquivo. |
+| 2026-11-23 | T5 | Desvio da D3 aprovado pelo usuário: `hexFoto` em `tokens/index.ts` guarda o HEX dos 7 primitivos usados por `photo()` (SVG em data URI dentro de `<img>` não lê `var()`); `photo()` recebe o nome do primitivo. A auditoria CA12 confere que cada HEX bate com `src/index.css`. Data URI idêntica, CA14 intacto. |
+| 2026-11-23 | T5 | Demos em `data-tema` (decisão do usuário: adotar o manual). `ScopeTheme` passa a `{ tema, campanha?, fontes }`; `SubScope` aplica `data-tema`/`data-campanha`; `.sub-scope` remapeia os tokens antigos para os de componente; os CSS Modules das demos usam `--fundo`, `--card`, `--texto`, `--texto-apoio`, `--fio-card`, `--acento`, `--botao`, `--botao-texto` (saem os `--sub-*` de cor; ficam os `--sub-font-*`). Mudam nas demos, para o valor do manual: o fio nas 4 submarcas, o texto de apoio no Click e no ADF e a superfície da BF preto (vira o `--card` do `dg`). As paletas das submarcas guardam o nome do token, não o HEX. |
+| 2026-11-23 | T5 | `registry.tsx`: só o espaçamento inline virou `--esp-*` (gap, padding, margin, espaçadores); larguras e alturas de moldura das demos ficam (decisão do usuário). `Foundations.mdx` antigo: "Genéricos/Tokens antigos"; os estados light/dark viram um item com `var()` do tema atual. |
+| 2026-11-23 | T5 | Flake visto uma vez na suíte cheia: CA2+CA3 e CA10 (`cores-temas.spec.ts`) estouraram os 30 s no `page.goto` sob carga paralela (cada um leva ~20 s isolado). Segunda execução: 50/50. Candidato a `test.slow()` se repetir. |

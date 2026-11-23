@@ -634,32 +634,34 @@ html.dark {
   --acento: var(--bf-ocre);
 }
 
-/* Escopo temático: submarcas e Black Friday (variáveis --sub-* vêm de themeVars()) */
+/* Escopo temático das demos (submarcas e Black Friday): as cores vêm do data-tema e do
+   data-campanha do mesmo elemento; as fontes, de themeVars() (--sub-font-*). Os tokens
+   antigos são remapeados para que os componentes genéricos se adaptem. */
 :root { --brand-ochre: var(--color-ochre); }
 .sub-scope {
-  --bg-base: var(--sub-bg);
-  --bg-surface: var(--sub-surface);
-  --text-primary: var(--sub-text);
-  --text-secondary: var(--sub-muted);
-  --text-muted: var(--sub-muted);
-  --border-base: var(--sub-wire);
-  --border-strong: var(--sub-text);
-  --accent-primary: var(--sub-accent);
-  --accent-warm: var(--sub-accent);
-  --color-ink: var(--sub-text);
-  --color-paper: var(--sub-bg);
-  --color-ochre: var(--sub-accent);
-  --color-caramel: var(--sub-accent);
-  --color-neutral: var(--sub-wire);
-  --color-border-dark: var(--sub-wire);
-  --color-cocoa-deep: var(--sub-surface);
-  --color-cocoa-matte: var(--sub-muted);
-  --color-sand: var(--sub-muted);
+  --bg-base: var(--fundo);
+  --bg-surface: var(--card);
+  --text-primary: var(--texto);
+  --text-secondary: var(--texto-apoio);
+  --text-muted: var(--texto-apoio);
+  --border-base: var(--fio-card);
+  --border-strong: var(--texto);
+  --accent-primary: var(--acento);
+  --accent-warm: var(--acento);
+  --color-ink: var(--texto);
+  --color-paper: var(--fundo);
+  --color-ochre: var(--acento);
+  --color-caramel: var(--acento);
+  --color-neutral: var(--fio-card);
+  --color-border-dark: var(--fio-card);
+  --color-cocoa-deep: var(--card);
+  --color-cocoa-matte: var(--texto-apoio);
+  --color-sand: var(--texto-apoio);
   --font-display: var(--sub-font-display);
   --font-body: var(--sub-font-body);
   --font-sub: var(--sub-font-sub);
-  background: var(--sub-bg);
-  color: var(--sub-text);
+  background: var(--fundo);
+  color: var(--texto);
   font-family: var(--sub-font-body);
 }
 

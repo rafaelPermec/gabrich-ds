@@ -3,6 +3,7 @@
  * Não é exportado pelo barrel do design system (`src/design-system/index.ts`).
  */
 import type { SVGProps } from "react"
+import { hexFoto, type CorFoto } from "../tokens/index"
 
 const base: SVGProps<SVGSVGElement> = {
   width: "100%",
@@ -57,10 +58,17 @@ export const IconInstagram = () => (
   </svg>
 )
 
-/** Placeholder de foto em SVG (data URI) — fotos nunca levam raio. */
-export const photo = (label = "foto", bg = "#2E2118", fg = "#CCAA66") =>
+/**
+ * Placeholder de foto em SVG (data URI) — fotos nunca levam raio.
+ * As cores são nomes de primitivo; o HEX vem de `hexFoto` (SVG em `<img>` não lê `var()`).
+ */
+export const photo = (
+  label = "foto",
+  fundo: CorFoto = "dg-cacau-profundo",
+  texto: CorFoto = "dg-ocre",
+) =>
   `data:image/svg+xml;utf8,${encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000"><rect width="800" height="1000" fill="${bg}"/><text x="400" y="510" font-family="Space Mono, monospace" font-size="28" letter-spacing="6" fill="${fg}" text-anchor="middle">${label.toUpperCase()}</text></svg>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000"><rect width="800" height="1000" fill="${hexFoto[fundo]}"/><text x="400" y="510" font-family="Space Mono, monospace" font-size="28" letter-spacing="6" fill="${hexFoto[texto]}" text-anchor="middle">${label.toUpperCase()}</text></svg>`,
   )}`
 
 export const projectRows = [

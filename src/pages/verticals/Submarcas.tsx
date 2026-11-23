@@ -175,14 +175,14 @@ function Identity({ id }: { id: SubmarcaId }) {
         <h4 className={styles.label}>paleta</h4>
         <ul className={styles.swatches}>
           {sub.palette.map((c, i) => (
-            <li key={`${c.hex}-${i}`}>
+            <li key={`${c.token}-${i}`}>
               <span
                 className={styles.chip}
-                style={{ background: c.hex }}
+                style={{ background: `var(${c.token})` }}
                 aria-hidden="true"
               />
               <strong>{c.name}</strong>
-              <code>{c.hex}</code>
+              <code>{c.token}</code>
               <small>{c.role}</small>
             </li>
           ))}

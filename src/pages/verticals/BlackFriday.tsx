@@ -267,11 +267,7 @@ function PriceBox() {
                 <span className={styles.ebook}>e-book antes da foto</span>
               ) : (
                 p.courses.map((c) => (
-                  <span
-                    key={c}
-                    className={styles.logoTile}
-                    style={{ background: submarcas[c].theme.bg }}
-                  >
+                  <span key={c} className={styles.logoTile}>
                     <SubScope
                       theme={submarcas[c].theme}
                       className={styles.logoInner}
@@ -424,15 +420,15 @@ function Simulator() {
 const courseVoice: Record<CourseKey, { contrast: string; button: string }> = {
   luz: {
     contrast: "ocre sobre o fundo do curso: 7,8:1",
-    button: "dourado #D9A648, texto carvão",
+    button: "dourado, texto carvão",
   },
   click: {
     contrast: "ocre sobre o fundo do curso: 7,5:1",
-    button: "amarelo #F5C242, texto carvão",
+    button: "amarelo, texto carvão",
   },
   adf: {
     contrast: "ocre sobre o fundo do curso: 8,9:1",
-    button: "whiskey sour #D39858, texto preto",
+    button: "whiskey sour, texto preto",
   },
 }
 const coursePrice: Record<CourseKey, number> = {
