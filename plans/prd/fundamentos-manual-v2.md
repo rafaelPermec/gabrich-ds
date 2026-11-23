@@ -1,9 +1,9 @@
 ---
 feature: fundamentos-manual-v2
-status: rascunho
+status: aprovado
 criado: 2026-10-23
-atualizado: 2026-10-23
-spec: plans/specs/<NNNN>-fundamentos-manual-v2.md
+atualizado: 2026-11-23
+spec: plans/specs/0001-fundamentos-manual-v2.md
 ---
 
 # PRD — Fundamentos do manual v2
@@ -16,7 +16,7 @@ Os tokens do design system ainda refletem o manual antigo. Só existem os raios 
 
 Objetivo: os fundamentos do design system (cor, tipografia, espaçamento, raio, fio e temas) correspondem um a um ao Manual Final 2026 · VIGENTE v2, aba 02 Dev, com os mesmos nomes de token.
 
-- Nenhum raio fora de 0, 16px ou círculo/pílula em todo o repositório.
+- Nenhum raio fora de 0, 16px ou círculo nos tokens, temas, componentes do manual, páginas de demonstração e app de documentação (os componentes genéricos com `--radius-*` ficam como estão).
 - Typecheck, lint e build do Storybook sem erro.
 - Nenhuma violação crítica no verificador de acessibilidade do Storybook.
 - 100% das cores aprovadas em 2 · 01 existem como token com o nome e o HEX do manual.
@@ -33,7 +33,7 @@ Objetivo: os fundamentos do design system (cor, tipografia, espaçamento, raio, 
 - **H2.** Como dev, quero um tema por identidade (marca mãe, Luz na Prática, Mais que um Click, Antes da Foto, No Estúdio), cada um com versão escura e clara, para trocar a identidade de um componente sem mudar o componente.
 - **H3.** Como dev, quero que todo componente use os mesmos tokens de componente do manual (`--fundo`, `--card`, `--fio-card`, `--texto`, `--texto-apoio`, `--acento`, `--botao`, `--botao-texto`, `--botao-hover`, `--desabilitado`, `--divisoria`, `--selo-garantia`) em qualquer tema, para não criar exceções por marca.
 - **H4.** Como dev, quero tokens de tipografia por nível (as "subfontes") em cada marca, com família, peso, tamanho, entrelinha, tracking e caixa do manual, para usar a fonte certa sem precisar saber qual família cada marca usa.
-- **H5.** Como Débora, quero que a Balgin só apareça nas logos, como SVG, e que os títulos usem Urbanist, para não publicar nada com a fonte demo.
+- **H5.** Como Débora, quero que a Balgin só apareça nas logos, como imagem (PNG do manual; SVG quando a Débora enviar), e que os títulos usem Urbanist, para não publicar nada com a fonte demo.
 - **H6.** Como dev, quero uma escala de espaçamento única em múltiplos de 4, para não inventar medidas.
 - **H7.** Como dev, quero só três valores de raio (reto, 16px e círculo), com a regra de onde cada um vale, para não errar a forma.
 - **H8.** Como dev, quero que o fio seja sempre de 1px e que não exista sombra, para manter a linguagem do manual.
@@ -55,8 +55,8 @@ Objetivo: os fundamentos do design system (cor, tipografia, espaçamento, raio, 
 | RF7 | A escala de espaçamento é a de 2 · 03 (`--esp-1` a `--esp-24`: 4, 8, 12, 16, 24, 32, 48, 64 e 96px), mais container de 1240px, 12 colunas, gutter de 24px e dobra de 96px (desktop) e 64px (celular). | Obrigatório | H6 |
 | RF8 | Existem só os raios de 2 · 03: `--raio-reto` (0), `--raio-card` (16px) e `--raio-disco` (50%). Nenhum outro valor aparece no código, nem na interface do app de documentação. | Obrigatório | H7 |
 | RF9 | O fio é sempre de 1px (`--fio`) e não existe token de sombra. | Obrigatório | H8 |
-| RF10 | Nos temas das submarcas e da Black Friday, erro, aviso e sucesso usam a cor do texto ou do acento, nunca vermelho. | Obrigatório | H9 |
-| RF11 | A Black Friday usa o tema `dg` ou `dg-claro` com os tokens `--bf-*` da campanha. | Obrigatório | H10 |
+| RF10 | Cada tema define `--erro`, `--aviso` e `--sucesso`. Nos temas das submarcas e da Black Friday eles apontam para `--texto` ou `--acento`, nunca vermelho. | Obrigatório | H9 |
+| RF11 | A Black Friday usa o tema `dg` ou `dg-claro` com a camada `data-campanha="bf"`, que aplica os tokens `--bf-*` e sobrescreve `--acento`, `--erro`, `--aviso` e `--sucesso` (sem vermelho). | Obrigatório | H10 |
 | RF12 | Toda cor usada no design system é um token. Os tokens `--dg-grafite`, `--adf-cobre`, `--adf-linha` e `--adf-trama` são criados e usados onde o manual usa essas cores (temas `adf` e `adf-claro`, cards de preço). Cores que aparecem no manual sem token próprio (ex.: fundos de card de 2 · 05.05b) ganham um token. Nenhum HEX fica escrito fora da definição dos tokens. | Obrigatório | H11 |
 | RF13 | Existe uma página de Fundamentos no Storybook com cores, temas, tipografia, espaçamento, raio e fio. | Obrigatório | H1, H2 |
 | RF14 | Os componentes genéricos que ficam fora do escopo continuam funcionando, sem mudança visual, depois da troca dos nomes dos tokens. | Obrigatório | H12 |
@@ -77,19 +77,19 @@ Objetivo: os fundamentos do design system (cor, tipografia, espaçamento, raio, 
 ## 8. Critérios de aceitação
 
 - **CA1 (RF1):** Dado o manual 2 · 01, quando comparo cada cor com os tokens, então todas existem com o mesmo nome e o mesmo HEX.
-- **CA2 (RF2):** Dado o Storybook, quando escolho qualquer um dos 10 temas, então os componentes trocam fundo, texto e acento para os valores do tema.
+- **CA2 (RF2):** Dado o Storybook em Fundamentos, quando escolho qualquer um dos 10 temas, então as amostras trocam fundo, texto e acento para os valores do tema.
 - **CA3 (RF3):** Dado qualquer tema, quando leio seus tokens de componente, então os 12 nomes de 2 · 01 estão definidos com os valores do manual.
 - **CA4 (RF4):** Dado um nível tipográfico (ex.: preço do Luz na Prática), quando uso o token, então família, peso, tamanho, entrelinha e tracking são os de 2 · 02 (Montserrat 700, 36–48, 0,9, −0,02em).
 - **CA5 (RF5):** Dado o carregamento de fontes, quando inspeciono a página, então nenhuma fonte Balgin é baixada.
 - **CA6 (RF6):** Dado o carregamento de fontes, quando inspeciono a página, então a Archivo Narrow não é baixada, a Black Mango está disponível e só os pesos de 2 · 06 são pedidos.
-- **CA7 (RF7):** Dado o código dos componentes do manual, quando procuro valores de espaçamento fora da escala, então não encontro nenhum.
-- **CA8 (RF8):** Dado o repositório, quando procuro valores de raio, então só encontro 0, 16px e círculo/pílula.
+- **CA7 (RF7):** Dado o CSS dos tokens, dos temas e da página Fundamentos, quando procuro valores de espaçamento fora de `--esp-*`, então não encontro nenhum.
+- **CA8 (RF8):** Dado o código fora dos componentes genéricos (inclusive o app de documentação), quando procuro valores de raio, então só encontro `--raio-reto`, `--raio-card` e `--raio-disco`.
 - **CA9 (RF9):** Dado o código, quando procuro sombras e fios, então não há sombra, e todo fio simples tem 1px.
-- **CA10 (RF10):** Dado um campo em erro num tema de submarca ou da Black, quando ele é exibido, então não há vermelho.
-- **CA11 (RF11):** Dado o tema da Black Friday, quando o aplico, então a base é preto ou papel da marca mãe, com acento ocre.
-- **CA12 (RF12):** Dado o código dos componentes, dos temas e das páginas de demonstração, quando procuro valores HEX fora da definição dos tokens, então não encontro nenhum.
+- **CA10 (RF10):** Dado um tema de submarca ou o `dg`/`dg-claro` com `data-campanha="bf"`, quando leio `--erro`, `--aviso` e `--sucesso`, então nenhum resolve para vermelho. (O campo em erro é verificado no PRD atomos-manual-v2.)
+- **CA11 (RF11):** Dado `data-tema="dg"` ou `"dg-claro"` com `data-campanha="bf"`, quando o aplico, então a base é preto ou papel da marca mãe, com acento ocre.
+- **CA12 (RF12):** Dado `src/` (componentes, stories, fixtures, app de documentação e páginas de demonstração), quando procuro valores HEX fora de `src/index.css` e `src/design-system/tokens/`, então não encontro nenhum.
 - **CA13 (RF13):** Dado o Storybook, quando abro Fundamentos, então vejo cores, temas, tipografia, espaçamento, raio e fio.
-- **CA14 (RF14):** Dado um componente genérico (ex.: tabela de dados), quando comparo antes e depois da refatoração, então ele aparece igual.
+- **CA14 (RF14):** Dado as stories dos componentes genéricos, quando comparo screenshots da `main` com os da `feat/fundamentos-manual-v2` (mesmo tema e viewport, via Playwright), então não há diferença visual, exceto a fonte de preço (Archivo Narrow → Montserrat 700, RF6).
 
 ## 9. Fluxos e interface
 
@@ -102,10 +102,12 @@ Objetivo: os fundamentos do design system (cor, tipografia, espaçamento, raio, 
 - Só entra o que está APROVADO no manual. O que está EM APROVAÇÃO pode mudar.
 - Restrição: a Black Mango é usada apenas no No Estúdio. O subtítulo/abertura da marca mãe é Tenor Sans 400.
 - Risco: trocar os nomes dos tokens pelos do manual mexe em tokens que os componentes genéricos usam (RF14).
+- Dependência (ferramenta): o CA14 exige instalar o Playwright (`@playwright/test`), hoje só planejado em `plans/stack.md`.
+- Dependência (Débora): logos em SVG e as que faltam em `manual-vigente/assets/` (marca mãe, Antes da Foto, título BLACK FRIDAY). Enquanto não chegam, usam-se os PNG do manual.
 
 ## 11. Perguntas em aberto
 
-(nenhum)
+- [ ] (não bloqueante) Logos em SVG e as faltantes: aguardando a Débora.
 
 ## 12. Decisões
 
@@ -113,10 +115,18 @@ Objetivo: os fundamentos do design system (cor, tipografia, espaçamento, raio, 
 |---|---|---|
 | 2026-10-23 | O escopo segue 100% o Manual Final 2026 · VIGENTE v2. | Ele é a fonte da verdade. |
 | 2026-10-23 | Os nomes dos tokens são os do manual (`--dg-*`, `--esp-*`, `--raio-*`, `--fio`, `data-tema` e os tokens de componente). | Manual vigente, 2 · 01 e 2 · 03. |
-| 2026-10-23 | A Balgin só é usada nas logos, como SVG. Títulos em Urbanist. | Combinado com a Débora; regra provisória de 2 · 06. |
+| 2026-10-23 | A Balgin só é usada nas logos, como imagem (PNG agora, SVG quando vier). Títulos em Urbanist. | Combinado com a Débora; regra provisória de 2 · 06. |
 | 2026-10-23 | As fontes primárias continuam as mesmas, organizadas em tokens por nível ("subfontes"), para validar o uso de cada uma. | Pedido da Débora. |
 | 2026-10-23 | A Archivo Narrow sai. | Não existe mais no manual (2 · 06). |
 | 2026-10-23 | Black Mango apenas no No Estúdio; subtítulo da marca mãe em Tenor Sans 400. | Definido pela Débora (2 · 06 e 2 · 08). |
 | 2026-10-23 | Toda cor é token; os tokens "uso a confirmar" são criados e usados; nenhum HEX espalhado no código. | Definido pela Débora. |
 | 2026-10-23 | Os nomes antigos dos tokens continuam só para os componentes genéricos. | Confirmado pela Débora. |
 | 2026-10-23 | Componentes genéricos que o manual não cita ficam como estão. | Resposta da Débora (pergunta 3). |
+| 2026-10-23 | Sem pílula: raios só reto, 16px e disco; os genéricos com `--radius-*` ficam fora da regra. | Manual 2 · 04 (pílulas viraram retângulo reto) e RF14. |
+| 2026-10-23 | Tokens de estado `--erro`, `--aviso`, `--sucesso` por tema. | Os 12 tokens de componente não cobrem estados; RF10. |
+| 2026-10-23 | Temas antigos (portfolio/document/course/blackfriday, `.light`/`.dark`) seguem só para os genéricos; `data-tema` é o sistema novo; as páginas de demonstração migram para `data-tema`. | RF14 e remoção da Archivo Narrow (RF6). |
+| 2026-10-23 | CA14 verificado por screenshots Playwright `main` × branch. | Projeto sem regressão visual. |
+| 2026-11-23 | Camada da Black Friday por `data-campanha="bf"` sobre `dg`/`dg-claro`, sobrescrevendo acento e estados. | O `dg` serve à marca mãe e à Black; sem camada a Black herdaria o vermelho (R21). |
+| 2026-11-23 | Playwright instalado nesta feature para o CA14. | Regressão visual repetível; base dos testes planejados. |
+| 2026-11-23 | CA12 vale para `src/` inteiro, inclusive stories e fixtures dos genéricos. | Trocar HEX por token não muda o visual; R29 sem exceção. |
+| 2026-11-23 | O `priceFont` antigo troca Archivo Narrow por Montserrat 700; única diferença aceita no CA14. | RF6 remove a Archivo; Montserrat 700 é a fonte de preço do manual. |
