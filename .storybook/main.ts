@@ -3,6 +3,8 @@ import remarkGfm from "remark-gfm"
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(ts|tsx)"],
+  // public/ (fontes locais, como a Black Mango) servido na raiz, igual ao app Vite
+  staticDirs: ["../public"],
   addons: [
     {
       name: "@storybook/addon-docs",

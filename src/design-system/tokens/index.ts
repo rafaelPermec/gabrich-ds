@@ -15,10 +15,9 @@ export const fonts = {
   body: "'Manrope', sans-serif",
   sub: "'Tenor Sans', serif",
   mono: "'Space Mono', monospace",
-  // submarcas — Black Mango é licenciada: enquanto não houver webfont, cai em Urbanist
+  // submarcas — Black Mango: arquivo próprio em public/fonts (só no No Estúdio)
   blackMango: "'Black Mango', 'Urbanist', sans-serif",
   montserrat: "'Montserrat', sans-serif",
-  archivoNarrow: "'Archivo Narrow', sans-serif",
   parkinsans: "'Parkinsans', sans-serif",
 } as const
 
@@ -238,7 +237,7 @@ export const submarcas: Record<SubmarcaId, Submarca> = {
     name: "mais que um click",
     kind: "curso online",
     grafismo: "papel milimetrado",
-    priceFont: fonts.archivoNarrow,
+    priceFont: fonts.montserrat,
     priceWeight: 700,
     theme: {
       bg: "#201F1D",
@@ -453,4 +452,62 @@ export const tokensEstado = {
   erro: "var(--erro)",
   aviso: "var(--aviso)",
   sucesso: "var(--sucesso)",
+} as const
+
+/** Subfontes de 2 · 02 por marca e nível: `font`, `letter-spacing` e `text-transform`. */
+export const subfontes = {
+  dg: {
+    titulo: { font: "var(--dg-titulo)", tracking: "var(--dg-titulo-tracking)", caixa: "var(--dg-titulo-caixa)" },
+    tituloApoio: { font: "var(--dg-titulo-apoio)", tracking: "var(--dg-titulo-apoio-tracking)", caixa: "var(--dg-titulo-apoio-caixa)" },
+    subtitulo: { font: "var(--dg-subtitulo)", tracking: "var(--dg-subtitulo-tracking)", caixa: "var(--dg-subtitulo-caixa)" },
+    corpo: { font: "var(--dg-corpo)", tracking: "var(--dg-corpo-tracking)", caixa: "var(--dg-corpo-caixa)" },
+    intertitulo: { font: "var(--dg-intertitulo)", tracking: "var(--dg-intertitulo-tracking)", caixa: "var(--dg-intertitulo-caixa)" },
+    rotulo: { font: "var(--dg-rotulo)", tracking: "var(--dg-rotulo-tracking)", caixa: "var(--dg-rotulo-caixa)" },
+    botao: { font: "var(--dg-botao)", tracking: "var(--dg-botao-tracking)", caixa: "var(--dg-botao-caixa)" },
+    manuscrita: { font: "var(--dg-manuscrita)", tracking: "var(--dg-manuscrita-tracking)", caixa: "var(--dg-manuscrita-caixa)" },
+  },
+  ne: {
+    h1: { font: "var(--ne-h1)", tracking: "var(--ne-h1-tracking)", caixa: "var(--ne-h1-caixa)" },
+    h2: { font: "var(--ne-h2)", tracking: "var(--ne-h2-tracking)", caixa: "var(--ne-h2-caixa)" },
+    h3: { font: "var(--ne-h3)", tracking: "var(--ne-h3-tracking)", caixa: "var(--ne-h3-caixa)" },
+    apoio: { font: "var(--ne-apoio)", tracking: "var(--ne-apoio-tracking)", caixa: "var(--ne-apoio-caixa)" },
+    corpo: { font: "var(--ne-corpo)", tracking: "var(--ne-corpo-tracking)", caixa: "var(--ne-corpo-caixa)" },
+    legenda: { font: "var(--ne-legenda)", tracking: "var(--ne-legenda-tracking)", caixa: "var(--ne-legenda-caixa)" },
+  },
+  lp: {
+    h1: { font: "var(--lp-h1)", tracking: "var(--lp-h1-tracking)", caixa: "var(--lp-h1-caixa)" },
+    h2: { font: "var(--lp-h2)", tracking: "var(--lp-h2-tracking)", caixa: "var(--lp-h2-caixa)" },
+    h3: { font: "var(--lp-h3)", tracking: "var(--lp-h3-tracking)", caixa: "var(--lp-h3-caixa)" },
+    corpo: { font: "var(--lp-corpo)", tracking: "var(--lp-corpo-tracking)", caixa: "var(--lp-corpo-caixa)" },
+    legenda: { font: "var(--lp-legenda)", tracking: "var(--lp-legenda-tracking)", caixa: "var(--lp-legenda-caixa)" },
+    preco: { font: "var(--lp-preco)", tracking: "var(--lp-preco-tracking)", caixa: "var(--lp-preco-caixa)" },
+  },
+  mqc: {
+    h1: { font: "var(--mqc-h1)", tracking: "var(--mqc-h1-tracking)", caixa: "var(--mqc-h1-caixa)" },
+    h2: { font: "var(--mqc-h2)", tracking: "var(--mqc-h2-tracking)", caixa: "var(--mqc-h2-caixa)" },
+    h3: { font: "var(--mqc-h3)", tracking: "var(--mqc-h3-tracking)", caixa: "var(--mqc-h3-caixa)" },
+    corpo: { font: "var(--mqc-corpo)", tracking: "var(--mqc-corpo-tracking)", caixa: "var(--mqc-corpo-caixa)" },
+    preco: { font: "var(--mqc-preco)", tracking: "var(--mqc-preco-tracking)", caixa: "var(--mqc-preco-caixa)" },
+  },
+  adf: {
+    h1: { font: "var(--adf-h1)", tracking: "var(--adf-h1-tracking)", caixa: "var(--adf-h1-caixa)" },
+    h2: { font: "var(--adf-h2)", tracking: "var(--adf-h2-tracking)", caixa: "var(--adf-h2-caixa)" },
+    h3: { font: "var(--adf-h3)", tracking: "var(--adf-h3-tracking)", caixa: "var(--adf-h3-caixa)" },
+    corpo: { font: "var(--adf-corpo)", tracking: "var(--adf-corpo-tracking)", caixa: "var(--adf-corpo-caixa)" },
+    rotulo: { font: "var(--adf-rotulo)", tracking: "var(--adf-rotulo-tracking)", caixa: "var(--adf-rotulo-caixa)" },
+    anotacao: { font: "var(--adf-anotacao)", tracking: "var(--adf-anotacao-tracking)", caixa: "var(--adf-anotacao-caixa)" },
+  },
+  bf: {
+    numero: { font: "var(--bf-numero)", tracking: "var(--bf-numero-tracking)", caixa: "var(--bf-numero-caixa)" },
+    parcela: { font: "var(--bf-parcela)", tracking: "var(--bf-parcela-tracking)", caixa: "var(--bf-parcela-caixa)" },
+    dePor: { font: "var(--bf-de-por)", tracking: "var(--bf-de-por-tracking)", caixa: "var(--bf-de-por-caixa)" },
+    aVista: { font: "var(--bf-a-vista)", tracking: "var(--bf-a-vista-tracking)", caixa: "var(--bf-a-vista-caixa)" },
+    contador: { font: "var(--bf-contador)", tracking: "var(--bf-contador-tracking)", caixa: "var(--bf-contador-caixa)" },
+    etiqueta: { font: "var(--bf-etiqueta)", tracking: "var(--bf-etiqueta-tracking)", caixa: "var(--bf-etiqueta-caixa)" },
+    botao: { font: "var(--bf-botao)", tracking: "var(--bf-botao-tracking)", caixa: "var(--bf-botao-caixa)" },
+    corpo: { font: "var(--bf-corpo)", tracking: "var(--bf-corpo-tracking)", caixa: "var(--bf-corpo-caixa)" },
+    lista: { font: "var(--bf-lista)", tracking: "var(--bf-lista-tracking)", caixa: "var(--bf-lista-caixa)" },
+    quizTitulo: { font: "var(--bf-quiz-titulo)", tracking: "var(--bf-quiz-titulo-tracking)", caixa: "var(--bf-quiz-titulo-caixa)" },
+    quizPergunta: { font: "var(--bf-quiz-pergunta)", tracking: "var(--bf-quiz-pergunta-tracking)", caixa: "var(--bf-quiz-pergunta-caixa)" },
+  },
 } as const

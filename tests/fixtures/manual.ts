@@ -94,3 +94,97 @@ export type TemaManual = keyof typeof TEMAS_MANUAL
 export const TEMAS_SUBMARCA = ["lp", "lp-claro", "mqc", "mqc-claro", "adf", "adf-claro", "ne", "ne-claro"] as const
 
 export const ESTADOS = ["erro", "aviso", "sucesso"] as const
+
+/**
+ * 2 · 02 (tokens de tipografia), por marca e nível. Tamanho em px: número fixo ou faixa
+ * [mín (375px de tela), máx (1240px)]. Tracking em em, ou "normal". Caixa: "alta" → uppercase;
+ * "baixa" → none; "baixa, sempre" → lowercase. Exceção do PRD (decisão de 2026-10-23): o
+ * subtítulo da marca mãe é Tenor Sans 400 (o manual traz Black Mango; ela fica só no No Estúdio).
+ */
+export type NivelTipografico = {
+  familia: string
+  peso: number
+  tamanho: number | readonly [number, number]
+  entrelinha: number
+  tracking: number | "normal"
+  caixa: "uppercase" | "lowercase" | "none"
+}
+
+const n = (
+  familia: string,
+  peso: number,
+  tamanho: NivelTipografico["tamanho"],
+  entrelinha: number,
+  tracking: NivelTipografico["tracking"],
+  caixa: NivelTipografico["caixa"] = "none",
+): NivelTipografico => ({ familia, peso, tamanho, entrelinha, tracking, caixa })
+
+export const TIPOGRAFIA_MANUAL = {
+  dg: {
+    titulo: n("Urbanist", 900, [32, 72], 0.95, -0.03, "uppercase"),
+    "titulo-apoio": n("Urbanist", 300, [32, 72], 0.95, 0, "uppercase"),
+    subtitulo: n("Tenor Sans", 400, [24, 40], 1.35, 0),
+    corpo: n("Manrope", 400, [15, 17], 1.65, 0),
+    intertitulo: n("Manrope", 600, [15, 17], 1.35, 0, "uppercase"),
+    rotulo: n("Space Mono", 400, [10, 11], 1.5, 0.2, "uppercase"),
+    botao: n("Manrope", 600, [12, 14], 1, 0.16, "uppercase"),
+    manuscrita: n("Nothing You Could Do", 400, [28, 54], 1.35, 0, "lowercase"),
+  },
+  ne: {
+    h1: n("Tenor Sans", 400, 64, 0.95, 0),
+    h2: n("Black Mango", 400, 38, 1.15, 0),
+    h3: n("Black Mango", 400, 24, 1.3, 0),
+    apoio: n("Tenor Sans", 400, [16, 24], 1.5, "normal"),
+    corpo: n("Manrope", 400, 16, 1.65, 0),
+    legenda: n("Space Mono", 400, 11, 1.5, 0.14, "uppercase"),
+  },
+  lp: {
+    h1: n("Montserrat", 200, 60, 1, 0),
+    h2: n("Montserrat", 300, 34, 1.2, 0),
+    h3: n("Montserrat", 600, 22, 1.35, 0),
+    corpo: n("Manrope", 400, 16, 1.7, 0),
+    legenda: n("Space Mono", 400, 11, 1.5, 0.14, "uppercase"),
+    preco: n("Montserrat", 700, [36, 48], 0.9, -0.02),
+  },
+  mqc: {
+    h1: n("Montserrat", 700, 56, 1.05, 0),
+    h2: n("Montserrat", 300, 32, 1.2, 0),
+    h3: n("Montserrat", 600, 21, 1.35, 0),
+    corpo: n("Manrope", 400, 16, 1.7, 0),
+    preco: n("Montserrat", 700, 48, 1, -0.02),
+  },
+  adf: {
+    h1: n("Parkinsans", 700, 64, 0.95, -0.035, "lowercase"),
+    h2: n("Parkinsans", 700, 36, 1.05, -0.035),
+    h3: n("Parkinsans", 700, 22, 1.2, -0.035),
+    corpo: n("Manrope", 400, 16, 1.65, 0),
+    rotulo: n("Space Mono", 400, 10, 1.5, 0.2, "uppercase"),
+    anotacao: n("Nothing You Could Do", 400, 28, 1.35, 0),
+  },
+  bf: {
+    numero: n("Urbanist", 600, 150, 0.85, -0.02),
+    parcela: n("Urbanist", 600, [36, 64], 0.9, -0.02),
+    "de-por": n("Manrope", 400, [12, 13], 1.4, 0),
+    "a-vista": n("Space Mono", 700, [9, 10], 1.4, 0.04),
+    contador: n("Urbanist", 900, [11, 16], 1, 0.04, "uppercase"),
+    etiqueta: n("Space Mono", 400, [8.5, 9], 1.3, 0.08, "uppercase"),
+    botao: n("Manrope", 600, [13, 14], 1, 0.16, "uppercase"),
+    corpo: n("Manrope", 400, [15, 16], 1.65, 0),
+    lista: n("Manrope", 300, 11.5, 1.45, 0),
+    "quiz-titulo": n("Urbanist", 900, 32, 1, 0),
+    "quiz-pergunta": n("Urbanist", 700, 20, 1.25, 0),
+  },
+} as const satisfies Record<string, Record<string, NivelTipografico>>
+
+export type MarcaTipografia = keyof typeof TIPOGRAFIA_MANUAL
+
+/** 2 · 06: famílias e pesos carregados do Google Fonts (a Black Mango é arquivo próprio). */
+export const FONTES_GOOGLE: Readonly<Record<string, readonly number[]>> = {
+  Urbanist: [300, 600, 700, 900],
+  "Tenor Sans": [400],
+  Montserrat: [200, 300, 600, 700],
+  Parkinsans: [700],
+  Manrope: [300, 400, 600],
+  "Space Mono": [400, 700],
+  "Nothing You Could Do": [400],
+}

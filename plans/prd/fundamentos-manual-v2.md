@@ -89,7 +89,7 @@ Objetivo: os fundamentos do design system (cor, tipografia, espaçamento, raio, 
 - **CA11 (RF11):** Dado `data-tema="dg"` ou `"dg-claro"` com `data-campanha="bf"`, quando o aplico, então a base é preto ou papel da marca mãe, com acento ocre.
 - **CA12 (RF12):** Dado `src/` (componentes, stories, fixtures, app de documentação e páginas de demonstração), quando procuro valores HEX fora de `src/index.css` e `src/design-system/tokens/`, então não encontro nenhum.
 - **CA13 (RF13):** Dado o Storybook, quando abro Fundamentos, então vejo cores, temas, tipografia, espaçamento, raio e fio.
-- **CA14 (RF14):** Dado as stories dos componentes genéricos, quando comparo screenshots da `main` com os da `feat/fundamentos-manual-v2` (mesmo tema e viewport, via Playwright), então não há diferença visual, exceto a fonte de preço (Archivo Narrow → Montserrat 700, RF6).
+- **CA14 (RF14):** Dado as stories dos componentes genéricos, quando comparo screenshots da `main` com os da `feat/fundamentos-manual-v2` (mesmo tema e viewport, via Playwright), então não há diferença visual, exceto a fonte de preço (Archivo Narrow → Montserrat 700, RF6) e o peso do texto do ListItem e do NavigationItem (Manrope 500 → 400, RF6).
 
 ## 9. Fluxos e interface
 
@@ -129,4 +129,5 @@ Objetivo: os fundamentos do design system (cor, tipografia, espaçamento, raio, 
 | 2026-11-23 | Camada da Black Friday por `data-campanha="bf"` sobre `dg`/`dg-claro`, sobrescrevendo acento e estados. | O `dg` serve à marca mãe e à Black; sem camada a Black herdaria o vermelho (R21). |
 | 2026-11-23 | Playwright instalado nesta feature para o CA14. | Regressão visual repetível; base dos testes planejados. |
 | 2026-11-23 | CA12 vale para `src/` inteiro, inclusive stories e fixtures dos genéricos. | Trocar HEX por token não muda o visual; R29 sem exceção. |
-| 2026-11-23 | O `priceFont` antigo troca Archivo Narrow por Montserrat 700; única diferença aceita no CA14. | RF6 remove a Archivo; Montserrat 700 é a fonte de preço do manual. |
+| 2026-11-23 | O `priceFont` antigo troca Archivo Narrow por Montserrat 700. | RF6 remove a Archivo; Montserrat 700 é a fonte de preço do manual. |
+| 2026-11-23 | Manrope 500 sai (não está em 2 · 06); o texto do ListItem e do NavigationItem passa a Manrope 400, segunda diferença aceita no CA14. | RF6 prevalece; diferença sutil, confirmada pelo usuário na T3. |

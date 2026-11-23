@@ -1,4 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;900&family=Tenor+Sans&family=Manrope:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;600;700&family=Archivo+Narrow:wght@700&family=Parkinsans:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;600;700;900&family=Tenor+Sans&family=Montserrat:wght@200;300;600;700&family=Parkinsans:wght@700&family=Manrope:wght@300;400;600&family=Space+Mono:wght@400;700&family=Nothing+You+Could+Do&display=swap');
+
+/* Manual vigente · 2 · 06: Black Mango é arquivo próprio (só no No Estúdio). A Balgin nunca é
+   carregada: logos e o título BLACK FRIDAY entram como imagem (R19, R20). */
+@font-face {
+  font-family: 'Black Mango';
+  src: url('/fonts/BlackMango-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   /* Colors */
@@ -278,6 +288,148 @@ html.dark {
   --accent-warm: var(--color-ochre);
   --border-base: #6B6156;
   --border-strong: var(--color-paper);
+}
+
+/* ── Manual vigente · 2 · 02 Tokens de tipografia (subfontes) ───────────────────
+   Por marca e nível: --<marca>-<nivel> (shorthand font), -tracking e -caixa. Uso:
+   font: var(--lp-preco); letter-spacing: var(--lp-preco-tracking); text-transform: var(--lp-preco-caixa).
+   Faixa de tamanho = clamp interpolado entre 375px e 1240px de tela.
+   Notas do manual fora do token: Montserrat 700 numa palavra do H1 do Luz na Prática; ênfase do
+   corpo da marca mãe em Manrope 600; subtítulo da marca mãe com 0,22em só em caixa alta;
+   "12x" da parcela da Black a 42% do tamanho e +0,02em. */
+:root {
+  /* Marca mãe */
+  --dg-titulo: normal 900 clamp(32px, calc(32px + 40 * (100vw - 375px) / 865), 72px)/0.95 'Urbanist', sans-serif;
+  --dg-titulo-tracking: -0.03em;
+  --dg-titulo-caixa: uppercase;
+  --dg-titulo-apoio: normal 300 clamp(32px, calc(32px + 40 * (100vw - 375px) / 865), 72px)/0.95 'Urbanist', sans-serif;
+  --dg-titulo-apoio-tracking: 0;
+  --dg-titulo-apoio-caixa: uppercase;
+  --dg-subtitulo: normal 400 clamp(24px, calc(24px + 16 * (100vw - 375px) / 865), 40px)/1.35 'Tenor Sans', serif;
+  --dg-subtitulo-tracking: 0;
+  --dg-subtitulo-caixa: none;
+  --dg-corpo: normal 400 clamp(15px, calc(15px + 2 * (100vw - 375px) / 865), 17px)/1.65 'Manrope', sans-serif;
+  --dg-corpo-tracking: 0;
+  --dg-corpo-caixa: none;
+  --dg-intertitulo: normal 600 clamp(15px, calc(15px + 2 * (100vw - 375px) / 865), 17px)/1.35 'Manrope', sans-serif;
+  --dg-intertitulo-tracking: 0;
+  --dg-intertitulo-caixa: uppercase;
+  --dg-rotulo: normal 400 clamp(10px, calc(10px + 1 * (100vw - 375px) / 865), 11px)/1.5 'Space Mono', monospace;
+  --dg-rotulo-tracking: 0.2em;
+  --dg-rotulo-caixa: uppercase;
+  --dg-botao: normal 600 clamp(12px, calc(12px + 2 * (100vw - 375px) / 865), 14px)/1 'Manrope', sans-serif;
+  --dg-botao-tracking: 0.16em;
+  --dg-botao-caixa: uppercase;
+  --dg-manuscrita: normal 400 clamp(28px, calc(28px + 26 * (100vw - 375px) / 865), 54px)/1.35 'Nothing You Could Do', cursive;
+  --dg-manuscrita-tracking: 0;
+  --dg-manuscrita-caixa: lowercase;
+  /* No Estúdio */
+  --ne-h1: normal 400 64px/0.95 'Tenor Sans', serif;
+  --ne-h1-tracking: 0;
+  --ne-h1-caixa: none;
+  --ne-h2: normal 400 38px/1.15 'Black Mango', serif;
+  --ne-h2-tracking: 0;
+  --ne-h2-caixa: none;
+  --ne-h3: normal 400 24px/1.3 'Black Mango', serif;
+  --ne-h3-tracking: 0;
+  --ne-h3-caixa: none;
+  --ne-apoio: normal 400 clamp(16px, calc(16px + 8 * (100vw - 375px) / 865), 24px)/1.5 'Tenor Sans', serif;
+  --ne-apoio-tracking: normal;
+  --ne-apoio-caixa: none;
+  --ne-corpo: normal 400 16px/1.65 'Manrope', sans-serif;
+  --ne-corpo-tracking: 0;
+  --ne-corpo-caixa: none;
+  --ne-legenda: normal 400 11px/1.5 'Space Mono', monospace;
+  --ne-legenda-tracking: 0.14em;
+  --ne-legenda-caixa: uppercase;
+  /* Luz na Prática */
+  --lp-h1: normal 200 60px/1 'Montserrat', sans-serif;
+  --lp-h1-tracking: 0;
+  --lp-h1-caixa: none;
+  --lp-h2: normal 300 34px/1.2 'Montserrat', sans-serif;
+  --lp-h2-tracking: 0;
+  --lp-h2-caixa: none;
+  --lp-h3: normal 600 22px/1.35 'Montserrat', sans-serif;
+  --lp-h3-tracking: 0;
+  --lp-h3-caixa: none;
+  --lp-corpo: normal 400 16px/1.7 'Manrope', sans-serif;
+  --lp-corpo-tracking: 0;
+  --lp-corpo-caixa: none;
+  --lp-legenda: normal 400 11px/1.5 'Space Mono', monospace;
+  --lp-legenda-tracking: 0.14em;
+  --lp-legenda-caixa: uppercase;
+  --lp-preco: normal 700 clamp(36px, calc(36px + 12 * (100vw - 375px) / 865), 48px)/0.9 'Montserrat', sans-serif;
+  --lp-preco-tracking: -0.02em;
+  --lp-preco-caixa: none;
+  /* Mais que um Click */
+  --mqc-h1: normal 700 56px/1.05 'Montserrat', sans-serif;
+  --mqc-h1-tracking: 0;
+  --mqc-h1-caixa: none;
+  --mqc-h2: normal 300 32px/1.2 'Montserrat', sans-serif;
+  --mqc-h2-tracking: 0;
+  --mqc-h2-caixa: none;
+  --mqc-h3: normal 600 21px/1.35 'Montserrat', sans-serif;
+  --mqc-h3-tracking: 0;
+  --mqc-h3-caixa: none;
+  --mqc-corpo: normal 400 16px/1.7 'Manrope', sans-serif;
+  --mqc-corpo-tracking: 0;
+  --mqc-corpo-caixa: none;
+  --mqc-preco: normal 700 48px/1 'Montserrat', sans-serif;
+  --mqc-preco-tracking: -0.02em;
+  --mqc-preco-caixa: none;
+  /* Antes da Foto */
+  --adf-h1: normal 700 64px/0.95 'Parkinsans', sans-serif;
+  --adf-h1-tracking: -0.035em;
+  --adf-h1-caixa: lowercase;
+  --adf-h2: normal 700 36px/1.05 'Parkinsans', sans-serif;
+  --adf-h2-tracking: -0.035em;
+  --adf-h2-caixa: none;
+  --adf-h3: normal 700 22px/1.2 'Parkinsans', sans-serif;
+  --adf-h3-tracking: -0.035em;
+  --adf-h3-caixa: none;
+  --adf-corpo: normal 400 16px/1.65 'Manrope', sans-serif;
+  --adf-corpo-tracking: 0;
+  --adf-corpo-caixa: none;
+  --adf-rotulo: normal 400 10px/1.5 'Space Mono', monospace;
+  --adf-rotulo-tracking: 0.2em;
+  --adf-rotulo-caixa: uppercase;
+  --adf-anotacao: normal 400 28px/1.35 'Nothing You Could Do', cursive;
+  --adf-anotacao-tracking: 0;
+  --adf-anotacao-caixa: none;
+  /* Black Friday 2026 */
+  --bf-numero: normal 600 150px/0.85 'Urbanist', sans-serif;
+  --bf-numero-tracking: -0.02em;
+  --bf-numero-caixa: none;
+  --bf-parcela: normal 600 clamp(36px, calc(36px + 28 * (100vw - 375px) / 865), 64px)/0.9 'Urbanist', sans-serif;
+  --bf-parcela-tracking: -0.02em;
+  --bf-parcela-caixa: none;
+  --bf-de-por: normal 400 clamp(12px, calc(12px + 1 * (100vw - 375px) / 865), 13px)/1.4 'Manrope', sans-serif;
+  --bf-de-por-tracking: 0;
+  --bf-de-por-caixa: none;
+  --bf-a-vista: normal 700 clamp(9px, calc(9px + 1 * (100vw - 375px) / 865), 10px)/1.4 'Space Mono', monospace;
+  --bf-a-vista-tracking: 0.04em;
+  --bf-a-vista-caixa: none;
+  --bf-contador: normal 900 clamp(11px, calc(11px + 5 * (100vw - 375px) / 865), 16px)/1 'Urbanist', sans-serif;
+  --bf-contador-tracking: 0.04em;
+  --bf-contador-caixa: uppercase;
+  --bf-etiqueta: normal 400 clamp(8.5px, calc(8.5px + 0.5 * (100vw - 375px) / 865), 9px)/1.3 'Space Mono', monospace;
+  --bf-etiqueta-tracking: 0.08em;
+  --bf-etiqueta-caixa: uppercase;
+  --bf-botao: normal 600 clamp(13px, calc(13px + 1 * (100vw - 375px) / 865), 14px)/1 'Manrope', sans-serif;
+  --bf-botao-tracking: 0.16em;
+  --bf-botao-caixa: uppercase;
+  --bf-corpo: normal 400 clamp(15px, calc(15px + 1 * (100vw - 375px) / 865), 16px)/1.65 'Manrope', sans-serif;
+  --bf-corpo-tracking: 0;
+  --bf-corpo-caixa: none;
+  --bf-lista: normal 300 11.5px/1.45 'Manrope', sans-serif;
+  --bf-lista-tracking: 0;
+  --bf-lista-caixa: none;
+  --bf-quiz-titulo: normal 900 32px/1 'Urbanist', sans-serif;
+  --bf-quiz-titulo-tracking: 0;
+  --bf-quiz-titulo-caixa: none;
+  --bf-quiz-pergunta: normal 700 20px/1.25 'Urbanist', sans-serif;
+  --bf-quiz-pergunta-tracking: 0;
+  --bf-quiz-pergunta-caixa: none;
 }
 
 /* ── Manual vigente · temas por data-tema ───────────────────────────────────────────

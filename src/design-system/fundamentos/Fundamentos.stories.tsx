@@ -1,8 +1,8 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, type CSSProperties } from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { cores, temas, tokensComponente, tokensEstado, type Campanha, type Tema } from "../tokens"
+import { cores, subfontes, temas, tokensComponente, tokensEstado, type Campanha, type Tema } from "../tokens"
 import styles from "./Fundamentos.module.css"
 
 const meta = {
@@ -130,6 +130,54 @@ export const Temas: Story = {
       ))}
       <PainelTema tema="dg" campanha="bf" />
       <PainelTema tema="dg-claro" campanha="bf" />
+    </div>
+  ),
+}
+
+/** `"var(--lp-preco)"` + nível → amostra com font, tracking e caixa do token. */
+function AmostraTipografica({ marca, nivel }: { marca: keyof typeof subfontes; nivel: string }) {
+  const token = `${marca}-${nivel}`
+  const [ref, valor] = useValorResolvido(token)
+  return (
+    <figure ref={ref} className={styles.nivel}>
+      <figcaption className={styles.legenda}>
+        <code>--{token}</code>
+        <span>{valor || "—"}</span>
+      </figcaption>
+      <p
+        data-testid={`nivel-${token}`}
+        className={styles.textoNivel}
+        style={{
+          font: `var(--${token})`,
+          letterSpacing: `var(--${token}-tracking)`,
+          textTransform: `var(--${token}-caixa)` as CSSProperties["textTransform"],
+        }}
+      >
+        {marca === "bf" && nivel === "numero" ? "50%" : "A luz certa muda a foto"}
+      </p>
+    </figure>
+  )
+}
+
+/** Nível do token → nome usado no CSS (`quizTitulo` → `quiz-titulo`). */
+function nomeDoNivel(chave: string): string {
+  return chave.replace(/[A-Z]/g, (letra) => `-${letra.toLowerCase()}`)
+}
+
+/** 2 · 02: cada nível de cada marca, com o valor do token e a amostra aplicada. */
+export const Tipografia: Story = {
+  render: (_, { globals }) => (
+    <div key={chaveDoEscopo(globals)} className={styles.pagina}>
+      {(Object.keys(subfontes) as (keyof typeof subfontes)[]).map((marca) => (
+        <section key={marca} className={styles.secao} aria-labelledby={`tipografia-${marca}`}>
+          <h2 id={`tipografia-${marca}`} className={styles.titulo}>
+            {nomesMarca[marca]}
+          </h2>
+          {Object.keys(subfontes[marca]).map((chave) => (
+            <AmostraTipografica key={chave} marca={marca} nivel={nomeDoNivel(chave)} />
+          ))}
+        </section>
+      ))}
     </div>
   ),
 }

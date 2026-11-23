@@ -106,9 +106,9 @@ Sem dados de usuário nem segredos. Fontes externas só do Google Fonts (já em 
 - **Arquivos prováveis:** `src/index.css`, `src/design-system/tokens/index.ts`, `public/fonts/BlackMango-Regular.otf`, `src/design-system/fundamentos/Fundamentos.stories.tsx`, `tests/fixtures/manual.ts`, `tests/fundamentos/tipografia.spec.ts`
 - **Cobre:** RF4, RF5, RF6, RF13 (parcial); CA4, CA5, CA6
 - **Pronto quando:**
-  - [ ] testes da task verdes; `pnpm test:visual` verde, ou só com a diferença aceita (fonte de preço) e baseline atualizada para ela
-  - [ ] `pnpm typecheck`, `pnpm lint`, `pnpm build-storybook` sem erro
-- **Status:** [ ] pendente
+  - [x] testes da task verdes; `pnpm test:visual` verde, ou só com a diferença aceita (fonte de preço) e baseline atualizada para ela
+  - [x] `pnpm typecheck`, `pnpm lint`, `pnpm build-storybook` sem erro
+- **Status:** [x] concluída (2026-11-23)
 
 ### T4 — Espaçamento, raio e fio
 - **Entrega:** os tokens `--esp-*`, de grid e dobra, `--raio-*` e `--fio`; o scrollbar, a aba de submarca do app de documentação e as demos deixam de ter raio, sombra e medida fora da regra; as stories `Espaco`, `Raio` e `Fio` completam a página Fundamentos.
@@ -145,3 +145,7 @@ Sem dados de usuário nem segredos. Fontes externas só do Google Fonts (já em 
 | 2026-11-23 | T2 | A11y da story `Temas`: nenhuma violação crítica. Uma *serious* de contraste no `ne-claro`: `--texto-apoio` (#876851) sobre `--fundo` (#EEEAE3) = 4,24:1 em 12px. O par é do manual; levar à Débora (não bloqueia o "Pronto quando"). |
 | 2026-11-23 | T2 | `data-campanha="bf"` vale no mesmo elemento do `data-tema` (`[data-tema="dg"][data-campanha="bf"]`). A página Fundamentos ainda usa `--space-*`/`--border-width`: a T4 troca por `--esp-*`/`--fio`. |
 | 2026-11-23 | T2 | Revisão: estados numa regra comum `[data-tema]` (a camada `bf` só troca `--acento`); espelho TS separa `tokensComponente` (12) de `tokensEstado`; a story `Cores` mostra o tema da toolbar (CA2); o CA10 cobre também `dg`/`dg-claro` sem campanha. |
+| 2026-11-23 | T3 | Risco da seção 6 confirmado: sem Manrope 500, o ListItem e o NavigationItem mudam de peso (500 → 400). Usuário aceitou a diferença; baseline atualizada só desses dois (14 PNGs) e PRD (CA14 e decisões) ajustado. Os outros usos de 500/700 nos genéricos não mudaram o visual. |
+| 2026-11-23 | T3 | Subtítulo da marca mãe: o manual (2 · 02) traz Black Mango 400, mas vale a decisão do PRD (2026-10-23): Tenor Sans 400; Black Mango só no No Estúdio. Saem também Montserrat 400 e o itálico da Space Mono (fora de 2 · 06). |
+| 2026-11-23 | T3 | Níveis: `dg` titulo, titulo-apoio, subtitulo, corpo, intertitulo, rotulo, botao, manuscrita; `ne` h1–h3, apoio, corpo, legenda; `lp` h1–h3, corpo, legenda, preco; `mqc` h1–h3, corpo, preco; `adf` h1–h3, corpo, rotulo, anotacao; `bf` numero, parcela, de-por, a-vista, contador, etiqueta, botao, corpo, lista, quiz-titulo, quiz-pergunta (o título BLACK FRIDAY é imagem). Caixa: "alta" → uppercase, "baixa" → none, "baixa, sempre" → lowercase. "28 mín." (anotação do Antes da Foto) vira 28px fixo. Notas de uso que não cabem no token (palavra em 700 no H1 do LP, ênfase 600, 0,22em em caixa alta, "12x" a 42%) ficam no comentário do CSS. |
+| 2026-11-23 | T3 | `public/` criado (Black Mango em `public/fonts/`); o Storybook ganhou `staticDirs: ['../public']`. Em produção, `/fonts/` resolve no `dist/` do app, que é a raiz do deploy. O CA4 roda em 375px e 1240px (dois casos do mesmo teste) e confere todos os níveis da tabela, não um por marca. |
