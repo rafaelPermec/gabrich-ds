@@ -148,7 +148,7 @@ export const submarcas: Record<SubmarcaId, Submarca> = {
     kind: "workshop presencial",
     grafismo: "retícula de pontos",
     priceFont: fonts.blackMango,
-    priceWeight: 800,
+    priceWeight: 400,
     theme: {
       tema: "ne",
       fontDisplay: fonts.blackMango,

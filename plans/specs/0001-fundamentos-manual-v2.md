@@ -1,6 +1,6 @@
 ---
 feature: fundamentos-manual-v2
-status: em implementação  # rascunho | aprovada | em implementação | concluída
+status: concluída  # rascunho | aprovada | em implementação | concluída
 prd: plans/prd/fundamentos-manual-v2.md
 branch: feat/fundamentos-manual-v2
 criado: 2026-11-23
@@ -158,3 +158,4 @@ Sem dados de usuário nem segredos. Fontes externas só do Google Fonts (já em 
 | 2026-11-23 | T5 | Demos em `data-tema` (decisão do usuário: adotar o manual). `ScopeTheme` passa a `{ tema, campanha?, fontes }`; `SubScope` aplica `data-tema`/`data-campanha`; `.sub-scope` remapeia os tokens antigos para os de componente; os CSS Modules das demos usam `--fundo`, `--card`, `--texto`, `--texto-apoio`, `--fio-card`, `--acento`, `--botao`, `--botao-texto` (saem os `--sub-*` de cor; ficam os `--sub-font-*`). Mudam nas demos, para o valor do manual: o fio nas 4 submarcas, o texto de apoio no Click e no ADF e a superfície da BF preto (vira o `--card` do `dg`). As paletas das submarcas guardam o nome do token, não o HEX. |
 | 2026-11-23 | T5 | `registry.tsx`: só o espaçamento inline virou `--esp-*` (gap, padding, margin, espaçadores); larguras e alturas de moldura das demos ficam (decisão do usuário). `Foundations.mdx` antigo: "Genéricos/Tokens antigos"; os estados light/dark viram um item com `var()` do tema atual. |
 | 2026-11-23 | T5 | Flake visto uma vez na suíte cheia: CA2+CA3 e CA10 (`cores-temas.spec.ts`) estouraram os 30 s no `page.goto` sob carga paralela (cada um leva ~20 s isolado). Segunda execução: 50/50. Candidato a `test.slow()` se repetir. |
+| 2026-11-23 | Fechamento | Revisão Specs (agy) da feature: o CA2 passa a checar as amostras de fundo, texto e acento; o `priceWeight` do No Estúdio vai de 800 para 400 (só a Black Mango 400 é carregada, RF6). Ficam: os exports `tokensComponente`, `tokensEstado` e `grid` (previstos na T2 e na T4); a "masterclass" do ADF (R23), que já existia na `main` e fica com os PRDs `dados-dinamicos-e-mocks` (RF10) e `documentacao-manual-v2` (RF8). O flake de timeout da T5 voltou na suíte cheia: `test.slow()` no CA2+CA3 e no CA10. |

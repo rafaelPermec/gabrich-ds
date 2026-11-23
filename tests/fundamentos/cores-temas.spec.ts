@@ -64,6 +64,7 @@ function ehVermelho(hex: string): boolean {
 }
 
 test("CA2+CA3: cada tema da toolbar define os 12 tokens de componente com os valores do manual", async ({ page }) => {
+  test.slow() // percorre os 10 temas na story; sob carga paralela passa dos 30 s
   for (const tema of Object.keys(TEMAS_MANUAL) as TemaManual[]) {
     const tokens = await tokensSob(page, tema)
     const esperado = Object.fromEntries(
@@ -71,13 +72,16 @@ test("CA2+CA3: cada tema da toolbar define os 12 tokens de componente com os val
     )
     const lido = Object.fromEntries(TOKENS_COMPONENTE.map((nome) => [nome, tokens[nome]]))
     expect.soft(lido, `tema ${tema}`).toEqual(esperado)
-    // CA2: a amostra do tema da toolbar pinta o fundo do tema.
-    const amostraFundo = page.getByTestId("amostra-fundo").locator("span").first()
-    await expect.soft(amostraFundo, `amostra --fundo em ${tema}`).toHaveCSS("background-color", rgb(esperado.fundo!))
+    // CA2: as amostras do tema da toolbar pintam fundo, texto e acento do tema.
+    for (const nome of ["fundo", "texto", "acento"] as const) {
+      const amostra = page.getByTestId(`amostra-${nome}`).locator("span").first()
+      await expect.soft(amostra, `amostra --${nome} em ${tema}`).toHaveCSS("background-color", rgb(esperado[nome]!))
+    }
   }
 })
 
 test("CA10: estados das submarcas e do dg (com e sem bf) apontam para texto ou acento, nunca vermelho", async ({ page }) => {
+  test.slow() // percorre os 10 temas na story; sob carga paralela passa dos 30 s
   const casos: [TemaManual, "bf" | undefined][] = [
     ...TEMAS_SUBMARCA.map((tema): [TemaManual, undefined] => [tema, undefined]),
     ["dg", undefined],

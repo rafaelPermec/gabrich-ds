@@ -1,6 +1,6 @@
 ---
 feature: fundamentos-manual-v2
-status: aprovado
+status: implementado
 criado: 2026-10-23
 atualizado: 2026-11-23
 spec: plans/specs/0001-fundamentos-manual-v2.md
