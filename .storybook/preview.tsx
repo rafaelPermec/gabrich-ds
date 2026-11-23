@@ -1,10 +1,26 @@
 import { useEffect } from "react"
 import type { Decorator, Preview } from "@storybook/react-vite"
 import { ToastProvider } from "../src/design-system/molecules/Toast"
+import { temas, type Campanha, type Tema } from "../src/design-system/tokens"
 import "../src/index.css"
 
 type ThemeGlobal = "light" | "dark"
 type VerticalGlobal = "none" | "portfolio" | "document" | "course" | "blackfriday"
+type TemaGlobal = "nenhum" | Tema
+type CampanhaGlobal = "nenhuma" | Campanha
+
+const rotulosTema: Record<Tema, string> = {
+  dg: "Débora Gabrich",
+  "dg-claro": "Débora Gabrich · claro",
+  lp: "Luz na Prática",
+  "lp-claro": "Luz na Prática · claro",
+  mqc: "Mais que um Click",
+  "mqc-claro": "Mais que um Click · claro",
+  adf: "Antes da Foto",
+  "adf-claro": "Antes da Foto · claro",
+  ne: "No Estúdio",
+  "ne-claro": "No Estúdio · claro",
+}
 
 /**
  * Aplica o tema no <html> exatamente como o ThemeProvider do app faz
@@ -22,9 +38,14 @@ const withTheme: Decorator = (Story, context) => {
   return <Story />
 }
 
-/** Envolve a story no escopo de vertical (`.vertical-*`) e no ToastProvider. */
+/**
+ * Envolve a story no escopo de vertical (`.vertical-*`), no tema do manual (`data-tema`,
+ * `data-campanha`) e no ToastProvider. Sem tema do manual, os genéricos ficam como estão.
+ */
 const withVertical: Decorator = (Story, context) => {
   const vertical = (context.globals.vertical ?? "none") as VerticalGlobal
+  const tema = (context.globals.tema ?? "nenhum") as TemaGlobal
+  const campanha = (context.globals.campanha ?? "nenhuma") as CampanhaGlobal
   const className = vertical === "none" ? undefined : `vertical-${vertical}`
   const isFullscreen = context.parameters.layout === "fullscreen"
 
@@ -32,9 +53,11 @@ const withVertical: Decorator = (Story, context) => {
     <ToastProvider position="top-right">
       <div
         className={className}
+        data-tema={tema === "nenhum" ? undefined : tema}
+        data-campanha={campanha === "nenhuma" ? undefined : campanha}
         style={{
-          background: "var(--bg-base)",
-          color: "var(--text-primary)",
+          background: tema === "nenhum" ? "var(--bg-base)" : "var(--fundo)",
+          color: tema === "nenhum" ? "var(--text-primary)" : "var(--texto)",
           padding: isFullscreen ? 0 : "var(--space-6)",
           minHeight: isFullscreen ? "100vh" : undefined,
         }}
@@ -75,10 +98,36 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    tema: {
+      description: "Tema do manual vigente (data-tema)",
+      toolbar: {
+        title: "Tema do manual",
+        icon: "mirror",
+        items: [
+          { value: "nenhum", title: "Nenhum (genéricos)" },
+          ...temas.map((id) => ({ value: id, title: rotulosTema[id] })),
+        ],
+        dynamicTitle: true,
+      },
+    },
+    campanha: {
+      description: "Camada de campanha sobre dg/dg-claro (data-campanha)",
+      toolbar: {
+        title: "Campanha",
+        icon: "flag",
+        items: [
+          { value: "nenhuma", title: "Nenhuma" },
+          { value: "bf", title: "Black Friday" },
+        ],
+        dynamicTitle: true,
+      },
+    },
   },
   initialGlobals: {
     theme: "light",
     vertical: "none",
+    tema: "nenhum",
+    campanha: "nenhuma",
   },
   parameters: {
     layout: "padded",
@@ -95,7 +144,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ["Introdução", "Foundations", "Atoms", "Molecules", "Organisms"],
+        order: ["Introdução", "Fundamentos", "Foundations", "Atoms", "Molecules", "Organisms"],
       },
     },
   },

@@ -12,7 +12,9 @@
     "build-storybook": "storybook build -o dist/storybook-static",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "eslint . --fix"
+    "format": "eslint . --fix",
+    "test": "playwright test",
+    "test:visual": "playwright test tests/visual"
   },
   "dependencies": {
     "motion": "^14.0.0",
@@ -22,6 +24,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.65.1",
     "@storybook/addon-a11y": "^10.6.1",
     "@storybook/addon-docs": "^10.6.1",
     "@storybook/react-vite": "^10.6.1",

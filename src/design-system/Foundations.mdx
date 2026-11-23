@@ -1,8 +1,10 @@
 import { Meta, ColorPalette, ColorItem, Typeset } from '@storybook/addon-docs/blocks';
 
-<Meta title="Foundations/Tokens" />
+<Meta title="Genéricos/Tokens antigos" />
 
-# Tokens
+# Tokens antigos
+
+Tokens dos componentes genéricos (RF14). Os componentes do manual usam os tokens de **Fundamentos/Visão geral**.
 
 Fonte da verdade: `src/index.css`. Espelho em TypeScript: `src/design-system/tokens/index.ts`.
 
@@ -13,32 +15,32 @@ Fonte da verdade: `src/index.css`. Espelho em TypeScript: `src/design-system/tok
     title="Principais"
     subtitle="60% base · 30% segunda · 10% acento"
     colors={{
-      'Preto tinta · --color-ink': '#0B0B0B',
-      'Cacau profundo · --color-cocoa-deep': '#2E2118',
-      'Caramelo · --color-caramel': '#8A5F3A',
-      'Ocre · --color-ochre': '#CCAA66',
+      'Preto tinta · --color-ink': 'var(--color-ink)',
+      'Cacau profundo · --color-cocoa-deep': 'var(--color-cocoa-deep)',
+      'Caramelo · --color-caramel': 'var(--color-caramel)',
+      'Ocre · --color-ochre': 'var(--color-ochre)',
     }}
   />
   <ColorItem
     title="Secundárias"
     subtitle="Uma por peça (Papel combina com tudo)"
     colors={{
-      'Papel · --color-paper': '#F4F0E8',
-      'Cacau fosco · --color-cocoa-matte': '#644D3D',
-      'Areia · --color-sand': '#BFB09B',
-      'Neutro · --color-neutral': '#D3CABB',
-      'Filete escuro · --color-border-dark': '#4A423A',
+      'Papel · --color-paper': 'var(--color-paper)',
+      'Cacau fosco · --color-cocoa-matte': 'var(--color-cocoa-matte)',
+      'Areia · --color-sand': 'var(--color-sand)',
+      'Neutro · --color-neutral': 'var(--color-neutral)',
+      'Filete escuro · --color-border-dark': 'var(--color-border-dark)',
     }}
   />
   <ColorItem
-    title="Estados · light"
-    subtitle="--color-{error,warning,success,info}"
-    colors={{ error: '#B3261E', warning: '#F29900', success: '#2E7D32', info: '#CCAA66' }}
-  />
-  <ColorItem
-    title="Estados · dark"
-    subtitle="Overrides em html.dark"
-    colors={{ error: '#F2B8B5', warning: '#FFD966', success: '#A8D5AA', info: '#CCAA66' }}
+    title="Estados"
+    subtitle="--color-{error,warning,success,info}: tema atual (light em :root, dark em html.dark)"
+    colors={{
+      error: 'var(--color-error)',
+      warning: 'var(--color-warning)',
+      success: 'var(--color-success)',
+      info: 'var(--color-info)',
+    }}
   />
 </ColorPalette>
 
@@ -49,7 +51,7 @@ Componentes devem consumir **apenas** tokens semânticos; eles mudam com o tema 
 | Token | Light | Dark |
 |---|---|---|
 | `--bg-base` | `--color-paper` | `--color-ink` |
-| `--bg-surface` | `#ffffff` | `--color-cocoa-deep` |
+| `--bg-surface` | branco | `--color-ink-off` |
 | `--bg-subtle` | `--color-neutral` | `--color-border-dark` |
 | `--text-primary` | `--color-ink` | `--color-paper` |
 | `--text-secondary` | `--color-cocoa-matte` | `--color-sand` |
@@ -106,7 +108,7 @@ Escala: `--text-xs` 10 · `--text-sm` 12 · `--text-base` 15 · `--text-md` 17 �
     <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 16, fontFamily: 'Space Mono, monospace', fontSize: 12 }}>
       <code style={{ width: 96 }}>--space-{n}</code>
       <span style={{ width: 48 }}>{n * 4}px</span>
-      <span style={{ height: 12, width: n * 4, background: '#CCAA66' }} />
+      <span style={{ height: 12, width: n * 4, background: 'var(--color-ochre)' }} />
     </div>
   ))}
 </div>

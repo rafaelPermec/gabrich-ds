@@ -128,19 +128,22 @@ export const navSections = [
 
 function ColorSwatch({
   name,
-  hex,
+  token,
   role,
 }: {
   name: string
-  hex: string
+  token: `--${string}`
   role: string
 }) {
   return (
     <div className={styles.swatch}>
-      <div className={styles.swatchColor} style={{ backgroundColor: hex }} />
+      <div
+        className={styles.swatchColor}
+        style={{ backgroundColor: `var(${token})` }}
+      />
       <div className={styles.swatchInfo}>
         <span className={styles.swatchName}>{name}</span>
-        <span className={styles.swatchHex}>{hex}</span>
+        <span className={styles.swatchHex}>{token}</span>
         <span className={styles.swatchRole}>{role}</span>
       </div>
     </div>
@@ -204,7 +207,7 @@ function DrawerDemo() {
   const [side, setSide] = useState<"left" | "right" | "top" | "bottom">("right")
   return (
     <>
-      <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: "var(--esp-2)", flexWrap: "wrap" }}>
         {(["right", "left", "top", "bottom"] as const).map((s) => (
           <Button
             key={s}
@@ -254,7 +257,7 @@ export function ThemeToggle() {
     { value: "system", label: "Sistema" },
   ]
   return (
-    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+    <div style={{ display: "flex", gap: "var(--esp-2)", flexWrap: "wrap" }}>
       {options.map((o) => (
         <Button
           key={o.value}
@@ -415,31 +418,31 @@ export const registry: Entry[] = [
             <div className={styles.swatchGrid}>
               <ColorSwatch
                 name="Preto tinta"
-                hex="#0B0B0B"
+                token="--color-ink"
                 role="Base principal"
               />
               <ColorSwatch
                 name="Cacau profundo"
-                hex="#2E2118"
+                token="--color-cocoa-deep"
                 role="Camada sobre preto"
               />
-              <ColorSwatch name="Caramelo" hex="#8A5F3A" role="Área quente" />
-              <ColorSwatch name="Ocre" hex="#CCAA66" role="Acento (máx. 10%)" />
-              <ColorSwatch name="Papel" hex="#F4F0E8" role="Base clara" />
+              <ColorSwatch name="Caramelo" token="--color-caramel" role="Área quente" />
+              <ColorSwatch name="Ocre" token="--color-ochre" role="Acento (máx. 10%)" />
+              <ColorSwatch name="Papel" token="--color-paper" role="Base clara" />
               <ColorSwatch
                 name="Cacau fosco"
-                hex="#644D3D"
+                token="--color-cocoa-matte"
                 role="Blocos de texto"
               />
-              <ColorSwatch name="Areia" hex="#BFB09B" role="Fundo secundário" />
+              <ColorSwatch name="Areia" token="--color-sand" role="Fundo secundário" />
               <ColorSwatch
                 name="Neutro"
-                hex="#D3CABB"
+                token="--color-neutral"
                 role="Linhas e listras"
               />
               <ColorSwatch
                 name="Filete escuro"
-                hex="#4A423A"
+                token="--color-border-dark"
                 role="Fio sobre escuro"
               />
             </div>
@@ -478,14 +481,14 @@ export const registry: Entry[] = [
               <div className={styles.shapeDemo}>
                 <div className={styles.shapeRect} />
                 <span className={styles.shapeLabel}>
-                  border-radius: 0<br />
+                  --raio-reto (0)<br />
                   enquadra (conteúdo)
                 </span>
               </div>
               <div className={styles.shapeDemo}>
                 <div className={styles.shapeCircle} />
                 <span className={styles.shapeLabel}>
-                  border-radius: 9999px
+                  --raio-disco (50%)
                   <br />
                   marca (seleção)
                 </span>
@@ -848,9 +851,9 @@ export const registry: Entry[] = [
           <>
             <div style={{ width: "100%" }}>
               <Divider color="neutral" />
-              <div style={{ height: "8px" }} />
+              <div style={{ height: "var(--esp-2)" }} />
               <Divider color="ink" />
-              <div style={{ height: "8px" }} />
+              <div style={{ height: "var(--esp-2)" }} />
               <Divider color="ochre" />
             </div>
           </>
@@ -865,7 +868,7 @@ export const registry: Entry[] = [
               style={{
                 display: "flex",
                 height: "48px",
-                gap: "16px",
+                gap: "var(--esp-4)",
                 alignItems: "center",
               }}
             >
@@ -1197,7 +1200,7 @@ export const registry: Entry[] = [
           <>
             <div
               className={styles.rowAligned}
-              style={{ gap: "48px", padding: "24px 0" }}
+              style={{ gap: "var(--esp-12)", padding: "var(--esp-6) 0" }}
             >
               <Tooltip content="Topo" placement="top">
                 <Button size="sm" variant="outline">
@@ -1402,8 +1405,8 @@ export const registry: Entry[] = [
             <div
               style={{
                 width: "200px",
-                borderRight: "var(--border-light)",
-                padding: "8px 0",
+                borderRight: "var(--fio) solid var(--color-neutral)",
+                padding: "var(--esp-2) 0",
               }}
             >
               <NavigationItem label="Projetos" active />
@@ -1782,7 +1785,7 @@ export const registry: Entry[] = [
         dark: false,
         Render: () => (
           <>
-            <div style={{ margin: "0 -32px" }}>
+            <div style={{ margin: "0 calc(-1 * var(--esp-8))" }}>
               <Navbar
                 logoText="dg"
                 dark
@@ -1803,7 +1806,7 @@ export const registry: Entry[] = [
         dark: false,
         Render: () => (
           <>
-            <div style={{ margin: "0 -32px" }}>
+            <div style={{ margin: "0 calc(-1 * var(--esp-8))" }}>
               <Navbar
                 logoText="dg"
                 dark={false}
@@ -1835,7 +1838,7 @@ export const registry: Entry[] = [
             <div
               style={{
                 height: "360px",
-                border: "var(--border-light)",
+                border: "var(--fio) solid var(--color-neutral)",
                 overflow: "hidden",
               }}
             >
@@ -1862,7 +1865,7 @@ export const registry: Entry[] = [
         dark: false,
         Render: () => (
           <>
-            <div style={{ margin: "0 -32px" }}>
+            <div style={{ margin: "0 calc(-1 * var(--esp-8))" }}>
               <Footer
                 tagline="fotografia de produtos"
                 groups={[
@@ -2089,29 +2092,29 @@ export const registry: Entry[] = [
               style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "8px",
+                gap: "var(--esp-2)",
                 width: "100%",
               }}
             >
               <Alert
                 variant="info"
                 title="Info"
-                description="Cor: var(--color-info) — Ocre #CCAA66. Mantém a identidade DG."
+                description="Cor: var(--color-info), o ocre. Mantém a identidade DG."
               />
               <Alert
                 variant="success"
                 title="Sucesso"
-                description="Cor: var(--color-success) — #2E7D32. Verde sóbrio e acessível."
+                description="Cor: var(--color-success). Verde sóbrio e acessível."
               />
               <Alert
                 variant="warning"
                 title="Atenção"
-                description="Cor: var(--color-warning) — #F29900. Âmbar quente."
+                description="Cor: var(--color-warning). Âmbar quente."
               />
               <Alert
                 variant="error"
                 title="Erro"
-                description="Cor: var(--color-error) — #B3261E. Material Design M3 error."
+                description="Cor: var(--color-error). Material Design M3 error."
               />
             </div>
           </>

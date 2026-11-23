@@ -1,0 +1,130 @@
+.pagina {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-12);
+}
+
+.secao {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-4);
+}
+
+.titulo {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--esp-24) + var(--esp-16)), 1fr));
+  gap: var(--esp-4);
+}
+
+.amostra {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-2);
+}
+
+.cor {
+  display: block;
+  height: var(--esp-16);
+  border: var(--fio) solid currentColor;
+  border-radius: var(--raio-reto);
+}
+
+.legenda {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+/* Temas: cada painel tem seu data-tema e pinta só com os tokens de componente. */
+.temas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--esp-24) * 4), 1fr));
+  gap: var(--esp-6);
+}
+
+.painel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-4);
+  padding: var(--esp-6);
+  background: var(--fundo);
+  color: var(--texto);
+  border: var(--fio) solid var(--divisoria);
+}
+
+.apoio {
+  color: var(--texto-apoio);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--esp-3);
+  padding: var(--esp-4);
+  background: var(--card);
+  border: var(--fio) solid var(--fio-card);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+}
+
+.botao {
+  padding: var(--esp-3) var(--esp-4);
+  background: var(--botao);
+  color: var(--botao-texto);
+  font-family: var(--font-body);
+  font-weight: 600;
+}
+
+/* Tipografia: legenda do token acima da amostra; a amostra não quebra a página no celular. */
+.nivel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-2);
+  padding-block: var(--esp-4);
+  border-top: var(--fio) solid currentColor;
+}
+
+.textoNivel {
+  overflow-wrap: anywhere;
+}
+
+/* Espaço, raio e fio (2 · 03): as amostras desenham com os próprios tokens. */
+.espaco {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-4);
+}
+
+.barra {
+  display: block;
+  flex: none;
+  height: var(--esp-2);
+  background: currentColor;
+}
+
+.forma {
+  display: block;
+  width: var(--esp-24);
+  height: var(--esp-24);
+  border: var(--fio) solid currentColor;
+}
+
+.linha {
+  display: block;
+  border-top: var(--fio) solid currentColor;
+}
+
+.uso {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+}

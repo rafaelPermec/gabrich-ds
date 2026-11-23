@@ -25,7 +25,7 @@ type Story = StoryObj<typeof meta>
 export const Initials: Story = {}
 
 export const WithImage: Story = {
-  args: { src: photo("DG", "#644D3D", "#F4F0E8") },
+  args: { src: photo("DG", "dg-cacau-fosco", "dg-papel") },
 }
 
 export const Sizes: Story = {

@@ -94,8 +94,8 @@
 
 .swatchColor {
   height: 64px;
-  border-radius: var(--radius-none);
-  border: var(--border-width) solid var(--border-base);
+  border-radius: var(--raio-reto);
+  border: var(--fio) solid var(--border-base);
 }
 
 .swatchInfo {
@@ -161,14 +161,14 @@
   width: 64px;
   height: 64px;
   background-color: var(--color-caramel);
-  border-radius: var(--radius-none);
+  border-radius: var(--raio-reto);
 }
 
 .shapeCircle {
   width: 64px;
   height: 64px;
   background-color: var(--color-ochre);
-  border-radius: var(--radius-full);
+  border-radius: var(--raio-disco);
 }
 
 .shapeLabel {

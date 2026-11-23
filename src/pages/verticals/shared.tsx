@@ -37,6 +37,8 @@ export function SubScope({
   return (
     <div
       className={["sub-scope", className].filter(Boolean).join(" ")}
+      data-tema={theme.tema}
+      data-campanha={theme.campanha}
       style={themeVars(theme) as CSSProperties}
     >
       {children}

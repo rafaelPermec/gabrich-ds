@@ -1,4 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;900&family=Tenor+Sans&family=Manrope:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;600;700&family=Archivo+Narrow:wght@700&family=Parkinsans:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;600;700;900&family=Tenor+Sans&family=Montserrat:wght@200;300;600;700&family=Parkinsans:wght@700&family=Manrope:wght@300;400;600&family=Space+Mono:wght@400;700&family=Nothing+You+Could+Do&display=swap');
+
+/* Manual vigente · 2 · 06: Black Mango é arquivo próprio (só no No Estúdio). A Balgin nunca é
+   carregada: logos e o título BLACK FRIDAY entram como imagem (R19, R20). */
+@font-face {
+  font-family: 'Black Mango';
+  src: url('/fonts/BlackMango-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   /* Colors */
@@ -116,6 +126,70 @@
   --skeleton-shimmer: rgba(255, 255, 255, 0.60);
 }
 
+/* ── Manual vigente · 2 · 01 Tokens de cor ──────────────────────────────────────────
+   Primitivos do Manual Final 2026 · VIGENTE v2, com o nome e o HEX do manual.
+   "uso a confirmar" (--dg-grafite, --adf-cobre, --adf-linha, --adf-trama) está EM APROVAÇÃO
+   no manual; os temas dg e adf já os usam (PRD fundamentos-manual-v2, RF12). */
+:root {
+  /* Débora Gabrich */
+  --dg-preto-tinta: #0B0B0B; /* base, tipografia */
+  --dg-cacau-profundo: #2E2118; /* camada sobre preto */
+  --dg-caramelo: #8A5F3A; /* área quente, capa */
+  --dg-ocre: #CCAA66; /* acento, destaque */
+  --dg-papel: #F4F0E8; /* suporte, base clara */
+  --dg-cacau-fosco: #644D3D; /* blocos de texto */
+  --dg-areia: #BFB09B; /* bloco claro, fundo secundário */
+  --dg-neutro: #D3CABB; /* linhas, listras */
+  --dg-pedra: #A89E8C; /* fio no papel, rodapé no preto */
+  --dg-grafite: #3F3A34; /* uso a confirmar */
+  --dg-filete-escuro: #4A423A; /* fio sobre fundo escuro */
+  --dg-trama-papel: #E6DECE; /* trama tom sobre tom no papel */
+  --dg-trama-preto: #191712; /* trama tom sobre tom no preto */
+  /* No Estúdio */
+  --ne-tinta: #202020; /* texto no claro, fundo de card */
+  --ne-carvao: #302F2D; /* base de toda peça */
+  --ne-madeira: #876851; /* apoio quente, nunca texto longo */
+  --ne-pedra: #847C74; /* visor, marca d’água */
+  --ne-areia: #A99583; /* rótulo e texto de apoio */
+  --ne-linho: #E9E1D8; /* papelaria, bloco claro */
+  --ne-creme: #EEEAE3; /* texto no escuro, página clara */
+  --ne-terracota: #D57D3D; /* acento de ação: botão, ponto, número */
+  /* Luz na Prática */
+  --lp-carvao: #1E1A17; /* base: luz no escuro */
+  --lp-penumbra: #4A3F36; /* meio-tom, seção escura */
+  --lp-castanho: #6B4F3A; /* apoio quente */
+  --lp-areia: #B7A793; /* rótulo e texto secundário */
+  --lp-creme: #F4F0E8; /* texto no escuro, apostila */
+  --lp-dourado: #D9A648; /* acento: fio, filete, uma palavra, botão */
+  /* Mais que um Click */
+  --mqc-carvao: #201F1D; /* base da página */
+  --mqc-grafite: #3A3733; /* card e bloco */
+  --mqc-pedra: #8C857A; /* apoio neutro */
+  --mqc-cinza-claro: #D9D5CC; /* filete e legenda */
+  --mqc-off-white: #F6F3EC; /* texto e fundo claro */
+  --mqc-amarelo: #F5C242; /* cantos da logo e ação */
+  --mqc-ambar: #C87F1E; /* só estado confirmado */
+  /* Antes da Foto */
+  --adf-preto: #0B0B0B; /* base de toda peça */
+  --adf-cafe: #2A1F18; /* card, bloco, ficha */
+  --adf-couro: #6F482C; /* acento no claro */
+  --adf-whiskey-sour: #D39858; /* acento: ponto, fita, botão */
+  --adf-areia: #DDCBBA; /* texto no escuro, página clara */
+  --adf-cobre: #A7865D; /* uso a confirmar */
+  --adf-linha: #3A2C22; /* uso a confirmar */
+  --adf-trama: #33261D; /* uso a confirmar */
+  /* Black Friday 2026 */
+  --bf-preto: #0B0B0B; /* base, urgência, abertura e últimas 24h */
+  --bf-papel: #F4F0E8; /* base clara: e-mail, página, última semana */
+  --bf-ocre: #CCAA66; /* acento: 1ª etiqueta, botão e contador no preto */
+  --bf-hover-ocre: #B8964F; /* hover do botão ocre */
+  --bf-fio-cinza: #6B6156; /* quadro no preto */
+  --bf-pedra: #A89E8C; /* quadro no papel, rodapé no preto */
+  --bf-cacau-fosco: #644D3D; /* rodapé e rótulo no papel */
+  --bf-trama-preto: #191712; /* um tom acima do preto */
+  --bf-trama-papel: #E6DECE; /* um tom abaixo do papel */
+}
+
 /* ── Dark mode ─────────────────────────────────────────────────────────────── */
 html.dark {
   --bg-base: var(--color-ink);
@@ -216,32 +290,378 @@ html.dark {
   --border-strong: var(--color-paper);
 }
 
-/* Escopo temático: submarcas e Black Friday (variáveis --sub-* vêm de themeVars()) */
+/* ── Manual vigente · 2 · 03 Espaço, grid, raio e fio ─────────────────────────────
+   Espaçamento só na escala (o sufixo é o múltiplo de 4). Raio: reto, card (16px, só nos
+   contextos de R4) ou disco. Fio sempre 1px. Não existe token de sombra (R3–R9). */
+:root {
+  --esp-1: 4px;
+  --esp-2: 8px;
+  --esp-3: 12px;
+  --esp-4: 16px;
+  --esp-6: 24px;
+  --esp-8: 32px;
+  --esp-12: 48px;
+  --esp-16: 64px;
+  --esp-24: 96px;
+
+  --container: 1240px;
+  --colunas: 12;
+  --gutter: 24px;
+  --dobra-desktop: 96px;
+  --dobra-mobile: 64px;
+  --dobra: var(--dobra-desktop);
+
+  --raio-reto: 0;
+  --raio-card: 16px;
+  --raio-disco: 50%;
+
+  --fio: 1px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --dobra: var(--dobra-mobile);
+  }
+}
+
+/* ── Manual vigente · 2 · 02 Tokens de tipografia (subfontes) ───────────────────
+   Por marca e nível: --<marca>-<nivel> (shorthand font), -tracking e -caixa. Uso:
+   font: var(--lp-preco); letter-spacing: var(--lp-preco-tracking); text-transform: var(--lp-preco-caixa).
+   Faixa de tamanho = clamp interpolado entre 375px e 1240px de tela.
+   Notas do manual fora do token: Montserrat 700 numa palavra do H1 do Luz na Prática; ênfase do
+   corpo da marca mãe em Manrope 600; subtítulo da marca mãe com 0,22em só em caixa alta;
+   "12x" da parcela da Black a 42% do tamanho e +0,02em. */
+:root {
+  /* Marca mãe */
+  --dg-titulo: normal 900 clamp(32px, calc(32px + 40 * (100vw - 375px) / 865), 72px)/0.95 'Urbanist', sans-serif;
+  --dg-titulo-tracking: -0.03em;
+  --dg-titulo-caixa: uppercase;
+  --dg-titulo-apoio: normal 300 clamp(32px, calc(32px + 40 * (100vw - 375px) / 865), 72px)/0.95 'Urbanist', sans-serif;
+  --dg-titulo-apoio-tracking: 0;
+  --dg-titulo-apoio-caixa: uppercase;
+  --dg-subtitulo: normal 400 clamp(24px, calc(24px + 16 * (100vw - 375px) / 865), 40px)/1.35 'Tenor Sans', serif;
+  --dg-subtitulo-tracking: 0;
+  --dg-subtitulo-caixa: none;
+  --dg-corpo: normal 400 clamp(15px, calc(15px + 2 * (100vw - 375px) / 865), 17px)/1.65 'Manrope', sans-serif;
+  --dg-corpo-tracking: 0;
+  --dg-corpo-caixa: none;
+  --dg-intertitulo: normal 600 clamp(15px, calc(15px + 2 * (100vw - 375px) / 865), 17px)/1.35 'Manrope', sans-serif;
+  --dg-intertitulo-tracking: 0;
+  --dg-intertitulo-caixa: uppercase;
+  --dg-rotulo: normal 400 clamp(10px, calc(10px + 1 * (100vw - 375px) / 865), 11px)/1.5 'Space Mono', monospace;
+  --dg-rotulo-tracking: 0.2em;
+  --dg-rotulo-caixa: uppercase;
+  --dg-botao: normal 600 clamp(12px, calc(12px + 2 * (100vw - 375px) / 865), 14px)/1 'Manrope', sans-serif;
+  --dg-botao-tracking: 0.16em;
+  --dg-botao-caixa: uppercase;
+  --dg-manuscrita: normal 400 clamp(28px, calc(28px + 26 * (100vw - 375px) / 865), 54px)/1.35 'Nothing You Could Do', cursive;
+  --dg-manuscrita-tracking: 0;
+  --dg-manuscrita-caixa: lowercase;
+  /* No Estúdio */
+  --ne-h1: normal 400 64px/0.95 'Tenor Sans', serif;
+  --ne-h1-tracking: 0;
+  --ne-h1-caixa: none;
+  --ne-h2: normal 400 38px/1.15 'Black Mango', serif;
+  --ne-h2-tracking: 0;
+  --ne-h2-caixa: none;
+  --ne-h3: normal 400 24px/1.3 'Black Mango', serif;
+  --ne-h3-tracking: 0;
+  --ne-h3-caixa: none;
+  --ne-apoio: normal 400 clamp(16px, calc(16px + 8 * (100vw - 375px) / 865), 24px)/1.5 'Tenor Sans', serif;
+  --ne-apoio-tracking: normal;
+  --ne-apoio-caixa: none;
+  --ne-corpo: normal 400 16px/1.65 'Manrope', sans-serif;
+  --ne-corpo-tracking: 0;
+  --ne-corpo-caixa: none;
+  --ne-legenda: normal 400 11px/1.5 'Space Mono', monospace;
+  --ne-legenda-tracking: 0.14em;
+  --ne-legenda-caixa: uppercase;
+  /* Luz na Prática */
+  --lp-h1: normal 200 60px/1 'Montserrat', sans-serif;
+  --lp-h1-tracking: 0;
+  --lp-h1-caixa: none;
+  --lp-h2: normal 300 34px/1.2 'Montserrat', sans-serif;
+  --lp-h2-tracking: 0;
+  --lp-h2-caixa: none;
+  --lp-h3: normal 600 22px/1.35 'Montserrat', sans-serif;
+  --lp-h3-tracking: 0;
+  --lp-h3-caixa: none;
+  --lp-corpo: normal 400 16px/1.7 'Manrope', sans-serif;
+  --lp-corpo-tracking: 0;
+  --lp-corpo-caixa: none;
+  --lp-legenda: normal 400 11px/1.5 'Space Mono', monospace;
+  --lp-legenda-tracking: 0.14em;
+  --lp-legenda-caixa: uppercase;
+  --lp-preco: normal 700 clamp(36px, calc(36px + 12 * (100vw - 375px) / 865), 48px)/0.9 'Montserrat', sans-serif;
+  --lp-preco-tracking: -0.02em;
+  --lp-preco-caixa: none;
+  /* Mais que um Click */
+  --mqc-h1: normal 700 56px/1.05 'Montserrat', sans-serif;
+  --mqc-h1-tracking: 0;
+  --mqc-h1-caixa: none;
+  --mqc-h2: normal 300 32px/1.2 'Montserrat', sans-serif;
+  --mqc-h2-tracking: 0;
+  --mqc-h2-caixa: none;
+  --mqc-h3: normal 600 21px/1.35 'Montserrat', sans-serif;
+  --mqc-h3-tracking: 0;
+  --mqc-h3-caixa: none;
+  --mqc-corpo: normal 400 16px/1.7 'Manrope', sans-serif;
+  --mqc-corpo-tracking: 0;
+  --mqc-corpo-caixa: none;
+  --mqc-preco: normal 700 48px/1 'Montserrat', sans-serif;
+  --mqc-preco-tracking: -0.02em;
+  --mqc-preco-caixa: none;
+  /* Antes da Foto */
+  --adf-h1: normal 700 64px/0.95 'Parkinsans', sans-serif;
+  --adf-h1-tracking: -0.035em;
+  --adf-h1-caixa: lowercase;
+  --adf-h2: normal 700 36px/1.05 'Parkinsans', sans-serif;
+  --adf-h2-tracking: -0.035em;
+  --adf-h2-caixa: none;
+  --adf-h3: normal 700 22px/1.2 'Parkinsans', sans-serif;
+  --adf-h3-tracking: -0.035em;
+  --adf-h3-caixa: none;
+  --adf-corpo: normal 400 16px/1.65 'Manrope', sans-serif;
+  --adf-corpo-tracking: 0;
+  --adf-corpo-caixa: none;
+  --adf-rotulo: normal 400 10px/1.5 'Space Mono', monospace;
+  --adf-rotulo-tracking: 0.2em;
+  --adf-rotulo-caixa: uppercase;
+  --adf-anotacao: normal 400 28px/1.35 'Nothing You Could Do', cursive;
+  --adf-anotacao-tracking: 0;
+  --adf-anotacao-caixa: none;
+  /* Black Friday 2026 */
+  --bf-numero: normal 600 150px/0.85 'Urbanist', sans-serif;
+  --bf-numero-tracking: -0.02em;
+  --bf-numero-caixa: none;
+  --bf-parcela: normal 600 clamp(36px, calc(36px + 28 * (100vw - 375px) / 865), 64px)/0.9 'Urbanist', sans-serif;
+  --bf-parcela-tracking: -0.02em;
+  --bf-parcela-caixa: none;
+  --bf-de-por: normal 400 clamp(12px, calc(12px + 1 * (100vw - 375px) / 865), 13px)/1.4 'Manrope', sans-serif;
+  --bf-de-por-tracking: 0;
+  --bf-de-por-caixa: none;
+  --bf-a-vista: normal 700 clamp(9px, calc(9px + 1 * (100vw - 375px) / 865), 10px)/1.4 'Space Mono', monospace;
+  --bf-a-vista-tracking: 0.04em;
+  --bf-a-vista-caixa: none;
+  --bf-contador: normal 900 clamp(11px, calc(11px + 5 * (100vw - 375px) / 865), 16px)/1 'Urbanist', sans-serif;
+  --bf-contador-tracking: 0.04em;
+  --bf-contador-caixa: uppercase;
+  --bf-etiqueta: normal 400 clamp(8.5px, calc(8.5px + 0.5 * (100vw - 375px) / 865), 9px)/1.3 'Space Mono', monospace;
+  --bf-etiqueta-tracking: 0.08em;
+  --bf-etiqueta-caixa: uppercase;
+  --bf-botao: normal 600 clamp(13px, calc(13px + 1 * (100vw - 375px) / 865), 14px)/1 'Manrope', sans-serif;
+  --bf-botao-tracking: 0.16em;
+  --bf-botao-caixa: uppercase;
+  --bf-corpo: normal 400 clamp(15px, calc(15px + 1 * (100vw - 375px) / 865), 16px)/1.65 'Manrope', sans-serif;
+  --bf-corpo-tracking: 0;
+  --bf-corpo-caixa: none;
+  --bf-lista: normal 300 11.5px/1.45 'Manrope', sans-serif;
+  --bf-lista-tracking: 0;
+  --bf-lista-caixa: none;
+  --bf-quiz-titulo: normal 900 32px/1 'Urbanist', sans-serif;
+  --bf-quiz-titulo-tracking: 0;
+  --bf-quiz-titulo-caixa: none;
+  --bf-quiz-pergunta: normal 700 20px/1.25 'Urbanist', sans-serif;
+  --bf-quiz-pergunta-tracking: 0;
+  --bf-quiz-pergunta-caixa: none;
+}
+
+/* ── Manual vigente · temas por data-tema ───────────────────────────────────────────
+   Os 12 tokens de componente de 2 · 01; os estados ficam numa regra comum abaixo.
+   Os tokens antigos (--color-*, .light/.dark, .vertical-*) seguem só para os genéricos. */
+
+[data-tema="dg"] {
+  --fundo: var(--dg-preto-tinta);
+  --card: var(--dg-preto-tinta);
+  --fio-card: var(--bf-fio-cinza);
+  --texto: var(--dg-papel);
+  --texto-apoio: var(--dg-pedra);
+  --acento: var(--dg-ocre);
+  --botao: var(--dg-ocre);
+  --botao-texto: var(--dg-preto-tinta);
+  --botao-hover: var(--bf-hover-ocre);
+  --desabilitado: var(--dg-grafite);
+  --divisoria: var(--dg-grafite);
+  --selo-garantia: var(--dg-pedra);
+}
+
+[data-tema="dg-claro"] {
+  --fundo: var(--dg-papel);
+  --card: var(--dg-trama-papel);
+  --fio-card: var(--dg-pedra);
+  --texto: var(--dg-preto-tinta);
+  --texto-apoio: var(--dg-cacau-fosco);
+  --acento: var(--dg-ocre);
+  --botao: var(--dg-preto-tinta);
+  --botao-texto: var(--dg-papel);
+  --botao-hover: var(--dg-ocre);
+  --desabilitado: var(--dg-neutro);
+  --divisoria: var(--dg-neutro);
+  --selo-garantia: var(--dg-pedra);
+}
+
+[data-tema="lp"] {
+  --fundo: var(--lp-carvao);
+  --card: var(--lp-penumbra);
+  --fio-card: var(--lp-castanho);
+  --texto: var(--lp-creme);
+  --texto-apoio: var(--lp-areia);
+  --acento: var(--lp-dourado);
+  --botao: var(--lp-dourado);
+  --botao-texto: var(--lp-carvao);
+  --botao-hover: var(--lp-creme);
+  --desabilitado: var(--lp-castanho);
+  --divisoria: var(--lp-castanho);
+  --selo-garantia: var(--lp-areia);
+}
+
+[data-tema="lp-claro"] {
+  --fundo: var(--lp-creme);
+  --card: var(--lp-creme);
+  --fio-card: var(--lp-areia);
+  --texto: var(--lp-carvao);
+  --texto-apoio: var(--lp-castanho);
+  --acento: var(--lp-dourado);
+  --botao: var(--lp-carvao);
+  --botao-texto: var(--lp-creme);
+  --botao-hover: var(--lp-penumbra);
+  --desabilitado: var(--lp-areia);
+  --divisoria: var(--lp-areia);
+  --selo-garantia: var(--lp-areia);
+}
+
+[data-tema="mqc"] {
+  --fundo: var(--mqc-carvao);
+  --card: var(--mqc-grafite);
+  --fio-card: var(--mqc-pedra);
+  --texto: var(--mqc-off-white);
+  --texto-apoio: var(--mqc-cinza-claro);
+  --acento: var(--mqc-amarelo);
+  --botao: var(--mqc-amarelo);
+  --botao-texto: var(--mqc-carvao);
+  --botao-hover: var(--mqc-off-white);
+  --desabilitado: var(--mqc-pedra);
+  --divisoria: var(--mqc-pedra);
+  --selo-garantia: var(--mqc-cinza-claro);
+}
+
+[data-tema="mqc-claro"] {
+  --fundo: var(--mqc-off-white);
+  --card: var(--mqc-off-white);
+  --fio-card: var(--mqc-pedra);
+  --texto: var(--mqc-carvao);
+  --texto-apoio: var(--mqc-grafite);
+  --acento: var(--mqc-amarelo);
+  --botao: var(--mqc-carvao);
+  --botao-texto: var(--mqc-off-white);
+  --botao-hover: var(--mqc-grafite);
+  --desabilitado: var(--mqc-cinza-claro);
+  --divisoria: var(--mqc-cinza-claro);
+  --selo-garantia: var(--mqc-pedra);
+}
+
+[data-tema="adf"] {
+  --fundo: var(--adf-preto);
+  --card: var(--adf-cafe);
+  --fio-card: var(--adf-linha);
+  --texto: var(--adf-areia);
+  --texto-apoio: var(--adf-cobre);
+  --acento: var(--adf-whiskey-sour);
+  --botao: var(--adf-whiskey-sour);
+  --botao-texto: var(--adf-preto);
+  --botao-hover: var(--adf-areia);
+  --desabilitado: var(--adf-linha);
+  --divisoria: var(--adf-linha);
+  --selo-garantia: var(--adf-cobre);
+}
+
+[data-tema="adf-claro"] {
+  --fundo: var(--adf-areia);
+  --card: var(--adf-areia);
+  --fio-card: var(--adf-couro);
+  --texto: var(--adf-preto);
+  --texto-apoio: var(--adf-couro);
+  --acento: var(--adf-couro);
+  --botao: var(--adf-couro);
+  --botao-texto: var(--adf-areia);
+  --botao-hover: var(--adf-cafe);
+  --desabilitado: var(--adf-cobre);
+  --divisoria: var(--adf-cobre);
+  --selo-garantia: var(--adf-couro);
+}
+
+[data-tema="ne"] {
+  --fundo: var(--ne-carvao);
+  --card: var(--ne-tinta);
+  --fio-card: var(--ne-pedra);
+  --texto: var(--ne-creme);
+  --texto-apoio: var(--ne-areia);
+  --acento: var(--ne-terracota);
+  --botao: var(--ne-terracota);
+  --botao-texto: var(--ne-tinta);
+  --botao-hover: var(--ne-creme);
+  --desabilitado: var(--ne-pedra);
+  --divisoria: var(--ne-pedra);
+  --selo-garantia: var(--ne-areia);
+}
+
+[data-tema="ne-claro"] {
+  --fundo: var(--ne-creme);
+  --card: var(--ne-linho);
+  --fio-card: var(--ne-pedra);
+  --texto: var(--ne-tinta);
+  --texto-apoio: var(--ne-madeira);
+  --acento: var(--ne-terracota);
+  --botao: var(--ne-tinta);
+  --botao-texto: var(--ne-creme);
+  --botao-hover: var(--ne-carvao);
+  --desabilitado: var(--ne-areia);
+  --divisoria: var(--ne-areia);
+  --selo-garantia: var(--ne-pedra);
+}
+
+/* Estados em todos os temas: erro na cor do texto, aviso e sucesso no acento (R21, ADR 0004). */
+[data-tema] {
+  --erro: var(--texto);
+  --aviso: var(--acento);
+  --sucesso: var(--acento);
+}
+
+/* Black Friday: camada da campanha sobre dg ou dg-claro (no mesmo elemento).
+   Troca o acento; os estados acompanham pela regra acima. */
+[data-tema="dg"][data-campanha="bf"],
+[data-tema="dg-claro"][data-campanha="bf"] {
+  --acento: var(--bf-ocre);
+}
+
+/* Escopo temático das demos (submarcas e Black Friday): as cores vêm do data-tema e do
+   data-campanha do mesmo elemento; as fontes, de themeVars() (--sub-font-*). Os tokens
+   antigos são remapeados para que os componentes genéricos se adaptem. */
 :root { --brand-ochre: var(--color-ochre); }
 .sub-scope {
-  --bg-base: var(--sub-bg);
-  --bg-surface: var(--sub-surface);
-  --text-primary: var(--sub-text);
-  --text-secondary: var(--sub-muted);
-  --text-muted: var(--sub-muted);
-  --border-base: var(--sub-wire);
-  --border-strong: var(--sub-text);
-  --accent-primary: var(--sub-accent);
-  --accent-warm: var(--sub-accent);
-  --color-ink: var(--sub-text);
-  --color-paper: var(--sub-bg);
-  --color-ochre: var(--sub-accent);
-  --color-caramel: var(--sub-accent);
-  --color-neutral: var(--sub-wire);
-  --color-border-dark: var(--sub-wire);
-  --color-cocoa-deep: var(--sub-surface);
-  --color-cocoa-matte: var(--sub-muted);
-  --color-sand: var(--sub-muted);
+  --bg-base: var(--fundo);
+  --bg-surface: var(--card);
+  --text-primary: var(--texto);
+  --text-secondary: var(--texto-apoio);
+  --text-muted: var(--texto-apoio);
+  --border-base: var(--fio-card);
+  --border-strong: var(--texto);
+  --accent-primary: var(--acento);
+  --accent-warm: var(--acento);
+  --color-ink: var(--texto);
+  --color-paper: var(--fundo);
+  --color-ochre: var(--acento);
+  --color-caramel: var(--acento);
+  --color-neutral: var(--fio-card);
+  --color-border-dark: var(--fio-card);
+  --color-cocoa-deep: var(--card);
+  --color-cocoa-matte: var(--texto-apoio);
+  --color-sand: var(--texto-apoio);
   --font-display: var(--sub-font-display);
   --font-body: var(--sub-font-body);
   --font-sub: var(--sub-font-sub);
-  background: var(--sub-bg);
-  color: var(--sub-text);
+  background: var(--fundo);
+  color: var(--texto);
   font-family: var(--sub-font-body);
 }
 
@@ -311,14 +731,14 @@ table {
   margin: var(--space-4) 0;
   font-size: var(--text-sm);
   color: var(--text-primary);
-  border: var(--border-width) solid var(--border-base);
+  border: var(--fio) solid var(--border-base);
 }
 
 th {
   text-align: left;
   padding: var(--space-3) var(--space-4);
   background-color: var(--bg-surface);
-  border-bottom: 2px solid var(--border-strong);
+  border-bottom: var(--fio) solid var(--border-strong);
   font-family: var(--font-body);
   font-weight: 700;
   font-size: var(--text-xs);
@@ -329,7 +749,7 @@ th {
 
 td {
   padding: var(--space-3) var(--space-4);
-  border-bottom: var(--border-width) solid var(--border-base);
+  border-bottom: var(--fio) solid var(--border-base);
   color: var(--text-primary);
   font-size: var(--text-sm);
   line-height: var(--leading-normal);
@@ -349,8 +769,8 @@ tbody tr:hover td {
   background-color: var(--bg-subtle-alpha);
   color: var(--text-primary);
   padding: 2px 6px;
-  border-radius: var(--radius-none);
-  border: var(--border-width) solid var(--border-base);
+  border-radius: var(--raio-reto);
+  border: var(--fio) solid var(--border-base);
 }
 
 ::-webkit-scrollbar {
@@ -363,8 +783,8 @@ tbody tr:hover td {
   
 ::-webkit-scrollbar-thumb {
   background: var(--border-base);
-  border-radius: 6px;
-  border: 3px solid var(--bg-base);
+  border-radius: var(--raio-reto);
+  border: var(--fio) solid var(--bg-base);
 }
   
 ::-webkit-scrollbar-thumb:hover {
