@@ -210,3 +210,28 @@ export const FORMA_MANUAL: Readonly<Record<string, string>> = {
   "raio-disco": "50%",
   fio: "1px",
 }
+
+/**
+ * 2 · 05.05c (tabela de preços oficial), 2 · 05.12 (porcentagens fixas e tabela do combo) e
+ * 2 · 07 (ids de checkout), como o manual declara (grep do manual offline). Valores em reais.
+ */
+export const OFERTAS_MANUAL = [
+  { slug: "antes-da-foto", precoNormal: 197, parcelaNormal: 20.37, precoBlack: 97, parcelaBlack: 10.03, descontoBlack: 51, checkout: "#checkout-antes-da-foto", checkoutBlack: "#checkout-bf26-antes-da-foto" },
+  { slug: "luz-na-pratica", precoNormal: 447, parcelaNormal: 46.23, precoBlack: 217, parcelaBlack: 22.44, descontoBlack: 51, checkout: "#checkout-luz-na-pratica", checkoutBlack: "#checkout-bf26-luz-na-pratica" },
+  { slug: "mais-que-um-click", precoNormal: 997, parcelaNormal: 103.11, precoBlack: 497, parcelaBlack: 51.4, descontoBlack: 50, checkout: "#checkout-mais-que-um-click", checkoutBlack: "#checkout-bf26-mais-que-um-click" },
+  { slug: "luz-antes-da-foto", precoNormal: 577, parcelaNormal: 59.68, precoBlack: 287, parcelaBlack: 29.68, descontoCombo: 10, descontoBlack: 55, checkout: "#checkout-luz-antes-da-foto", checkoutBlack: "#checkout-bf26-luz-antes-da-foto" },
+  { slug: "click-antes-da-foto", precoNormal: 1077, parcelaNormal: 111.39, precoBlack: 537, parcelaBlack: 55.54, descontoCombo: 10, descontoBlack: 55, checkout: "#checkout-click-antes-da-foto", checkoutBlack: "#checkout-bf26-click-antes-da-foto" },
+  { slug: "click-luz", precoNormal: 1297, parcelaNormal: 134.14, precoBlack: 647, parcelaBlack: 66.91, descontoCombo: 10, descontoBlack: 55, checkout: "#checkout-click-luz", checkoutBlack: "#checkout-bf26-click-luz" },
+  { slug: "completo", precoNormal: 1397, parcelaNormal: 144.48, precoBlack: 697, parcelaBlack: 72.09, descontoCombo: 15, descontoBlack: 57, checkout: "#checkout-completo", checkoutBlack: "#checkout-bf26-completo" },
+] as const
+
+/** 2 · 05.12, tabela completa: preço separado e "você economiza" de cada oferta, fora e na Black. */
+export const ECONOMIA_MANUAL: Readonly<Record<string, { separado: number; economiaNormal?: number; economiaBlack: number }>> = {
+  "antes-da-foto": { separado: 197, economiaBlack: 100 },
+  "luz-na-pratica": { separado: 447, economiaBlack: 230 },
+  "mais-que-um-click": { separado: 997, economiaBlack: 500 },
+  "luz-antes-da-foto": { separado: 644, economiaNormal: 67, economiaBlack: 357 },
+  "click-antes-da-foto": { separado: 1194, economiaNormal: 117, economiaBlack: 657 },
+  "click-luz": { separado: 1444, economiaNormal: 147, economiaBlack: 797 },
+  completo: { separado: 1641, economiaNormal: 244, economiaBlack: 944 },
+}

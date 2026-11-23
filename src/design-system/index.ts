@@ -1,6 +1,9 @@
 // ─── Tokens ────────────────────────────────────────────────────────────────
 export * from "./tokens/index"
 
+// ─── Dados (formatos, cálculos e validação; mocks ficam fora do barrel) ──────
+export * from "./dados/index"
+
 // ─── Atoms ──────────────────────────────────────────────────────────────────
 export * from "./atoms/Typography/index"
 export * from "./atoms/Button/index"

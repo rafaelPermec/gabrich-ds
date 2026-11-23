@@ -1,6 +1,6 @@
 ---
 feature: dados-dinamicos-e-mocks
-status: aprovada  # rascunho | aprovada | em implementação | concluída
+status: rascunho  # rascunho | aprovada | em implementação | concluída
 prd: plans/prd/dados-dinamicos-e-mocks.md
 branch: feat/dados-dinamicos-e-mocks
 criado: 2026-11-23
@@ -86,9 +86,9 @@ Nenhum dado real de aluna: os depoimentos dos mocks usam o que o manual publica.
 - **Arquivos prováveis:** `src/design-system/dados/` (tipos, moeda, oferta, validação de oferta), `src/design-system/mocks/ofertas.ts`, `src/design-system/index.ts`, `tests/fixtures/manual.ts`, `tests/dados/oferta.spec.ts`, `tests/tipos/oferta.ts`
 - **Cobre:** RF1, RF4 (oferta), RF6, RF7, RF8 (ofertas), RF11, RF12; CA1, CA3 (typecheck), CA5, CA6, CA7, CA10, CA11
 - **Pronto quando:**
-  - [ ] `pnpm typecheck`, `pnpm lint` e `pnpm test` verdes
-  - [ ] tipos e funções exportados pelo barrel; mocks fora dele
-- **Status:** [ ] pendente
+  - [x] `pnpm typecheck`, `pnpm lint` e `pnpm test` verdes
+  - [x] tipos e funções exportados pelo barrel; mocks fora dele
+- **Status:** [x] concluída
 
 ### T2 — Campanha: formato, validação e fase
 - **Entrega:** a partir de uma campanha e de um "agora", a fase é calculada. Campanha fora de ordem é rejeitada pela validação. O mock da campanha 2026 tem as datas novas.
@@ -137,3 +137,6 @@ Nenhum dado real de aluna: os depoimentos dos mocks usam o que o manual publica.
 ## 8. Notas de implementação
 | Data | Task | Nota (desvio, decisão nova, hipótese de bug confirmada) |
 |---|---|---|
+| 2026-11-23 | T1 | Os testes sem navegador importam de `src/design-system/dados/index`, não do barrel: o barrel puxa CSS Modules, que o Node não carrega. O barrel reexporta `dados/` (o typecheck garante). |
+| 2026-11-23 | T1 | O manual (2 · 05.05c) tem preço do No Estúdio: R$ 1.547 · 12x R$ 160,00, sem Black ("não entra"). Proposta: tipo próprio `OfertaPresencial` (slug, nome, `precoNormal`, `parcelaNormal?`, `checkout?`), sem campos da Black, criado junto do `componentes-de-oferta` quando houver componente que o exiba. Fora da T1. |
+| 2026-11-23 | T1 | `PRECOS_NORMAIS_MOCK` é derivado das ofertas de curso único do mock, sem repetir valores. `validarOferta` recebe `unknown` (dado de fora do TS, sem cast) e também exige que os ids batam com o slug (`#checkout-<slug>`, `#checkout-bf26-<slug>`). |
