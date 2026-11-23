@@ -8,7 +8,7 @@
 | Componentes | Próprios do projeto, documentados no Storybook (addons docs e a11y) | Storybook 10.6 | https://storybook.js.org/docs |  |
 | Dados e estado | React Context para o tema (10 temas do manual via `data-tema`); dados de oferta e campanha chegam por props/contexto e são validados; Storybook como documentação e prova dos estados do frontend | React 19; Storybook 10.6 | https://react.dev/reference/react/createContext · https://storybook.js.org/docs/writing-stories | Storybook é obrigatório: todo estado visual do componente tem story |
 | Testes de unidade/integração | - | - | - | Sem runner definido |
-| Testes E2E | Playwright | a definir | https://playwright.dev/docs/intro | Ainda não instalado |
+| Testes E2E e visuais | Playwright (`@playwright/test`, só Chromium) | 1.65 | https://playwright.dev/docs/intro · https://playwright.dev/docs/test-snapshots | Roda contra o Storybook (`webServer` em `playwright.config.ts`); testes em `tests/`; snapshots versionados em `tests/visual/__snapshots__/` |
 | Lint e formatação | ESLint + typescript-eslint, plugins react-hooks e react-refresh → migrar para Biome | ESLint 10; Biome a definir | https://eslint.org/docs/latest/ · https://biomejs.dev/guides/getting-started/ | Biome é o alvo; ESLint segue até a migração |
 | Gerenciador de pacotes | pnpm (via mise) | 10.34 | https://pnpm.io/motivation · https://mise.jdx.dev/ |  |
 | Runtime e deploy | Node (via mise); Vercel | Node 22 | https://nodejs.org/docs/latest-v22.x/api/ · https://vercel.com/docs |  |

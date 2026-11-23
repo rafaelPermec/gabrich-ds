@@ -5,11 +5,11 @@ Fora de escopo: as páginas de venda reais e os componentes genéricos (ficam co
 # Verificação
 - typecheck: `pnpm typecheck`
 - lint: `pnpm lint` (correção: `pnpm lint:fix`; passa com 22 warnings de base de `react-refresh`)
-- testes (todos): pendente (Playwright planejado, `plans/stack.md`)
-- um teste: pendente (idem)
+- testes (todos): `pnpm test` (Playwright; sobe o Storybook sozinho ou reusa o da porta 6006)
+- um teste: `pnpm exec playwright test -g "<nome>"`; visuais: `pnpm test:visual`
 - build: `pnpm build` (app Vite em `dist/` + Storybook em `dist/storybook-static/`); só Storybook: `pnpm build-storybook`
 - dev: `pnpm dev` (app de docs, porta 5173) e `pnpm storybook` (porta 6006)
-- Pronto quando: `pnpm typecheck`, `pnpm lint` e `pnpm build-storybook` sem erro, e nenhuma violação crítica no addon a11y.
+- Pronto quando: `pnpm typecheck`, `pnpm lint`, `pnpm test` e `pnpm build-storybook` sem erro, e nenhuma violação crítica no addon a11y.
 
 # Mapa
 - `src/main.tsx`, `src/App.tsx`: entrypoint e providers (`ThemeProvider`, `ToastProvider`, `RouterProvider`)
@@ -32,8 +32,8 @@ Fora de escopo: as páginas de venda reais e os componentes genéricos (ficam co
 - Stories co-located (CSF3, `tags: ['autodocs']`), com todos os estados do manual, fundo escuro e claro, preenchidas com mocks; a doc mostra o status de aprovação, lido do arquivo único de status.
 
 # Testes
-- Seams: (nenhum) sem runner; Playwright planejado. Stories são a prova de estados, com addon a11y (`test: "todo"`).
-- Prior art: (nenhum)
+- Seams: Playwright contra o Storybook: screenshots (`tests/visual/`), DOM/rede das stories e auditoria estática de `src/`. Stories são a prova de estados, com addon a11y (`test: "todo"`).
+- Prior art: `tests/visual/genericos.spec.ts`
 
 # Regras de negócio (invariantes)
 - Manual vigente manda; só entra o APROVADO; sem resposta no manual, pergunte à Débora (R1, R2).
@@ -61,6 +61,7 @@ Fora de escopo: as páginas de venda reais e os componentes genéricos (ficam co
 - Tailwind: plugin ainda ativo no `vite.config.ts`, mas não importado; não use (sai da stack).
 - Rota `/storybook` é iframe: em `pnpm dev` aponta para `localhost:6006` (rode `pnpm storybook` junto); em produção, `/storybook-static/`.
 - Ícone novo (em `src/design-system/icons/`): SVG em `<Nome>/<Nome>.tsx`, export em `index.ts`, nome em `IconSelectorStrings` e entrada no `icon-selector.ts`. `NomeDoIcone` é placeholder.
+- Snapshots visuais: `pnpm test:visual --update-snapshots` só quando a mudança visual for intencional (revise os PNGs no diff). Layout que depende da largura intrínseca de `<input>` oscila no Chrome: dê largura definida.
 
 # Ponteiros
 - Stack, documentação oficial e pendências de ferramenta: `plans/stack.md`

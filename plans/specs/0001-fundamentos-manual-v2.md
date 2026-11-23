@@ -1,6 +1,6 @@
 ---
 feature: fundamentos-manual-v2
-status: aprovada        # rascunho | aprovada | em implementação | concluída
+status: em implementação  # rascunho | aprovada | em implementação | concluída
 prd: plans/prd/fundamentos-manual-v2.md
 branch: feat/fundamentos-manual-v2
 criado: 2026-11-23
@@ -80,10 +80,10 @@ Sem dados de usuário nem segredos. Fontes externas só do Google Fonts (já em 
 - **Arquivos prováveis:** `package.json`, `pnpm-lock.yaml`, `playwright.config.ts`, `tests/visual/genericos.spec.ts`, `tests/fixtures/genericos.ts`, `.gitignore`, `plans/stack.md`, `AGENTS.md` (comandos de teste)
 - **Cobre:** CA14 (baseline), RF14
 - **Pronto quando:**
-  - [ ] `@playwright/test` instalado com o OK do usuário; versão registrada em `plans/stack.md`
-  - [ ] `pnpm test:visual` passa duas vezes seguidas, sem flake
-  - [ ] seção Verificação do `AGENTS.md` atualizada (diff com OK)
-- **Status:** [ ] pendente
+  - [x] `@playwright/test` instalado com o OK do usuário; versão registrada em `plans/stack.md`
+  - [x] `pnpm test:visual` passa duas vezes seguidas, sem flake
+  - [x] seção Verificação do `AGENTS.md` atualizada (diff com OK)
+- **Status:** [x] concluída (2026-11-23)
 
 ### T2 — Cores e temas, com seletor no Storybook
 - **Entrega:** os primitivos de cor de todas as marcas, os 10 temas `data-tema` com os 12 tokens de componente e os estados, e a camada `data-campanha="bf"`; o Storybook troca tema e campanha pela toolbar, e a página Fundamentos mostra as stories `Cores` e `Temas`.
@@ -138,3 +138,5 @@ Sem dados de usuário nem segredos. Fontes externas só do Google Fonts (já em 
 ## 8. Notas de implementação
 | Data | Task | Nota (desvio, decisão nova, hipótese de bug confirmada) |
 |---|---|---|
+| 2026-11-23 | T1 | Flake confirmado no CA14: o `<input type="search">` do SearchBar tem largura intrínseca instável no Chrome (175 ou 182px com as mesmas fontes carregadas), e isso vaza para o FilterBar (e o PortfolioGrid) via `width: 100%` + `max-width: 240px` (233 ou 240px). Correção aprovada pelo usuário, exceção pontual a "genéricos ficam como estão": `.right > .search { width: 240px }` no FilterBar (a especificidade maior vence o `width: 100%` do SearchBar, que carrega depois). Visual igual à baseline (240px). Descartados: aquecer fontes, forçar reflow, `flex-basis`. |
+| 2026-11-23 | T1 | Teste visual: 34 testes (um por título de genérico), cada um lê o `index.json` do Storybook e captura todas as stories em `light` e `dark` (210 snapshots). `Atoms/Icon` entra como genérico (não é componente do manual). Antes do screenshot, o teste carrega todas as faces de `document.fonts` (`fonts.ready` não espera fonte ainda não pedida). |

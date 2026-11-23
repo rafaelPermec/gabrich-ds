@@ -48,6 +48,8 @@
 }
 
 .search { max-width: 240px; }
+/* Largura definida (vence o `width: 100%` do SearchBar): a intrínseca do <input> oscila no Chrome. */
+.right > .search { width: 240px; }
 
 .sort {
   height: var(--button-height-sm);
