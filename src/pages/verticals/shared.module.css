@@ -11,8 +11,8 @@
   text-transform: lowercase;
   background: var(--sub-cta-bg);
   color: var(--sub-cta-ink);
-  border: 1px solid var(--sub-cta-bg);
-  border-radius: 0;
+  border: var(--fio) solid var(--sub-cta-bg);
+  border-radius: var(--raio-reto);
   white-space: nowrap;
   transition: filter var(--transition-fast), transform var(--transition-fast);
 }

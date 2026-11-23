@@ -1,13 +1,13 @@
 .pagina {
   display: flex;
   flex-direction: column;
-  gap: var(--space-12);
+  gap: var(--esp-12);
 }
 
 .secao {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--esp-4);
 }
 
 .titulo {
@@ -18,21 +18,21 @@
 
 .grade {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-24) + var(--space-16)), 1fr));
-  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--esp-24) + var(--esp-16)), 1fr));
+  gap: var(--esp-4);
 }
 
 .amostra {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--esp-2);
 }
 
 .cor {
   display: block;
-  height: var(--space-16);
-  border: var(--border-width) solid currentColor;
-  border-radius: var(--radius-none);
+  height: var(--esp-16);
+  border: var(--fio) solid currentColor;
+  border-radius: var(--raio-reto);
 }
 
 .legenda {
@@ -45,18 +45,18 @@
 /* Temas: cada painel tem seu data-tema e pinta só com os tokens de componente. */
 .temas {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-24) * 4), 1fr));
-  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--esp-24) * 4), 1fr));
+  gap: var(--esp-6);
 }
 
 .painel {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  padding: var(--space-6);
+  gap: var(--esp-4);
+  padding: var(--esp-6);
   background: var(--fundo);
   color: var(--texto);
-  border: var(--border-width) solid var(--divisoria);
+  border: var(--fio) solid var(--divisoria);
 }
 
 .apoio {
@@ -69,16 +69,16 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-3);
-  padding: var(--space-4);
+  gap: var(--esp-3);
+  padding: var(--esp-4);
   background: var(--card);
-  border: var(--border-width) solid var(--fio-card);
+  border: var(--fio) solid var(--fio-card);
   font-family: var(--font-body);
   font-size: var(--text-sm);
 }
 
 .botao {
-  padding: var(--space-3) var(--space-4);
+  padding: var(--esp-3) var(--esp-4);
   background: var(--botao);
   color: var(--botao-texto);
   font-family: var(--font-body);
@@ -89,11 +89,42 @@
 .nivel {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  padding-block: var(--space-4);
-  border-top: var(--border-width) solid currentColor;
+  gap: var(--esp-2);
+  padding-block: var(--esp-4);
+  border-top: var(--fio) solid currentColor;
 }
 
 .textoNivel {
   overflow-wrap: anywhere;
+}
+
+/* Espaço, raio e fio (2 · 03): as amostras desenham com os próprios tokens. */
+.espaco {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-4);
+}
+
+.barra {
+  display: block;
+  flex: none;
+  height: var(--esp-2);
+  background: currentColor;
+}
+
+.forma {
+  display: block;
+  width: var(--esp-24);
+  height: var(--esp-24);
+  border: var(--fio) solid currentColor;
+}
+
+.linha {
+  display: block;
+  border-top: var(--fio) solid currentColor;
+}
+
+.uso {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
 }

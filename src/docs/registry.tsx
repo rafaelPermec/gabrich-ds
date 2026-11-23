@@ -478,14 +478,14 @@ export const registry: Entry[] = [
               <div className={styles.shapeDemo}>
                 <div className={styles.shapeRect} />
                 <span className={styles.shapeLabel}>
-                  border-radius: 0<br />
+                  --raio-reto (0)<br />
                   enquadra (conteúdo)
                 </span>
               </div>
               <div className={styles.shapeDemo}>
                 <div className={styles.shapeCircle} />
                 <span className={styles.shapeLabel}>
-                  border-radius: 9999px
+                  --raio-disco (50%)
                   <br />
                   marca (seleção)
                 </span>
@@ -1402,7 +1402,7 @@ export const registry: Entry[] = [
             <div
               style={{
                 width: "200px",
-                borderRight: "var(--border-light)",
+                borderRight: "var(--fio) solid var(--color-neutral)",
                 padding: "8px 0",
               }}
             >
@@ -1835,7 +1835,7 @@ export const registry: Entry[] = [
             <div
               style={{
                 height: "360px",
-                border: "var(--border-light)",
+                border: "var(--fio) solid var(--color-neutral)",
                 overflow: "hidden",
               }}
             >

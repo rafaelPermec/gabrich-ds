@@ -118,10 +118,10 @@ Sem dados de usuário nem segredos. Fontes externas só do Google Fonts (já em 
 - **Arquivos prováveis:** `src/index.css`, `src/design-system/tokens/index.ts`, `src/pages/Verticals.module.css`, `src/pages/verticals/Submarcas.module.css`, `src/pages/verticals/BlackFriday.module.css`, `src/design-system/fundamentos/Fundamentos.stories.tsx`, `tests/auditoria/forma.spec.ts`, `tests/fundamentos/smoke.spec.ts`
 - **Cobre:** RF7, RF8, RF9, RF13; CA7, CA8, CA9, CA13
 - **Pronto quando:**
-  - [ ] testes da task verdes; `pnpm test:visual` verde
-  - [ ] confirmar com o usuário a troca do `box-shadow` da aba de submarca (fio de 1px ou de 2px)
-  - [ ] `pnpm typecheck`, `pnpm lint`, `pnpm build-storybook` sem erro
-- **Status:** [ ] pendente
+  - [x] testes da task verdes; `pnpm test:visual` verde
+  - [x] confirmar com o usuário a troca do `box-shadow` da aba de submarca (fio de 1px)
+  - [x] `pnpm typecheck`, `pnpm lint`, `pnpm build-storybook` sem erro
+- **Status:** [x] concluída (2026-11-23)
 
 ### T5 — Nenhum HEX fora dos tokens e demos em `data-tema`
 - **Entrega:** `src/` sem HEX fora da fonte da verdade e do espelho TS; as páginas de demonstração (Submarcas, Black Friday) usam `data-tema` e `data-campanha="bf"`; o `Foundations.mdx` antigo vira "Genéricos/Tokens antigos" sem HEX literal.
@@ -149,3 +149,8 @@ Sem dados de usuário nem segredos. Fontes externas só do Google Fonts (já em 
 | 2026-11-23 | T3 | Subtítulo da marca mãe: o manual (2 · 02) traz Black Mango 400, mas vale a decisão do PRD (2026-10-23): Tenor Sans 400; Black Mango só no No Estúdio. Saem também Montserrat 400 e o itálico da Space Mono (fora de 2 · 06). |
 | 2026-11-23 | T3 | Níveis: `dg` titulo, titulo-apoio, subtitulo, corpo, intertitulo, rotulo, botao, manuscrita; `ne` h1–h3, apoio, corpo, legenda; `lp` h1–h3, corpo, legenda, preco; `mqc` h1–h3, corpo, preco; `adf` h1–h3, corpo, rotulo, anotacao; `bf` numero, parcela, de-por, a-vista, contador, etiqueta, botao, corpo, lista, quiz-titulo, quiz-pergunta (o título BLACK FRIDAY é imagem). Caixa: "alta" → uppercase, "baixa" → none, "baixa, sempre" → lowercase. "28 mín." (anotação do Antes da Foto) vira 28px fixo. Notas de uso que não cabem no token (palavra em 700 no H1 do LP, ênfase 600, 0,22em em caixa alta, "12x" a 42%) ficam no comentário do CSS. |
 | 2026-11-23 | T3 | `public/` criado (Black Mango em `public/fonts/`); o Storybook ganhou `staticDirs: ['../public']`. Em produção, `/fonts/` resolve no `dist/` do app, que é a raiz do deploy. O CA4 roda em 375px e 1240px (dois casos do mesmo teste) e confere todos os níveis da tabela, não um por marca. |
+| 2026-11-23 | T4 | Desvio da D6: o manual declara `--dobra-desktop` (96px) e `--dobra-mobile` (64px), não `--dobra`. Entram os dois com o nome do manual, e `--dobra` fica como atalho que troca abaixo de 768px. |
+| 2026-11-23 | T4 | Decisões do usuário: a aba de submarca ativa troca o `box-shadow` por `border-bottom-color` no fio de 1px da `.subBtn`; os fios de 2px/4px do app de docs (Home `.facts`, Verticals `.rules`, `.caseBtn`, `.ruleText`) e o `th` global viram `var(--fio)` (o Table genérico não mudou no CA14); scrollbar com `var(--raio-reto)` e fio de 1px. |
+| 2026-11-23 | T4 | Escopo das auditorias de raio e fio (CA8/CA9): `src/index.css`, `src/design-system/fundamentos/`, `src/pages/`, `src/docs/`, `src/app/`. Os 6 componentes do manual (pill e spinner de 2px do Button) entram no PRD `atomos-manual-v2`; o fio de erro de 2px (ADR 0004) entra na auditoria junto com o campo de formulário. Sombra é proibida em todo `src/`. Exceção nomeada no teste: cantoneiras de 0.09em do wordmark em `Submarcas.module.css` (desenho de logo; sai quando virar imagem, R19). CA7 olha as seções "Manual vigente" de `src/index.css` e `fundamentos/`, e proíbe `--space-*` ali. |
+| 2026-11-23 | T4 | Pegadinha: Storybook órfão na 6006 (de execução interrompida do Playwright) é reaproveitado pelo `reuseExistingServer` e, com HMR depois de editar `src/index.css`, duplica o `@import` do Google Fonts e quebra o CA5+CA6. Encerre o processo e rode de novo. |
+| 2026-11-23 | T4 | Revisão Padrões (Codex): `src/docs/registry.tsx` tem estilos inline com medidas fixas (demos de sidebar e de drawer), que já existiam antes da T4. Ficam para a T5, que já mexe no arquivo. |

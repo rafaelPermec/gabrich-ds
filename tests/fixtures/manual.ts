@@ -188,3 +188,25 @@ export const FONTES_GOOGLE: Readonly<Record<string, readonly number[]>> = {
   "Space Mono": [400, 700],
   "Nothing You Could Do": [400],
 }
+
+/** 2 · 03: espaçamento, grid, dobra, raio e fio, como o manual declara (grep do manual offline). */
+export const FORMA_MANUAL: Readonly<Record<string, string>> = {
+  "esp-1": "4px",
+  "esp-2": "8px",
+  "esp-3": "12px",
+  "esp-4": "16px",
+  "esp-6": "24px",
+  "esp-8": "32px",
+  "esp-12": "48px",
+  "esp-16": "64px",
+  "esp-24": "96px",
+  container: "1240px",
+  colunas: "12",
+  gutter: "24px",
+  "dobra-desktop": "96px",
+  "dobra-mobile": "64px",
+  "raio-reto": "0",
+  "raio-card": "16px",
+  "raio-disco": "50%",
+  fio: "1px",
+}

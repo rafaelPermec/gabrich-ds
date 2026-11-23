@@ -511,3 +511,36 @@ export const subfontes = {
     quizPergunta: { font: "var(--bf-quiz-pergunta)", tracking: "var(--bf-quiz-pergunta-tracking)", caixa: "var(--bf-quiz-pergunta-caixa)" },
   },
 } as const
+
+/** 2 · 03: escala de espaçamento (o sufixo é o múltiplo de 4). Guarda o nome do token, não o valor. */
+export const esp = {
+  1: "var(--esp-1)",
+  2: "var(--esp-2)",
+  3: "var(--esp-3)",
+  4: "var(--esp-4)",
+  6: "var(--esp-6)",
+  8: "var(--esp-8)",
+  12: "var(--esp-12)",
+  16: "var(--esp-16)",
+  24: "var(--esp-24)",
+} as const
+
+/** 2 · 03: grid e dobra. `dobra` alterna entre desktop (96px) e celular (64px) abaixo de 768px. */
+export const grid = {
+  container: "var(--container)",
+  colunas: "var(--colunas)",
+  gutter: "var(--gutter)",
+  dobra: "var(--dobra)",
+  dobraDesktop: "var(--dobra-desktop)",
+  dobraMobile: "var(--dobra-mobile)",
+} as const
+
+/** 2 · 03: os três raios (R3–R6). */
+export const raio = {
+  reto: "var(--raio-reto)",
+  card: "var(--raio-card)",
+  disco: "var(--raio-disco)",
+} as const
+
+/** 2 · 03: o fio é sempre 1px (R7). Não existe token de sombra (R8). */
+export const fio = "var(--fio)" as const

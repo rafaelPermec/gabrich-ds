@@ -2,7 +2,19 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from "react"
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import { cores, subfontes, temas, tokensComponente, tokensEstado, type Campanha, type Tema } from "../tokens"
+import {
+  cores,
+  esp,
+  fio,
+  grid,
+  raio,
+  subfontes,
+  temas,
+  tokensComponente,
+  tokensEstado,
+  type Campanha,
+  type Tema,
+} from "../tokens"
 import styles from "./Fundamentos.module.css"
 
 const meta = {
@@ -178,6 +190,94 @@ export const Tipografia: Story = {
           ))}
         </section>
       ))}
+    </div>
+  ),
+}
+
+/** Legenda de um token de forma: nome e valor resolvido. */
+function LegendaToken({ token }: { token: string }) {
+  const [ref, valor] = useValorResolvido(token)
+  return (
+    <figcaption ref={ref} className={styles.legenda}>
+      <code>--{token}</code>
+      <span>{valor || "—"}</span>
+    </figcaption>
+  )
+}
+
+/** 2 · 03: a escala de espaçamento (barra com a largura do token), o grid e a dobra. */
+export const Espaco: Story = {
+  render: (_, { globals }) => (
+    <div key={chaveDoEscopo(globals)} className={styles.pagina}>
+      <section className={styles.secao} aria-labelledby="espaco-escala">
+        <h2 id="espaco-escala" className={styles.titulo}>
+          Escala (múltiplos de 4)
+        </h2>
+        {Object.values(esp).map((referencia) => (
+          <figure key={referencia} className={styles.espaco} data-testid={`amostra-${nomeDoToken(referencia)}`}>
+            <span className={styles.barra} style={{ width: referencia }} aria-hidden="true" />
+            <LegendaToken token={nomeDoToken(referencia)} />
+          </figure>
+        ))}
+      </section>
+      <section className={styles.secao} aria-labelledby="espaco-grid">
+        <h2 id="espaco-grid" className={styles.titulo}>
+          Grid e dobra
+        </h2>
+        <div className={styles.grade}>
+          {Object.values(grid).map((referencia) => (
+            <figure key={referencia} className={styles.amostra}>
+              <LegendaToken token={nomeDoToken(referencia)} />
+            </figure>
+          ))}
+        </div>
+      </section>
+    </div>
+  ),
+}
+
+const usoDoRaio: Record<keyof typeof raio, string> = {
+  reto: "Botão, etiqueta, selos, quadro, tabela, campo (R5)",
+  card: "Foto, card, card de preço, quiz e combo: só nos cursos, na página cursos e na Black Friday (R4)",
+  disco: "Marcador, numeração, seleção, retrato e disco de ação (R6)",
+}
+
+/** 2 · 03: os três raios, com onde cada um vale. */
+export const Raio: Story = {
+  render: (_, { globals }) => (
+    <div key={chaveDoEscopo(globals)} className={styles.pagina}>
+      <section className={styles.secao} aria-labelledby="raio-titulo">
+        <h2 id="raio-titulo" className={styles.titulo}>
+          Raio: três valores, nenhum outro
+        </h2>
+        <div className={styles.grade}>
+          {(Object.keys(raio) as (keyof typeof raio)[]).map((chave) => (
+            <figure key={chave} className={styles.amostra} data-testid={`amostra-raio-${chave}`}>
+              <span className={styles.forma} style={{ borderRadius: raio[chave] }} aria-hidden="true" />
+              <LegendaToken token={nomeDoToken(raio[chave])} />
+              <p className={styles.uso}>{usoDoRaio[chave]}</p>
+            </figure>
+          ))}
+        </div>
+      </section>
+    </div>
+  ),
+}
+
+/** 2 · 03: o fio de 1px, em linha e em quadro. Nenhuma sombra. */
+export const Fio: Story = {
+  render: (_, { globals }) => (
+    <div key={chaveDoEscopo(globals)} className={styles.pagina}>
+      <section className={styles.secao} aria-labelledby="fio-titulo">
+        <h2 id="fio-titulo" className={styles.titulo}>
+          Fio sempre 1px, sem sombra
+        </h2>
+        <figure className={styles.amostra} data-testid="amostra-fio">
+          <span className={styles.linha} style={{ borderTopWidth: fio }} aria-hidden="true" />
+          <span className={styles.forma} aria-hidden="true" />
+          <LegendaToken token={nomeDoToken(fio)} />
+        </figure>
+      </section>
     </div>
   ),
 }

@@ -26,3 +26,33 @@ Cada componente usa só os 12 tokens de componente (`--fundo`, `--card`, `--fio-
 ```
 
 <Canvas of={FundamentosStories.Temas} />
+
+## Tipografia (2 · 02 e 2 · 06)
+
+Por marca e nível, três tokens: `--<marca>-<nivel>` (shorthand `font`), `--<marca>-<nivel>-tracking` e `--<marca>-<nivel>-caixa`. A Balgin nunca é carregada: logos entram como imagem e títulos em Urbanist.
+
+```css
+font: var(--lp-preco);
+letter-spacing: var(--lp-preco-tracking);
+text-transform: var(--lp-preco-caixa);
+```
+
+<Canvas of={FundamentosStories.Tipografia} />
+
+## Espaço e grid (2 · 03)
+
+Toda medida de espaçamento está na escala `--esp-1` a `--esp-24` (4, 8, 12, 16, 24, 32, 48, 64 e 96px; o sufixo é o múltiplo de 4). Grid: `--container` (1240px), `--colunas` (12) e `--gutter` (24px). Dobra: `--dobra-desktop` (96px) e `--dobra-mobile` (64px); `--dobra` troca sozinha abaixo de 768px.
+
+<Canvas of={FundamentosStories.Espaco} />
+
+## Raio (2 · 03)
+
+Só três valores: `--raio-reto` (0), `--raio-card` (16px, só nos contextos de R4) e `--raio-disco` (50%). Nenhum outro, nem no app de documentação.
+
+<Canvas of={FundamentosStories.Raio} />
+
+## Fio (2 · 03)
+
+Todo fio simples é `--fio` (1px). O erro de formulário usa um fio de 2px na cor do texto (ADR 0004). Não existe sombra.
+
+<Canvas of={FundamentosStories.Fio} />

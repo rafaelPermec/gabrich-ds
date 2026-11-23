@@ -290,6 +290,40 @@ html.dark {
   --border-strong: var(--color-paper);
 }
 
+/* ── Manual vigente · 2 · 03 Espaço, grid, raio e fio ─────────────────────────────
+   Espaçamento só na escala (o sufixo é o múltiplo de 4). Raio: reto, card (16px, só nos
+   contextos de R4) ou disco. Fio sempre 1px. Não existe token de sombra (R3–R9). */
+:root {
+  --esp-1: 4px;
+  --esp-2: 8px;
+  --esp-3: 12px;
+  --esp-4: 16px;
+  --esp-6: 24px;
+  --esp-8: 32px;
+  --esp-12: 48px;
+  --esp-16: 64px;
+  --esp-24: 96px;
+
+  --container: 1240px;
+  --colunas: 12;
+  --gutter: 24px;
+  --dobra-desktop: 96px;
+  --dobra-mobile: 64px;
+  --dobra: var(--dobra-desktop);
+
+  --raio-reto: 0;
+  --raio-card: 16px;
+  --raio-disco: 50%;
+
+  --fio: 1px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --dobra: var(--dobra-mobile);
+  }
+}
+
 /* ── Manual vigente · 2 · 02 Tokens de tipografia (subfontes) ───────────────────
    Por marca e nível: --<marca>-<nivel> (shorthand font), -tracking e -caixa. Uso:
    font: var(--lp-preco); letter-spacing: var(--lp-preco-tracking); text-transform: var(--lp-preco-caixa).
@@ -695,14 +729,14 @@ table {
   margin: var(--space-4) 0;
   font-size: var(--text-sm);
   color: var(--text-primary);
-  border: var(--border-width) solid var(--border-base);
+  border: var(--fio) solid var(--border-base);
 }
 
 th {
   text-align: left;
   padding: var(--space-3) var(--space-4);
   background-color: var(--bg-surface);
-  border-bottom: 2px solid var(--border-strong);
+  border-bottom: var(--fio) solid var(--border-strong);
   font-family: var(--font-body);
   font-weight: 700;
   font-size: var(--text-xs);
@@ -713,7 +747,7 @@ th {
 
 td {
   padding: var(--space-3) var(--space-4);
-  border-bottom: var(--border-width) solid var(--border-base);
+  border-bottom: var(--fio) solid var(--border-base);
   color: var(--text-primary);
   font-size: var(--text-sm);
   line-height: var(--leading-normal);
@@ -733,8 +767,8 @@ tbody tr:hover td {
   background-color: var(--bg-subtle-alpha);
   color: var(--text-primary);
   padding: 2px 6px;
-  border-radius: var(--radius-none);
-  border: var(--border-width) solid var(--border-base);
+  border-radius: var(--raio-reto);
+  border: var(--fio) solid var(--border-base);
 }
 
 ::-webkit-scrollbar {
@@ -747,8 +781,8 @@ tbody tr:hover td {
   
 ::-webkit-scrollbar-thumb {
   background: var(--border-base);
-  border-radius: 6px;
-  border: 3px solid var(--bg-base);
+  border-radius: var(--raio-reto);
+  border: var(--fio) solid var(--bg-base);
 }
   
 ::-webkit-scrollbar-thumb:hover {
