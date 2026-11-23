@@ -1,6 +1,6 @@
 ---
 feature: dados-dinamicos-e-mocks
-status: rascunho  # rascunho | aprovada | em implementação | concluída
+status: em implementação  # rascunho | aprovada | em implementação | concluída
 prd: plans/prd/dados-dinamicos-e-mocks.md
 branch: feat/dados-dinamicos-e-mocks
 criado: 2026-11-23
@@ -98,8 +98,8 @@ Nenhum dado real de aluna: os depoimentos dos mocks usam o que o manual publica.
 - **Arquivos prováveis:** `src/design-system/dados/` (campanha, fase), `src/design-system/mocks/campanha.ts`, `src/design-system/index.ts`, `tests/dados/campanha.spec.ts`
 - **Cobre:** RF2, RF3, RF4 (campanha); CA2, CA4 (validação)
 - **Pronto quando:**
-  - [ ] testes verdes com o fuso da máquina diferente de Brasília (`TZ=UTC pnpm exec playwright test tests/dados`)
-- **Status:** [ ] pendente
+  - [x] testes verdes com o fuso da máquina diferente de Brasília (`TZ=UTC pnpm exec playwright test tests/dados`)
+- **Status:** [x] concluída
 
 ### T3 — Conteúdo: formatos e mocks sem itens inexistentes
 - **Entrega:** existem formatos de lista dos cards, descritivos, módulos e aulas, depoimentos e antes e depois, com mocks do manual. Nenhum mock nem o espelho dos tokens fala em masterclass, e os cursos online não falam em certificado nem em encontro ao vivo.
@@ -140,3 +140,5 @@ Nenhum dado real de aluna: os depoimentos dos mocks usam o que o manual publica.
 | 2026-11-23 | T1 | Os testes sem navegador importam de `src/design-system/dados/index`, não do barrel: o barrel puxa CSS Modules, que o Node não carrega. O barrel reexporta `dados/` (o typecheck garante). |
 | 2026-11-23 | T1 | O manual (2 · 05.05c) tem preço do No Estúdio: R$ 1.547 · 12x R$ 160,00, sem Black ("não entra"). Proposta: tipo próprio `OfertaPresencial` (slug, nome, `precoNormal`, `parcelaNormal?`, `checkout?`), sem campos da Black, criado junto do `componentes-de-oferta` quando houver componente que o exiba. Fora da T1. |
 | 2026-11-23 | T1 | `PRECOS_NORMAIS_MOCK` é derivado das ofertas de curso único do mock, sem repetir valores. `validarOferta` recebe `unknown` (dado de fora do TS, sem cast) e também exige que os ids batam com o slug (`#checkout-<slug>`, `#checkout-bf26-<slug>`). |
+| 2026-11-23 | T2 | Desvio de nome: o formato das seis datas é `DatasDaCampanha`, não `Campanha`, porque o barrel já exporta `type Campanha = "bf"` (camada de tema em `tokens/`). Onde a spec diz "`Campanha`" para o dado, leia `DatasDaCampanha`. |
+| 2026-11-23 | T2 | `FaseDaCampanha`: `"normal" \| "lista-de-espera" \| "aberta" \| "ultima-semana" \| "ultimas-24h" \| "encerrada"`. `faseDaCampanha(datas, agora: Date)`. `DATAS_DA_CAMPANHA` (ordem das datas e a fase que cada uma abre) é exportado e serve à fase e à validação. `validarCampanha` exige ISO com `-03:00` e data existente. |
