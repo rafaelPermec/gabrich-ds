@@ -62,6 +62,7 @@ Fora de escopo: as páginas de venda reais e os componentes genéricos (ficam co
 - Rota `/storybook` é iframe: em `pnpm dev` aponta para `localhost:6006` (rode `pnpm storybook` junto); em produção, `/storybook-static/`.
 - Ícone novo (em `src/design-system/icons/`): SVG em `<Nome>/<Nome>.tsx`, export em `index.ts`, nome em `IconSelectorStrings` e entrada no `icon-selector.ts`. `NomeDoIcone` é placeholder.
 - Snapshots visuais: `pnpm test:visual --update-snapshots` só quando a mudança visual for intencional (revise os PNGs no diff). Layout que depende da largura intrínseca de `<input>` oscila no Chrome: dê largura definida.
+- Storybook antigo na porta 6006 (sobra de execução interrompida do Playwright) é reaproveitado pelos testes; depois de editar `src/index.css`, ele pode duplicar o `@import` das fontes e quebrar o CA5+CA6. Encerre o processo e rode de novo.
 
 # Ponteiros
 - Stack, documentação oficial e pendências de ferramenta: `plans/stack.md`
