@@ -109,8 +109,8 @@ Nenhum dado real de aluna: os depoimentos dos mocks usam o que o manual publica.
 - **Arquivos prováveis:** `src/design-system/dados/` (conteúdo, validação de conteúdo), `src/design-system/mocks/conteudo.ts`, `src/design-system/tokens/index.ts`, `tests/fixtures/manual.ts`, `tests/dados/conteudo.spec.ts`
 - **Cobre:** RF9, RF10, RF8 (conteúdo); CA8, CA9
 - **Pronto quando:**
-  - [ ] testes verdes; No Estúdio mantém "certificado de participação"
-- **Status:** [ ] pendente
+  - [x] testes verdes; No Estúdio mantém "certificado de participação"
+- **Status:** [x] concluída
 
 ### T4 — Aviso de dado inválido no Storybook
 - **Entrega:** no Storybook, uma story com mock de oferta ou de campanha inválido mostra o aviso e o conteúdo continua visível. Com o modo console, nenhum aviso aparece e o erro vai para o console.
@@ -142,3 +142,7 @@ Nenhum dado real de aluna: os depoimentos dos mocks usam o que o manual publica.
 | 2026-11-23 | T1 | `PRECOS_NORMAIS_MOCK` é derivado das ofertas de curso único do mock, sem repetir valores. `validarOferta` recebe `unknown` (dado de fora do TS, sem cast) e também exige que os ids batam com o slug (`#checkout-<slug>`, `#checkout-bf26-<slug>`). |
 | 2026-11-23 | T2 | Desvio de nome: o formato das seis datas é `DatasDaCampanha`, não `Campanha`, porque o barrel já exporta `type Campanha = "bf"` (camada de tema em `tokens/`). Onde a spec diz "`Campanha`" para o dado, leia `DatasDaCampanha`. |
 | 2026-11-23 | T2 | `FaseDaCampanha`: `"normal" \| "lista-de-espera" \| "aberta" \| "ultima-semana" \| "ultimas-24h" \| "encerrada"`. `faseDaCampanha(datas, agora: Date)`. `DATAS_DA_CAMPANHA` (ordem das datas e a fase que cada uma abre) é exportado e serve à fase e à validação. `validarCampanha` exige ISO com `-03:00` e data existente. |
+| 2026-11-23 | T3 | `Curso = CursoOnline \| "ne"`. `ModulosDoCurso` só para `lp` e `mqc`, com `numeracao: "continua" \| "por-modulo"`; o Antes da Foto (capítulos) e o No Estúdio (cronograma PENDENTE) ficam fora do padrão de 2 · 05.17. A quantidade do módulo é `aulas.length`, e a fixture guarda a quantidade declarada no manual, que o teste confere. |
+| 2026-11-23 | T3 | `Descritivo` (2 · 07b / 6 · 03b, blocos de parágrafo e lista) existe só como tipo: a spec não lista mock de descritivo. `Depoimento` tem `curso` obrigatório e `nome?` opcional: o manual transcreve poucos nomes (no print, o nome está na imagem). O mock usa os arquivos de `manual-vigente/assets/dep/` e os vídeos da aba 04. |
+| 2026-11-23 | T3 | `validarConteudo(conteudo, curso)` varre todos os textos do dado. "Encontro ao vivo" casa com "encontro(s) … ao vivo"; "ao vivo" sozinho é permitido (aula 12 do Luz na Prática: "balanço de branco ajustado ao vivo"). A fixture e o mock de conteúdo foram gerados por script do `Manual Final 2026 - VIGENTE v2.dc.html` (2 · 05.05b, 05.16, 05.17). |
+| 2026-11-23 | T3 | O espelho dos tokens passou a "e-book" no Antes da Foto. O texto aparece em Submarcas e Verticals; nenhum snapshot visual cobre essas páginas. |

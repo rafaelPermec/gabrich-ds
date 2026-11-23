@@ -4,6 +4,7 @@
  * (JSON, CMS) e as regras que o tipo não expressa.
  */
 import { DATAS_DA_CAMPANHA } from "./campanha"
+import type { Curso } from "./conteudo"
 import { CURSOS_ONLINE } from "./oferta"
 
 const numeroPositivo = (v: unknown) => typeof v === "number" && Number.isFinite(v) && v > 0
@@ -69,4 +70,25 @@ export function validarCampanha(datas: unknown): string[] {
     anterior = { campo, instante }
   }
   return problemas
+}
+
+/**
+ * RF10: termos de itens que não existem. Masterclass em nenhum curso; certificado e encontro ao
+ * vivo só no No Estúdio (que tem "certificado de participação" na lista oficial).
+ */
+const TERMOS_PROIBIDOS: readonly { termo: string; padrao: RegExp; vale: (curso: Curso) => boolean }[] = [
+  { termo: "masterclass", padrao: /master\s*-?\s*class/i, vale: () => true },
+  { termo: "certificado", padrao: /certificad[oa]/i, vale: (curso) => curso !== "ne" },
+  { termo: "encontro ao vivo", padrao: /encontros?\b[^.;\n]{0,30}\bao vivo/i, vale: (curso) => curso !== "ne" },
+]
+
+const textos = (v: unknown): string[] =>
+  typeof v === "string" ? [v] : typeof v === "object" && v !== null ? Object.values(v).flatMap(textos) : []
+
+/** RF10: varre todos os textos do conteúdo (lista, módulos, depoimento…) atrás dos termos proibidos no curso. */
+export function validarConteudo(conteudo: unknown, curso: Curso): string[] {
+  const todos = textos(conteudo)
+  return TERMOS_PROIBIDOS.filter(({ vale }) => vale(curso)).flatMap(({ termo, padrao }) =>
+    todos.filter((t) => padrao.test(t)).map((t) => `${termo} não existe em ${curso}: "${t}"`),
+  )
 }

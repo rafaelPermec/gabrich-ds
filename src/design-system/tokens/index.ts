@@ -233,7 +233,7 @@ export const submarcas: Record<SubmarcaId, Submarca> = {
   adf: {
     id: "adf",
     name: "antesdafoto.",
-    kind: "e-book + masterclass",
+    kind: "e-book",
     grafismo: "ficha de briefing",
     priceFont: fonts.parkinsans,
     priceWeight: 700,
