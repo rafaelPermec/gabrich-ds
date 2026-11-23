@@ -28,7 +28,7 @@ Os fundamentos do manual v2 entram ao lado dos tokens antigos (expandir), sem re
 
 **D1 — Tokens de cor (RF1, RF12).** Primitivos em `:root`, um por cor de 2 · 01, com prefixo de marca e o nome do manual: `--dg-*`, `--ne-*`, `--lp-*`, `--mqc-*`, `--adf-*`, `--bf-*`. Inclui os de "uso a confirmar" (`--dg-grafite`, `--adf-cobre`, `--adf-linha`, `--adf-trama`) e um token novo para cada cor do manual sem nome (ex.: fundos de card de 2 · 05.05b), com nome descritivo registrado nas notas da spec. O HEX só aparece nessas definições.
 
-**D2 — Temas (RF2, RF3, RF10, RF11).** Bloco `[data-tema="<id>"]` para os 10 ids (`dg`, `dg-claro`, `lp`, `lp-claro`, `mqc`, `mqc-claro`, `adf`, `adf-claro`, `ne`, `ne-claro`). Cada um define os 12 tokens de componente e `--erro`, `--aviso` e `--sucesso`, sempre por `var()` dos primitivos. Nos temas de submarca, os estados apontam para `var(--texto)` ou `var(--acento)` (ADR 0004). `[data-campanha="bf"]` é um seletor de atributo combinável com `dg`/`dg-claro`: aplica `--acento` ocre e os estados sem vermelho. No `dg` sem campanha, os estados seguem o manual da marca mãe.
+**D2 — Temas (RF2, RF3, RF10, RF11).** Bloco `[data-tema="<id>"]` para os 10 ids (`dg`, `dg-claro`, `lp`, `lp-claro`, `mqc`, `mqc-claro`, `adf`, `adf-claro`, `ne`, `ne-claro`). Cada um define os 12 tokens de componente e `--erro`, `--aviso` e `--sucesso`, sempre por `var()` dos primitivos. Nos temas de submarca, os estados apontam para `var(--texto)` ou `var(--acento)` (ADR 0004). `[data-campanha="bf"]` é um seletor de atributo combinável com `dg`/`dg-claro`: aplica `--acento` ocre e os estados sem vermelho. No `dg` sem campanha, os estados seguem o mesmo padrão (o manual não tem vermelho aprovado; 2 · 05 mostra o erro na cor do texto): `--erro: var(--texto)`, `--aviso` e `--sucesso: var(--acento)` em todos os 10 temas e na camada `bf` (usuário, 2026-11-23).
 
 **D3 — Espelho TS.** O módulo de tokens ganha `Tema` (union dos 10 ids), `temas: readonly Tema[]`, `Campanha = 'bf'` e objetos `cores`, `subfontes`, `esp`, `raio` e `fio` com os **nomes** das custom properties (`'var(--dg-ocre)'`), não os valores, para não duplicar HEX. Os exports antigos ficam; `fonts.archivoNarrow` sai e o `priceFont` da submarca click passa a usar Montserrat 700 (PRD, decisão de 2026-11-23).
 
@@ -93,10 +93,10 @@ Sem dados de usuário nem segredos. Fontes externas só do Google Fonts (já em 
 - **Arquivos prováveis:** `src/index.css`, `src/design-system/tokens/index.ts`, `.storybook/preview.tsx`, `src/design-system/fundamentos/Fundamentos.mdx`, `src/design-system/fundamentos/Fundamentos.stories.tsx`, `tests/fixtures/manual.ts`, `tests/fundamentos/cores-temas.spec.ts`, `tests/auditoria/cores.spec.ts`
 - **Cobre:** RF1, RF2, RF3, RF10, RF11, RF12 (tokens), RF13 (parcial); CA1, CA2, CA3, CA10, CA11
 - **Pronto quando:**
-  - [ ] testes da task verdes; `pnpm test:visual` verde (genéricos intactos)
-  - [ ] addon a11y sem violação crítica na story `Temas`
-  - [ ] `pnpm typecheck`, `pnpm lint`, `pnpm build-storybook` sem erro
-- **Status:** [ ] pendente
+  - [x] testes da task verdes; `pnpm test:visual` verde (genéricos intactos)
+  - [x] addon a11y sem violação crítica na story `Temas`
+  - [x] `pnpm typecheck`, `pnpm lint`, `pnpm build-storybook` sem erro
+- **Status:** [x] concluída (2026-11-23)
 
 ### T3 — Tipografia e fontes
 - **Entrega:** só as fontes e os pesos de 2 · 06 são baixados (sem Archivo Narrow, sem Balgin, com Black Mango local); os tokens de subfonte de todas as marcas e da Black existem; a story `Tipografia` mostra cada nível por marca.
@@ -140,3 +140,8 @@ Sem dados de usuário nem segredos. Fontes externas só do Google Fonts (já em 
 |---|---|---|
 | 2026-11-23 | T1 | Flake confirmado no CA14: o `<input type="search">` do SearchBar tem largura intrínseca instável no Chrome (175 ou 182px com as mesmas fontes carregadas), e isso vaza para o FilterBar (e o PortfolioGrid) via `width: 100%` + `max-width: 240px` (233 ou 240px). Correção aprovada pelo usuário, exceção pontual a "genéricos ficam como estão": `.right > .search { width: 240px }` no FilterBar (a especificidade maior vence o `width: 100%` do SearchBar, que carrega depois). Visual igual à baseline (240px). Descartados: aquecer fontes, forçar reflow, `flex-basis`. |
 | 2026-11-23 | T1 | Teste visual: 34 testes (um por título de genérico), cada um lê o `index.json` do Storybook e captura todas as stories em `light` e `dark` (210 snapshots). `Atoms/Icon` entra como genérico (não é componente do manual). Antes do screenshot, o teste carrega todas as faces de `document.fonts` (`fonts.ready` não espera fonte ainda não pedida). |
+| 2026-11-23 | T2 | Desvio da D2 aprovado pelo usuário: o manual não define `--erro/--aviso/--sucesso` em tema nenhum nem tem vermelho aprovado. Todos os 10 temas e a camada `bf` usam `--erro: var(--texto)`, `--aviso: var(--acento)`, `--sucesso: var(--acento)`. O `--mqc-ambar` ("só estado confirmado") fica só como primitivo. |
+| 2026-11-23 | T2 | Tema `dg`: `--fio-card` (#6B6156) e `--botao-hover` (#B8964F) não têm primitivo `--dg-*` com esse HEX; apontam para `--bf-fio-cinza` e `--bf-hover-ocre`. Os demais valores usam o primitivo da própria marca. Nenhuma cor sem nome em 2 · 01, então nenhum token descritivo novo (D1) foi criado nesta task. |
+| 2026-11-23 | T2 | A11y da story `Temas`: nenhuma violação crítica. Uma *serious* de contraste no `ne-claro`: `--texto-apoio` (#876851) sobre `--fundo` (#EEEAE3) = 4,24:1 em 12px. O par é do manual; levar à Débora (não bloqueia o "Pronto quando"). |
+| 2026-11-23 | T2 | `data-campanha="bf"` vale no mesmo elemento do `data-tema` (`[data-tema="dg"][data-campanha="bf"]`). A página Fundamentos ainda usa `--space-*`/`--border-width`: a T4 troca por `--esp-*`/`--fio`. |
+| 2026-11-23 | T2 | Revisão: estados numa regra comum `[data-tema]` (a camada `bf` só troca `--acento`); espelho TS separa `tokensComponente` (12) de `tokensEstado`; a story `Cores` mostra o tema da toolbar (CA2); o CA10 cobre também `dg`/`dg-claro` sem campanha. |

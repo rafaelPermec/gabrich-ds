@@ -342,3 +342,115 @@ export type BFBase = keyof typeof bfThemes
 // Next.js font migration note:
 // In a Next.js App Router project, replace the Google Fonts @import in index.css with:
 // import { Urbanist, Tenor_Sans, Manrope, Space_Mono } from 'next/font/google'
+
+// ── Manual vigente (fonte da verdade: src/index.css) ─────────────────────────────────
+// Os objetos guardam o nome da custom property, não o HEX, para não duplicar valores.
+
+/** Os 10 temas do manual (2 · 01), aplicados por `data-tema`. */
+export const temas = [
+  "dg",
+  "dg-claro",
+  "lp",
+  "lp-claro",
+  "mqc",
+  "mqc-claro",
+  "adf",
+  "adf-claro",
+  "ne",
+  "ne-claro",
+] as const satisfies readonly string[]
+
+export type Tema = (typeof temas)[number]
+
+/** Camada de campanha, combinável com `dg`/`dg-claro` por `data-campanha`. */
+export type Campanha = "bf"
+
+/** Primitivos de cor de 2 · 01, por marca: `cores.dg.ocre` → `"var(--dg-ocre)"`. */
+export const cores = {
+  dg: {
+    pretoTinta: "var(--dg-preto-tinta)",
+    cacauProfundo: "var(--dg-cacau-profundo)",
+    caramelo: "var(--dg-caramelo)",
+    ocre: "var(--dg-ocre)",
+    papel: "var(--dg-papel)",
+    cacauFosco: "var(--dg-cacau-fosco)",
+    areia: "var(--dg-areia)",
+    neutro: "var(--dg-neutro)",
+    pedra: "var(--dg-pedra)",
+    grafite: "var(--dg-grafite)",
+    fileteEscuro: "var(--dg-filete-escuro)",
+    tramaPapel: "var(--dg-trama-papel)",
+    tramaPreto: "var(--dg-trama-preto)",
+  },
+  ne: {
+    tinta: "var(--ne-tinta)",
+    carvao: "var(--ne-carvao)",
+    madeira: "var(--ne-madeira)",
+    pedra: "var(--ne-pedra)",
+    areia: "var(--ne-areia)",
+    linho: "var(--ne-linho)",
+    creme: "var(--ne-creme)",
+    terracota: "var(--ne-terracota)",
+  },
+  lp: {
+    carvao: "var(--lp-carvao)",
+    penumbra: "var(--lp-penumbra)",
+    castanho: "var(--lp-castanho)",
+    areia: "var(--lp-areia)",
+    creme: "var(--lp-creme)",
+    dourado: "var(--lp-dourado)",
+  },
+  mqc: {
+    carvao: "var(--mqc-carvao)",
+    grafite: "var(--mqc-grafite)",
+    pedra: "var(--mqc-pedra)",
+    cinzaClaro: "var(--mqc-cinza-claro)",
+    offWhite: "var(--mqc-off-white)",
+    amarelo: "var(--mqc-amarelo)",
+    ambar: "var(--mqc-ambar)",
+  },
+  adf: {
+    preto: "var(--adf-preto)",
+    cafe: "var(--adf-cafe)",
+    couro: "var(--adf-couro)",
+    whiskeySour: "var(--adf-whiskey-sour)",
+    areia: "var(--adf-areia)",
+    cobre: "var(--adf-cobre)",
+    linha: "var(--adf-linha)",
+    trama: "var(--adf-trama)",
+  },
+  bf: {
+    preto: "var(--bf-preto)",
+    papel: "var(--bf-papel)",
+    ocre: "var(--bf-ocre)",
+    hoverOcre: "var(--bf-hover-ocre)",
+    fioCinza: "var(--bf-fio-cinza)",
+    pedra: "var(--bf-pedra)",
+    cacauFosco: "var(--bf-cacau-fosco)",
+    tramaPreto: "var(--bf-trama-preto)",
+    tramaPapel: "var(--bf-trama-papel)",
+  },
+} as const
+
+/** Tokens de componente: mesmo nome em todos os temas; o `data-tema` troca o valor. */
+export const tokensComponente = {
+  fundo: "var(--fundo)",
+  card: "var(--card)",
+  fioCard: "var(--fio-card)",
+  texto: "var(--texto)",
+  textoApoio: "var(--texto-apoio)",
+  acento: "var(--acento)",
+  botao: "var(--botao)",
+  botaoTexto: "var(--botao-texto)",
+  botaoHover: "var(--botao-hover)",
+  desabilitado: "var(--desabilitado)",
+  divisoria: "var(--divisoria)",
+  seloGarantia: "var(--selo-garantia)",
+} as const
+
+/** Estados por tema: nunca vermelho (R21, ADR 0004). */
+export const tokensEstado = {
+  erro: "var(--erro)",
+  aviso: "var(--aviso)",
+  sucesso: "var(--sucesso)",
+} as const

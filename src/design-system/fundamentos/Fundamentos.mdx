@@ -1,0 +1,28 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as FundamentosStories from './Fundamentos.stories';
+
+<Meta of={FundamentosStories} />
+
+# Fundamentos
+
+Fundamentos do **Manual Final 2026 · VIGENTE v2**, aba 02 Dev. Fonte da verdade: `src/index.css`. Espelho tipado: `src/design-system/tokens/index.ts` (guarda o nome do token, não o valor).
+
+## Cores (2 · 01)
+
+Um token por cor aprovada, com o prefixo da marca: `--dg-*`, `--ne-*`, `--lp-*`, `--mqc-*`, `--adf-*` e `--bf-*`. Os marcados "uso a confirmar" no manual (`--dg-grafite`, `--adf-cobre`, `--adf-linha`, `--adf-trama`) estão em aprovação.
+
+<Canvas of={FundamentosStories.Cores} />
+
+## Temas
+
+Cada componente usa só os 12 tokens de componente (`--fundo`, `--card`, `--fio-card`, `--texto`, `--texto-apoio`, `--acento`, `--botao`, `--botao-texto`, `--botao-hover`, `--desabilitado`, `--divisoria`, `--selo-garantia`) e os estados (`--erro`, `--aviso`, `--sucesso`); o `data-tema` troca os valores. Na toolbar, **Tema do manual** e **Campanha** aplicam o tema em qualquer story.
+
+- Temas: `dg`, `dg-claro`, `lp`, `lp-claro`, `mqc`, `mqc-claro`, `adf`, `adf-claro`, `ne`, `ne-claro`.
+- Estados sem vermelho em todos os temas do manual: erro na cor do texto, aviso e sucesso no acento.
+- Black Friday: `data-tema="dg"` (preto) ou `"dg-claro"` (papel) com `data-campanha="bf"` no mesmo elemento.
+
+```html
+<section data-tema="dg-claro" data-campanha="bf">…</section>
+```
+
+<Canvas of={FundamentosStories.Temas} />

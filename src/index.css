@@ -116,6 +116,70 @@
   --skeleton-shimmer: rgba(255, 255, 255, 0.60);
 }
 
+/* ── Manual vigente · 2 · 01 Tokens de cor ──────────────────────────────────────────
+   Primitivos do Manual Final 2026 · VIGENTE v2, com o nome e o HEX do manual.
+   "uso a confirmar" (--dg-grafite, --adf-cobre, --adf-linha, --adf-trama) está EM APROVAÇÃO
+   no manual; os temas dg e adf já os usam (PRD fundamentos-manual-v2, RF12). */
+:root {
+  /* Débora Gabrich */
+  --dg-preto-tinta: #0B0B0B; /* base, tipografia */
+  --dg-cacau-profundo: #2E2118; /* camada sobre preto */
+  --dg-caramelo: #8A5F3A; /* área quente, capa */
+  --dg-ocre: #CCAA66; /* acento, destaque */
+  --dg-papel: #F4F0E8; /* suporte, base clara */
+  --dg-cacau-fosco: #644D3D; /* blocos de texto */
+  --dg-areia: #BFB09B; /* bloco claro, fundo secundário */
+  --dg-neutro: #D3CABB; /* linhas, listras */
+  --dg-pedra: #A89E8C; /* fio no papel, rodapé no preto */
+  --dg-grafite: #3F3A34; /* uso a confirmar */
+  --dg-filete-escuro: #4A423A; /* fio sobre fundo escuro */
+  --dg-trama-papel: #E6DECE; /* trama tom sobre tom no papel */
+  --dg-trama-preto: #191712; /* trama tom sobre tom no preto */
+  /* No Estúdio */
+  --ne-tinta: #202020; /* texto no claro, fundo de card */
+  --ne-carvao: #302F2D; /* base de toda peça */
+  --ne-madeira: #876851; /* apoio quente, nunca texto longo */
+  --ne-pedra: #847C74; /* visor, marca d’água */
+  --ne-areia: #A99583; /* rótulo e texto de apoio */
+  --ne-linho: #E9E1D8; /* papelaria, bloco claro */
+  --ne-creme: #EEEAE3; /* texto no escuro, página clara */
+  --ne-terracota: #D57D3D; /* acento de ação: botão, ponto, número */
+  /* Luz na Prática */
+  --lp-carvao: #1E1A17; /* base: luz no escuro */
+  --lp-penumbra: #4A3F36; /* meio-tom, seção escura */
+  --lp-castanho: #6B4F3A; /* apoio quente */
+  --lp-areia: #B7A793; /* rótulo e texto secundário */
+  --lp-creme: #F4F0E8; /* texto no escuro, apostila */
+  --lp-dourado: #D9A648; /* acento: fio, filete, uma palavra, botão */
+  /* Mais que um Click */
+  --mqc-carvao: #201F1D; /* base da página */
+  --mqc-grafite: #3A3733; /* card e bloco */
+  --mqc-pedra: #8C857A; /* apoio neutro */
+  --mqc-cinza-claro: #D9D5CC; /* filete e legenda */
+  --mqc-off-white: #F6F3EC; /* texto e fundo claro */
+  --mqc-amarelo: #F5C242; /* cantos da logo e ação */
+  --mqc-ambar: #C87F1E; /* só estado confirmado */
+  /* Antes da Foto */
+  --adf-preto: #0B0B0B; /* base de toda peça */
+  --adf-cafe: #2A1F18; /* card, bloco, ficha */
+  --adf-couro: #6F482C; /* acento no claro */
+  --adf-whiskey-sour: #D39858; /* acento: ponto, fita, botão */
+  --adf-areia: #DDCBBA; /* texto no escuro, página clara */
+  --adf-cobre: #A7865D; /* uso a confirmar */
+  --adf-linha: #3A2C22; /* uso a confirmar */
+  --adf-trama: #33261D; /* uso a confirmar */
+  /* Black Friday 2026 */
+  --bf-preto: #0B0B0B; /* base, urgência, abertura e últimas 24h */
+  --bf-papel: #F4F0E8; /* base clara: e-mail, página, última semana */
+  --bf-ocre: #CCAA66; /* acento: 1ª etiqueta, botão e contador no preto */
+  --bf-hover-ocre: #B8964F; /* hover do botão ocre */
+  --bf-fio-cinza: #6B6156; /* quadro no preto */
+  --bf-pedra: #A89E8C; /* quadro no papel, rodapé no preto */
+  --bf-cacau-fosco: #644D3D; /* rodapé e rótulo no papel */
+  --bf-trama-preto: #191712; /* um tom acima do preto */
+  --bf-trama-papel: #E6DECE; /* um tom abaixo do papel */
+}
+
 /* ── Dark mode ─────────────────────────────────────────────────────────────── */
 html.dark {
   --bg-base: var(--color-ink);
@@ -214,6 +278,174 @@ html.dark {
   --accent-warm: var(--color-ochre);
   --border-base: #6B6156;
   --border-strong: var(--color-paper);
+}
+
+/* ── Manual vigente · temas por data-tema ───────────────────────────────────────────
+   Os 12 tokens de componente de 2 · 01; os estados ficam numa regra comum abaixo.
+   Os tokens antigos (--color-*, .light/.dark, .vertical-*) seguem só para os genéricos. */
+
+[data-tema="dg"] {
+  --fundo: var(--dg-preto-tinta);
+  --card: var(--dg-preto-tinta);
+  --fio-card: var(--bf-fio-cinza);
+  --texto: var(--dg-papel);
+  --texto-apoio: var(--dg-pedra);
+  --acento: var(--dg-ocre);
+  --botao: var(--dg-ocre);
+  --botao-texto: var(--dg-preto-tinta);
+  --botao-hover: var(--bf-hover-ocre);
+  --desabilitado: var(--dg-grafite);
+  --divisoria: var(--dg-grafite);
+  --selo-garantia: var(--dg-pedra);
+}
+
+[data-tema="dg-claro"] {
+  --fundo: var(--dg-papel);
+  --card: var(--dg-trama-papel);
+  --fio-card: var(--dg-pedra);
+  --texto: var(--dg-preto-tinta);
+  --texto-apoio: var(--dg-cacau-fosco);
+  --acento: var(--dg-ocre);
+  --botao: var(--dg-preto-tinta);
+  --botao-texto: var(--dg-papel);
+  --botao-hover: var(--dg-ocre);
+  --desabilitado: var(--dg-neutro);
+  --divisoria: var(--dg-neutro);
+  --selo-garantia: var(--dg-pedra);
+}
+
+[data-tema="lp"] {
+  --fundo: var(--lp-carvao);
+  --card: var(--lp-penumbra);
+  --fio-card: var(--lp-castanho);
+  --texto: var(--lp-creme);
+  --texto-apoio: var(--lp-areia);
+  --acento: var(--lp-dourado);
+  --botao: var(--lp-dourado);
+  --botao-texto: var(--lp-carvao);
+  --botao-hover: var(--lp-creme);
+  --desabilitado: var(--lp-castanho);
+  --divisoria: var(--lp-castanho);
+  --selo-garantia: var(--lp-areia);
+}
+
+[data-tema="lp-claro"] {
+  --fundo: var(--lp-creme);
+  --card: var(--lp-creme);
+  --fio-card: var(--lp-areia);
+  --texto: var(--lp-carvao);
+  --texto-apoio: var(--lp-castanho);
+  --acento: var(--lp-dourado);
+  --botao: var(--lp-carvao);
+  --botao-texto: var(--lp-creme);
+  --botao-hover: var(--lp-penumbra);
+  --desabilitado: var(--lp-areia);
+  --divisoria: var(--lp-areia);
+  --selo-garantia: var(--lp-areia);
+}
+
+[data-tema="mqc"] {
+  --fundo: var(--mqc-carvao);
+  --card: var(--mqc-grafite);
+  --fio-card: var(--mqc-pedra);
+  --texto: var(--mqc-off-white);
+  --texto-apoio: var(--mqc-cinza-claro);
+  --acento: var(--mqc-amarelo);
+  --botao: var(--mqc-amarelo);
+  --botao-texto: var(--mqc-carvao);
+  --botao-hover: var(--mqc-off-white);
+  --desabilitado: var(--mqc-pedra);
+  --divisoria: var(--mqc-pedra);
+  --selo-garantia: var(--mqc-cinza-claro);
+}
+
+[data-tema="mqc-claro"] {
+  --fundo: var(--mqc-off-white);
+  --card: var(--mqc-off-white);
+  --fio-card: var(--mqc-pedra);
+  --texto: var(--mqc-carvao);
+  --texto-apoio: var(--mqc-grafite);
+  --acento: var(--mqc-amarelo);
+  --botao: var(--mqc-carvao);
+  --botao-texto: var(--mqc-off-white);
+  --botao-hover: var(--mqc-grafite);
+  --desabilitado: var(--mqc-cinza-claro);
+  --divisoria: var(--mqc-cinza-claro);
+  --selo-garantia: var(--mqc-pedra);
+}
+
+[data-tema="adf"] {
+  --fundo: var(--adf-preto);
+  --card: var(--adf-cafe);
+  --fio-card: var(--adf-linha);
+  --texto: var(--adf-areia);
+  --texto-apoio: var(--adf-cobre);
+  --acento: var(--adf-whiskey-sour);
+  --botao: var(--adf-whiskey-sour);
+  --botao-texto: var(--adf-preto);
+  --botao-hover: var(--adf-areia);
+  --desabilitado: var(--adf-linha);
+  --divisoria: var(--adf-linha);
+  --selo-garantia: var(--adf-cobre);
+}
+
+[data-tema="adf-claro"] {
+  --fundo: var(--adf-areia);
+  --card: var(--adf-areia);
+  --fio-card: var(--adf-couro);
+  --texto: var(--adf-preto);
+  --texto-apoio: var(--adf-couro);
+  --acento: var(--adf-couro);
+  --botao: var(--adf-couro);
+  --botao-texto: var(--adf-areia);
+  --botao-hover: var(--adf-cafe);
+  --desabilitado: var(--adf-cobre);
+  --divisoria: var(--adf-cobre);
+  --selo-garantia: var(--adf-couro);
+}
+
+[data-tema="ne"] {
+  --fundo: var(--ne-carvao);
+  --card: var(--ne-tinta);
+  --fio-card: var(--ne-pedra);
+  --texto: var(--ne-creme);
+  --texto-apoio: var(--ne-areia);
+  --acento: var(--ne-terracota);
+  --botao: var(--ne-terracota);
+  --botao-texto: var(--ne-tinta);
+  --botao-hover: var(--ne-creme);
+  --desabilitado: var(--ne-pedra);
+  --divisoria: var(--ne-pedra);
+  --selo-garantia: var(--ne-areia);
+}
+
+[data-tema="ne-claro"] {
+  --fundo: var(--ne-creme);
+  --card: var(--ne-linho);
+  --fio-card: var(--ne-pedra);
+  --texto: var(--ne-tinta);
+  --texto-apoio: var(--ne-madeira);
+  --acento: var(--ne-terracota);
+  --botao: var(--ne-tinta);
+  --botao-texto: var(--ne-creme);
+  --botao-hover: var(--ne-carvao);
+  --desabilitado: var(--ne-areia);
+  --divisoria: var(--ne-areia);
+  --selo-garantia: var(--ne-pedra);
+}
+
+/* Estados em todos os temas: erro na cor do texto, aviso e sucesso no acento (R21, ADR 0004). */
+[data-tema] {
+  --erro: var(--texto);
+  --aviso: var(--acento);
+  --sucesso: var(--acento);
+}
+
+/* Black Friday: camada da campanha sobre dg ou dg-claro (no mesmo elemento).
+   Troca o acento; os estados acompanham pela regra acima. */
+[data-tema="dg"][data-campanha="bf"],
+[data-tema="dg-claro"][data-campanha="bf"] {
+  --acento: var(--bf-ocre);
 }
 
 /* Escopo temático: submarcas e Black Friday (variáveis --sub-* vêm de themeVars()) */
