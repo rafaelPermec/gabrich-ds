@@ -31,6 +31,7 @@ import { PHOTOS, img } from "./verticals/shared"
 import { submarcaCases, Wordmark } from "./verticals/Submarcas"
 import { SubScope } from "./verticals/shared"
 import { bfCases } from "./verticals/BlackFriday"
+import { bfMeta } from "./verticals/campanha"
 import styles from "./Verticals.module.css"
 
 function PortfolioSite() {
@@ -464,12 +465,12 @@ const verticals: VerticalDef[] = [
     id: "blackfriday",
     name: "black friday",
     base: "preto + papel",
-    medium: "campanha 2026 · 17.10 → 27.11 · feed, site, e-mail, páginas",
-    lede: "50% em todos os produtos, à vista ou em até 12x. Zero canto arredondado, um único acento (ocre) e cinco fases que mudam o que a peça pode mostrar.",
+    medium: bfMeta.medium,
+    lede: bfMeta.lede,
     rules: [
       "Raio 0 em tudo, exceto o quiz",
       "Ocre no papel só como área, nunca como texto",
-      "Contador só em 17.10–31.10 e 21.11–27.11",
+      bfMeta.regraDoContador,
     ],
     cases: [
       {

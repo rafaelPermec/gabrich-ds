@@ -4,7 +4,7 @@ Fora de escopo: as páginas de venda reais e os componentes genéricos (ficam co
 
 # Verificação
 - typecheck: `pnpm typecheck`
-- lint: `pnpm lint` (correção: `pnpm lint:fix`; passa com 22 warnings de base de `react-refresh`)
+- lint: `pnpm lint` (correção: `pnpm lint:fix`; passa com 24 warnings de base de `react-refresh`)
 - testes (todos): `pnpm test` (Playwright; sobe o Storybook sozinho ou reusa o da porta 6006)
 - um teste: `pnpm exec playwright test -g "<nome>"`; visuais: `pnpm test:visual`
 - build: `pnpm build` (app Vite em `dist/` + Storybook em `dist/storybook-static/`); só Storybook: `pnpm build-storybook`

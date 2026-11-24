@@ -15,16 +15,6 @@ export const PHOTOS = {
   bottle: "1724749127402-7e646d794873",
 }
 
-export function brl(n: number) {
-  return (
-    "R$ " +
-    n.toLocaleString("pt-BR", {
-      minimumFractionDigits: Number.isInteger(n) ? 0 : 2,
-      maximumFractionDigits: 2,
-    })
-  )
-}
-
 export function SubScope({
   theme,
   className,

@@ -14,21 +14,68 @@ import { useEffect, useState } from "react"
 import { Badge } from "../../design-system/atoms/Badge"
 import { Tabs } from "../../design-system/molecules/Tabs"
 import {
+  CURSOS_ONLINE,
+  faseDaCampanha,
+  formatarMoeda,
+  formatarParcela,
+  resumoDePreco,
+  type CursoOnline,
+  type DatasDaCampanha,
+  type Oferta,
+} from "../../design-system/dados/index"
+import { LISTAS_DO_CARD_MOCK } from "../../design-system/mocks/conteudo"
+import {
+  OFERTAS_MOCK,
+  PRECOS_NORMAIS_MOCK,
+} from "../../design-system/mocks/ofertas"
+import {
   bfThemes,
   submarcas,
   type BFBase,
 } from "../../design-system/tokens/index"
 import { Wordmark } from "./Submarcas"
-import { Cta, SubScope, brl } from "./shared"
 import {
-  courseNames,
-  phases,
-  products,
-  resolvePackage,
-  type CourseKey,
-  type Phase,
-} from "./blackFridayData"
+  ate,
+  CAMPANHA,
+  DESCONTO,
+  periodo,
+  type FaseDaPeca,
+} from "./campanha"
+import { SUBMARCA_DO_CURSO } from "./cursos"
+import { Cta, SubScope } from "./shared"
 import styles from "./BlackFriday.module.css"
+
+const ofertaDoCurso = (curso: CursoOnline): Oferta => {
+  const oferta = OFERTAS_MOCK.find(
+    (o) => o.cursos.length === 1 && o.cursos[0] === curso,
+  )
+  if (!oferta) throw new Error(`mock sem a oferta do curso ${curso}`)
+  return oferta
+}
+const nomeDoCurso = (curso: CursoOnline) =>
+  ofertaDoCurso(curso).nome.toLowerCase()
+const itensDoCard = (curso: CursoOnline) =>
+  LISTAS_DO_CARD_MOCK.find((l) => l.curso === curso)?.itens ?? []
+
+/** Curso único: a lista oficial do card; combo: o primeiro item da lista de cada curso. */
+const beneficios = (oferta: Oferta) =>
+  oferta.cursos.length === 1
+    ? itensDoCard(oferta.cursos[0]!)
+    : oferta.cursos.flatMap((c) => itensDoCard(c).slice(0, 1))
+
+/** O pacote mais barato que contém todos os cursos marcados. */
+function pacotePara(marcados: readonly CursoOnline[]) {
+  if (marcados.length === 0) return null
+  const oferta = OFERTAS_MOCK.filter((o) =>
+    marcados.every((c) => o.cursos.includes(c)),
+  ).reduce<Oferta | null>(
+    (melhor, o) => (!melhor || o.precoBlack < melhor.precoBlack ? o : melhor),
+    null,
+  )
+  return oferta
+    ? { oferta, completou: oferta.cursos.length > marcados.length }
+    : null
+}
 
 function Marquee({ items }: { items: string[] }) {
   const row = [...items, ...items]
@@ -60,7 +107,7 @@ function useCountdown(target?: string, active = false) {
     return () => clearInterval(t)
   }, [active])
   if (!target) return { dias: 0, horas: 0, min: 0, seg: 0 }
-  const ms = Math.max(0, new Date(target).getTime() - now)
+  const ms = Math.max(0, Date.parse(target) - now)
   const total = Math.floor(ms / 1000)
   return {
     dias: Math.floor(total / 86400),
@@ -70,8 +117,85 @@ function useCountdown(target?: string, active = false) {
   }
 }
 
+interface Phase {
+  id: FaseDaPeca
+  /** Trecho do nome do arquivo da peça. */
+  arquivo: string
+  label: string
+  tag: string
+  base: BFBase
+  counter: Array<"dias" | "horas" | "min" | "seg"> | null
+  counterText?: string
+  /** Data que o contador persegue. */
+  alvo?: keyof DatasDaCampanha
+  cta: string
+  line: string
+}
+
+const phases: Phase[] = [
+  {
+    id: "lista-de-espera",
+    arquivo: "espera",
+    label: "lista de espera",
+    tag: "Lista de espera · abre em",
+    base: "preto",
+    counter: ["dias", "horas", "min"],
+    counterText: "a black friday começa em",
+    alvo: "abertura",
+    cta: "entrar na lista",
+    line: `${DESCONTO}% na black friday`,
+  },
+  {
+    id: "aberta",
+    arquivo: "aberto",
+    label: "aberto",
+    tag: "Aberto",
+    base: "preto",
+    counter: null,
+    cta: `garantir com ${DESCONTO}%`,
+    line: `${DESCONTO}% em todos os cursos, até ${ate("fimBlack")}`,
+  },
+  {
+    id: "ultima-semana",
+    arquivo: "semana",
+    label: "última semana",
+    tag: "Última semana · termina em",
+    base: "papel",
+    counter: ["dias", "horas", "min", "seg"],
+    counterText: "o desconto de black friday acaba em",
+    alvo: "fimBlack",
+    cta: `garantir com ${DESCONTO}%`,
+    line: `São os últimos dias pra garantir a sua vaga com ${DESCONTO}% de desconto.`,
+  },
+  {
+    id: "ultimas-24h",
+    arquivo: "h24",
+    label: "últimas 24h",
+    tag: "Últimas 24h",
+    base: "preto",
+    counter: ["horas", "min", "seg"],
+    counterText: "o desconto de black friday acaba em",
+    alvo: "fimBlack",
+    cta: `garantir com ${DESCONTO}%`,
+    line: `Hoje é o último dia pra garantir a sua vaga com ${DESCONTO}% de desconto.`,
+  },
+  {
+    id: "encerrada",
+    arquivo: "encerrado",
+    label: "encerrado",
+    tag: "Encerrado",
+    base: "papel",
+    counter: null,
+    cta: "entrar na lista",
+    line: "A black friday terminou. Entre na lista para o próximo lançamento.",
+  },
+]
+
 function Counter({ phase }: { phase: Phase }) {
-  const c = useCountdown(phase.target, !!phase.counter)
+  const c = useCountdown(
+    phase.alvo && CAMPANHA[phase.alvo],
+    !!phase.counter,
+  )
   if (!phase.counter) return null
   const labels = { dias: "dias", horas: "horas", min: "min", seg: "seg" }
   return (
@@ -89,11 +213,15 @@ function Counter({ phase }: { phase: Phase }) {
   )
 }
 function Phases() {
-  const [id, setId] = useState<Phase["id"]>("espera")
+  // Abre na fase de agora (fora da campanha, na lista de espera).
+  const [id, setId] = useState<FaseDaPeca>(() => {
+    const agora = faseDaCampanha(CAMPANHA, new Date())
+    return agora === "normal" ? "lista-de-espera" : agora
+  })
   const [openBase, setOpenBase] = useState<BFBase>("preto")
   const phase = phases.find((p) => p.id === id)!
-  const base: BFBase = phase.id === "aberto" ? openBase : phase.base
-  const fileName = `bf26_feed_${phase.id}_${base}_1080x1350`
+  const base: BFBase = phase.id === "aberta" ? openBase : phase.base
+  const fileName = `bf26_feed_${phase.arquivo}_${base}_1080x1350`
   const tagColor = base === "preto" ? "ochre" : "ink"
 
   return (
@@ -114,7 +242,7 @@ function Phases() {
             ].join(" ")}
             onClick={() => setId(p.id)}
           >
-            <span className={styles.mono}>{p.dates}</span>
+            <span className={styles.mono}>{periodo(p.id)}</span>
             <strong>{p.label}</strong>
           </button>
         ))}
@@ -138,8 +266,9 @@ function Phases() {
               </Badge>
             </div>
             <Title />
-            <p className={styles.fifty} aria-label="50 por cento">
-              50<small>%</small>
+            <p className={styles.fifty} aria-label={`${DESCONTO} por cento`}>
+              {DESCONTO}
+              <small>%</small>
             </p>
             <p className={styles.support}>{phase.line}</p>
             <Counter phase={phase} />
@@ -155,12 +284,12 @@ function Phases() {
           </div>
           <div>
             <dt>período</dt>
-            <dd>{phase.dates}</dd>
+            <dd>{periodo(phase.id)}</dd>
           </div>
           <div>
             <dt>base</dt>
             <dd>
-              {phase.id === "aberto" ? "alterna preto / papel" : phase.base}
+              {phase.id === "aberta" ? "alterna preto / papel" : phase.base}
             </dd>
           </div>
           <div>
@@ -171,7 +300,7 @@ function Phases() {
             <dt>botão</dt>
             <dd>{phase.cta}</dd>
           </div>
-          {phase.id === "aberto" && (
+          {phase.id === "aberta" && (
             <div>
               <dt>alternar base</dt>
               <dd>
@@ -191,10 +320,22 @@ function Phases() {
     </div>
   )
 }
+
+const MAIS_ESCOLHIDA = "click-luz"
+const TAG_DA_OFERTA: Readonly<Record<string, string>> = {
+  "antes-da-foto": "Lançamento",
+  "luz-antes-da-foto": "Combo",
+  "click-antes-da-foto": "Combo",
+  "click-luz": "Mais escolhido",
+  completo: "Completo",
+}
+
 function PriceBox() {
-  const [id, setId] = useState("click+luz")
-  const p = products.find((x) => x.id === id)!
-  const highlight = p.id === "click+luz"
+  const [slug, setSlug] = useState(MAIS_ESCOLHIDA)
+  const p = OFERTAS_MOCK.find((x) => x.slug === slug)!
+  const resumo = resumoDePreco(p, PRECOS_NORMAIS_MOCK, true)
+  const tag = TAG_DA_OFERTA[p.slug]
+  const highlight = p.slug === MAIS_ESCOLHIDA
   const [base, setBase] = useState<BFBase>("preto")
   const tagColor = base === "preto" ? "ochre" : "ink"
 
@@ -205,20 +346,20 @@ function PriceBox() {
         role="radiogroup"
         aria-label="Produto"
       >
-        {products.map((x) => (
+        {OFERTAS_MOCK.map((x) => (
           <button
-            key={x.id}
+            key={x.slug}
             role="radio"
-            aria-checked={x.id === id}
+            aria-checked={x.slug === slug}
             className={[
               styles.productBtn,
-              x.id === id ? styles.productOn : "",
+              x.slug === slug ? styles.productOn : "",
             ].join(" ")}
-            onClick={() => setId(x.id)}
+            onClick={() => setSlug(x.slug)}
           >
             <span className={styles.mark} aria-hidden="true" />
-            <span>{x.name}</span>
-            <span className={styles.mono}>{brl(x.por)}</span>
+            <span>{x.nome.toLowerCase()}</span>
+            <span className={styles.mono}>{formatarMoeda(x.precoBlack)}</span>
           </button>
         ))}
       </div>
@@ -248,9 +389,9 @@ function PriceBox() {
             ].join(" ")}
           >
             <div className={styles.pieceTop}>
-              {p.tag && (
+              {tag && (
                 <Badge variant="outline" color={tagColor} size="sm">
-                  {p.tag}
+                  {tag}
                 </Badge>
               )}
               <Badge
@@ -263,37 +404,35 @@ function PriceBox() {
               </Badge>
             </div>
             <div className={styles.logos}>
-              {p.courses.length === 0 ? (
-                <span className={styles.ebook}>e-book antes da foto</span>
-              ) : (
-                p.courses.map((c) => (
-                  <span key={c} className={styles.logoTile}>
-                    <SubScope
-                      theme={submarcas[c].theme}
-                      className={styles.logoInner}
-                    >
-                      <Wordmark id={c} size="sm" />
-                    </SubScope>
-                  </span>
-                ))
-              )}
+              {p.cursos.map((c) => (
+                <span key={c} className={styles.logoTile}>
+                  <SubScope
+                    theme={submarcas[SUBMARCA_DO_CURSO[c]].theme}
+                    className={styles.logoInner}
+                  >
+                    <Wordmark id={SUBMARCA_DO_CURSO[c]} size="sm" />
+                  </SubScope>
+                </span>
+              ))}
             </div>
             <div className={styles.weave}>
-              <p className={styles.de}>de {brl(p.de)} por</p>
-              <p className={styles.x12}>12x {brl(p.x12)}</p>
-              <p className={styles.mono}>ou {brl(p.por)} à vista</p>
+              <p className={styles.de}>
+                de {formatarMoeda(resumo.precoSeparado ?? p.precoNormal)} por
+              </p>
+              <p className={styles.x12}>{formatarParcela(resumo.parcela)}</p>
+              <p className={styles.mono}>
+                ou {formatarMoeda(resumo.preco)} à vista
+              </p>
             </div>
             <ul className={styles.benefits}>
-              {p.benefits.map((b, i) => (
+              {beneficios(p).map((b, i) => (
                 <li key={`${b}-${i}`}>{b}</li>
               ))}
             </ul>
             <Cta size="m">
-              {p.courses.length > 1
+              {p.cursos.length > 1
                 ? "quero o combo"
-                : p.id === "ebook"
-                  ? "quero o e-book"
-                  : "garantir com 50%"}
+                : `garantir com ${DESCONTO}%`}
             </Cta>
             <p className={[styles.mono, styles.guarantee].join(" ")}>
               7 dias de garantia
@@ -305,19 +444,21 @@ function PriceBox() {
   )
 }
 function Simulator() {
-  const [page, setPage] = useState<CourseKey>("luz")
-  const [sel, setSel] = useState<CourseKey[]>(["luz"])
-  const order: CourseKey[] = [
+  const [page, setPage] = useState<CursoOnline>("lp")
+  const [sel, setSel] = useState<CursoOnline[]>(["lp"])
+  const order: CursoOnline[] = [
     page,
-    ...(["luz", "click", "adf"] as CourseKey[]).filter((k) => k !== page),
+    ...CURSOS_ONLINE.filter((k) => k !== page),
   ]
-  const pkg = resolvePackage(sel)
+  const pkg = pacotePara(sel)
+  const resumo = pkg && resumoDePreco(pkg.oferta, PRECOS_NORMAIS_MOCK, true)
 
-  let suggestion: { key: CourseKey; extra: number } | null = null
+  let suggestion: { key: CursoOnline; extra: number } | null = null
   if (pkg) {
     for (const k of order.filter((x) => !sel.includes(x))) {
-      const next = resolvePackage([...sel, k])!
-      const extra = next.product.por - pkg.product.por
+      const next = pacotePara([...sel, k])
+      if (!next) continue
+      const extra = next.oferta.precoBlack - pkg.oferta.precoBlack
       if (!suggestion || extra < suggestion.extra)
         suggestion = { key: k, extra }
     }
@@ -332,7 +473,7 @@ function Simulator() {
           role="radiogroup"
           aria-label="Curso da página atual"
         >
-          {(Object.keys(courseNames) as CourseKey[]).map((k) => (
+          {CURSOS_ONLINE.map((k) => (
             <button
               key={k}
               role="radio"
@@ -346,7 +487,7 @@ function Simulator() {
                 setSel([k])
               }}
             >
-              {courseNames[k]}
+              {nomeDoCurso(k)}
             </button>
           ))}
         </div>
@@ -368,10 +509,10 @@ function Simulator() {
                   />
                   <span className={styles.round} aria-hidden="true" />
                   <SubScope
-                    theme={submarcas[k].theme}
+                    theme={submarcas[SUBMARCA_DO_CURSO[k]].theme}
                     className={styles.simLogo}
                   >
-                    <Wordmark id={k} size="sm" />
+                    <Wordmark id={SUBMARCA_DO_CURSO[k]} size="sm" />
                   </SubScope>
                   {k === page && (
                     <span className={styles.mono}>desta página</span>
@@ -385,28 +526,34 @@ function Simulator() {
 
       <div className={styles.simSum} aria-live="polite">
         <p className={styles.mono}>resumo</p>
-        {pkg ? (
+        {pkg && resumo ? (
           <>
-            <p className={styles.simName}>{pkg.product.name}</p>
-            {pkg.completed && (
+            <p className={styles.simName}>{pkg.oferta.nome.toLowerCase()}</p>
+            {pkg.completou && (
               <p className={styles.simNote}>
                 Essa combinação não existe como pacote — completamos com o
                 pacote mais barato que contém tudo.
               </p>
             )}
-            <p className={styles.de}>de {brl(pkg.product.de)} por</p>
-            <p className={styles.x12}>12x {brl(pkg.product.x12)}</p>
-            <p className={styles.mono}>ou {brl(pkg.product.por)} à vista</p>
-            <p className={styles.save}>
-              você economiza {brl(pkg.product.de - pkg.product.por)}
+            <p className={styles.de}>
+              de {formatarMoeda(resumo.precoSeparado ?? resumo.preco)} por
             </p>
-            {suggestion && (
-              <p className={styles.simNote}>
-                Por mais {brl(suggestion.extra)} você leva também{" "}
-                <strong>{courseNames[suggestion.key]}</strong>.
+            <p className={styles.x12}>{formatarParcela(resumo.parcela)}</p>
+            <p className={styles.mono}>
+              ou {formatarMoeda(resumo.preco)} à vista
+            </p>
+            {resumo.economia !== undefined && (
+              <p className={styles.save}>
+                você economiza {formatarMoeda(resumo.economia)}
               </p>
             )}
-            <Cta size="m">garantir com 50%</Cta>
+            {suggestion && (
+              <p className={styles.simNote}>
+                Por mais {formatarMoeda(suggestion.extra)} você leva também{" "}
+                <strong>{nomeDoCurso(suggestion.key)}</strong>.
+              </p>
+            )}
+            <Cta size="m">garantir com {DESCONTO}%</Cta>
           </>
         ) : (
           <p className={styles.simNote}>
@@ -417,12 +564,12 @@ function Simulator() {
     </SubScope>
   )
 }
-const courseVoice: Record<CourseKey, { contrast: string; button: string }> = {
-  luz: {
+const courseVoice: Record<CursoOnline, { contrast: string; button: string }> = {
+  lp: {
     contrast: "ocre sobre o fundo do curso: 7,8:1",
     button: "dourado, texto carvão",
   },
-  click: {
+  mqc: {
     contrast: "ocre sobre o fundo do curso: 7,5:1",
     button: "amarelo, texto carvão",
   },
@@ -431,31 +578,29 @@ const courseVoice: Record<CourseKey, { contrast: string; button: string }> = {
     button: "whiskey sour, texto preto",
   },
 }
-const coursePrice: Record<CourseKey, number> = {
-  luz: 217,
-  click: 497,
-  adf: 147,
-}
 
-function CoursePiece({ k }: { k: CourseKey }) {
-  const sub = submarcas[k]
-  const p = products.find((x) => x.id === k)!
+function CoursePiece({ k }: { k: CursoOnline }) {
+  const sub = submarcas[SUBMARCA_DO_CURSO[k]]
+  const p = ofertaDoCurso(k)
+  const resumo = resumoDePreco(p, PRECOS_NORMAIS_MOCK, true)
   return (
     <div className={styles.courseWrap}>
       <SubScope theme={sub.theme} className={styles.coursePiece}>
-        <Wordmark id={k} size="lg" />
+        <Wordmark id={SUBMARCA_DO_CURSO[k]} size="lg" />
         <div className={styles.cpBody}>
-          <span className={styles.bfTag}>Black Friday · 50%</span>
-          <p className={styles.de}>de {brl(p.de)} por</p>
+          <span className={styles.bfTag}>Black Friday · {DESCONTO}%</span>
+          <p className={styles.de}>
+            de {formatarMoeda(resumo.precoSeparado ?? p.precoNormal)} por
+          </p>
           <p
             className={styles.cpPrice}
             style={{ fontFamily: sub.priceFont, fontWeight: sub.priceWeight }}
           >
-            12x {brl(p.x12)}
+            {formatarParcela(resumo.parcela)}
           </p>
-          <p className={styles.mono}>ou {brl(coursePrice[k])} à vista</p>
+          <p className={styles.mono}>ou {formatarMoeda(resumo.preco)} à vista</p>
         </div>
-        <Cta size="m">garantir com 50%</Cta>
+        <Cta size="m">garantir com {DESCONTO}%</Cta>
       </SubScope>
       <dl className={styles.spec}>
         <div>
@@ -488,14 +633,15 @@ function CoursePiece({ k }: { k: CourseKey }) {
 function CoursePieceTabs() {
   return (
     <Tabs
-      items={(["luz", "click", "adf"] as CourseKey[]).map((k) => ({
+      items={CURSOS_ONLINE.map((k) => ({
         id: k,
-        label: courseNames[k],
+        label: nomeDoCurso(k),
         content: <CoursePiece k={k} />,
       }))}
     />
   )
 }
+
 
 export const bfCases = {
   phases: () => (
@@ -503,8 +649,8 @@ export const bfCases = {
       <Marquee
         items={[
           "BLACK FRIDAY",
-          "50% EM TODOS OS CURSOS",
-          "ATÉ 27.11",
+          `${DESCONTO}% EM TODOS OS CURSOS`,
+          `ATÉ ${ate("fimBlack")}`,
           "12X OU À VISTA",
         ]}
       />

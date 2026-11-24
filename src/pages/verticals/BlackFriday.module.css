@@ -86,7 +86,6 @@
 .logos { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .logoTile { display: inline-flex; border: var(--fio) solid var(--fio-card); }
 .logoInner { padding: 10px 14px; }
-.ebook { font-family: var(--font-display); font-weight: 700; font-size: var(--text-md); }
 .weave { padding: var(--space-4); display: grid; gap: var(--space-1); background: repeating-linear-gradient(45deg, var(--card) 0 3px, transparent 3px 12px); }
 .de { margin: 0; font-family: var(--font-body); font-size: var(--text-sm); text-decoration: line-through; color: var(--texto-apoio); }
 .x12 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 40px; line-height: 1; color: var(--texto); }

@@ -210,3 +210,225 @@ export const FORMA_MANUAL: Readonly<Record<string, string>> = {
   "raio-disco": "50%",
   fio: "1px",
 }
+
+/**
+ * 2 · 05.05c (tabela de preços oficial), 2 · 05.12 (porcentagens fixas e tabela do combo) e
+ * 2 · 07 (ids de checkout), como o manual declara (grep do manual offline). Valores em reais.
+ */
+export const OFERTAS_MANUAL = [
+  { slug: "antes-da-foto", precoNormal: 197, parcelaNormal: 20.37, precoBlack: 97, parcelaBlack: 10.03, descontoBlack: 51, checkout: "#checkout-antes-da-foto", checkoutBlack: "#checkout-bf26-antes-da-foto" },
+  { slug: "luz-na-pratica", precoNormal: 447, parcelaNormal: 46.23, precoBlack: 217, parcelaBlack: 22.44, descontoBlack: 51, checkout: "#checkout-luz-na-pratica", checkoutBlack: "#checkout-bf26-luz-na-pratica" },
+  { slug: "mais-que-um-click", precoNormal: 997, parcelaNormal: 103.11, precoBlack: 497, parcelaBlack: 51.4, descontoBlack: 50, checkout: "#checkout-mais-que-um-click", checkoutBlack: "#checkout-bf26-mais-que-um-click" },
+  { slug: "luz-antes-da-foto", precoNormal: 577, parcelaNormal: 59.68, precoBlack: 287, parcelaBlack: 29.68, descontoCombo: 10, descontoBlack: 55, checkout: "#checkout-luz-antes-da-foto", checkoutBlack: "#checkout-bf26-luz-antes-da-foto" },
+  { slug: "click-antes-da-foto", precoNormal: 1077, parcelaNormal: 111.39, precoBlack: 537, parcelaBlack: 55.54, descontoCombo: 10, descontoBlack: 55, checkout: "#checkout-click-antes-da-foto", checkoutBlack: "#checkout-bf26-click-antes-da-foto" },
+  { slug: "click-luz", precoNormal: 1297, parcelaNormal: 134.14, precoBlack: 647, parcelaBlack: 66.91, descontoCombo: 10, descontoBlack: 55, checkout: "#checkout-click-luz", checkoutBlack: "#checkout-bf26-click-luz" },
+  { slug: "completo", precoNormal: 1397, parcelaNormal: 144.48, precoBlack: 697, parcelaBlack: 72.09, descontoCombo: 15, descontoBlack: 57, checkout: "#checkout-completo", checkoutBlack: "#checkout-bf26-completo" },
+] as const
+
+/** 2 · 05.12, tabela completa: preço separado e "você economiza" de cada oferta, fora e na Black. */
+export const ECONOMIA_MANUAL: Readonly<Record<string, { separado: number; economiaNormal?: number; economiaBlack: number }>> = {
+  "antes-da-foto": { separado: 197, economiaBlack: 100 },
+  "luz-na-pratica": { separado: 447, economiaBlack: 230 },
+  "mais-que-um-click": { separado: 997, economiaBlack: 500 },
+  "luz-antes-da-foto": { separado: 644, economiaNormal: 67, economiaBlack: 357 },
+  "click-antes-da-foto": { separado: 1194, economiaNormal: 117, economiaBlack: 657 },
+  "click-luz": { separado: 1444, economiaNormal: 147, economiaBlack: 797 },
+  completo: { separado: 1641, economiaNormal: 244, economiaBlack: 944 },
+}
+
+/** 2 · 05.05b, lista oficial de cada curso, na ordem do manual (sem a numeração "01 · "). */
+export const LISTAS_MANUAL: Readonly<Record<"adf" | "lp" | "mqc" | "ne", readonly string[]>> = {
+  adf: [
+    "e-book com 284 páginas",
+    "06 capítulos, do briefing à hora da foto",
+    "12 práticas para preencher na tela ou à mão",
+    "05 briefings completos de marcas fictícias pra você praticar e aumentar o seu portfólio",
+    "exercícios pra você criar o seu modelo de briefing e planejamento da sessão de fotos",
+    "suporte para alunos na plataforma da Hotmart",
+  ],
+  lp: [
+    "27 aulas em vídeo, em 08 módulos",
+    "aulas práticas de luz dura, luz suave, fotometria e esquemas de luz",
+    "produções completas comigo: Natal, mesa montada e fotos com reflexo",
+    "análises de esquemas de luz de trabalhos reais",
+    "funciona com o equipamento que você tem: flash, luz contínua ou luz natural",
+    "1 ano de acesso",
+    "suporte para alunos na plataforma da Hotmart",
+  ],
+  mqc: [
+    "14 módulos, 67 conteúdos",
+    "do briefing à foto final, com prática no estúdio",
+    "exercícios pra você praticar durante todo o curso",
+    "02 projetos completos pra você montar o seu portfólio",
+    "pós-produção: como eu edito as minhas fotos",
+    "bônus: fotografia como negócio, com processos e precificação",
+    "1 ano de acesso",
+    "suporte para alunos na plataforma da Hotmart",
+  ],
+  ne: [
+    "02 dias de workshop presencial",
+    "17 horas de conteúdo",
+    "acesso a todos os bônus",
+    "certificado de participação",
+    "grupo de alunos no WhatsApp",
+  ],
+}
+
+/**
+ * 2 · 05.17, textos completos (versão atual, EM APROVAÇÃO): módulo, quantidade declarada no
+ * cabeçalho e títulos das aulas na ordem. Grupos: "PROJETO 01"/"PROJETO 02" do módulo 12 do MqC.
+ */
+export type ModuloManual = { numero: number; nome: string; quantidade: number; etiqueta?: string; aulas: readonly string[]; grupos?: Readonly<Record<string, readonly number[]>> }
+
+export const MODULOS_MANUAL: Readonly<Record<"lp" | "mqc", readonly ModuloManual[]>> = {
+  lp: [
+    { numero: 1, nome: "luz é tudo!", quantidade: 2, aulas: [
+      "Equipamento é ferramenta",
+      "Perdendo o medo das sombras",
+    ] },
+    { numero: 2, nome: "como controlar a luz?", quantidade: 6, aulas: [
+      "Modificadores de luz",
+      "Análise de efeitos dos modificadores",
+      "Acessórios de iluminação",
+      "Análise dos efeitos dos acessórios",
+      "O que muda a sua luz",
+      "Análise de controle de luz",
+    ] },
+    { numero: 3, nome: "efeitos de luz dura e luz suave", quantidade: 2, aulas: [
+      "Construção de efeitos de luz",
+      "Análise de efeitos de luz",
+    ] },
+    { numero: 4, nome: "fotometria", quantidade: 2, aulas: [
+      "Como configurar sua câmera",
+      "Fotometrando na prática",
+    ] },
+    { numero: 5, nome: "esquemas de luz", quantidade: 6, aulas: [
+      "Pontos de luz",
+      "Análise dos pontos de luz",
+      "Esquema de luz frontal",
+      "Esquema de luz lateral",
+      "Esquema de contraluz",
+      "Análise de esquemas de luz",
+    ] },
+    { numero: 6, nome: "luz natural", quantidade: 2, aulas: [
+      "Como controlar a luz natural",
+      "Fotografando com luz natural na prática",
+    ] },
+    { numero: 7, nome: "fotografe comigo", quantidade: 3, aulas: [
+      "Iluminação para fotos de Natal",
+      "Fotografia de mesa montada",
+      "Fotografando com reflexos",
+    ] },
+    { numero: 8, nome: "análises de trabalhos reais", quantidade: 4, aulas: [
+      "Fotografia de produtos",
+      "Fotografia conceitual de bebida",
+      "Luz criativa para chocolates",
+      "Esquemas de luz em restaurantes",
+    ] },
+  ],
+  mqc: [
+    { numero: 1, nome: "Introdução", quantidade: 2, aulas: [
+      "Porque você está aqui!",
+      "Quero fotografar gastronomia, por onde eu começo?",
+    ] },
+    { numero: 2, nome: "Primeiros passos!", quantidade: 6, aulas: [
+      "Porque o briefing é tão importante?",
+      "O briefing completo",
+      "Porque fazer um pré-briefing?",
+      "E agora? Como criar um briefing?",
+      "Exercício | Criando um briefing do zero!",
+      "Exercício | Dois briefings, um produto!",
+    ] },
+    { numero: 3, nome: "Como funciona o mercado?", quantidade: 8, aulas: [
+      "Como fotografar para cardápios?",
+      "Fotografando para aplicativos",
+      "A liberdade criativa das redes sociais!",
+      "O fundo infinito",
+      "Além do prato: fotografia de gastronomia na publicidade",
+      "Material extra | Produção de fotos para o McDonald's",
+      "Exercício | Fotos diferentes para veiculações diferentes!",
+      "Exercício | Novo normal",
+    ] },
+    { numero: 4, nome: "Hora de criar: contando uma história!", quantidade: 6, aulas: [
+      "Bagagem criativa: pesquisa e referências para transmitir sensações",
+      "Como contar uma história?",
+      "Organizando as ideias em um planejamento criativo",
+      "Exercício | Como contar uma história?",
+      "Exercício | Bagagem criativa",
+      "Exercício | História pessoal",
+    ] },
+    { numero: 5, nome: "Escolhendo uma paleta de cores que traz sensações!", quantidade: 4, aulas: [
+      "A temperatura das cores",
+      "O sentimento de cada cor",
+      "Combinações cromáticas",
+      "Exercício | Paleta de cores",
+    ] },
+    { numero: 6, nome: "Como montar uma cena interessante?", quantidade: 6, aulas: [
+      "O que é composição?",
+      "Posicionamentos",
+      "Profundidade de campo",
+      "Perspectiva",
+      "Ângulos e enquadramentos",
+      "Exercício | Testando composições de cena",
+    ] },
+    { numero: 7, nome: "Aplicando técnicas", quantidade: 1, aulas: [
+      "Prática | Cores e composição",
+    ] },
+    { numero: 8, nome: "Produção é tudo!", quantidade: 3, aulas: [
+      "O que é a pré-produção?",
+      "Como utilizar objetos de produção?",
+      "Prática | Montando cenários diferentes",
+    ] },
+    { numero: 9, nome: "Luz, câmera...", quantidade: 7, aulas: [
+      "A luz também conta uma história",
+      "Prática | Luz natural",
+      "Prática | Controlando a luz natural",
+      "Prática | Luz artificial",
+      "Prática | Como direcionar a luz",
+      "Prática | Luz dura x luz suave",
+      "Prática | Esquemas de luz para fotografia de gastronomia",
+    ] },
+    { numero: 10, nome: "Ação!", quantidade: 2, aulas: [
+      "Prática | Briefing 01",
+      "Prática | Briefing 02",
+    ] },
+    { numero: 11, nome: "Edite comigo!", quantidade: 6, aulas: [
+      "Edite comigo!",
+      "Organizando o fluxo de trabalho",
+      "Edite comigo no Lightroom | Briefing 01",
+      "Edite comigo no Lightroom! | Briefing 02",
+      "Edite comigo no Photoshop!",
+      "Exportando as fotos!",
+    ] },
+    { numero: 12, nome: "Criando o seu projeto", quantidade: 9, grupos: { "PROJETO 01": [1, 2, 3, 4, 5], "PROJETO 02": [6, 7, 8, 9] }, aulas: [
+      "Tem cliente pra você! | Projeto 01",
+      "Quem é o cliente? | Projeto 01",
+      "Pré-produção | Projeto 01",
+      "Bora fotografar? | Projeto 01",
+      "Editando suas fotos! | Projeto 01",
+      "Briefing | Projeto 02",
+      "Pré-produção | Projeto 02",
+      "Sessão de fotos! | Projeto 02",
+      "Edite suas fotos! | Projeto 02",
+    ] },
+    { numero: 13, nome: "\"EU\"presa: a fotografia como negócio", quantidade: 6, aulas: [
+      "Eu sou uma empresa?",
+      "Entendendo meus processos",
+      "O fluxo de trabalho",
+      "Preço x valor",
+      "Fazendo as contas!",
+      "Exercício | \"Eu\"presa",
+    ] },
+    { numero: 14, nome: "Débora Gabrich indica!", quantidade: 1, etiqueta: "MATERIAL EXTRA", aulas: [
+      "Material extra | Boas dicas para você usar no seu dia a dia!",
+    ] },
+  ],
+}
+
+/** 2 · 05.16 e aba 04 (páginas do Luz na Prática e do Mais que um Click): os 4 cards de antes e depois. */
+export const ANTES_E_DEPOIS_MANUAL = [
+  { nome: "Cristielen Souza", legenda: "Aluna Mais que um Click e Luz na Prática" },
+  { nome: "Laura Dicker", legenda: "Aluna Mais que um Click, Luz na Prática, Aulas virtuais" },
+  { nome: "Bruna Doti", legenda: "Aluna Mais que um Click, Luz na Prática, No Estúdio e Antes da Foto" },
+  { nome: "Estúdio Buzz", legenda: "Aluna Mais que um Click e Luz na Prática" },
+] as const

@@ -72,7 +72,7 @@
 
 /* módulos */
 .modules { display: grid; border: var(--fio) solid var(--border-base); }
-@media (min-width: 800px) { .modules { grid-template-columns: 340px 1fr; } }
+@media (min-width: 800px) { .modules { grid-template-columns: 340px minmax(0, 1fr); } }
 .progressBlock { display: grid; gap: var(--space-4); align-content: start; padding: var(--space-8); background: var(--card); }
 .lessons { padding: var(--space-4) var(--space-6); }
 

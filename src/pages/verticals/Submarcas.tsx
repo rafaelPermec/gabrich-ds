@@ -17,7 +17,14 @@ import { FormField } from "../../design-system/molecules/FormField"
 import { ListItem } from "../../design-system/molecules/ListItem"
 import { Stat } from "../../design-system/molecules/Stat"
 import { Tabs } from "../../design-system/molecules/Tabs"
+import type { ModulosDoCurso } from "../../design-system/dados/index"
+import {
+  LISTAS_DO_CARD_MOCK,
+  MODULOS_LP_MOCK,
+  MODULOS_MQC_MOCK,
+} from "../../design-system/mocks/conteudo"
 import { submarcas, type SubmarcaId } from "../../design-system/tokens/index"
+import { CURSO_DA_SUBMARCA } from "./cursos"
 import { Cta, PHOTOS, SubScope, img } from "./shared"
 import styles from "./Submarcas.module.css"
 
@@ -74,8 +81,22 @@ interface Copy {
   cta: string
   photo: string
   enrollLabel: string
-  includes: string
 }
+
+/* Módulos, aulas e a lista do card vêm dos mocks do manual (2 · 05.17, 2 · 05.05b). */
+const totalDeAulas = (curso: ModulosDoCurso) =>
+  curso.modulos.reduce((total, m) => total + m.aulas.length, 0)
+const primeirasAulas = (curso: ModulosDoCurso) =>
+  curso.modulos
+    .flatMap((m) =>
+      m.aulas.map((a) => ({
+        label: a.titulo,
+        sub: `módulo ${String(m.numero).padStart(2, "0")} · ${m.nome}`,
+      })),
+    )
+    .slice(0, 4)
+const itensDoCard = (id: SubmarcaId) =>
+  LISTAS_DO_CARD_MOCK.find((l) => l.curso === CURSO_DA_SUBMARCA[id])?.itens ?? []
 
 const copy: Record<SubmarcaId, Copy> = {
   estudio: {
@@ -95,56 +116,40 @@ const copy: Record<SubmarcaId, Copy> = {
     cta: "quero minha vaga",
     photo: PHOTOS.studio,
     enrollLabel: "turma presencial · 12 vagas",
-    includes:
-      "Dois dias de set, material de apoio impresso, almoço e revisão individual do seu portfólio.",
   },
   luz: {
     headline: "uma luz, muito critério",
-    desc: "Seis módulos para fotografar com um flash, um rebatedor e decisões que fazem o produto parecer caro.",
+    desc: "Aulas práticas para fotografar com o equipamento que você tem e decisões que fazem o produto parecer caro.",
     facts: [
-      ["6", "módulos"],
-      ["24", "aulas"],
-      ["9h", "de conteúdo"],
+      [String(MODULOS_LP_MOCK.modulos.length), "módulos"],
+      [String(totalDeAulas(MODULOS_LP_MOCK)), "aulas"],
+      ["1", "ano de acesso"],
     ],
-    modules: [
-      { label: "Luz dura x luz macia", sub: "12 min · vídeo" },
-      { label: "Controlando reflexos em vidro", sub: "18 min · vídeo" },
-      { label: "Fundo infinito com papel", sub: "15 min · vídeo" },
-      { label: "Exercício: seu primeiro set", sub: "40 min · prática" },
-    ],
+    modules: primeirasAulas(MODULOS_LP_MOCK),
     cta: "quero a luz",
     photo: PHOTOS.glasses,
-    enrollLabel: "curso online · acesso por 12 meses",
-    includes:
-      "Aulas gravadas, encontro mensal ao vivo, feedback em 3 exercícios e certificado.",
+    enrollLabel: "curso online · 1 ano de acesso",
   },
   click: {
     headline: "fotografar é decidir antes de clicar",
     desc: "Composição, narrativa e edição com intenção — o que separa uma foto correta de uma foto que vende.",
     facts: [
-      ["5", "módulos"],
-      ["31", "aulas"],
-      ["12h", "de conteúdo"],
+      [String(MODULOS_MQC_MOCK.modulos.length), "módulos"],
+      [String(totalDeAulas(MODULOS_MQC_MOCK)), "conteúdos"],
+      ["1", "ano de acesso"],
     ],
-    modules: [
-      { label: "Olhar e composição", sub: "22 min · vídeo" },
-      { label: "Narrativa de produto", sub: "28 min · vídeo" },
-      { label: "Edição com intenção", sub: "35 min · vídeo" },
-      { label: "Portfólio que vende", sub: "45 min · prática" },
-    ],
+    modules: primeirasAulas(MODULOS_MQC_MOCK),
     cta: "quero o click",
     photo: PHOTOS.sunglasses,
-    enrollLabel: "curso online · acesso por 12 meses",
-    includes:
-      "Aulas gravadas, planilhas de planejamento, comunidade fechada e certificado.",
+    enrollLabel: "curso online · 1 ano de acesso",
   },
   adf: {
     headline: "o que acontece antes do clique",
-    desc: "Um e-book e uma masterclass sobre briefing, moodboard e paleta da cena — tudo que se resolve antes de ligar a câmera.",
+    desc: "Um e-book sobre briefing, moodboard e paleta da cena — tudo que se resolve antes de ligar a câmera.",
     facts: [
-      ["1", "e-book"],
-      ["1", "masterclass"],
-      ["4", "fichas prontas"],
+      ["284", "páginas"],
+      ["06", "capítulos"],
+      ["12", "práticas"],
     ],
     modules: [
       { label: "Ficha de briefing", sub: "capítulo 1 · exercício" },
@@ -154,9 +159,7 @@ const copy: Record<SubmarcaId, Copy> = {
     ],
     cta: "quero o e-book",
     photo: PHOTOS.vase,
-    enrollLabel: "e-book + masterclass · acesso imediato",
-    includes:
-      "E-book em PDF, masterclass gravada, fichas de briefing editáveis e atualizações.",
+    enrollLabel: "e-book · acesso imediato",
   },
 }
 function Identity({ id }: { id: SubmarcaId }) {
@@ -316,7 +319,9 @@ function Enroll({ id }: { id: SubmarcaId }) {
             {
               id: "inc",
               label: "O que inclui",
-              content: <p className={styles.desc}>{c.includes}</p>,
+              content: (
+                <p className={styles.desc}>{itensDoCard(id).join(" · ")}</p>
+              ),
             },
             {
               id: "req",
