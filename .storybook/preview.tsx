@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import type { Decorator, Preview } from "@storybook/react-vite"
+import { ValidacaoDeDadosProvider, type ModoValidacao } from "../src/design-system/context/ValidacaoDeDados"
 import { ToastProvider } from "../src/design-system/molecules/Toast"
 import { temas, type Campanha, type Tema } from "../src/design-system/tokens"
 import "../src/index.css"
@@ -65,6 +66,19 @@ const withVertical: Decorator = (Story, context) => {
         <Story />
       </div>
     </ToastProvider>
+  )
+}
+
+/**
+ * RF5: no Storybook, dado inválido mostra o aviso (modo "aviso"). Uma story volta ao
+ * comportamento de fora do Storybook com `parameters: { validacao: { modo: "console" } }`.
+ */
+const withValidacao: Decorator = (Story, context) => {
+  const parametro = context.parameters.validacao as { modo?: ModoValidacao } | undefined
+  return (
+    <ValidacaoDeDadosProvider modo={parametro?.modo ?? "aviso"}>
+      <Story />
+    </ValidacaoDeDadosProvider>
   )
 }
 
@@ -148,7 +162,7 @@ const preview: Preview = {
       },
     },
   },
-  decorators: [withVertical, withTheme],
+  decorators: [withValidacao, withVertical, withTheme],
 }
 
 export default preview

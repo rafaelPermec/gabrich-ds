@@ -9,6 +9,7 @@ export * from "./atoms/Typography/index"
 export * from "./atoms/Button/index"
 export * from "./atoms/ActionDisk/index"
 export * from "./atoms/Badge/index"
+export * from "./atoms/AvisoDadoInvalido/index"
 export * from "./atoms/Icon/index"
 export * from "./atoms/Divider/index"
 export * from "./atoms/Input/index"
@@ -45,6 +46,7 @@ export * from "./molecules/Drawer/index"
 // ─── Context ─────────────────────────────────────────────────────────────────
 export * from "./context/ThemeContext"
 export * from "./context/VerticalContext"
+export * from "./context/ValidacaoDeDados"
 
 // ─── Utils ───────────────────────────────────────────────────────────────────
 export * from "./utils/focusTrap"

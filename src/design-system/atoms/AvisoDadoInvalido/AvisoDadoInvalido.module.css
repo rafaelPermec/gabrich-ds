@@ -1,0 +1,26 @@
+/* Sem tema do manual (genéricos), --aviso não existe: cai no ocre da marca mãe. */
+.aviso {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-2);
+  padding: var(--esp-3) var(--esp-4);
+  border: var(--fio) solid var(--aviso, var(--dg-ocre));
+  border-radius: var(--raio-reto);
+  color: inherit;
+}
+
+.titulo {
+  font: var(--dg-rotulo);
+  letter-spacing: var(--dg-rotulo-tracking);
+  text-transform: var(--dg-rotulo-caixa);
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+  padding-left: var(--esp-4);
+  font: var(--dg-corpo);
+  letter-spacing: var(--dg-corpo-tracking);
+  text-transform: var(--dg-corpo-caixa);
+}

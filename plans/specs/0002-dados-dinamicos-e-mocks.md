@@ -120,8 +120,8 @@ Nenhum dado real de aluna: os depoimentos dos mocks usam o que o manual publica.
 - **Arquivos prováveis:** `src/design-system/dados/` (contexto e hook de validação), `src/design-system/atoms/AvisoDadoInvalido/`, `.storybook/preview.tsx`, stories de validação, `src/design-system/mocks/` (mocks inválidos), `tests/dados/aviso.spec.ts`
 - **Cobre:** RF5; CA3 (aviso), CA4 (aviso e console)
 - **Pronto quando:**
-  - [ ] testes verdes; sem violação crítica no addon a11y; `pnpm build-storybook` verde
-- **Status:** [ ] pendente
+  - [x] testes verdes; sem violação crítica no addon a11y; `pnpm build-storybook` verde
+- **Status:** [x] concluída
 
 ### T5 — Páginas de demonstração nos mocks e auditoria final
 - **Entrega:** as páginas Black Friday e Submarcas mostram os valores oficiais e as fases da campanha 2026 a partir dos mocks, sem masterclass, certificado ou encontro ao vivo nos cursos online. Uma auditoria garante que nenhum valor de preço, parcela, porcentagem ou data fica fixo no DS fora dos mocks.
@@ -146,3 +146,5 @@ Nenhum dado real de aluna: os depoimentos dos mocks usam o que o manual publica.
 | 2026-11-23 | T3 | `Descritivo` (2 · 07b / 6 · 03b, blocos de parágrafo e lista) existe só como tipo: a spec não lista mock de descritivo. `Depoimento` tem `curso` obrigatório e `nome?` opcional: o manual transcreve poucos nomes (no print, o nome está na imagem). O mock usa os arquivos de `manual-vigente/assets/dep/` e os vídeos da aba 04. |
 | 2026-11-23 | T3 | `validarConteudo(conteudo, curso)` varre todos os textos do dado. "Encontro ao vivo" casa com "encontro(s) … ao vivo"; "ao vivo" sozinho é permitido (aula 12 do Luz na Prática: "balanço de branco ajustado ao vivo"). A fixture e o mock de conteúdo foram gerados por script do `Manual Final 2026 - VIGENTE v2.dc.html` (2 · 05.05b, 05.16, 05.17). |
 | 2026-11-23 | T3 | O espelho dos tokens passou a "e-book" no Antes da Foto. O texto aparece em Submarcas e Verticals; nenhum snapshot visual cobre essas páginas. |
+| 2026-11-23 | T4 | Desvio de local: contexto e hook ficam em `src/design-system/context/ValidacaoDeDados.tsx` (ao lado dos outros contextos), não em `dados/`, porque `dados/index` é importado pelos testes em Node puro e não pode puxar React nem CSS Modules. API: `ValidacaoDeDadosProvider({ modo })`, `useModoValidacao()` e `useValidacao(problemas, origem?)`, que devolve o `AvisoDadoInvalido` a renderizar ou `null`; o `console.error` sai uma vez por conjunto (guarda por `useRef`, imune ao efeito duplo do StrictMode). |
+| 2026-11-23 | T4 | O decorator global do Storybook liga o modo aviso; uma story volta ao modo console com `parameters: { validacao: { modo: "console" } }`. O `AvisoDadoInvalido` usa fio no `--aviso` do tema, com `var(--dg-ocre)` quando não há `data-tema` (genéricos), e as subfontes `--dg-rotulo`/`--dg-corpo` (aviso de dev, sem subfonte por tema). Mocks inválidos em `mocks/invalidos.ts`. O contexto soma 2 warnings `react-refresh` ao lint (24 no total), mesmo padrão de `ThemeContext`. |
