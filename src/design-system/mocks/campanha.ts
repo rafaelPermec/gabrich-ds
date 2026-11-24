@@ -16,3 +16,6 @@ export const CAMPANHA_2026_MOCK: DatasDaCampanha = {
   // Encerramento até 08/12 23h59: instante exclusivo.
   fimEncerramento: "2026-12-09T00:00:00-03:00",
 }
+
+/** "50% em todos os cursos": a manchete da campanha no manual (Black Friday). Cada oferta traz o seu `descontoBlack`. */
+export const DESCONTO_DA_CAMPANHA_2026_MOCK = 50
