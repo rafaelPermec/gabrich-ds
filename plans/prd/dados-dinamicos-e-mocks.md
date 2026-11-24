@@ -1,6 +1,6 @@
 ---
 feature: dados-dinamicos-e-mocks
-status: aprovado
+status: implementado
 criado: 2026-10-23
 atualizado: 2026-11-23
 spec: plans/specs/0002-dados-dinamicos-e-mocks.md

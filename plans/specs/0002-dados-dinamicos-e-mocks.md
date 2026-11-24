@@ -1,6 +1,6 @@
 ---
 feature: dados-dinamicos-e-mocks
-status: em implementação  # rascunho | aprovada | em implementação | concluída
+status: concluída  # rascunho | aprovada | em implementação | concluída
 prd: plans/prd/dados-dinamicos-e-mocks.md
 branch: feat/dados-dinamicos-e-mocks
 criado: 2026-11-23
@@ -152,3 +152,4 @@ Nenhum dado real de aluna: os depoimentos dos mocks usam o que o manual publica.
 | 2026-11-23 | T5 | Arquivos novos fora da spec: `src/pages/verticals/campanha.ts` (formatação das datas, `periodo()`, `bfMeta`: o cabeçalho da Black que estava fixo em `Verticals.tsx` com 17.10 → 27.11) e `src/pages/verticals/cursos.ts` (`SUBMARCA_DO_CURSO`/`CURSO_DA_SUBMARCA`: o dado usa `lp/mqc/adf/ne`, tokens e logos usam `luz/click/adf/estudio`). Ficam em `.ts` para não somar warnings `react-refresh` (lint: 23, uma abaixo da base). |
 | 2026-11-23 | T5 | Box de preço: 7 ofertas do mock (sai o "e-book" avulso de R$ 97, que é o próprio Antes da Foto). Benefícios: curso único usa a lista oficial do card; combo, o primeiro item da lista de cada curso. Tags ("Mais escolhido" etc.) seguem como texto da página. Simulador: pacote mais barato que contém os cursos marcados, entre os mocks (todas as 7 combinações existem). Submarcas: fatos e aulas de `MODULOS_LP_MOCK`/`MODULOS_MQC_MOCK`, "O que inclui" da lista do card, "1 ano de acesso"; o grid de módulos passou a `minmax(0, 1fr)` porque os títulos reais estouravam a coluna. |
 | 2026-11-23 | T5 | Auditoria `tests/auditoria/dados.spec.ts` (CA12 + CA9): varre `src/design-system/` e `src/pages/verticals/`, sem comentários. CA12 deixa de fora mocks, stories e `storyFixtures` (R24: stories são mock) e literais que são só comprimento CSS (`"100%"`). CA9 deixa de fora mocks e `dados/validacao.ts`. `Verticals.tsx` não é varrido: guarda a proposta de fotografia (genérico, fora do escopo, com R$ 4.800). Nenhum snapshot visual cobre as páginas: nada a atualizar. |
+| 2026-11-23 | Fechamento | Revisão Specs (agy): T1–T4 sem achados. Pendências que já existiam antes da feature, nas páginas de demonstração, mantidas com OK do usuário: `BlackFriday.tsx` com contador da "última semana" mostrando segundos (R18), `aria-label` do contador com o texto da fase em vez de "contador" (R32), "7 dias de garantia" dentro do card de preço (R13), "pacote" no texto do simulador (_Evitar_); `Verticals.tsx` com "Box de preço" e "Checkbox redondo" (_Evitar_). Os `<Cta>` das demonstrações não usam `destinoDoCheckout` (H9; a função e o CA10 estão prontos): ligar junto do botão real no `componentes-de-oferta`. |
