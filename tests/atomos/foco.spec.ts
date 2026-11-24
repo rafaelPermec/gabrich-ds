@@ -10,7 +10,11 @@ import { abrirStory, idDaStory, rgb, storiesDoIndice } from "./storybook"
 
 const STORY_FOCO = "Foco (proposta)"
 
-const INTERATIVOS = [{ titulo: "Atoms/Botao", papel: "button" as const }]
+const INTERATIVOS = [
+  { titulo: "Atoms/Botao", papel: "button" as const },
+  { titulo: "Molecules/CardManual", papel: "link" as const },
+  { titulo: "Atoms/IndicadorContinuacao", papel: "button" as const },
+]
 
 test("CA14: todo átomo interativo tem a story \"Foco (proposta)\"", async ({ request }) => {
   const stories = await storiesDoIndice(request)

@@ -11,7 +11,7 @@ type Amostra = {
   /** Nome acessível do elemento na story (texto do botão, rótulo etc.); com papel "texto", o texto exato. */
   nome: string
   /** Papel ARIA, ou "texto" para elementos sem papel (a etiqueta), achados pelo texto. */
-  papel: "button" | "link" | "img" | "texto"
+  papel: "button" | "link" | "img" | "article" | "texto"
   /** Propriedade CSS computada → token de componente esperado. */
   cores: Partial<Record<"background-color" | "color" | "border-top-color", TokenComponente>>
 }
@@ -37,6 +37,20 @@ const ATOMOS: Atomo[] = [
       { nome: "cheia em acento", papel: "texto", cores: { "background-color": "acento" } },
       { nome: "cheia", papel: "texto", cores: { "background-color": "texto", color: "fundo" } },
     ],
+  },
+  {
+    titulo: "Molecules/CardManual",
+    story: "Com foto",
+    amostras: [
+      { nome: "Luz que desenha o produto", papel: "article", cores: { "background-color": "card", "border-top-color": "fio-card" } },
+      { nome: "Luz que desenha o produto", papel: "texto", cores: { color: "texto" } },
+      { nome: "ensaio", papel: "texto", cores: { color: "texto-apoio" } },
+    ],
+  },
+  {
+    titulo: "Atoms/IndicadorContinuacao",
+    story: "Tamanhos",
+    amostras: [{ nome: "padrão", papel: "button", cores: { color: "texto", "border-top-color": "texto" } }],
   },
 ]
 

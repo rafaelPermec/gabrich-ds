@@ -141,10 +141,10 @@ Sem dados pessoais nem rede. Os mocks ficam só nas stories (R24). O percentual 
 - **Arquivos prováveis:** `src/design-system/molecules/CardManual/*`, `src/design-system/atoms/IndicadorContinuacao/*`, `src/design-system/index.ts`, `tests/atomos/card-indicador.spec.ts`
 - **Cobre:** RF7, RF11, RF13, RF14 · CA7, CA8, CA12, CA14, CA15
 - **Pronto quando:**
-  - [ ] Os testes estão verdes.
-  - [ ] O indicador é menor que o disco de ação de 52px.
-  - [ ] Nada se move no hover.
-- **Status:** [ ] pendente
+  - [x] Os testes estão verdes.
+  - [x] O indicador é menor que o disco de ação de 52px.
+  - [x] Nada se move no hover.
+- **Status:** [x] concluída
 
 ### T4 — Marcador e LogoCurso
 - **Entrega:** ponto, disco numerado e anel de seleção, e a logo dos quatro cursos em máscara de uma cor, que lê `--texto`.
@@ -187,3 +187,9 @@ Sem dados pessoais nem rede. Os mocks ficam só nas stories (R24). O percentual 
 | 2026-11-24 | T2 | Tema dentro de tema: o texto da cheia em acento vem de uma variável declarada em cada `data-tema` (herdada do mais próximo); seletor por ancestral pegava o tema de fora. O Botao (T1) tem o mesmo padrão `[data-tema="…-claro"] .acao` e o mesmo risco em temas aninhados (fora do escopo da T2). Follow-up: um token de componente por tema para o texto sobre o acento, usado pelo Badge e pelo Botao. |
 | 2026-11-24 | T2 | a11y (axe, 10 temas): nenhuma violação crítica. *Serious* de contraste na etiqueta traçada em acento nos temas claros (ex.: ocre sobre papel 1,94) e no ne (4,34): valores do manual; levar à Débora se a traçada em acento vale fora do preto. |
 | 2026-11-24 | T2 | `test.slow()` no CA4 do Botao: percorre 8 temas e estourava os 30s às vezes. |
+| 2026-11-24 | T3 | CardManual: `imagem.proporcao` (`4/3` padrão, `16/9`), da ficha 2 · 05.03 ("faixa no topo, 4:3 ou 16:9, sangrando até o fio"). A foto fica fora do padding; o padding (24/32/20) e o gap de 12 são do corpo. Sem `href` é `<article>` nomeado pelo título (`aria-labelledby`); com `href`, `<a>`. |
+| 2026-11-24 | T3 | Tipografia do card (a ficha não traz amostra): rótulo `--dg-rotulo` em `--texto-apoio`, título `<h3>` em `--dg-intertitulo` e texto `--dg-corpo` em `--texto-apoio`. Validar com a Débora no Storybook. |
+| 2026-11-24 | T3 | Padding de 20 no celular fora da escala de R9 (o manual manda, R1): `calc(var(--esp-4) + var(--esp-1))`, sem px fixo. |
+| 2026-11-24 | T3 | IndicadorContinuacao: prop `rotulo` (nome acessível, padrão "continuar"), já que o desenho é só a seta. Seta para baixo (path da ficha 2 · 05.09) a 40% do disco. Fio por `border` (o manual desenha com `box-shadow` inset, proibido por R8). Diâmetros 30/38/44 em px fixos (sem token). |
+| 2026-11-24 | T3 | a11y (axe, 10 temas): nenhuma violação crítica. *Serious* de contraste no `--texto-apoio` sobre `--card` no lp (4,36) e no ne-claro (3,92), valores do manual: levar à Débora. |
+| 2026-11-24 | T3 | `tests/visual/genericos.spec.ts` (ListItem) estourou os 30s uma vez na suíte com 4 workers e passou sozinho (35,7s). Instabilidade anterior à T3; candidato a `test.slow()`. |

@@ -1,0 +1,68 @@
+/* Indicador de continuação do manual vigente · 2 · 05.09. Cores só dos tokens de componente do data-tema. */
+.indicador {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  color: var(--texto);
+  border: var(--fio) solid currentColor;
+  border-radius: var(--raio-disco);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Diâmetros da ficha 2 · 05.09 (sem token de tamanho no manual). */
+.minimo {
+  width: 30px;
+  height: 30px;
+}
+.padrao {
+  width: 38px;
+  height: 38px;
+}
+.capa {
+  width: 44px;
+  height: 44px;
+}
+
+/* Área clicável de 44px, invisível e centrada no disco: o desenho não muda. */
+.indicador::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+/* Seta a ~40% do disco (15 em 38 no manual), no traço de 1,4 e na cor do fio. */
+.seta {
+  width: 40%;
+  height: 40%;
+  stroke: currentColor;
+}
+
+/* Hover: fio e seta no acento; nada se move. */
+.indicador:hover:not(:disabled) {
+  color: var(--acento);
+}
+
+.indicador:disabled {
+  color: var(--desabilitado);
+  cursor: not-allowed;
+}
+
+/* Foco (proposta, EM APROVAÇÃO no manual 2 · 05): contorno de 2px na cor do texto, afastado 2px. */
+.indicador:focus {
+  outline: none;
+}
+.indicador:focus-visible {
+  outline: 2px solid var(--texto);
+  outline-offset: 2px;
+}
