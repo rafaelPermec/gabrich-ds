@@ -10,8 +10,11 @@ import { abrirStory, idDaStory, rgb } from "./storybook"
 type Amostra = {
   /** Nome acessível do elemento na story (texto do botão, rótulo etc.); com papel "texto", o texto exato. */
   nome: string
-  /** Papel ARIA, ou "texto" para elementos sem papel (a etiqueta), achados pelo texto. */
-  papel: "button" | "link" | "img" | "article" | "texto"
+  /**
+   * Papel ARIA, "texto" para elementos sem papel (a etiqueta), achados pelo texto, ou "testid"
+   * para os decorativos (`aria-hidden`, como o marcador), achados pelo `data-testid` da story.
+   */
+  papel: "button" | "link" | "img" | "article" | "texto" | "testid"
   /** Propriedade CSS computada → token de componente esperado. */
   cores: Partial<Record<"background-color" | "color" | "border-top-color", TokenComponente>>
 }
@@ -52,6 +55,20 @@ const ATOMOS: Atomo[] = [
     story: "Tamanhos",
     amostras: [{ nome: "padrão", papel: "button", cores: { color: "texto", "border-top-color": "texto" } }],
   },
+  {
+    titulo: "Atoms/Marcador",
+    story: "Tipos",
+    amostras: [
+      { nome: "ponto", papel: "testid", cores: { "background-color": "acento" } },
+      { nome: "numero", papel: "testid", cores: { color: "texto", "border-top-color": "texto" } },
+      { nome: "selecao", papel: "testid", cores: { color: "texto" } },
+    ],
+  },
+  {
+    titulo: "Atoms/LogoCurso",
+    story: "Padrão",
+    amostras: [{ nome: "Luz na Prática", papel: "img", cores: { "background-color": "texto" } }],
+  },
 ]
 
 const TEMAS = Object.keys(TEMAS_MANUAL) as TemaManual[]
@@ -66,7 +83,9 @@ for (const atomo of ATOMOS) {
         const alvo =
           amostra.papel === "texto"
             ? page.getByText(amostra.nome, { exact: true })
-            : page.getByRole(amostra.papel, { name: amostra.nome, exact: true })
+            : amostra.papel === "testid"
+              ? page.getByTestId(amostra.nome)
+              : page.getByRole(amostra.papel, { name: amostra.nome, exact: true })
         for (const [propriedade, token] of Object.entries(amostra.cores)) {
           await expect
             .soft(alvo, `${tema} · ${amostra.nome} · ${propriedade} = --${token}`)

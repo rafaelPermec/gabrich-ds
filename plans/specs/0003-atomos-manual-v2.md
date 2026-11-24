@@ -154,10 +154,10 @@ Sem dados pessoais nem rede. Os mocks ficam só nas stories (R24). O percentual 
 - **Arquivos prováveis:** `src/design-system/atoms/Marcador/*`, `src/design-system/atoms/LogoCurso/*`, `src/design-system/assets/logos/*.svg`, `src/design-system/index.ts`, `tests/atomos/marcador-logo.spec.ts`
 - **Cobre:** RF10, RF12, RF14 · CA11, CA13, CA15
 - **Pronto quando:**
-  - [ ] Os testes estão verdes.
-  - [ ] As quatro logos aparecem nos temas claro e escuro.
-  - [ ] O manual vigente não foi alterado.
-- **Status:** [ ] pendente
+  - [x] Os testes estão verdes.
+  - [x] As quatro logos aparecem nos temas claro e escuro.
+  - [x] O manual vigente não foi alterado.
+- **Status:** [x] concluída
 
 ### T5 — Selos de desconto e de garantia
 - **Entrega:** o selo de desconto (quadrado e linha) só aparece nas fases aberta, última semana e últimas 24h. O selo de garantia (linha e quadrado) mostra "7 dias de garantia" na cor do curso, com placeholder no lugar do ícone.
@@ -193,3 +193,9 @@ Sem dados pessoais nem rede. Os mocks ficam só nas stories (R24). O percentual 
 | 2026-11-24 | T3 | IndicadorContinuacao: prop `rotulo` (nome acessível, padrão "continuar"), já que o desenho é só a seta. Seta para baixo (path da ficha 2 · 05.09) a 40% do disco. Fio por `border` (o manual desenha com `box-shadow` inset, proibido por R8). Diâmetros 30/38/44 em px fixos (sem token). |
 | 2026-11-24 | T3 | a11y (axe, 10 temas): nenhuma violação crítica. *Serious* de contraste no `--texto-apoio` sobre `--card` no lp (4,36) e no ne-claro (3,92), valores do manual: levar à Débora. |
 | 2026-11-24 | T3 | `tests/visual/genericos.spec.ts` (ListItem) estourou os 30s uma vez na suíte com 4 workers e passou sozinho (35,7s). Instabilidade anterior à T3; candidato a `test.slow()`. |
+| 2026-11-24 | T4 | LogoCurso: os lockups de `../manual-vigente/assets/cursos/` desenham o nome com `<text>` e fonte web, que não carrega dentro de `mask-image` (sairia em fonte de fallback). Os SVGs vêm de `../manual-vigente/exportacoes-2026/<curso>/logos/svg/` (em curvas; são os que as páginas do manual usam): lnp `horizontal`/`vertical-justificada`, mqc `horizontal`/`empilhada-principal`, ne `horizontal`/`empilhada`, adf `horizontal_ponto-whiskey`/`duas-linhas_no-escuro`. Na cópia para `src/design-system/assets/logos/`, `fill` vira `black` e os metadados c2pa saem (a auditoria de HEX varre `src/`; a máscara só usa o alfa). As logos de duas cores (mqc, adf) viram uma cor só, como pede o RF12. |
+| 2026-11-24 | T4 | LogoCurso: altura padrão de 32 (`--esp-8`), largura pela proporção do viewBox (`aspect-ratio`); quem usa ajusta a altura por `className`/`style`. |
+| 2026-11-24 | T4 | Marcador: o anel da `selecao` é SVG (círculo com traço de 1,5): o Chrome arredonda borda de 1,5px para 1px em tela 1x. O ponto de 8px fica no `--acento`. Com `children`, o marcador vira item com gap de 8 até o texto (o ponto alinha à linha de base, `translateY(-1px)` como na ficha). `numero` numérico sai com dois dígitos ("02"). |
+| 2026-11-24 | T4 | Marcador em px fixos da ficha 2 · 05.08 (ponto 7, disco e anel 20, miolo 8, traço 1,5, Space Mono 9): sem token de tamanho no manual. Família e peso do número de `--dg-rotulo`. |
+| 2026-11-24 | T4 | Ponto e miolo da seleção no `--acento` em todos os temas, pelo texto da ficha 2 · 05.08 e pela tabela de box de preço (marcador no acento do curso no papel). A amostra "fundo claro" da 05.08 pinta os dois em preto: levar à Débora se o dg-claro fica em ocre ou em preto. |
+| 2026-11-24 | T4 | a11y (axe, 6 stories × 10 temas): nenhuma violação. CA15 ganhou o papel `testid` para os marcadores decorativos (`aria-hidden`). |

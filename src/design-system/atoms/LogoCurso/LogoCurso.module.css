@@ -1,0 +1,14 @@
+/* Logo de curso em máscara de uma cor: o desenho vem do SVG, a cor vem de --texto do data-tema (R19, R20). */
+.logo {
+  display: inline-block;
+  flex: none;
+  vertical-align: middle;
+  /* Altura padrão; a largura sai da proporção do SVG. Ajuste a altura pelo `className` ou `style`. */
+  height: var(--esp-8);
+  aspect-ratio: var(--logo-proporcao);
+  background-color: var(--texto);
+  mask-image: var(--logo-mascara);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
