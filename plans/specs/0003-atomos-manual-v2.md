@@ -1,6 +1,6 @@
 ---
 feature: atomos-manual-v2
-status: aprovada        # rascunho | aprovada | em implementação | concluída
+status: em implementação  # rascunho | aprovada | em implementação | concluída
 prd: plans/prd/atomos-manual-v2.md
 branch: feat/atomos-manual-v2
 criado: 2026-11-24
@@ -116,10 +116,10 @@ Sem dados pessoais nem rede. Os mocks ficam só nas stories (R24). O percentual 
 - **Arquivos prováveis:** `src/design-system/atoms/Botao/*`, `src/design-system/index.ts`, `tests/atomos/*.spec.ts`, `tests/fixtures/manual.ts`
 - **Cobre:** RF1–RF4, RF13, RF14 · CA1–CA4, CA14, CA15
 - **Pronto quando:**
-  - [ ] Os testes de CA1–CA4, CA14 e CA15 estão verdes.
-  - [ ] Nenhuma violação crítica no a11y.
-  - [ ] Button legado e genéricos sem mudança.
-- **Status:** [ ] pendente
+  - [x] Os testes de CA1–CA4, CA14 e CA15 estão verdes.
+  - [x] Nenhuma violação crítica no a11y.
+  - [x] Button legado e genéricos sem mudança.
+- **Status:** [x] concluída
 
 ### T2 — Badge migrado (etiqueta) e grupo Badges
 - **Entrega:** o Badge segue o manual (traçado sozinho; cheio em grupo, com gap de 4 ou 8; versão de peça) e todos os consumidores compilam com as props novas.
@@ -175,3 +175,9 @@ Sem dados pessoais nem rede. Os mocks ficam só nas stories (R24). O percentual 
 ## 8. Notas de implementação
 | Data | Task | Nota (desvio, decisão nova, hipótese de bug confirmada) |
 |---|---|---|
+| 2026-11-24 | T1 | Raio pelo token `--raio-reto` (nome real em `src/index.css`; a spec dizia `--raio-0`). |
+| 2026-11-24 | T1 | `acao` nos temas claros (dg, lp, mqc, ne): texto `--texto` sobre o `--acento`, como no manual 2 · 05.01 e em `Cards de Preco.dc.html`. No adf-claro (acento = botão) o texto é `--botao-texto`. Hover da `acao` clara = hover do `solido` (fundo `--botao-hover`, texto `--botao-texto`), decisão do usuário; o `contorno` segue a mesma regra no hover. Exceção ao "troca só o fundo", para manter o texto legível. |
+| 2026-11-24 | T1 | Status de aprovação escrito na descrição da story (decisão do usuário): o arquivo único de status é da `documentacao-manual-v2` e ainda não existe. |
+| 2026-11-24 | T1 | Corpo do botão em px fixos por tamanho (14/13/12, ficha 2 · 05.01); família, peso, entrelinha, tracking e caixa vêm de `--dg-botao*`. Alturas 56/48/44 também fixas: não há token de altura no manual. |
+| 2026-11-24 | T1 | a11y (axe nos 10 temas): nenhuma violação crítica. Uma *serious* de contraste (1,94) no hover do `solido` no dg-claro (ocre `#CCAA66` com texto papel `#F4F0E8`), valores do próprio manual: levar à Débora. |
+| 2026-11-24 | T1 | Os 6 testes de `botao.spec.ts`: CA1, CA2, CA3, CA4 (ação por curso), CA4 (largura total) e a `acao` clara com o hover dela (decisão acima). Helper comum das stories em `tests/atomos/storybook.ts`. |

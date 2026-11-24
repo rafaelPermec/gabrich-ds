@@ -7,6 +7,7 @@ export * from "./dados/index"
 // ─── Atoms ──────────────────────────────────────────────────────────────────
 export * from "./atoms/Typography/index"
 export * from "./atoms/Button/index"
+export * from "./atoms/Botao/index"
 export * from "./atoms/ActionDisk/index"
 export * from "./atoms/Badge/index"
 export * from "./atoms/AvisoDadoInvalido/index"

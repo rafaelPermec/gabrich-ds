@@ -1,0 +1,93 @@
+/* Botão do manual vigente · 2 · 05.01. Cores só dos 12 tokens de componente do data-tema. */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 var(--esp-6);
+  font: var(--dg-botao);
+  letter-spacing: var(--dg-botao-tracking);
+  text-transform: var(--dg-botao-caixa);
+  white-space: nowrap;
+  text-decoration: none;
+  border: var(--fio) solid transparent;
+  border-radius: var(--raio-reto);
+  cursor: pointer;
+}
+
+/* Tamanhos (altura e corpo da ficha 2 · 05.01: 56/14, 48/13, 44/12) */
+.grande {
+  height: 56px;
+  font-size: 14px;
+}
+.medio {
+  height: 48px;
+  font-size: 13px;
+}
+.pequeno {
+  height: 44px;
+  padding: 0 var(--esp-4);
+  font-size: 12px;
+}
+
+/* Variantes. O hover troca só o fundo (--botao-hover); nada de transform nem escala no toque. */
+.solido {
+  background-color: var(--botao);
+  color: var(--botao-texto);
+}
+
+/* Ação: cor de ação do curso. Nos temas escuros, --acento = --botao. */
+.acao {
+  background-color: var(--acento);
+  color: var(--botao-texto);
+}
+
+/* Nos temas claros (menos adf-claro, em que acento = botão), o texto sobre o acento é a cor
+   escura do curso (--texto), como no manual 2 · 05.01 e no Cards de Preco. No hover, a ação
+   clara vira o hover do sólido: fundo --botao-hover e texto --botao-texto (decisão de 2026-11-24). */
+:global([data-tema="dg-claro"]) .acao,
+:global([data-tema="lp-claro"]) .acao,
+:global([data-tema="mqc-claro"]) .acao,
+:global([data-tema="ne-claro"]) .acao {
+  color: var(--texto);
+}
+
+.contorno {
+  background-color: transparent;
+  color: var(--texto);
+  border-color: var(--texto);
+}
+
+.botao:hover:not(:disabled) {
+  background-color: var(--botao-hover);
+}
+.acao:hover:not(:disabled) {
+  color: var(--botao-texto);
+}
+.contorno:hover:not(:disabled) {
+  color: var(--botao-texto);
+}
+
+.botao:disabled {
+  background-color: transparent;
+  color: var(--desabilitado);
+  border-color: var(--desabilitado);
+  cursor: not-allowed;
+}
+
+/* Largura total: a coluna toda abaixo de 768px. */
+@media (max-width: 767px) {
+  .larguraTotal {
+    width: 100%;
+  }
+}
+
+/* Foco (proposta, EM APROVAÇÃO no manual 2 · 05): contorno de 2px na cor do texto, afastado 2px. */
+.botao:focus {
+  outline: none;
+}
+.botao:focus-visible {
+  outline: 2px solid var(--texto);
+  outline-offset: 2px;
+}
