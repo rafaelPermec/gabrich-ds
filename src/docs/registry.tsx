@@ -18,7 +18,8 @@ import { Drawer } from "../design-system/molecules/Drawer"
 import { Text, Heading } from "../design-system/atoms/Typography"
 import { Button } from "../design-system/atoms/Button"
 import { ActionDisk } from "../design-system/atoms/ActionDisk"
-import { Badge } from "../design-system/atoms/Badge"
+import { Badge, Badges } from "../design-system/atoms/Badge"
+import { TemaManual } from "../design-system/utils/TemaManual"
 import { Icon } from "../design-system/atoms/Icon"
 import { Divider } from "../design-system/atoms/Divider"
 import { Input } from "../design-system/atoms/Input"
@@ -736,55 +737,43 @@ export const registry: Entry[] = [
     id: "badge",
     category: "atoms",
     tag: "Átomo",
-    title: "Badge",
+    title: "Badge (Etiqueta)",
     subtitle:
-      "Canto sempre reto. Sem sombra. Sem translúcido. Máx. 4 visíveis por peça.",
+      "Canto reto sempre. Sozinha é traçada; cheia só com duas ou mais em linha. Não é interativa.",
     stories: [
       {
-        name: "Solid",
-        dark: false,
-        Render: () => (
-          <>
-            <Badge variant="solid" color="ink">
-              padrão
-            </Badge>
-            <Badge variant="solid" color="ochre">
-              destaque
-            </Badge>
-            <Badge variant="solid" color="caramel">
-              caramel
-            </Badge>
-            <Badge variant="solid" color="paper">
-              paper
-            </Badge>
-          </>
-        ),
-      },
-      {
-        name: "Outline",
+        name: "Sozinha (traçada)",
         dark: true,
         Render: () => (
-          <>
-            <Badge variant="outline" color="paper">
-              paper
-            </Badge>
-            <Badge variant="outline" color="ochre">
-              ochre
-            </Badge>
-            <Badge variant="outline" color="caramel">
-              caramel
-            </Badge>
-          </>
+          <TemaManual tema="dg" as="div">
+            <Badge>última semana</Badge>
+            <Badge acento>última semana</Badge>
+          </TemaManual>
         ),
       },
       {
-        name: "Tamanhos",
+        name: "Em grupo (cheias)",
+        dark: true,
+        Render: () => (
+          <TemaManual tema="dg" as="div">
+            <Badges>
+              <Badge acento>black friday</Badge>
+              <Badge>mais de 50%</Badge>
+            </Badges>
+          </TemaManual>
+        ),
+      },
+      {
+        name: "Peça da marca mãe",
         dark: false,
         Render: () => (
-          <>
-            <Badge size="sm">pequeno</Badge>
-            <Badge size="md">médio</Badge>
-          </>
+          <TemaManual tema="dg-claro" as="div">
+            <Badge versao="peca">fotografia</Badge>
+            <Badges versao="peca">
+              <Badge acento>fotografia</Badge>
+              <Badge>direção de arte</Badge>
+            </Badges>
+          </TemaManual>
         ),
       },
     ],
@@ -1678,7 +1667,11 @@ export const registry: Entry[] = [
                 label="Produto fotografado em estúdio"
                 sublabel="Set montado"
                 leadingType="dot"
-                trailing={<Badge size="sm">novo</Badge>}
+                trailing={
+                  <TemaManual tema="dg-claro">
+                    <Badge>novo</Badge>
+                  </TemaManual>
+                }
               />
               <ListItem
                 label="Edição e retoque das imagens"

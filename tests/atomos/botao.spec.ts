@@ -87,6 +87,7 @@ test("CA3: desabilitado não tem preenchimento, tem fio de 1px e texto em --desa
 })
 
 test("CA4: a variante ação tem o fundo na cor de ação de cada curso", async ({ page, request }) => {
+  test.slow() // percorre os 8 temas das submarcas
   const id = await idDaStory(request, TITULO, "Variantes")
   for (const tema of TEMAS_SUBMARCA) {
     await abrirStory(page, id, tema)

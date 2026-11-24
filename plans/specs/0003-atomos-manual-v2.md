@@ -41,7 +41,7 @@ Os átomos do manual entram como componentes novos, ao lado dos que já existem,
   - `larguraTotal`: ocupa a coluna abaixo de 768px.
   - O `Button` legado não muda.
 - **D2. Badge migrado = etiqueta (RF5, RF6)**
-  - As props `color`, `variant` e `size` saem e entram `versao` (`site` | `peca`) e `cheia`.
+  - As props `color`, `variant` e `size` saem e entram `versao` (`site` | `peca`), `cheia` e `acento` (desvio da T2, ver notas).
   - Visual: Space Mono 9px, caixa alta, +0,08em, fio 1px, raio 0. Padding 4 × 8, e 8 × 12 com altura mínima de 28 na `peca`.
   - A cor vem do tema: traçada em `--texto`, cheia com fundo `--texto` e texto `--fundo`.
   - Grupo novo `Badges` (contêiner em linha): força `cheia` nos filhos quando há dois ou mais e aplica o gap de 4 (`site`/Black) ou 8 (`peca`/marca mãe). Uma etiqueta sozinha é sempre traçada.
@@ -129,9 +129,9 @@ Sem dados pessoais nem rede. Os mocks ficam só nas stories (R24). O percentual 
 - **Arquivos prováveis:** `src/design-system/atoms/Badge/*`, `src/design-system/index.ts`, `src/pages/**`, `src/docs/registry.tsx`, `tests/atomos/etiqueta.spec.ts`
 - **Cobre:** RF5, RF6, RF14 · CA5, CA6, CA15
 - **Pronto quando:**
-  - [ ] Os testes de CA5 e CA6 estão verdes.
-  - [ ] `pnpm typecheck` passa sem uso das props antigas.
-- **Status:** [ ] pendente
+  - [x] Os testes de CA5 e CA6 estão verdes.
+  - [x] `pnpm typecheck` passa sem uso das props antigas.
+- **Status:** [x] concluída
 
 ### T3 — CardManual e IndicadorContinuacao
 - **Entrega:** card com foto recortada no raio, hover só de cor e foco "proposta", e indicador de continuação em três tamanhos com área de 44px.
@@ -181,3 +181,9 @@ Sem dados pessoais nem rede. Os mocks ficam só nas stories (R24). O percentual 
 | 2026-11-24 | T1 | Corpo do botão em px fixos por tamanho (14/13/12, ficha 2 · 05.01); família, peso, entrelinha, tracking e caixa vêm de `--dg-botao*`. Alturas 56/48/44 também fixas: não há token de altura no manual. |
 | 2026-11-24 | T1 | a11y (axe nos 10 temas): nenhuma violação crítica. Uma *serious* de contraste (1,94) no hover do `solido` no dg-claro (ocre `#CCAA66` com texto papel `#F4F0E8`), valores do próprio manual: levar à Débora. |
 | 2026-11-24 | T1 | Os 6 testes de `botao.spec.ts`: CA1, CA2, CA3, CA4 (ação por curso), CA4 (largura total) e a `acao` clara com o hover dela (decisão acima). Helper comum das stories em `tests/atomos/storybook.ts`. |
+| 2026-11-24 | T2 | Prop `acento` no Badge (decisão do usuário): traçada com fio e texto em `--acento`; cheia com fundo `--acento` e texto pela regra do Botao `acao`. Vem da ficha 2 · 05.02 (1ª etiqueta do grupo em ocre, "no máximo uma em ocre") e serve à linha do SeloDesconto (T5). `color` sai do tipo do Badge (`Omit<HTMLAttributes, "color">`) para o typecheck acusar o uso antigo. |
+| 2026-11-24 | T2 | Consumidores fora de `data-tema` (registro de demos, `Verticals.tsx`, stories de ListItem e Table) ficam dentro de `TemaManual` (`src/design-system/utils/TemaManual.tsx`, interno, fora do `index.ts`), que aplica o `data-tema` e pinta `--fundo` (decisões do usuário: envolver em tema, sem fallback; extrair o wrapper após a revisão Padrões). Etiquetas em linha nas páginas viraram `Badges` (cheias). Snapshots visuais de ListItem e Table atualizados (mudança intencional). |
+| 2026-11-24 | T2 | Corpo 9px, entrelinha 1,3, tracking 0,08em e altura mínima 28 em valores fixos (ficha 2 · 05.02; sem token de etiqueta). Família e peso de `--dg-rotulo`. |
+| 2026-11-24 | T2 | Tema dentro de tema: o texto da cheia em acento vem de uma variável declarada em cada `data-tema` (herdada do mais próximo); seletor por ancestral pegava o tema de fora. O Botao (T1) tem o mesmo padrão `[data-tema="…-claro"] .acao` e o mesmo risco em temas aninhados (fora do escopo da T2). Follow-up: um token de componente por tema para o texto sobre o acento, usado pelo Badge e pelo Botao. |
+| 2026-11-24 | T2 | a11y (axe, 10 temas): nenhuma violação crítica. *Serious* de contraste na etiqueta traçada em acento nos temas claros (ex.: ocre sobre papel 1,94) e no ne (4,34): valores do manual; levar à Débora se a traçada em acento vale fora do preto. |
+| 2026-11-24 | T2 | `test.slow()` no CA4 do Botao: percorre 8 temas e estourava os 30s às vezes. |

@@ -9,7 +9,8 @@
 import { useState, type ReactNode } from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { Button } from "../design-system/atoms/Button"
-import { Badge } from "../design-system/atoms/Badge"
+import { Badge, Badges } from "../design-system/atoms/Badge"
+import { TemaManual } from "../design-system/utils/TemaManual"
 import { ProgressBar } from "../design-system/atoms/ProgressBar"
 import { Stat } from "../design-system/molecules/Stat"
 import { Table } from "../design-system/molecules/Table"
@@ -240,7 +241,9 @@ function DocTerms() {
     <div className={styles.paperSheet}>
       <header className={styles.sheetHead}>
         <span className={styles.mono}>termos de uso de imagem</span>
-        <Badge color="caramel">v2026.1</Badge>
+        <TemaManual tema="dg-claro">
+          <Badge>v2026.1</Badge>
+        </TemaManual>
       </header>
       <Alert
         variant="info"
@@ -279,7 +282,9 @@ function DocDelivery() {
     <div className={styles.paperSheet}>
       <header className={styles.sheetHead}>
         <span className={styles.mono}>acompanhamento · projeto Lume SS26</span>
-        <Badge color="ink">em tratamento</Badge>
+        <TemaManual tema="dg-claro">
+          <Badge>em tratamento</Badge>
+        </TemaManual>
       </header>
       <StepIndicator
         currentStep={2}
@@ -656,17 +661,12 @@ function Stage() {
               <h3>{active.title}</h3>
               <p>{active.scenario}</p>
               <p className={styles.mono}>componentes</p>
-              <div className={styles.chips}>
+              {/* Cheias (duas ou mais): leem sobre qualquer fundo do app de docs. */}
+              <Badges data-tema="dg-claro">
                 {active.uses.map((u) => (
-                  <Badge
-                    key={u}
-                    variant="outline"
-                    color={vertical === "document" ? "caramel" : "ochre"}
-                  >
-                    {u}
-                  </Badge>
+                  <Badge key={u}>{u}</Badge>
                 ))}
-              </div>
+              </Badges>
               <p className={styles.mono}>regra da marca</p>
               <p className={styles.ruleText}>{active.rule}</p>
             </aside>

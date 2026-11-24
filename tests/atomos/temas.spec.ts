@@ -8,9 +8,10 @@ import { abrirStory, idDaStory, rgb } from "./storybook"
  */
 
 type Amostra = {
-  /** Nome acessível do elemento na story (texto do botão, rótulo etc.). */
+  /** Nome acessível do elemento na story (texto do botão, rótulo etc.); com papel "texto", o texto exato. */
   nome: string
-  papel: "button" | "link" | "img" | "generic"
+  /** Papel ARIA, ou "texto" para elementos sem papel (a etiqueta), achados pelo texto. */
+  papel: "button" | "link" | "img" | "texto"
   /** Propriedade CSS computada → token de componente esperado. */
   cores: Partial<Record<"background-color" | "color" | "border-top-color", TokenComponente>>
 }
@@ -27,6 +28,16 @@ const ATOMOS: Atomo[] = [
       { nome: "contorno", papel: "button", cores: { color: "texto", "border-top-color": "texto" } },
     ],
   },
+  {
+    titulo: "Atoms/Badge",
+    story: "Variantes",
+    amostras: [
+      { nome: "traçada", papel: "texto", cores: { color: "texto", "border-top-color": "texto" } },
+      { nome: "traçada em acento", papel: "texto", cores: { color: "acento", "border-top-color": "acento" } },
+      { nome: "cheia em acento", papel: "texto", cores: { "background-color": "acento" } },
+      { nome: "cheia", papel: "texto", cores: { "background-color": "texto", color: "fundo" } },
+    ],
+  },
 ]
 
 const TEMAS = Object.keys(TEMAS_MANUAL) as TemaManual[]
@@ -38,7 +49,10 @@ for (const atomo of ATOMOS) {
     for (const tema of TEMAS) {
       await abrirStory(page, id, tema)
       for (const amostra of atomo.amostras) {
-        const alvo = page.getByRole(amostra.papel, { name: amostra.nome, exact: true })
+        const alvo =
+          amostra.papel === "texto"
+            ? page.getByText(amostra.nome, { exact: true })
+            : page.getByRole(amostra.papel, { name: amostra.nome, exact: true })
         for (const [propriedade, token] of Object.entries(amostra.cores)) {
           await expect
             .soft(alvo, `${tema} · ${amostra.nome} · ${propriedade} = --${token}`)

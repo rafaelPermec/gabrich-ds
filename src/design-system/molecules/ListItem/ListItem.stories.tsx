@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite"
 import { ListItem } from "./ListItem"
 import { Avatar } from "../../atoms/Avatar"
 import { Badge } from "../../atoms/Badge"
+import { TemaManual } from "../../utils/TemaManual"
 import { IconCamera } from "../../utils/storyFixtures"
 
 const meta = {
@@ -73,9 +74,9 @@ export const WithAvatarAndTrailing: Story = {
     label: "Débora Gabrich",
     sublabel: "Fotógrafa e diretora criativa",
     trailing: (
-      <Badge color="ochre" size="sm">
-        Autora
-      </Badge>
+      <TemaManual tema="dg-claro">
+        <Badge>Autora</Badge>
+      </TemaManual>
     ),
   },
 }
