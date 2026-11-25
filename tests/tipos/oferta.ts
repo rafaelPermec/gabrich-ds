@@ -3,6 +3,7 @@
  * Cada `@ts-expect-error` exige um erro na linha seguinte: se o tipo afrouxar, o typecheck falha.
  */
 import type { Oferta, OfertaPresencial } from "../../src/design-system/dados/index"
+import type { CardPrecoProps } from "../../src/design-system/molecules/CardPreco/index"
 
 const valida = {
   slug: "completo",
@@ -48,4 +49,14 @@ export const casosPresenciais: OfertaPresencial[] = [
   semPreco,
   // @ts-expect-error: No Estúdio com preço da Black
   { ...noEstudio, precoBlack: 773 },
+]
+
+/** CA3 (RF4, RF5): o card do No Estúdio não tem versão Black. */
+export const casosDoCard: CardPrecoProps[] = [
+  { oferta: noEstudio, lista: [] },
+  { oferta: valida, lista: [], blackFriday: true, descontoDaCampanha: 50 },
+  // @ts-expect-error: No Estúdio no card da Black
+  { oferta: noEstudio, lista: [], blackFriday: true, descontoDaCampanha: 50 },
+  // @ts-expect-error: card da Black sem o desconto da campanha
+  { oferta: valida, lista: [], blackFriday: true },
 ]

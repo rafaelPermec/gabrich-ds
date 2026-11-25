@@ -190,6 +190,13 @@
   --bf-trama-papel: #E6DECE; /* um tom abaixo do papel */
 }
 
+/* ── Manual vigente · 2 · 05.05b · cores próprias do card de preço ───────────────────
+   Duas cores da tabela do card que não estão em 2 · 01. */
+:root {
+  --lp-card-preco: #2A241F; /* fundo do card de preço, Luz na Prática escuro */
+  --adf-card-preco-claro: #E6D6C6; /* fundo do card de preço, Antes da Foto claro */
+}
+
 /* ── Dark mode ─────────────────────────────────────────────────────────────── */
 html.dark {
   --bg-base: var(--color-ink);
@@ -632,6 +639,132 @@ html.dark {
 [data-tema="dg"][data-campanha="bf"],
 [data-tema="dg-claro"][data-campanha="bf"] {
   --acento: var(--bf-ocre);
+}
+
+/* ── Manual vigente · 2 · 05.05b · card de preço ─────────────────────────────────────
+   Tabelas de cores do card (escuro e claro) nos temas dos cursos. Onde a tabela coincide com
+   os 12 tokens de componente, o valor é o mesmo; os papéis próprios do card ficam aqui.
+   A etiqueta "-50%" usa --card-preco-botao com texto --bf-preto; "BLACK FRIDAY", --bf-preto
+   com texto --bf-papel (iguais em todos os cursos). */
+[data-tema="adf"] {
+  --card-preco-fundo: var(--adf-cafe);
+  --card-preco-fio: var(--adf-linha);
+  --card-preco-texto: var(--dg-papel);
+  --card-preco-apoio: var(--adf-areia);
+  --card-preco-marcador: var(--adf-whiskey-sour);
+  --card-preco-botao: var(--adf-whiskey-sour);
+  --card-preco-botao-texto: var(--adf-preto);
+  --card-preco-selo: var(--adf-whiskey-sour);
+}
+
+[data-tema="adf-claro"] {
+  --card-preco-fundo: var(--adf-card-preco-claro);
+  --card-preco-fio: var(--adf-cobre);
+  --card-preco-texto: var(--adf-preto);
+  --card-preco-apoio: var(--adf-couro);
+  --card-preco-marcador: var(--adf-couro);
+  --card-preco-botao: var(--adf-whiskey-sour);
+  --card-preco-botao-texto: var(--adf-preto);
+  --card-preco-selo: var(--adf-couro);
+}
+
+[data-tema="lp"] {
+  --card-preco-fundo: var(--lp-card-preco);
+  --card-preco-fio: var(--lp-castanho);
+  --card-preco-texto: var(--lp-creme);
+  --card-preco-apoio: var(--lp-creme);
+  --card-preco-marcador: var(--lp-dourado);
+  --card-preco-botao: var(--lp-dourado);
+  --card-preco-botao-texto: var(--lp-carvao);
+  --card-preco-selo: var(--lp-dourado);
+}
+
+[data-tema="lp-claro"] {
+  --card-preco-fundo: var(--lp-creme);
+  --card-preco-fio: var(--lp-areia);
+  --card-preco-texto: var(--lp-carvao);
+  --card-preco-apoio: var(--lp-carvao);
+  --card-preco-marcador: var(--lp-dourado);
+  --card-preco-botao: var(--lp-dourado);
+  --card-preco-botao-texto: var(--lp-carvao);
+  --card-preco-selo: var(--lp-carvao);
+}
+
+[data-tema="mqc"] {
+  --card-preco-fundo: var(--mqc-grafite);
+  --card-preco-fio: var(--mqc-pedra);
+  --card-preco-texto: var(--mqc-off-white);
+  --card-preco-apoio: var(--mqc-off-white);
+  --card-preco-marcador: var(--mqc-amarelo);
+  --card-preco-botao: var(--mqc-amarelo);
+  --card-preco-botao-texto: var(--mqc-carvao);
+  --card-preco-selo: var(--mqc-amarelo);
+}
+
+[data-tema="mqc-claro"] {
+  --card-preco-fundo: var(--mqc-off-white);
+  --card-preco-fio: var(--mqc-pedra);
+  --card-preco-texto: var(--mqc-carvao);
+  --card-preco-apoio: var(--mqc-carvao);
+  --card-preco-marcador: var(--mqc-amarelo);
+  --card-preco-botao: var(--mqc-amarelo);
+  --card-preco-botao-texto: var(--mqc-carvao);
+  --card-preco-selo: var(--mqc-carvao);
+}
+
+[data-tema="ne"] {
+  --card-preco-fundo: var(--ne-tinta);
+  --card-preco-fio: var(--ne-pedra);
+  --card-preco-texto: var(--ne-creme);
+  --card-preco-apoio: var(--ne-creme);
+  --card-preco-marcador: var(--ne-terracota);
+  --card-preco-botao: var(--ne-terracota);
+  --card-preco-botao-texto: var(--ne-tinta);
+  --card-preco-selo: var(--ne-terracota);
+}
+
+[data-tema="ne-claro"] {
+  --card-preco-fundo: var(--ne-linho);
+  --card-preco-fio: var(--ne-pedra);
+  --card-preco-texto: var(--ne-tinta);
+  --card-preco-apoio: var(--ne-tinta);
+  --card-preco-marcador: var(--ne-terracota);
+  --card-preco-botao: var(--ne-terracota);
+  --card-preco-botao-texto: var(--ne-tinta);
+  --card-preco-selo: var(--ne-terracota);
+}
+
+/* Fontes do card de preço: iguais no escuro e no claro de cada curso. */
+[data-tema="adf"],
+[data-tema="adf-claro"] {
+  --card-preco-fonte-preco: normal 700 clamp(40px, calc(40px + 12 * (100vw - 375px) / 865), 52px)/1 'Parkinsans', sans-serif;
+  --card-preco-fonte-a-vista: normal 700 22px/1.2 'Parkinsans', sans-serif;
+  --card-preco-fonte-de-por: normal 700 20px/1.2 'Parkinsans', sans-serif;
+  --card-preco-fonte-botao: normal 600 17px/1 'Manrope', sans-serif; /* tabela: 700; 2 · 06 só carrega até 600 */
+  --card-preco-botao-tracking: 0;
+  --card-preco-botao-caixa: none;
+}
+
+[data-tema="lp"],
+[data-tema="lp-claro"],
+[data-tema="mqc"],
+[data-tema="mqc-claro"] {
+  --card-preco-fonte-preco: normal 700 clamp(40px, calc(40px + 12 * (100vw - 375px) / 865), 52px)/1 'Montserrat', sans-serif;
+  --card-preco-fonte-a-vista: normal 700 22px/1.2 'Montserrat', sans-serif;
+  --card-preco-fonte-de-por: normal 700 20px/1.2 'Montserrat', sans-serif;
+  --card-preco-fonte-botao: normal 600 14px/1 'Manrope', sans-serif;
+  --card-preco-botao-tracking: 0.14em;
+  --card-preco-botao-caixa: uppercase;
+}
+
+/* No Estúdio: sem "de R$ X por" (não tem Black); preço centralizado. */
+[data-tema="ne"],
+[data-tema="ne-claro"] {
+  --card-preco-fonte-preco: normal 700 clamp(40px, calc(40px + 12 * (100vw - 375px) / 865), 52px)/1 'Urbanist', sans-serif;
+  --card-preco-fonte-a-vista: normal 600 22px/1.2 'Urbanist', sans-serif;
+  --card-preco-fonte-botao: normal 600 13px/1 'Manrope', sans-serif;
+  --card-preco-botao-tracking: 0.14em;
+  --card-preco-botao-caixa: uppercase;
 }
 
 /* Escopo temático das demos (submarcas e Black Friday): as cores vêm do data-tema e do

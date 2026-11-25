@@ -39,12 +39,13 @@ Três peças novas sobre os átomos do manual: o `CardPreco` (um curso, normal o
   - Na T2, a tabela de 2 · 05.05b é comparada com os 12 tokens de cada tema. Papel que coincide usa o token do tema. Papel que diverge (fonte do preço, marcador, botão etc.) vira token próprio do card, declarado em cada `data-tema` em `src/index.css` e espelhado em `tokens/` (área protegida: o diff vai ao usuário antes de gravar).
   - Fonte do preço por curso (Parkinsans no adf, Montserrat no lp e no mqc, conforme a ficha) também como token.
 - **D4. `CardPreco` (RF1–RF5, RF12, RF14)**
-  - Props: `oferta: Oferta | OfertaPresencial`, `lista: readonly string[]`, `blackFriday?: boolean` (só com `Oferta` de curso único, por sobrecarga de tipo), `claro?: boolean`. O curso vem da oferta.
+  - Props: `oferta: Oferta | OfertaPresencial`, `lista: readonly string[]`, `blackFriday?: boolean` com `descontoDaCampanha: number` (só com `Oferta`, por sobrecarga de tipo; curso único conferido na validação), `claro?: boolean`. O curso vem da oferta. O "50%" da etiqueta e do botão chega em `descontoDaCampanha` (R16, R17; T2).
   - Ordem: logo · tipo · etiqueta da Black · "de R$ X por" (só na Black, X riscado = preço normal) · `12x R$ Y` · `ou R$ Z à vista` · fio · lista (`Marcador` ponto) · `Botao` · "PAGAMENTO SEGURO · GARANTIA DE 7 DIAS".
-  - Tipo: "CURSO ONLINE" (lp, mqc), "E-BOOK" (adf), "VAGAS LIMITADAS PARA O WORKSHOP PRESENCIAL" (ne).
+  - Tipo: "CURSO ONLINE" (lp, mqc), "E-BOOK" (adf), "WORKSHOP FOTOGRAFIA DE PRODUTOS" (ne), seguido no ne da linha "VAGAS LIMITADAS PARA O WORKSHOP PRESENCIAL" no acento, no lugar da etiqueta da Black (manual e protótipo; T2).
   - Etiqueta da Black: `Badges` com "-50%" no acento + "BLACK FRIDAY" em preto (RF4, valor aprovado no manual).
   - Botão: normal "quero o e-book" (adf), "quero o curso" (lp, mqc), "quero me inscrever no workshop" (ne); Black "garantir com 50%". É um link (`<a>` com a aparência do `Botao`) para `destinoDoCheckout`.
-  - Raio `--raio-card`; botão e etiqueta retos.
+  - Raio `--raio-card`; botão e etiqueta retos. Botão com altura mínima 60 (protótipo); hover (proposta) inverte para `--card-preco-texto` com texto `--card-preco-fundo`.
+  - No Estúdio com centavos ("R$ 1.547,00"): `formatarMoedaComCentavos` e `formatarParcelaComCentavos`, irmãs das funções atuais (a assinatura delas não muda).
 - **D5. `CardsDePreco` (RF6)**: contêiner dos cards; renderiza um único `SeloGarantia` abaixo do último, a 32px (`--esp-8`), centralizado. O `CardPreco` nunca leva selo.
 - **D6. `MonteSeuCombo` (RF7–RF11)**
   - Props: `cursoDaPagina: CursoOnline`, `blackFriday?`, `ofertas: readonly Oferta[]`, `precosNormais: PrecosNormaisDosCursos`, `descritivos: Readonly<Record<CursoOnline, string>>` (mock novo com as linhas do protótipo).
@@ -109,9 +110,9 @@ Sem dados pessoais nem rede. Links de checkout chegam no dado; os reais estão f
 - **Arquivos prováveis:** `src/index.css`, `src/design-system/tokens/index.ts`, `src/design-system/molecules/CardPreco/*`, `src/design-system/index.ts`, `tests/oferta/card-preco.spec.ts`, `tests/fixtures/manual.ts`
 - **Cobre:** RF1–RF5, RF12, RF14 · CA1, CA2, CA3, CA10, CA12
 - **Pronto quando:**
-  - [ ] Diff dos tokens do card aprovado pelo usuário antes do código.
-  - [ ] Os testes estão verdes; nenhuma violação crítica no a11y.
-- **Status:** [ ] pendente
+  - [x] Diff dos tokens do card aprovado pelo usuário antes do código.
+  - [x] Os testes estão verdes; nenhuma violação crítica no a11y.
+- **Status:** [x] concluída
 
 ### T3 — Grupo de cards com selo de garantia
 - **Entrega:** três cards lado a lado (empilhados no celular) com um único selo de garantia abaixo do último, a 32px, centralizado.
@@ -151,3 +152,6 @@ Sem dados pessoais nem rede. Links de checkout chegam no dado; os reais estão f
 |---|---|---|
 | 2026-11-25 | Spec | Aprovada pelo usuário: tipo irmão `OfertaPresencial` (não a união sugerida pelo planejador), seams sem E2E nem snapshot novo, 5 tasks como estão, "quero o e-book" no Antes da Foto avulso do combo fora da Black. |
 | 2026-11-25 | T1 | `validarOfertaPresencial` entra no barrel via `dados/index`, sem mexer em `src/design-system/index.ts`. `destinoDoCheckout` distingue as ofertas por `"checkoutBlack" in oferta`; no No Estúdio, `emBlack` é ignorado. Fixture `OFERTA_NO_ESTUDIO_MANUAL` do protótipo `NE Pagina - Manual v2`. |
+| 2026-11-25 | T2 | Tokens `--card-preco-{fundo,fio,texto,apoio,marcador,botao,botao-texto,selo}` e fontes `--card-preco-fonte-{preco,a-vista,de-por,botao}`, `-botao-tracking`, `-botao-caixa` nos 8 temas dos cursos; primitivos novos `--lp-card-preco` (#2A241F) e `--adf-card-preco-claro` (#E6D6C6). Etiqueta "-50%" em `--card-preco-botao`/`--bf-preto`; "BLACK FRIDAY" em `--bf-preto`/`--bf-papel`. `--card-preco-selo` já declarado para a T3. |
+| 2026-11-25 | T2 | Desvios aprovados pelo usuário: tipo do ne + linha de vagas (D4); `descontoDaCampanha` no card Black, porque a auditoria CA11 barra "50%" fixo; botão 60 e hover invertido (proposta); botão do adf em Manrope 600, porque a 2 · 06 só carrega até 600 (a tabela pede 700: perguntar à Débora); à vista do ne em Urbanist 600 (tabela), não 300 (protótipo). Espaçamentos do protótipo levados à escala `--esp-*` (R9). Marcadores travessão (adf) e triângulo (ne) desenhados no card; o `Marcador` ponto fica para lp e mqc. |
+| 2026-11-25 | T2 | a11y: sem violação crítica; "serious color-contrast" no No Estúdio claro (terracota da linha de vagas sobre linho, cor do protótipo): levar à Débora. |

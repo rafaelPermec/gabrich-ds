@@ -32,6 +32,7 @@ export * from "./atoms/Tooltip/index"
 
 // ─── Molecules ──────────────────────────────────────────────────────────────
 export * from "./molecules/CardManual/index"
+export * from "./molecules/CardPreco/index"
 export * from "./molecules/FormField/index"
 export * from "./molecules/SearchBar/index"
 export * from "./molecules/Card/index"

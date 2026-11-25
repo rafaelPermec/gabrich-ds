@@ -57,7 +57,7 @@ Objetivo: o card de preço e o combo existem no design system, seguem as fichas 
 | RF11 | Sem nada marcado: "marque pelo menos um curso." e botão desabilitado. | Obrigatório | H7 |
 | RF12 | Todo botão de oferta leva ao link de checkout recebido ou, sem link, ao id de checkout da oferta. | Obrigatório | H8 |
 | RF13 | Todos os valores exibidos (preços, parcelas, porcentagens e listas) vêm dos dados recebidos (`dados-dinamicos-e-mocks`). | Obrigatório | H1–H7 |
-| RF14 | O dado de oferta inclui o No Estúdio, só na versão normal, com preço à vista, parcela e id de checkout; o mock usa os valores do protótipo do manual (`NE Pagina - Manual v2`: 12x R$ 160,00 ou R$ 1.547,00 à vista, `#checkout-no-estudio`). O card do No Estúdio não tem a linha "de R$ X por"; o tipo é "VAGAS LIMITADAS PARA O WORKSHOP PRESENCIAL". | Obrigatório | H1, H3 |
+| RF14 | O dado de oferta inclui o No Estúdio, só na versão normal, com preço à vista, parcela e id de checkout; o mock usa os valores do protótipo do manual (`NE Pagina - Manual v2`: 12x R$ 160,00 ou R$ 1.547,00 à vista, `#checkout-no-estudio`). O card do No Estúdio não tem a linha "de R$ X por"; o tipo é "WORKSHOP FOTOGRAFIA DE PRODUTOS", seguido da linha "VAGAS LIMITADAS PARA O WORKSHOP PRESENCIAL" (manual e protótipo; decisão de 2026-11-25). | Obrigatório | H1, H3 |
 
 ## 6. Requisitos não funcionais
 
