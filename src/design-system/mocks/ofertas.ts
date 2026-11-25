@@ -1,8 +1,9 @@
 /**
- * Mocks das 7 ofertas online, com os valores do manual (2 · 05.05c, 2 · 05.12 e 2 · 07).
+ * Mocks das 7 ofertas online, com os valores do manual (2 · 05.05c, 2 · 05.12 e 2 · 07), e do
+ * workshop No Estúdio (protótipo `NE Pagina - Manual v2`).
  * Só para stories e páginas de demonstração (R24): não é exportado pelo barrel do design system.
  */
-import type { CursoOnline, Oferta, PrecosNormaisDosCursos } from "../dados/index"
+import type { CursoOnline, Oferta, OfertaPresencial, PrecosNormaisDosCursos } from "../dados/index"
 
 export const OFERTAS_MOCK: readonly Oferta[] = [
   {
@@ -106,4 +107,13 @@ export const PRECOS_NORMAIS_MOCK: PrecosNormaisDosCursos = {
   lp: precoNormalDoCurso("lp"),
   mqc: precoNormalDoCurso("mqc"),
   adf: precoNormalDoCurso("adf"),
+}
+
+export const OFERTA_NO_ESTUDIO_MOCK: OfertaPresencial = {
+  slug: "no-estudio",
+  nome: "No Estúdio",
+  curso: "ne",
+  preco: 1547,
+  parcela: 160,
+  checkout: "#checkout-no-estudio",
 }

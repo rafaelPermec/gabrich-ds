@@ -1,6 +1,6 @@
 ---
 feature: componentes-de-oferta
-status: aprovada  # rascunho | aprovada | em implementação | concluída
+status: em implementação  # rascunho | aprovada | em implementação | concluída
 prd: plans/prd/componentes-de-oferta.md
 branch: feat/componentes-de-oferta
 criado: 2026-11-25
@@ -98,8 +98,8 @@ Sem dados pessoais nem rede. Links de checkout chegam no dado; os reais estão f
 - **Arquivos prováveis:** `src/design-system/dados/oferta.ts`, `src/design-system/dados/validacao.ts`, `src/design-system/mocks/ofertas.ts`, `src/design-system/index.ts`, `tests/dados/oferta.spec.ts`, `tests/tipos/oferta.ts`, `tests/fixtures/manual.ts`
 - **Cobre:** RF13, RF14 · CA10, CA12 (dado)
 - **Pronto quando:**
-  - [ ] Os testes estão verdes e `pnpm typecheck` passa sem mudar consumidores de `Oferta`.
-- **Status:** [ ] pendente
+  - [x] Os testes estão verdes e `pnpm typecheck` passa sem mudar consumidores de `Oferta`.
+- **Status:** [x] concluída
 
 ### T2 — Tokens e CardPreco dos quatro cursos
 - **Entrega:** a Débora vê no Storybook o card de cada curso, normal e Black (sem Black no No Estúdio), escuro e claro, com o botão apontando para o checkout.
@@ -150,3 +150,4 @@ Sem dados pessoais nem rede. Links de checkout chegam no dado; os reais estão f
 | Data | Task | Nota (desvio, decisão nova, hipótese de bug confirmada) |
 |---|---|---|
 | 2026-11-25 | Spec | Aprovada pelo usuário: tipo irmão `OfertaPresencial` (não a união sugerida pelo planejador), seams sem E2E nem snapshot novo, 5 tasks como estão, "quero o e-book" no Antes da Foto avulso do combo fora da Black. |
+| 2026-11-25 | T1 | `validarOfertaPresencial` entra no barrel via `dados/index`, sem mexer em `src/design-system/index.ts`. `destinoDoCheckout` distingue as ofertas por `"checkoutBlack" in oferta`; no No Estúdio, `emBlack` é ignorado. Fixture `OFERTA_NO_ESTUDIO_MANUAL` do protótipo `NE Pagina - Manual v2`. |
