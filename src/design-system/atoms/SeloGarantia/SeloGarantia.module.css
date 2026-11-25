@@ -1,0 +1,67 @@
+/* Selo de garantia do manual vigente · 2 · 05.07. Cor do curso (--selo-garantia), nunca ocre. */
+.selo {
+  box-sizing: border-box;
+  margin: 0;
+  border: var(--fio) solid var(--selo-garantia);
+  border-radius: var(--raio-reto);
+}
+
+.linha {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-3);
+  padding: var(--esp-3) var(--esp-4);
+}
+
+/* Placeholder do ícone "aprovação" (22px, sem token de tamanho): quadrado tracejado de 1px. */
+.icone {
+  flex: none;
+  box-sizing: border-box;
+  width: 22px;
+  height: 22px;
+  border: var(--fio) dashed var(--selo-garantia);
+  border-radius: var(--raio-reto);
+}
+
+/* Space Mono de --dg-rotulo, a 9px, caixa alta, +0,1em. */
+.texto {
+  font: var(--dg-rotulo);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--texto);
+}
+
+/* 120 × 120, encolhe até 88 (sem token de tamanho no manual). */
+.quadrado {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-2);
+  width: 120px;
+  max-width: 100%;
+  min-width: 88px;
+  aspect-ratio: 1;
+}
+
+/* Urbanist 600 de --bf-numero, a 52px (amostra da ficha). */
+.sete {
+  font: var(--bf-numero);
+  font-size: 52px;
+  letter-spacing: var(--bf-numero-tracking);
+  color: var(--texto);
+}
+
+/* Space Mono de --dg-rotulo, a 7,5px, caixa alta, +0,12em, centrado. */
+.rotulo {
+  max-width: 6em; /* "dias de" / "garantia", em duas linhas, como na ficha */
+  font: var(--dg-rotulo);
+  font-size: 7.5px;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--texto-apoio);
+}

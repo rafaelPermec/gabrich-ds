@@ -69,6 +69,23 @@ const ATOMOS: Atomo[] = [
     story: "Padrão",
     amostras: [{ nome: "Luz na Prática", papel: "img", cores: { "background-color": "texto" } }],
   },
+  {
+    titulo: "Atoms/SeloDesconto",
+    story: "Formas",
+    amostras: [
+      { nome: "50%", papel: "texto", cores: { color: "texto" } },
+      { nome: "−50%", papel: "texto", cores: { "background-color": "acento" } },
+    ],
+  },
+  {
+    titulo: "Atoms/SeloGarantia",
+    story: "Formas",
+    amostras: [
+      { nome: "linha", papel: "testid", cores: { "border-top-color": "selo-garantia" } },
+      { nome: "7", papel: "texto", cores: { color: "texto" } },
+      { nome: "quadrado", papel: "testid", cores: { "border-top-color": "selo-garantia" } },
+    ],
+  },
 ]
 
 const TEMAS = Object.keys(TEMAS_MANUAL) as TemaManual[]

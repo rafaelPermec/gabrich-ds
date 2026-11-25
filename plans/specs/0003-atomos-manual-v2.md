@@ -63,7 +63,7 @@ Os átomos do manual entram como componentes novos, ao lado dos que já existem,
   - A `selecao` é só visual (`aria-hidden`). Quem usa (quiz, combo) põe o input e o rótulo com área de 44px.
   - Lista com o marcador `ponto`: gap de 8.
 - **D6. SeloDesconto (novo, RF8, R14)**
-  - Props: `forma` (`quadrado` | `linha`), `fase: FaseDaCampanha`, `percentual` (string validada, R16) e `papel` (fio preto no papel).
+  - Props: `forma` (`quadrado` | `linha`), `fase: FaseDaCampanha`, `percentual` (inteiro de `oferta.descontoBlack`, R16; desvio da T5, ver notas) e `papel` (fio preto no papel).
   - Renderiza `null` fora de `aberta`, `ultima-semana` e `ultimas-24h`.
   - Quadrado: 120 × 120 (mínimo 88), fio 1px `--dg-ocre` (preto no papel), número em Urbanist 600 44px, rótulo em Space Mono 7,5px.
   - Linha: `Badges` com duas etiquetas cheias ("50%" e "black friday").
@@ -167,10 +167,10 @@ Sem dados pessoais nem rede. Os mocks ficam só nas stories (R24). O percentual 
 - **Arquivos prováveis:** `src/design-system/atoms/SeloDesconto/*`, `src/design-system/atoms/SeloGarantia/*`, `src/design-system/index.ts`, `tests/atomos/selos.spec.ts`
 - **Cobre:** RF8, RF9, RF14 · CA9, CA10, CA15
 - **Pronto quando:**
-  - [ ] Os testes estão verdes.
-  - [ ] O selo de desconto renderiza nada em normal, lista-de-espera e encerrada.
-  - [ ] O selo de garantia não usa ocre em nenhum tema.
-- **Status:** [ ] pendente
+  - [x] Os testes estão verdes.
+  - [x] O selo de desconto renderiza nada em normal, lista-de-espera e encerrada.
+  - [x] O selo de garantia não usa ocre em nenhum tema.
+- **Status:** [x] concluída
 
 ## 8. Notas de implementação
 | Data | Task | Nota (desvio, decisão nova, hipótese de bug confirmada) |
@@ -199,3 +199,8 @@ Sem dados pessoais nem rede. Os mocks ficam só nas stories (R24). O percentual 
 | 2026-11-24 | T4 | Marcador em px fixos da ficha 2 · 05.08 (ponto 7, disco e anel 20, miolo 8, traço 1,5, Space Mono 9): sem token de tamanho no manual. Família e peso do número de `--dg-rotulo`. |
 | 2026-11-24 | T4 | Ponto e miolo da seleção no `--acento` em todos os temas, pelo texto da ficha 2 · 05.08 e pela tabela de box de preço (marcador no acento do curso no papel). A amostra "fundo claro" da 05.08 pinta os dois em preto: levar à Débora se o dg-claro fica em ocre ou em preto. |
 | 2026-11-24 | T4 | a11y (axe, 6 stories × 10 temas): nenhuma violação. CA15 ganhou o papel `testid` para os marcadores decorativos (`aria-hidden`). |
+| 2026-11-24 | T5 | SeloDesconto: `percentual: number` (inteiro, de `oferta.descontoBlack`, já validado por `validarOferta`), decisão do usuário; a D6 pedia string. O quadrado mostra "50%" e a linha "−50%" (U+2212), como na ficha 2 · 05.06: só formatação, nada calculado (R17). |
+| 2026-11-24 | T5 | SeloDesconto `papel` (prop, como na D6): fio e rótulo em `--texto` (o preto do dg-claro), não em `--dg-preto-tinta`, para ficar só nos tokens do tema. Fora do papel, fio e rótulo em `--dg-ocre`; número em `--texto`. A linha é `Badges` com `Badge acento` ("−50%") + `Badge` ("black friday"). |
+| 2026-11-24 | T5 | Números dos selos em `--bf-numero` (Urbanist 600, /0,85, −0,02em) com corpo da ficha: 44 no desconto e 52 no 7 da garantia (a tabela da 05.07 só diz "Urbanist 600"; o 52 vem da amostra). Rótulos em `--dg-rotulo` com corpo e tracking da ficha (7,5/0,12em; 9/0,1em). Quadrados em 120px com `min-width: 88px` e `aspect-ratio: 1` (sem token de tamanho). |
+| 2026-11-24 | T5 | SeloGarantia: fio em `--selo-garantia`, texto em `--texto`, e "dias de garantia" do quadrado em `--texto-apoio` (cores das amostras da 05.07). O placeholder do ícone é um quadrado tracejado de 22px em `--selo-garantia`, `aria-hidden`, com `data-placeholder="icone-aprovacao"` para a troca. O quadrado não leva ícone (a ficha não mostra). |
+| 2026-11-24 | T5 | a11y (axe, 7 stories × 10 temas): nenhuma violação crítica. *Serious* de contraste no rótulo ocre do selo de desconto sem `papel` nos temas claros (uso previsto: `papel` no claro) e no `--texto-apoio` do ne-claro (4,24), valores do manual. |
