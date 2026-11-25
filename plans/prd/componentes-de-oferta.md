@@ -3,7 +3,7 @@ feature: componentes-de-oferta
 status: aprovado
 criado: 2026-10-23
 atualizado: 2026-11-25
-spec: plans/specs/<NNNN>-componentes-de-oferta.md
+spec: plans/specs/0004-componentes-de-oferta.md
 ---
 
 # PRD — Componentes de oferta
