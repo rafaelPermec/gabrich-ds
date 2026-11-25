@@ -49,7 +49,7 @@ Três peças novas sobre os átomos do manual: o `CardPreco` (um curso, normal o
 - **D5. `CardsDePreco` (RF6)**: contêiner dos cards; renderiza um único `SeloGarantia` abaixo do último, a 32px (`--esp-8`), centralizado. O `CardPreco` nunca leva selo.
 - **D6. `MonteSeuCombo` (RF7–RF11)**
   - Props: `cursoDaPagina: CursoOnline`, `blackFriday?`, `ofertas: readonly Oferta[]`, `precosNormais: PrecosNormaisDosCursos`, `descritivos: Readonly<Record<CursoOnline, string>>` (mock novo com as linhas do protótipo).
-  - Ordem dos itens: o curso da página primeiro, marcado; depois os outros na ordem lp, mqc, adf.
+  - Ordem dos itens: o curso da página primeiro, marcado; depois os outros na ordem adf, lp, mqc (manual 2 · 05.12; T4).
   - Linha: `<label>` com `<input type="checkbox">` visualmente oculto, `Marcador` `selecao`, `LogoCurso` (altura 14) e descritivo em Manrope 12; a linha toda é o alvo, altura mínima 44, sem preço. Teclado: Tab e Espaço do próprio checkbox.
   - Resumo (região `aria-live="polite"`):
     - nada marcado: "marque pelo menos um curso." e botão desabilitado (`Botao disabled`, sem link);
@@ -133,8 +133,8 @@ Sem dados pessoais nem rede. Links de checkout chegam no dado; os reais estão f
 - **Arquivos prováveis:** `src/design-system/organisms/MonteSeuCombo/*`, `src/design-system/mocks/conteudo.ts`, `src/design-system/index.ts`, `tests/oferta/combo.spec.ts`
 - **Cobre:** RF7–RF11, RF12, RF13 · CA5–CA9
 - **Pronto quando:**
-  - [ ] Os testes estão verdes; nenhuma violação crítica no a11y; linha com 44px de altura mínima.
-- **Status:** [ ] pendente
+  - [x] Os testes estão verdes; nenhuma violação crítica no a11y; linha com 44px de altura mínima.
+- **Status:** [x] concluída
 
 ### T5 — Combo no lugar do simulador da Black
 - **Entrega:** a página de demonstração da Black Friday mostra o `MonteSeuCombo` com os mocks; o simulador antigo e o CSS dele saem.
@@ -156,3 +156,5 @@ Sem dados pessoais nem rede. Links de checkout chegam no dado; os reais estão f
 | 2026-11-25 | T2 | Desvios aprovados pelo usuário: tipo do ne + linha de vagas (D4); `descontoDaCampanha` no card Black, porque a auditoria CA11 barra "50%" fixo; botão 60 e hover invertido (proposta); botão do adf em Manrope 600, porque a 2 · 06 só carrega até 600 (a tabela pede 700: perguntar à Débora); à vista do ne em Urbanist 600 (tabela), não 300 (protótipo). Espaçamentos do protótipo levados à escala `--esp-*` (R9). Marcadores travessão (adf) e triângulo (ne) desenhados no card; o `Marcador` ponto fica para lp e mqc. |
 | 2026-11-25 | T2 | a11y: sem violação crítica; "serious color-contrast" no No Estúdio claro (terracota da linha de vagas sobre linho, cor do protótipo): levar à Débora. |
 | 2026-11-25 | T3 | Layout em flex com quebra (base 400, máximo 460), não a grade `auto-fit` do protótipo: com máximo fixo, a grade conta colunas de 460 e quebra os três cards em 1440px. Selo na cor `--card-preco-selo` do tema da página, com recuo para `--selo-garantia` fora dos temas de curso (variável intermediária `--selo-do-grupo`, sem ciclo). Prop `formaDoSelo` (linha ou quadrado do átomo); o protótipo usa um quadro de 72px com texto ao lado, que não existe no 2 · 05.07. `data-selo-garantia` no átomo como seam de teste. Helpers `ofertaDoCursoMock` e `listaDoCardMock` nos mocks, usados pelas stories (revisão Padrões). |
+| 2026-11-25 | T4 | Desvios aprovados pelo usuário, pelo manual 2 · 05.12 (APROVADO): ordem adf, lp, mqc depois do curso da página (não lp, mqc, adf); cabeçalho com título ("monte seu combo" / "monte a sua black friday"), subtítulo e etiqueta "-X% BLACK FRIDAY" na Black; resumo com "sua escolha", logos unidas por "+" (ordem mqc, lp, adf) e uma linha de inclusão por curso (prop `inclusos`, mock `INCLUSOS_COMBO_MOCK`; descritivos da linha em `DESCRITIVOS_COMBO_MOCK`). `descontoDaCampanha` no combo Black, como no card (CA11). Tokens `--combo-fonte-titulo`, `--combo-titulo-tracking`, `--combo-fonte-preco` em dg, lp, mqc e adf (escuro e claro), espelhados em `tokensCombo`; cores dos 12 tokens de componente. Botão ativo é `<a>` com as classes do `Botao` (ação, médio); desabilitado é o `Botao`. Grupo com `role="group"` (a etiqueta vem antes do título, o que a `legend` não permite). |
+| 2026-11-25 | T4 | Propostas a validar com a Débora: "sua escolha" e "você economiza" na cor do texto em dg-claro, lp-claro e mqc-claro (acento claro sobre fundo claro); hover e foco da linha. a11y: sem violação crítica; "serious color-contrast" no Luz na Prática escuro (`--lp-areia` sobre `--lp-penumbra`, 4,36:1, cores do protótipo). Suíte completa: cada rodada falhou um teste diferente fora da T4 (`card-indicador` CA7, visual do `DataTable`), ambos verdes isolados: intermitência sob carga. |

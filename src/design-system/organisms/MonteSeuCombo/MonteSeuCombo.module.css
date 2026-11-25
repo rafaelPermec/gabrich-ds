@@ -1,0 +1,234 @@
+/* Monte seu combo / Monte a sua Black Friday · manual 2 · 05.12. Cores só dos 12 tokens de
+   componente do data-tema da página; título e preço nas fontes --combo-* do tema (src/index.css).
+   Espaçamentos do protótipo "Monte seu Combo" levados à escala --esp-* (R9). */
+.combo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: var(--esp-8);
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: var(--esp-8);
+  background-color: var(--card);
+  color: var(--texto);
+  border: var(--fio) solid var(--fio-card);
+  border-radius: var(--raio-card);
+}
+
+@media (max-width: 767px) {
+  .combo {
+    padding: var(--esp-6);
+  }
+}
+
+.combo p {
+  margin: 0;
+}
+
+/* ── Escolha ─────────────────────────────────────────────────────────────── */
+.escolha {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-2);
+  min-width: 0;
+}
+
+.etiqueta {
+  align-self: flex-start;
+}
+
+.titulo {
+  font: var(--combo-fonte-titulo);
+  letter-spacing: var(--combo-titulo-tracking);
+  color: var(--texto);
+}
+
+.subtitulo,
+.vazio {
+  font: var(--dg-corpo);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--texto-apoio);
+}
+.subtitulo {
+  padding-bottom: var(--esp-2);
+}
+
+/* Linha: a linha toda é o alvo (label do checkbox oculto), altura mínima 44 (RF8). */
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--esp-3);
+  box-sizing: border-box;
+  min-height: 44px;
+  padding: var(--esp-3) 0;
+  border-top: var(--fio) solid var(--fio-card);
+  cursor: pointer;
+}
+
+/* Checkbox nativo fora da vista, mas focável: Tab e Espaço marcam a linha. */
+.oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Foco (proposta, como no botão): contorno de 2px na cor do texto em volta da linha. */
+.item:has(.oculto:focus-visible) {
+  outline: 2px solid var(--texto);
+  outline-offset: 2px;
+}
+
+.textos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--esp-2);
+  min-width: 0;
+}
+
+.logo {
+  height: 14px;
+}
+
+.descritivo {
+  font: var(--dg-corpo);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--texto-apoio);
+}
+
+/* ── Resumo ──────────────────────────────────────────────────────────────── */
+.resumo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-3);
+  min-width: 0;
+  min-height: 220px;
+  padding-left: var(--esp-8);
+  border-left: var(--fio) solid var(--fio-card);
+}
+
+/* Empilhado (uma coluna), o fio passa para cima do resumo. */
+@media (max-width: 767px) {
+  .resumo {
+    padding-top: var(--esp-6);
+    padding-left: 0;
+    border-top: var(--fio) solid var(--fio-card);
+    border-left: 0;
+  }
+}
+
+.rotulo,
+.inclusos,
+.economia {
+  font: var(--dg-rotulo);
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.rotulo {
+  letter-spacing: 0.2em;
+  color: var(--acento);
+}
+
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-2);
+}
+.mais {
+  font: var(--combo-fonte-preco);
+  font-size: 15px;
+  line-height: 1;
+}
+
+.inclusos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  color: var(--texto-apoio);
+}
+
+.linhas {
+  display: flex;
+  flex-direction: column;
+  margin: var(--esp-1) 0;
+  border-bottom: var(--fio) solid var(--fio-card);
+}
+.linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--esp-3);
+  padding: var(--esp-2) 0;
+  border-top: var(--fio) solid var(--fio-card);
+}
+.linha dt,
+.linha dd {
+  margin: 0;
+  color: var(--texto);
+}
+.linha dt {
+  font: var(--dg-corpo);
+  font-size: 13px;
+}
+.linha dd {
+  font: var(--dg-rotulo);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.parcela {
+  font: var(--combo-fonte-preco);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--texto);
+}
+.vezes {
+  font-size: 0.42em;
+  letter-spacing: 0.02em;
+}
+
+.aVista {
+  font: var(--dg-rotulo);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--texto);
+}
+
+.economia {
+  letter-spacing: 0.12em;
+  color: var(--acento);
+}
+
+/* Temas claros em que o acento é claro (proposta, sem fundo claro no protótipo): o rótulo e a
+   economia vão para a cor do texto, como o texto do botão de ação no 2 · 05.01. */
+:global([data-tema="dg-claro"]) .rotulo,
+:global([data-tema="dg-claro"]) .economia,
+:global([data-tema="lp-claro"]) .rotulo,
+:global([data-tema="lp-claro"]) .economia,
+:global([data-tema="mqc-claro"]) .rotulo,
+:global([data-tema="mqc-claro"]) .economia {
+  color: var(--texto);
+}
+
+/* Botão no pé do resumo, alinhado à esquerda. */
+.botao {
+  align-self: flex-start;
+  margin-top: auto;
+}

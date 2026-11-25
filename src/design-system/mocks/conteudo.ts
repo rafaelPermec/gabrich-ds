@@ -3,7 +3,7 @@
  * (2 · 05.17, versão atual, EM APROVAÇÃO), antes e depois (2 · 05.16) e depoimentos (aba 04).
  * Só para stories e páginas de demonstração (R24): não é exportado pelo barrel do design system.
  */
-import type { AntesEDepois, Curso, Depoimento, ListaDoCard, ModulosDoCurso } from "../dados/index"
+import type { AntesEDepois, Curso, CursoOnline, Depoimento, ListaDoCard, ModulosDoCurso } from "../dados/index"
 
 export const LISTAS_DO_CARD_MOCK: readonly ListaDoCard[] = [
   {
@@ -53,6 +53,20 @@ export const LISTAS_DO_CARD_MOCK: readonly ListaDoCard[] = [
     ],
   },
 ]
+
+/** Monte seu combo (2 · 05.12, protótipo): descritivo de cada linha, em Manrope 12. */
+export const DESCRITIVOS_COMBO_MOCK: Readonly<Record<CursoOnline, string>> = {
+  adf: "o manual de direção criativa: tudo o que você decide antes do clique",
+  lp: "27 aulas práticas e análises pra entender a luz de verdade",
+  mqc: "fotografia de gastronomia, do briefing à foto final, com fotografia como negócio",
+}
+
+/** Monte seu combo (2 · 05.12, protótipo): o que cada curso marcado inclui, no resumo. */
+export const INCLUSOS_COMBO_MOCK: Readonly<Record<CursoOnline, string>> = {
+  adf: "antes da foto · e-book em PDF, 12 práticas",
+  lp: "luz na prática · 27 aulas em vídeo",
+  mqc: "mais que um click · 14 módulos, 67 conteúdos",
+}
 
 export const MODULOS_LP_MOCK: ModulosDoCurso = {
   curso: "lp",

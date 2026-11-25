@@ -413,6 +413,16 @@ export const tokensCardPreco = {
   botaoCaixa: "var(--card-preco-botao-caixa)",
 } as const
 
+/**
+ * 2 · 05.12: fontes do Monte seu combo, declaradas em dg, lp, mqc e adf (escuro e claro).
+ * As cores vêm dos 12 tokens de componente.
+ */
+export const tokensCombo = {
+  fonteTitulo: "var(--combo-fonte-titulo)",
+  tituloTracking: "var(--combo-titulo-tracking)",
+  fontePreco: "var(--combo-fonte-preco)",
+} as const
+
 /** Estados por tema: nunca vermelho (R21, ADR 0004). */
 export const tokensEstado = {
   erro: "var(--erro)",

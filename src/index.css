@@ -767,6 +767,37 @@ html.dark {
   --card-preco-botao-caixa: uppercase;
 }
 
+/* ── Manual vigente · 2 · 05.12 · Monte seu combo ────────────────────────────────────
+   Cores dos 12 tokens de componente; o título e o preço mudam de fonte por curso
+   (protótipo "Monte seu Combo" e demo do manual na marca mãe). Iguais no escuro e no claro. */
+[data-tema="dg"],
+[data-tema="dg-claro"] {
+  --combo-fonte-titulo: normal 900 28px/1.05 'Urbanist', sans-serif;
+  --combo-titulo-tracking: 0;
+  --combo-fonte-preco: normal 600 36px/0.9 'Urbanist', sans-serif;
+}
+
+[data-tema="lp"],
+[data-tema="lp-claro"] {
+  --combo-fonte-titulo: normal 200 28px/1.05 'Montserrat', sans-serif;
+  --combo-titulo-tracking: 0;
+  --combo-fonte-preco: normal 700 36px/0.9 'Montserrat', sans-serif;
+}
+
+[data-tema="mqc"],
+[data-tema="mqc-claro"] {
+  --combo-fonte-titulo: normal 700 28px/1.05 'Montserrat', sans-serif;
+  --combo-titulo-tracking: 0;
+  --combo-fonte-preco: normal 700 36px/0.9 'Montserrat', sans-serif;
+}
+
+[data-tema="adf"],
+[data-tema="adf-claro"] {
+  --combo-fonte-titulo: normal 700 28px/1.05 'Parkinsans', sans-serif;
+  --combo-titulo-tracking: -0.035em;
+  --combo-fonte-preco: normal 700 36px/0.9 'Parkinsans', sans-serif;
+}
+
 /* Escopo temático das demos (submarcas e Black Friday): as cores vêm do data-tema e do
    data-campanha do mesmo elemento; as fontes, de themeVars() (--sub-font-*). Os tokens
    antigos são remapeados para que os componentes genéricos se adaptem. */
