@@ -11,7 +11,7 @@
 /* ── 4. Peça de curso ── */
 
 import { useEffect, useState } from "react"
-import { Badge } from "../../design-system/atoms/Badge"
+import { Badge, Badges } from "../../design-system/atoms/Badge"
 import { Tabs } from "../../design-system/molecules/Tabs"
 import {
   CURSOS_ONLINE,
@@ -222,7 +222,6 @@ function Phases() {
   const phase = phases.find((p) => p.id === id)!
   const base: BFBase = phase.id === "aberta" ? openBase : phase.base
   const fileName = `bf26_feed_${phase.arquivo}_${base}_1080x1350`
-  const tagColor = base === "preto" ? "ochre" : "ink"
 
   return (
     <div className={styles.phases}>
@@ -258,12 +257,10 @@ function Phases() {
         >
           <div className={styles.frame}>
             <div className={styles.pieceTop}>
-              <Badge variant="outline" color={tagColor} size="sm">
-                Black Friday
-              </Badge>
-              <Badge variant="outline" color={tagColor} size="sm">
-                {phase.tag}
-              </Badge>
+              <Badges>
+                <Badge acento>Black Friday</Badge>
+                <Badge>{phase.tag}</Badge>
+              </Badges>
             </div>
             <Title />
             <p className={styles.fifty} aria-label={`${DESCONTO} por cento`}>
@@ -337,7 +334,6 @@ function PriceBox() {
   const tag = TAG_DA_OFERTA[p.slug]
   const highlight = p.slug === MAIS_ESCOLHIDA
   const [base, setBase] = useState<BFBase>("preto")
-  const tagColor = base === "preto" ? "ochre" : "ink"
 
   return (
     <div className={styles.priceWrap}>
@@ -388,21 +384,12 @@ function PriceBox() {
               highlight ? styles.boxHighlight : "",
             ].join(" ")}
           >
-            <div className={styles.pieceTop}>
+            <Badges>
               {tag && (
-                <Badge variant="outline" color={tagColor} size="sm">
-                  {tag}
-                </Badge>
+                <Badge acento={base === "preto"}>{tag}</Badge>
               )}
-              <Badge
-                variant="outline"
-                color="ink"
-                size="sm"
-                className={styles.info}
-              >
-                À vista ou 12x
-              </Badge>
-            </div>
+              <Badge>À vista ou 12x</Badge>
+            </Badges>
             <div className={styles.logos}>
               {p.cursos.map((c) => (
                 <span key={c} className={styles.logoTile}>

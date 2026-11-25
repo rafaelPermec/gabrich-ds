@@ -1,80 +1,68 @@
-.badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-none);
-  font-family: var(--font-mono);
+/* Etiqueta do manual vigente · 2 · 05.02. Cores só dos 12 tokens de componente do data-tema. */
+.etiqueta {
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0;
+  /* Space Mono 400 de --dg-rotulo; corpo, entrelinha e tracking da ficha (9px, 1.3, +0,08em). */
+  font: var(--dg-rotulo);
+  font-size: 9px;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: var(--tracking-widest);
   white-space: nowrap;
-  border: var(--border-width) solid transparent;
-  line-height: 1;
-  font-size: var(--text-xs);
-}
-
-/* Sizes */
-.size-sm {
-  height: var(--label-height-sm);
-  padding: 0 12px;
-  font-size: var(--text-xs);
-}
-.size-md {
-  height: var(--label-height-md);
-  padding: 0 16px;
-  font-size: 11px;
-}
-
-/* Solid variants */
-.variant-solid.color-ink {
-  background-color: var(--color-ink);
-  color: var(--color-paper);
-  border-color: var(--color-ink);
-}
-.variant-solid.color-paper {
-  background-color: var(--color-paper);
-  color: var(--color-ink);
-  border-color: var(--color-paper);
-}
-.variant-solid.color-ochre {
-  background-color: var(--color-ochre);
-  color: var(--color-ink);
-  border-color: var(--color-ochre);
-}
-.variant-solid.color-caramel {
-  background-color: var(--color-caramel);
-  color: var(--color-paper);
-  border-color: var(--color-caramel);
-}
-
-/* Outline variants */
-.variant-outline.color-ink {
   background-color: transparent;
-  color: var(--color-ink);
-  border-color: var(--color-ink);
-}
-.variant-outline.color-paper {
-  background-color: transparent;
-  color: var(--color-paper);
-  border-color: var(--color-paper);
-}
-.variant-outline.color-ochre {
-  background-color: transparent;
-  color: var(--color-ochre);
-  border-color: var(--color-ochre);
-}
-.variant-outline.color-caramel {
-  background-color: transparent;
-  color: var(--color-caramel);
-  border-color: var(--color-caramel);
+  color: var(--texto);
+  border: var(--fio) solid var(--texto);
+  border-radius: var(--raio-reto);
 }
 
-:global(html.dark) .variant-outline.color-ink {
-  color: var(--text-primary);
-  border-color: var(--border-strong);
+/* Versões */
+.site {
+  padding: var(--esp-1) var(--esp-2);
+}
+.peca {
+  padding: var(--esp-2) var(--esp-3);
+  min-height: 28px;
 }
 
-:global(html.dark) .variant-solid.color-ink {
-  background-color: var(--color-paper);
-  color: var(--color-ink);
-  border-color: var(--color-paper);
+/* Traçada em acento */
+.acento {
+  color: var(--acento);
+  border-color: var(--acento);
+}
+
+/* Cheia: fundo na cor do texto, texto na cor do fundo. */
+.cheia {
+  background-color: var(--texto);
+  color: var(--fundo);
+}
+
+/* Cheia em acento: o texto segue a regra do Botao `acao` (--botao-texto nos escuros e no
+   adf-claro, em que acento = botão; --texto nos demais claros). A variável é declarada em cada
+   data-tema e herdada, para valer o tema mais próximo quando um tema está dentro de outro. */
+:global([data-tema]) {
+  --etiqueta-texto-no-acento: var(--botao-texto);
+}
+:global([data-tema="dg-claro"]),
+:global([data-tema="lp-claro"]),
+:global([data-tema="mqc-claro"]),
+:global([data-tema="ne-claro"]) {
+  --etiqueta-texto-no-acento: var(--texto);
+}
+.cheia.acento {
+  background-color: var(--acento);
+  color: var(--etiqueta-texto-no-acento);
+}
+
+/* Grupo em linha (Badges): gap de 4 (Black) ou 8 (marca mãe). */
+.grupo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.grupo-site {
+  gap: var(--esp-1);
+}
+.grupo-peca {
+  gap: var(--esp-2);
 }

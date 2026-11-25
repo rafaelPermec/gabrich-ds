@@ -1,0 +1,9 @@
+/* Escopo de tema do manual para docs e stories: pinta o fundo do tema, para o átomo ler nos modos claro e escuro do app. */
+.tema {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-4);
+  background-color: var(--fundo);
+  color: var(--texto);
+}

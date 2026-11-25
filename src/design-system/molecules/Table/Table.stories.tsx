@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 import { Table, type TableColumn } from "./Table"
 import { Badge } from "../../atoms/Badge"
+import { TemaManual } from "../../utils/TemaManual"
 import { projectRows } from "../../utils/storyFixtures"
 
 type Row = typeof projectRows[number]
@@ -13,13 +14,9 @@ const columns: TableColumn<Row>[] = [
     key: "status",
     label: "Status",
     render: (value) => (
-      <Badge
-        size="sm"
-        variant="outline"
-        color={value === "Entregue" ? "ink" : "caramel"}
-      >
-        {String(value)}
-      </Badge>
+      <TemaManual tema="dg-claro">
+        <Badge>{String(value)}</Badge>
+      </TemaManual>
     ),
   },
 ]

@@ -1,9 +1,9 @@
 ---
 feature: atomos-manual-v2
-status: rascunho
+status: implementado
 criado: 2026-10-23
-atualizado: 2026-10-23
-spec: plans/specs/<NNNN>-atomos-manual-v2.md
+atualizado: 2026-11-24
+spec: plans/specs/0003-atomos-manual-v2.md
 ---
 
 # PRD — Átomos do manual v2
@@ -16,7 +16,7 @@ O botão e a etiqueta do design system não seguem as medidas, os estados e a fo
 
 Objetivo: os átomos usados nas páginas dos cursos, na página "cursos" e na Black Friday seguem as fichas do manual (2 · 05.01 a 2 · 05.09) em todos os temas.
 
-- Nenhum raio fora de 0, 16px ou círculo/pílula.
+- Nenhum raio fora de 0, 16px ou círculo (R3). A pílula (999px) só existe na etiqueta das capas Hotmart, fora deste escopo.
 - Typecheck, lint e build do Storybook sem erro.
 - Nenhuma violação crítica no verificador de acessibilidade.
 
@@ -53,9 +53,9 @@ Objetivo: os átomos usados nas páginas dos cursos, na página "cursos" e na Bl
 | RF7 | Card: raio 16, padding 24 (32 em card de 6 colunas, 20 no celular), gap interno 12, fio 1px, sem sombra. No hover, o fio vira a cor do texto e o rótulo vira o acento, e nada se move. | Obrigatório | H6 |
 | RF8 | Selo de desconto: quadrado 120 × 120 (mínimo 88), fio 1px ocre (preto no papel), número em Urbanist 600 44, rótulo em Space Mono 7,5; versão em linha com duas etiquetas cheias. Só aparece na Black. | Obrigatório | H7 |
 | RF9 | Selo de garantia: texto "7 dias de garantia", em linha (ícone de 22, Space Mono 9, padding 12 × 16, fio 1px) ou quadrado (120 × 120, mínimo 88), na cor do curso, nunca ocre, raio 0. Até o ícone "aprovação" chegar, o selo usa um placeholder no lugar dele. | Obrigatório | H8 |
-| RF10 | Marcador: ponto de 7px no acento, gap de 8; disco numerado de 20px com Space Mono 9; seleção em anel de 20px com fio de 1,5px e ponto de 8px quando marcado. | Obrigatório | H9 |
-| RF11 | Indicador de continuação: 30 mínimo / 38 padrão / 44 em capa, fio 1px, seta 1,4px; no hover, fio e seta no acento; desabilitado na cor de desabilitado. | Obrigatório | H10 |
-| RF12 | Logo do curso em máscara de uma cor, que lê a cor do tema. | Obrigatório | H11 |
+| RF10 | Marcador: ponto de 7px no acento, gap de 8; disco numerado de 20px com Space Mono 9; seleção em anel de 20px com fio de 1,5px e ponto de 8px quando marcado. O anel é visual; a área clicável de 44px é a linha/rótulo do componente que o usa (quiz, combo). | Obrigatório | H9 |
+| RF11 | Indicador de continuação: 30 mínimo / 38 padrão / 44 em capa, fio 1px, seta 1,4px; no hover, fio e seta no acento; desabilitado na cor de desabilitado. Área clicável de 44px em todos os tamanhos, sem mudar o desenho. | Obrigatório | H10 |
+| RF12 | Logo do curso (Luz na Prática, Mais que um Click, Antes da Foto e No Estúdio) em máscara de uma cor, que lê a cor do tema; arquivos de `../manual-vigente/assets/`. | Obrigatório | H11 |
 | RF13 | Os estados de foco (contorno de 2px na cor do texto, afastado 2px) aparecem documentados como "proposta". | Obrigatório | H12 |
 | RF14 | Todos os átomos funcionam nos 10 temas. | Obrigatório | H1–H11 |
 
@@ -73,19 +73,21 @@ Objetivo: os átomos usados nas páginas dos cursos, na página "cursos" e na Bl
 
 ## 8. Critérios de aceitação
 
-- **CA1 (RF1):** Dado o botão grande, quando medido, então tem 56px de altura, padding lateral de 24, raio 0 e nenhuma seta.
-- **CA2 (RF2):** Dado o botão, quando passo o mouse ou toco, então só a cor de fundo muda e o tamanho continua o mesmo.
-- **CA3 (RF3):** Dado o botão desabilitado, quando exibido, então não tem preenchimento e tem fio de 1px.
-- **CA4 (RF4):** Dado o botão com largura total, quando a tela é de celular, então ele ocupa a coluna toda.
-- **CA5 (RF5, RF6):** Dado uma etiqueta sozinha, quando exibida, então é traçada. Dadas duas em linha, então são cheias e têm gap de 4 na Black.
-- **CA6 (RF7):** Dado um card com foto, quando exibido, então a foto recorta no raio de 16 e não há sombra. No hover, nada se move.
-- **CA7 (RF8):** Dado o selo de desconto fora da Black, quando a fase não é Black, então ele não aparece.
-- **CA8 (RF9):** Dado o selo de garantia em qualquer tema, quando exibido, então o texto é "7 dias de garantia", a cor não é ocre e, enquanto o ícone não chega, aparece o placeholder no lugar dele.
-- **CA9 (RF10):** Dado uma lista, quando exibida, então os marcadores são pontos redondos de 7px no acento.
-- **CA10 (RF11):** Dado o indicador de continuação, quando comparado ao disco de ação, então é menor.
-- **CA11 (RF12):** Dado a logo do curso no tema claro e no escuro, quando exibida, então assume a cor do tema.
-- **CA12 (RF13):** Dado o Storybook, quando vejo o estado de foco, então ele está marcado como "proposta".
-- **CA13 (RF14):** Dado qualquer átomo, quando troco entre os 10 temas, então as cores seguem os tokens do tema.
+- **CA1 (RF1):** Dado o botão nos três tamanhos, quando medido, então tem 56 / 48 / 44px de altura, padding lateral 24 / 24 / 16, Manrope 600 em 14 / 13 / 12, caixa alta, raio 0 e nenhuma seta.
+- **CA2 (RF2):** Dado o botão, quando passo o mouse ou toco, então só a cor de fundo muda para o token de hover do tema e o tamanho continua o mesmo.
+- **CA3 (RF3):** Dado o botão desabilitado, quando exibido, então não tem preenchimento, tem fio de 1px e o texto está na cor de desabilitado.
+- **CA4 (RF4):** Dado o botão na variante de ação do curso, quando exibido em cada tema de curso, então o fundo é a cor de ação do curso. Dado o botão com largura total, quando a tela tem menos de 768px, então ele ocupa a coluna toda.
+- **CA5 (RF5, RF6):** Dado uma etiqueta sozinha, quando exibida, então é traçada, com fio de 1px, raio 0 e Space Mono 9px em caixa alta. Dadas duas ou mais em linha, então são cheias, com gap de 4 na Black e 8 na marca mãe.
+- **CA6 (RF5):** Dado a etiqueta da marca mãe em peça, quando medida, então tem padding 8 × 12 e altura mínima de 28px.
+- **CA7 (RF7):** Dado um card com foto, quando exibido, então a foto recorta no raio de 16, o fio tem 1px e não há sombra. No hover, o fio vira a cor do texto, o rótulo vira o acento e nada se move.
+- **CA8 (RF7):** Dado o card, quando medido, então o padding é 24 (32 no card de 6 colunas, 20 abaixo de 768px) e o gap interno é 12.
+- **CA9 (RF8):** Dado o selo de desconto, quando a fase da campanha não é da Black, então ele não aparece. Na Black, o quadrado mede 120 × 120 (mínimo 88), o fio é ocre (preto no papel) e a versão em linha tem duas etiquetas cheias.
+- **CA10 (RF9):** Dado o selo de garantia em qualquer tema, nas versões em linha e quadrada, quando exibido, então o texto é "7 dias de garantia", o raio é 0, a cor não é ocre e, enquanto o ícone não chega, aparece o placeholder no lugar dele.
+- **CA11 (RF10):** Dado uma lista, quando exibida, então os marcadores são pontos redondos de 7px no acento, com gap de 8. Dado um disco numerado, então tem 20px e Space Mono 9. Dado o anel de seleção, então tem 20px e fio de 1,5px, e o ponto de 8px aparece só quando marcado.
+- **CA12 (RF11):** Dado o indicador de continuação, quando medido, então tem 30 / 38 / 44px, é menor que o menor disco de ação (52px) e a área clicável tem 44px. No hover, fio e seta ficam no acento. Desabilitado, ficam na cor de desabilitado.
+- **CA13 (RF12):** Dado a logo de cada curso no tema claro e no escuro, quando exibida, então assume a cor do tema.
+- **CA14 (RF13):** Dado o Storybook, quando vejo o estado de foco, então ele está marcado como "proposta".
+- **CA15 (RF14):** Dado qualquer átomo, quando troco entre os 10 temas, então as cores seguem os tokens do tema.
 
 ## 9. Fluxos e interface
 
@@ -97,11 +99,11 @@ Objetivo: os átomos usados nas páginas dos cursos, na página "cursos" e na Bl
 - Depende de `fundamentos-manual-v2`.
 - Restrição: um botão de acento por dobra.
 - Restrição: os estados de foco estão EM APROVAÇÃO no manual (2 · 05). Eles entram como estão na proposta, marcados como "proposta", e podem mudar quando forem aprovados.
-- Pendência: o ícone "aprovação" de 22px do selo de garantia ainda não existe no repositório. O selo usa um placeholder, e a troca pelo ícone final é a última tarefa do projeto.
+- Pendência: o ícone "aprovação" de 22px do selo de garantia ainda não existe no repositório. O selo usa um placeholder, e a troca pelo ícone final fica fora desta spec, como task avulsa.
 
 ## 11. Perguntas em aberto
 
-- [ ] Pendência (concluir por último): trocar o placeholder do selo de garantia pelo ícone "aprovação" de 22px, quando o arquivo for enviado.
+- [ ] Não bloqueante: trocar o placeholder do selo de garantia pelo ícone "aprovação" de 22px quando o arquivo chegar (fora desta spec; task avulsa).
 
 ## 12. Decisões
 
@@ -111,3 +113,7 @@ Objetivo: os átomos usados nas páginas dos cursos, na página "cursos" e na Bl
 | 2026-10-23 | O botão não usa escala no toque. | O manual diz que o botão nunca muda de tamanho. |
 | 2026-10-23 | Estados de foco entram como "proposta" (contorno 2px na cor do texto, afastado 2px). | Status do manual: EM APROVAÇÃO; confirmado pela Débora. |
 | 2026-10-23 | Selo de garantia com placeholder no lugar do ícone até o arquivo chegar; troca no fim do projeto. | Definido pela Débora. |
+| 2026-11-24 | Pílula fora deste PRD; R3 do `CONTEXT.md` intacta. | Pela ficha 2 · 04 do manual, ela só existe na etiqueta das capas Hotmart, que está fora de escopo. |
+| 2026-11-24 | Indicador de continuação com área clicável de 44px sem mudar o desenho. | RNF de área mínima de 44px. |
+| 2026-11-24 | Anel de seleção é só visual; a área de 44px fica na linha/rótulo do componente que o usa. | RNF de área mínima de 44px. |
+| 2026-11-24 | Troca do ícone "aprovação" fora desta spec. | A feature não fica presa esperando o arquivo. |

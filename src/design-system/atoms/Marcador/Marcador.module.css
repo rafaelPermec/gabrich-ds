@@ -1,0 +1,64 @@
+/* Marcador de lista do manual vigente · 2 · 05.08. Sempre redondo; cores só dos tokens de componente do data-tema. */
+.marca {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: var(--raio-disco);
+}
+
+/* Ponto de 7px no acento (sem token de tamanho no manual). */
+.ponto {
+  width: 7px;
+  height: 7px;
+  background-color: var(--acento);
+}
+
+/* Disco numerado de 20px, fio de 1px na cor do texto, Space Mono 9 (família de --dg-rotulo). */
+.numero {
+  width: 20px;
+  height: 20px;
+  font: var(--dg-rotulo);
+  font-size: 9px;
+  line-height: 1;
+  color: var(--texto);
+  border: var(--fio) solid currentColor;
+}
+
+/* Anel de seleção de 20px com fio de 1,5px (exceção da ficha 2 · 05.08 ao fio de 1px) e ponto de
+   8px no acento quando marcado. O anel é SVG: o Chrome arredonda borda de 1,5px para 1px em tela 1x. */
+.selecao {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  color: var(--texto);
+}
+.anel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+}
+.pontoSelecao {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--raio-disco);
+  background-color: var(--acento);
+}
+
+/* Item com texto: gap de 8 até o texto; o ponto alinha à linha de base do texto, como na ficha. */
+.item {
+  display: inline-flex;
+  gap: var(--esp-2);
+  align-items: center;
+}
+.item:has(> .ponto) {
+  align-items: baseline;
+}
+.item > .ponto {
+  transform: translateY(-1px);
+}

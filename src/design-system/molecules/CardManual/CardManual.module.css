@@ -1,0 +1,83 @@
+/* Card do manual vigente · 2 · 05.03. Cores só dos tokens de componente do data-tema. */
+.card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden; /* a foto no topo recorta no raio do card */
+  background-color: var(--card);
+  color: var(--texto);
+  border: var(--fio) solid var(--fio-card);
+  border-radius: var(--raio-card);
+  text-decoration: none;
+}
+
+/* Faixa de foto no topo, sangrando até o fio. Fotos nunca levam raio próprio. */
+.foto {
+  overflow: hidden;
+}
+.foto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.corpo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-3);
+  padding: var(--esp-6);
+}
+.colunas6 .corpo {
+  padding: var(--esp-8);
+}
+
+/* 20 no celular (ficha 2 · 05.03), fora da escala de --esp-*: soma de dois tokens. */
+@media (max-width: 767px) {
+  .corpo,
+  .colunas6 .corpo {
+    padding: calc(var(--esp-4) + var(--esp-1));
+  }
+}
+
+.rotulo {
+  font: var(--dg-rotulo);
+  letter-spacing: var(--dg-rotulo-tracking);
+  text-transform: var(--dg-rotulo-caixa);
+  color: var(--texto-apoio);
+}
+
+.titulo {
+  margin: 0;
+  font: var(--dg-intertitulo);
+  letter-spacing: var(--dg-intertitulo-tracking);
+  text-transform: var(--dg-intertitulo-caixa);
+  color: var(--texto);
+}
+
+.texto {
+  margin: 0;
+  font: var(--dg-corpo);
+  letter-spacing: var(--dg-corpo-tracking);
+  color: var(--texto-apoio);
+}
+
+/* Hover do card clicável: fio no texto e rótulo no acento; nada se move. */
+.clicavel {
+  cursor: pointer;
+}
+.clicavel:hover {
+  border-color: var(--texto);
+}
+.clicavel:hover .rotulo {
+  color: var(--acento);
+}
+
+/* Foco (proposta, EM APROVAÇÃO no manual 2 · 05): contorno de 2px na cor do texto, afastado 2px. */
+.clicavel:focus {
+  outline: none;
+}
+.clicavel:focus-visible {
+  outline: 2px solid var(--texto);
+  outline-offset: 2px;
+}

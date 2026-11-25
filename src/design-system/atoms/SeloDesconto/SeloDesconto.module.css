@@ -1,0 +1,43 @@
+/* Selo de desconto do manual vigente · 2 · 05.06. Só na Black (tema dg / dg-claro). */
+.quadrado {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-2);
+  box-sizing: border-box;
+  /* 120 × 120, encolhe até 88 (sem token de tamanho no manual). */
+  width: 120px;
+  max-width: 100%;
+  min-width: 88px;
+  aspect-ratio: 1;
+  margin: 0;
+  border: var(--fio) solid var(--dg-ocre);
+  border-radius: var(--raio-reto);
+  --selo-rotulo: var(--dg-ocre);
+}
+
+/* No papel, o ocre sai: fio e rótulo na cor do texto. */
+.papel {
+  border-color: var(--texto);
+  --selo-rotulo: var(--texto);
+}
+
+/* Urbanist 600 de --bf-numero, a 44px. */
+.numero {
+  font: var(--bf-numero);
+  font-size: 44px;
+  letter-spacing: var(--bf-numero-tracking);
+  white-space: nowrap;
+  color: var(--texto);
+}
+
+/* Space Mono de --dg-rotulo, a 7,5px, caixa alta, +0,12em. */
+.rotulo {
+  font: var(--dg-rotulo);
+  font-size: 7.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--selo-rotulo);
+}
