@@ -6,7 +6,7 @@
 
 /* ── 2. Box de preço ── */
 
-/* ── 3. Simulador ── */
+/* ── 3. Monte a sua Black Friday ── */
 
 /* ── 4. Peça de curso ── */
 
@@ -23,7 +23,12 @@ import {
   type DatasDaCampanha,
   type Oferta,
 } from "../../design-system/dados/index"
-import { LISTAS_DO_CARD_MOCK } from "../../design-system/mocks/conteudo"
+import { MonteSeuCombo } from "../../design-system/organisms/MonteSeuCombo"
+import {
+  DESCRITIVOS_COMBO_MOCK,
+  INCLUSOS_COMBO_MOCK,
+  LISTAS_DO_CARD_MOCK,
+} from "../../design-system/mocks/conteudo"
 import {
   OFERTAS_MOCK,
   PRECOS_NORMAIS_MOCK,
@@ -62,20 +67,6 @@ const beneficios = (oferta: Oferta) =>
   oferta.cursos.length === 1
     ? itensDoCard(oferta.cursos[0]!)
     : oferta.cursos.flatMap((c) => itensDoCard(c).slice(0, 1))
-
-/** O pacote mais barato que contém todos os cursos marcados. */
-function pacotePara(marcados: readonly CursoOnline[]) {
-  if (marcados.length === 0) return null
-  const oferta = OFERTAS_MOCK.filter((o) =>
-    marcados.every((c) => o.cursos.includes(c)),
-  ).reduce<Oferta | null>(
-    (melhor, o) => (!melhor || o.precoBlack < melhor.precoBlack ? o : melhor),
-    null,
-  )
-  return oferta
-    ? { oferta, completou: oferta.cursos.length > marcados.length }
-    : null
-}
 
 function Marquee({ items }: { items: string[] }) {
   const row = [...items, ...items]
@@ -430,125 +421,42 @@ function PriceBox() {
     </div>
   )
 }
-function Simulator() {
-  const [page, setPage] = useState<CursoOnline>("lp")
-  const [sel, setSel] = useState<CursoOnline[]>(["lp"])
-  const order: CursoOnline[] = [
-    page,
-    ...CURSOS_ONLINE.filter((k) => k !== page),
-  ]
-  const pkg = pacotePara(sel)
-  const resumo = pkg && resumoDePreco(pkg.oferta, PRECOS_NORMAIS_MOCK, true)
-
-  let suggestion: { key: CursoOnline; extra: number } | null = null
-  if (pkg) {
-    for (const k of order.filter((x) => !sel.includes(x))) {
-      const next = pacotePara([...sel, k])
-      if (!next) continue
-      const extra = next.oferta.precoBlack - pkg.oferta.precoBlack
-      if (!suggestion || extra < suggestion.extra)
-        suggestion = { key: k, extra }
-    }
-  }
-
+/** O combo do DS na página de cada curso, em Black Friday, com os mocks (R24). */
+function ComboDaBlack() {
+  const [pagina, setPagina] = useState<CursoOnline>("lp")
   return (
-    <SubScope theme={bfThemes.papel} className={styles.sim}>
-      <div className={styles.simList}>
-        <p className={styles.mono}>você está na página de</p>
-        <div
-          className={styles.pageSwitch}
-          role="radiogroup"
-          aria-label="Curso da página atual"
-        >
-          {CURSOS_ONLINE.map((k) => (
-            <button
-              key={k}
-              role="radio"
-              aria-checked={page === k}
-              className={[
-                styles.toggle,
-                page === k ? styles.toggleOn : "",
-              ].join(" ")}
-              onClick={() => {
-                setPage(k)
-                setSel([k])
-              }}
-            >
-              {nomeDoCurso(k)}
-            </button>
-          ))}
-        </div>
-        <h4 className={styles.simTitle}>monte a sua black friday</h4>
-        <ul className={styles.simItems}>
-          {order.map((k) => {
-            const on = sel.includes(k)
-            return (
-              <li key={k}>
-                <label
-                  className={[styles.simRow, on ? styles.simOn : ""].join(" ")}
-                >
-                  <input
-                    type="checkbox"
-                    checked={on}
-                    onChange={() =>
-                      setSel((s) => (on ? s.filter((x) => x !== k) : [...s, k]))
-                    }
-                  />
-                  <span className={styles.round} aria-hidden="true" />
-                  <SubScope
-                    theme={submarcas[SUBMARCA_DO_CURSO[k]].theme}
-                    className={styles.simLogo}
-                  >
-                    <Wordmark id={SUBMARCA_DO_CURSO[k]} size="sm" />
-                  </SubScope>
-                  {k === page && (
-                    <span className={styles.mono}>desta página</span>
-                  )}
-                </label>
-              </li>
-            )
-          })}
-        </ul>
+    <div className={styles.combo}>
+      <p className={styles.mono}>você está na página de</p>
+      <div
+        className={styles.pageSwitch}
+        role="radiogroup"
+        aria-label="Curso da página atual"
+      >
+        {CURSOS_ONLINE.map((k) => (
+          <button
+            key={k}
+            role="radio"
+            aria-checked={pagina === k}
+            className={styles.toggle}
+            onClick={() => setPagina(k)}
+          >
+            {nomeDoCurso(k)}
+          </button>
+        ))}
       </div>
-
-      <div className={styles.simSum} aria-live="polite">
-        <p className={styles.mono}>resumo</p>
-        {pkg && resumo ? (
-          <>
-            <p className={styles.simName}>{pkg.oferta.nome.toLowerCase()}</p>
-            {pkg.completou && (
-              <p className={styles.simNote}>
-                Essa combinação não existe como pacote — completamos com o
-                pacote mais barato que contém tudo.
-              </p>
-            )}
-            <p className={styles.de}>
-              de {formatarMoeda(resumo.precoSeparado ?? resumo.preco)} por
-            </p>
-            <p className={styles.x12}>{formatarParcela(resumo.parcela)}</p>
-            <p className={styles.mono}>
-              ou {formatarMoeda(resumo.preco)} à vista
-            </p>
-            {resumo.economia !== undefined && (
-              <p className={styles.save}>
-                você economiza {formatarMoeda(resumo.economia)}
-              </p>
-            )}
-            {suggestion && (
-              <p className={styles.simNote}>
-                Por mais {formatarMoeda(suggestion.extra)} você leva também{" "}
-                <strong>{nomeDoCurso(suggestion.key)}</strong>.
-              </p>
-            )}
-            <Cta size="m">garantir com {DESCONTO}%</Cta>
-          </>
-        ) : (
-          <p className={styles.simNote}>
-            Marque o que você quer levar. O preço só aparece aqui, no resumo.
-          </p>
-        )}
-      </div>
-    </SubScope>
+      <SubScope theme={submarcas[SUBMARCA_DO_CURSO[pagina]].theme}>
+        <MonteSeuCombo
+          key={pagina}
+          cursoDaPagina={pagina}
+          blackFriday
+          descontoDaCampanha={DESCONTO}
+          ofertas={OFERTAS_MOCK}
+          precosNormais={PRECOS_NORMAIS_MOCK}
+          descritivos={DESCRITIVOS_COMBO_MOCK}
+          inclusos={INCLUSOS_COMBO_MOCK}
+        />
+      </SubScope>
+    </div>
   )
 }
 const courseVoice: Record<CursoOnline, { contrast: string; button: string }> = {
@@ -645,6 +553,6 @@ export const bfCases = {
     </div>
   ),
   price: () => <PriceBox />,
-  simulator: () => <Simulator />,
+  simulator: () => <ComboDaBlack />,
   course: () => <CoursePieceTabs />,
 }
