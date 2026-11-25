@@ -82,7 +82,6 @@
 .priceBox { padding: 34px; border: var(--fio) solid var(--border-base); }
 .boxFrame { border: var(--fio) solid var(--fio-card); padding: 22px; display: grid; gap: var(--space-4); }
 .boxHighlight { border-color: var(--brand-ochre); }
-.priceBox .info { color: var(--texto-apoio); border-color: var(--texto-apoio); }
 .logos { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .logoTile { display: inline-flex; border: var(--fio) solid var(--fio-card); }
 .logoInner { padding: 10px 14px; }

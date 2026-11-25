@@ -384,12 +384,12 @@ function PriceBox() {
               highlight ? styles.boxHighlight : "",
             ].join(" ")}
           >
-            <div className={styles.pieceTop}>
+            <Badges>
               {tag && (
                 <Badge acento={base === "preto"}>{tag}</Badge>
               )}
-              <Badge className={styles.info}>À vista ou 12x</Badge>
-            </div>
+              <Badge>À vista ou 12x</Badge>
+            </Badges>
             <div className={styles.logos}>
               {p.cursos.map((c) => (
                 <span key={c} className={styles.logoTile}>

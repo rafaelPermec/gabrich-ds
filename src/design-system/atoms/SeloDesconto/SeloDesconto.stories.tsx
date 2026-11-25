@@ -11,7 +11,7 @@ const meta = {
         component: [
           "**Selo de desconto** · **Status de aprovação:** APROVADO (manual 2 · 05.06).",
           "",
-          "Só na Black Friday: fora das fases aberta, última semana e últimas 24h, não renderiza nada. Quadrado de 120 × 120 (mínimo 88) com fio de 1px em ocre (preto no papel), número em Urbanist 600 44 e rótulo em Space Mono 7,5; em linha, dentro do box e do card, duas etiquetas cheias (−50% em ocre + black friday). Canto reto, não interativo. O percentual chega da oferta (`descontoBlack`) e nunca é calculado. Escolha o tema `dg` ou `dg-claro` na toolbar.",
+          "Só na Black Friday: fora das fases aberta, última semana e últimas 24h, não renderiza nada. Quadrado de 120 × 120 (mínimo 88) com fio de 1px em ocre (preto no papel), número em Urbanist 600 44 e rótulo em Space Mono 7,5; em linha, dentro do card de preço e do card, duas etiquetas cheias (−50% em ocre + black friday). Canto reto, não interativo. O percentual chega da oferta (`descontoBlack`) e nunca é calculado. Escolha o tema `dg` ou `dg-claro` na toolbar.",
         ].join("\n"),
       },
     },

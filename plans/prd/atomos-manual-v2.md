@@ -1,6 +1,6 @@
 ---
 feature: atomos-manual-v2
-status: aprovado
+status: implementado
 criado: 2026-10-23
 atualizado: 2026-11-24
 spec: plans/specs/0003-atomos-manual-v2.md

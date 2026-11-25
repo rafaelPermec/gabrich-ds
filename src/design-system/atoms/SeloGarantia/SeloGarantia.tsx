@@ -10,7 +10,7 @@ export interface SeloGarantiaProps extends Omit<HTMLAttributes<HTMLDivElement>, 
 
 /**
  * Selo de garantia do manual vigente (2 · 05.07): sempre "7 dias de garantia", na cor do curso
- * (`--selo-garantia`), nunca em ocre, canto reto. Fica fora do card e do box de preço, uma vez,
+ * (`--selo-garantia`), nunca em ocre, canto reto. Fica fora do card e do card de preço, uma vez,
  * abaixo das ofertas.
  */
 export function SeloGarantia({ forma = "linha", className, ...rest }: SeloGarantiaProps) {

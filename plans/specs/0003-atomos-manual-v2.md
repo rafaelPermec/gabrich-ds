@@ -1,6 +1,6 @@
 ---
 feature: atomos-manual-v2
-status: em implementação  # rascunho | aprovada | em implementação | concluída
+status: concluída  # rascunho | aprovada | em implementação | concluída
 prd: plans/prd/atomos-manual-v2.md
 branch: feat/atomos-manual-v2
 criado: 2026-11-24
@@ -15,7 +15,7 @@ Os átomos do manual entram como componentes novos, ao lado dos que já existem,
 
 ## 2. Estado atual
 
-- **Button**: componente do manual com tokens legados. Props: `variant` (filled | outline | ghost | text), `size` (lg | md | sm), `shape` (sharp | pill) e `loading`. O `ghost` é usado por genéricos (Modal, Drawer), e o registro de demos usa `shape="pill"`. **Fica como está.**
+- **Button**: componente do manual com tokens antigos. Props: `variant` (filled | outline | ghost | text), `size` (lg | md | sm), `shape` (sharp | pill) e `loading`. O `ghost` é usado por genéricos (Modal, Drawer), e o registro de demos usa `shape="pill"`. **Fica como está.**
 - **Badge**: componente do manual com `variant` (solid | outline), `color` (ink | paper | ochre | caramel) e `size` (sm | md). Usado em páginas de demonstração e no registro de demos. **É migrado.**
 - **Card** (molécula): 5 variantes (content, icon, project, data, value), usadas nas páginas de demonstração. **Fica como está.**
 - **ActionDisk** (disco de ação): 52 / 72 / 96px. Fora de escopo, serve de comparação para o indicador.
@@ -39,7 +39,7 @@ Os átomos do manual entram como componentes novos, ao lado dos que já existem,
   - `contorno`: sem preenchimento, fio `--fio` na cor do texto.
   - `disabled`: sem preenchimento, fio de 1px e texto em `--desabilitado`.
   - `larguraTotal`: ocupa a coluna abaixo de 768px.
-  - O `Button` legado não muda.
+  - O `Button` atual não muda.
 - **D2. Badge migrado = etiqueta (RF5, RF6)**
   - As props `color`, `variant` e `size` saem e entram `versao` (`site` | `peca`), `cheia` e `acento` (desvio da T2, ver notas).
   - Visual: Space Mono 9px, caixa alta, +0,08em, fio 1px, raio 0. Padding 4 × 8, e 8 × 12 com altura mínima de 28 na `peca`.
@@ -52,7 +52,7 @@ Os átomos do manual entram como componentes novos, ao lado dos que já existem,
   - Visual: raio `--raio-16`, fio 1px `--fio-card`, fundo `--card`, sem sombra. Padding 24, 32 com `colunas6` e 20 abaixo de 768px. Gap interno 12.
   - A foto fica num contêiner com `overflow: hidden` e recorta no raio.
   - Com `href`, o card é clicável: no hover, o fio vira `--texto` e o rótulo vira `--acento`, sem `transform`.
-  - O `Card` legado não muda.
+  - O `Card` atual não muda.
 - **D4. IndicadorContinuacao (novo, RF11)**
   - Props: `tamanho` (`minimo` 30 | `padrao` 38 | `capa` 44), `disabled` e `href`/`onClick`.
   - Visual: disco traçado com fio de 1px e seta SVG de 1,4px, sem preenchimento (o manual proíbe fio e preenchimento ao mesmo tempo).
@@ -109,7 +109,7 @@ Sem dados pessoais nem rede. Os mocks ficam só nas stories (R24). O percentual 
 ## 7. Tasks (fatias verticais)
 
 ### T1 — Botao do manual
-- **Entrega:** a Débora vê no Storybook o `Botao` nos três tamanhos e nas três variantes (com e sem larguraTotal, desabilitado e foco), em fundo escuro e claro, nos 10 temas. O Button legado fica intacto.
+- **Entrega:** a Débora vê no Storybook o `Botao` nos três tamanhos e nas três variantes (com e sem larguraTotal, desabilitado e foco), em fundo escuro e claro, nos 10 temas. O `Button` atual fica intacto.
 - **Porte:** M
 - **Testes:** 6 em `tests/atomos/botao.spec.ts` (CA1–CA4), mais `tests/atomos/temas.spec.ts` (CA15) e `tests/atomos/foco.spec.ts` (CA14), criados aqui com a lista de átomos que as próximas tasks estendem.
 - **Bloqueada por:** nenhuma
@@ -118,7 +118,7 @@ Sem dados pessoais nem rede. Os mocks ficam só nas stories (R24). O percentual 
 - **Pronto quando:**
   - [x] Os testes de CA1–CA4, CA14 e CA15 estão verdes.
   - [x] Nenhuma violação crítica no a11y.
-  - [x] Button legado e genéricos sem mudança.
+  - [x] `Button` atual e genéricos sem mudança.
 - **Status:** [x] concluída
 
 ### T2 — Badge migrado (etiqueta) e grupo Badges
@@ -197,10 +197,11 @@ Sem dados pessoais nem rede. Os mocks ficam só nas stories (R24). O percentual 
 | 2026-11-24 | T4 | LogoCurso: altura padrão de 32 (`--esp-8`), largura pela proporção do viewBox (`aspect-ratio`); quem usa ajusta a altura por `className`/`style`. |
 | 2026-11-24 | T4 | Marcador: o anel da `selecao` é SVG (círculo com traço de 1,5): o Chrome arredonda borda de 1,5px para 1px em tela 1x. O ponto de 8px fica no `--acento`. Com `children`, o marcador vira item com gap de 8 até o texto (o ponto alinha à linha de base, `translateY(-1px)` como na ficha). `numero` numérico sai com dois dígitos ("02"). |
 | 2026-11-24 | T4 | Marcador em px fixos da ficha 2 · 05.08 (ponto 7, disco e anel 20, miolo 8, traço 1,5, Space Mono 9): sem token de tamanho no manual. Família e peso do número de `--dg-rotulo`. |
-| 2026-11-24 | T4 | Ponto e miolo da seleção no `--acento` em todos os temas, pelo texto da ficha 2 · 05.08 e pela tabela de box de preço (marcador no acento do curso no papel). A amostra "fundo claro" da 05.08 pinta os dois em preto: levar à Débora se o dg-claro fica em ocre ou em preto. |
+| 2026-11-24 | T4 | Ponto e miolo da seleção no `--acento` em todos os temas, pelo texto da ficha 2 · 05.08 e pela tabela de card de preço (marcador no acento do curso no papel). A amostra "fundo claro" da 05.08 pinta os dois em preto: levar à Débora se o dg-claro fica em ocre ou em preto. |
 | 2026-11-24 | T4 | a11y (axe, 6 stories × 10 temas): nenhuma violação. CA15 ganhou o papel `testid` para os marcadores decorativos (`aria-hidden`). |
 | 2026-11-24 | T5 | SeloDesconto: `percentual: number` (inteiro, de `oferta.descontoBlack`, já validado por `validarOferta`), decisão do usuário; a D6 pedia string. O quadrado mostra "50%" e a linha "−50%" (U+2212), como na ficha 2 · 05.06: só formatação, nada calculado (R17). |
 | 2026-11-24 | T5 | SeloDesconto `papel` (prop, como na D6): fio e rótulo em `--texto` (o preto do dg-claro), não em `--dg-preto-tinta`, para ficar só nos tokens do tema. Fora do papel, fio e rótulo em `--dg-ocre`; número em `--texto`. A linha é `Badges` com `Badge acento` ("−50%") + `Badge` ("black friday"). |
 | 2026-11-24 | T5 | Números dos selos em `--bf-numero` (Urbanist 600, /0,85, −0,02em) com corpo da ficha: 44 no desconto e 52 no 7 da garantia (a tabela da 05.07 só diz "Urbanist 600"; o 52 vem da amostra). Rótulos em `--dg-rotulo` com corpo e tracking da ficha (7,5/0,12em; 9/0,1em). Quadrados em 120px com `min-width: 88px` e `aspect-ratio: 1` (sem token de tamanho). |
 | 2026-11-24 | T5 | SeloGarantia: fio em `--selo-garantia`, texto em `--texto`, e "dias de garantia" do quadrado em `--texto-apoio` (cores das amostras da 05.07). O placeholder do ícone é um quadrado tracejado de 22px em `--selo-garantia`, `aria-hidden`, com `data-placeholder="icone-aprovacao"` para a troca. O quadrado não leva ícone (a ficha não mostra). |
+| 2026-11-24 | Fechamento | Revisão Specs (agy): o card de preço da Black (`BlackFriday.tsx`) tinha duas etiquetas em linha fora de `Badges` (R12); agora usa `Badges` (gap de 4) e a etiqueta "À vista ou 12x" perdeu a cor de apoio, que brigava com a cheia. "box de preço" virou "card de preço" (glossário) nos selos e na spec; "legado" virou "atual"/"antigos" na spec. |
 | 2026-11-24 | T5 | a11y (axe, 7 stories × 10 temas): nenhuma violação crítica. *Serious* de contraste no rótulo ocre do selo de desconto sem `papel` nos temas claros (uso previsto: `papel` no claro) e no `--texto-apoio` do ne-claro (4,24), valores do manual. |

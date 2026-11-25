@@ -3,7 +3,7 @@ import type { FaseDaCampanha } from "../../dados/campanha"
 import { Badge, Badges } from "../Badge"
 import styles from "./SeloDesconto.module.css"
 
-/** `quadrado` quando o 50% não é o protagonista da peça; `linha` dentro do box e do card. */
+/** `quadrado` quando o 50% não é o protagonista da peça; `linha` dentro do card de preço e do card. */
 export type SeloDescontoForma = "quadrado" | "linha"
 
 export interface SeloDescontoProps extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {

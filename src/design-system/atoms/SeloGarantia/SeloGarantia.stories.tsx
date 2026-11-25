@@ -10,7 +10,7 @@ const meta = {
         component: [
           "**Selo de garantia** · **Status de aprovação:** APROVADO (manual 2 · 05.07). Ícone “aprovação”: PENDENTE (placeholder tracejado até o arquivo chegar).",
           "",
-          "Sempre “7 dias de garantia”, o mesmo em todas as páginas, na cor do curso (`--selo-garantia`) e nunca em ocre. Canto reto. Em linha: ícone de 22, Space Mono 9, padding 12 × 16, fio de 1px. Quadrado: 120 × 120 (mínimo 88), com o 7 em Urbanist 600. Nunca dentro do card ou do box de preço: fica fora, uma vez, 32px abaixo da última oferta. As cores vêm do tema do manual (`data-tema`); escolha o tema na toolbar.",
+          "Sempre “7 dias de garantia”, o mesmo em todas as páginas, na cor do curso (`--selo-garantia`) e nunca em ocre. Canto reto. Em linha: ícone de 22, Space Mono 9, padding 12 × 16, fio de 1px. Quadrado: 120 × 120 (mínimo 88), com o 7 em Urbanist 600. Nunca dentro do card ou do card de preço: fica fora, uma vez, 32px abaixo da última oferta. As cores vêm do tema do manual (`data-tema`); escolha o tema na toolbar.",
         ].join("\n"),
       },
     },
