@@ -122,8 +122,8 @@ Sem dados pessoais nem rede. Links de checkout chegam no dado; os reais estão f
 - **Arquivos prováveis:** `src/design-system/molecules/CardsDePreco/*`, `src/design-system/index.ts`, `tests/oferta/card-preco.spec.ts`
 - **Cobre:** RF6 · CA4
 - **Pronto quando:**
-  - [ ] O teste está verde; nenhum `CardPreco` contém selo.
-- **Status:** [ ] pendente
+  - [x] O teste está verde; nenhum `CardPreco` contém selo.
+- **Status:** [x] concluída
 
 ### T4 — Monte seu combo / Monte a sua Black Friday
 - **Entrega:** o combo com os três cursos, o da página primeiro e marcado, linha inteira clicável por mouse e teclado, e o resumo em todos os estados, fora e dentro da Black.
@@ -155,3 +155,4 @@ Sem dados pessoais nem rede. Links de checkout chegam no dado; os reais estão f
 | 2026-11-25 | T2 | Tokens `--card-preco-{fundo,fio,texto,apoio,marcador,botao,botao-texto,selo}` e fontes `--card-preco-fonte-{preco,a-vista,de-por,botao}`, `-botao-tracking`, `-botao-caixa` nos 8 temas dos cursos; primitivos novos `--lp-card-preco` (#2A241F) e `--adf-card-preco-claro` (#E6D6C6). Etiqueta "-50%" em `--card-preco-botao`/`--bf-preto`; "BLACK FRIDAY" em `--bf-preto`/`--bf-papel`. `--card-preco-selo` já declarado para a T3. |
 | 2026-11-25 | T2 | Desvios aprovados pelo usuário: tipo do ne + linha de vagas (D4); `descontoDaCampanha` no card Black, porque a auditoria CA11 barra "50%" fixo; botão 60 e hover invertido (proposta); botão do adf em Manrope 600, porque a 2 · 06 só carrega até 600 (a tabela pede 700: perguntar à Débora); à vista do ne em Urbanist 600 (tabela), não 300 (protótipo). Espaçamentos do protótipo levados à escala `--esp-*` (R9). Marcadores travessão (adf) e triângulo (ne) desenhados no card; o `Marcador` ponto fica para lp e mqc. |
 | 2026-11-25 | T2 | a11y: sem violação crítica; "serious color-contrast" no No Estúdio claro (terracota da linha de vagas sobre linho, cor do protótipo): levar à Débora. |
+| 2026-11-25 | T3 | Layout em flex com quebra (base 400, máximo 460), não a grade `auto-fit` do protótipo: com máximo fixo, a grade conta colunas de 460 e quebra os três cards em 1440px. Selo na cor `--card-preco-selo` do tema da página, com recuo para `--selo-garantia` fora dos temas de curso (variável intermediária `--selo-do-grupo`, sem ciclo). Prop `formaDoSelo` (linha ou quadrado do átomo); o protótipo usa um quadro de 72px com texto ao lado, que não existe no 2 · 05.07. `data-selo-garantia` no átomo como seam de teste. Helpers `ofertaDoCursoMock` e `listaDoCardMock` nos mocks, usados pelas stories (revisão Padrões). |

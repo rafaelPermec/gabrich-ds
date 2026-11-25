@@ -106,3 +106,37 @@ test("CA12 + CA3: o No Estúdio mostra 12x e à vista do dado, sem \"de R$ X por
   await expect(botao).toHaveAttribute("href", OFERTA_NO_ESTUDIO_MANUAL.checkout)
   await expect(card.locator("[data-etiqueta]")).toHaveCount(0)
 })
+
+test("CA4: três cards lado a lado (empilhados no celular) com um único selo de garantia, fora dos cards, 32px abaixo do último e centralizado", async ({ page, request }) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await abrirStory(page, await idDaStory(request, "Molecules/CardsDePreco", "Três cursos · Black · escuro"), "lp")
+
+  const grupo = page.locator("[data-cards-de-preco]")
+  const cards = grupo.locator("[data-card-preco]")
+  const selo = page.locator("[data-selo-garantia]")
+  await expect(cards).toHaveCount(3)
+  await expect(selo).toHaveCount(1)
+  await expect(page.locator("[data-card-preco] [data-selo-garantia]")).toHaveCount(0)
+  // Na cor do selo do card do curso da página (--card-preco-selo do lp: dourado).
+  await expect(selo).toHaveCSS("border-top-color", rgb("#D9A648"))
+
+  const caixas = async () => {
+    const dos = await cards.evaluateAll((els) => els.map((el) => el.getBoundingClientRect().toJSON() as DOMRect))
+    const s = (await selo.boundingBox())!
+    const g = (await grupo.boundingBox())!
+    return { dos, s, g }
+  }
+
+  // Desktop: lado a lado; o selo 32px abaixo do card mais alto, no centro do grupo.
+  let { dos, s, g } = await caixas()
+  expect(new Set(dos.map((c) => Math.round(c.top))).size).toBe(1)
+  expect(Math.round(s.y - Math.max(...dos.map((c) => c.bottom)))).toBe(32)
+  expect(Math.abs(s.x + s.width / 2 - (g.x + g.width / 2))).toBeLessThanOrEqual(1)
+
+  // Celular: empilhados; o selo 32px abaixo do último.
+  await page.setViewportSize({ width: 390, height: 844 })
+  ;({ dos, s, g } = await caixas())
+  for (let i = 1; i < dos.length; i++) expect(dos[i]!.top).toBeGreaterThan(dos[i - 1]!.bottom)
+  expect(Math.round(s.y - dos[dos.length - 1]!.bottom)).toBe(32)
+  expect(Math.abs(s.x + s.width / 2 - (g.x + g.width / 2))).toBeLessThanOrEqual(1)
+})

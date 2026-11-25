@@ -117,3 +117,10 @@ export const OFERTA_NO_ESTUDIO_MOCK: OfertaPresencial = {
   parcela: 160,
   checkout: "#checkout-no-estudio",
 }
+
+/** Oferta de curso único do mock (card de preço nas stories). */
+export function ofertaDoCursoMock(curso: CursoOnline): Oferta {
+  const achada = OFERTAS_MOCK.find((o) => o.cursos.length === 1 && o.cursos[0] === curso)
+  if (!achada) throw new Error(`mock sem a oferta do curso ${curso}`)
+  return achada
+}

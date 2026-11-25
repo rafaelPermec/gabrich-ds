@@ -3,7 +3,7 @@
  * (2 · 05.17, versão atual, EM APROVAÇÃO), antes e depois (2 · 05.16) e depoimentos (aba 04).
  * Só para stories e páginas de demonstração (R24): não é exportado pelo barrel do design system.
  */
-import type { AntesEDepois, Depoimento, ListaDoCard, ModulosDoCurso } from "../dados/index"
+import type { AntesEDepois, Curso, Depoimento, ListaDoCard, ModulosDoCurso } from "../dados/index"
 
 export const LISTAS_DO_CARD_MOCK: readonly ListaDoCard[] = [
   {
@@ -364,3 +364,10 @@ export const DEPOIMENTOS_MOCK: readonly Depoimento[] = [
   print("ne", "noestudio-dep-06-aluna-2019.jpg"),
   print("ne", "noestudio-dep-07-aluna.jpg"),
 ]
+
+/** Itens da lista oficial do card de preço do curso, do mock. */
+export function listaDoCardMock(curso: Curso): readonly string[] {
+  const achada = LISTAS_DO_CARD_MOCK.find((l) => l.curso === curso)
+  if (!achada) throw new Error(`mock sem a lista do curso ${curso}`)
+  return achada.itens
+}

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import type { Curso, CursoOnline, Oferta } from "../../dados/index"
+import type { CursoOnline } from "../../dados/index"
 import { DESCONTO_DA_CAMPANHA_2026_MOCK } from "../../mocks/campanha"
-import { LISTAS_DO_CARD_MOCK } from "../../mocks/conteudo"
-import { OFERTA_NO_ESTUDIO_MOCK, OFERTAS_MOCK } from "../../mocks/ofertas"
+import { listaDoCardMock as lista } from "../../mocks/conteudo"
+import { OFERTA_NO_ESTUDIO_MOCK, ofertaDoCursoMock as ofertaDoCurso } from "../../mocks/ofertas"
 import { CardPreco } from "./CardPreco"
 
 const meta = {
@@ -32,18 +32,6 @@ const meta = {
 
 export default meta
 type Story = StoryObj<typeof CardPreco>
-
-function lista(curso: Curso): readonly string[] {
-  const achada = LISTAS_DO_CARD_MOCK.find((l) => l.curso === curso)
-  if (!achada) throw new Error(`mock sem a lista do curso ${curso}`)
-  return achada.itens
-}
-
-function ofertaDoCurso(curso: CursoOnline): Oferta {
-  const achada = OFERTAS_MOCK.find((o) => o.cursos.length === 1 && o.cursos[0] === curso)
-  if (!achada) throw new Error(`mock sem a oferta do curso ${curso}`)
-  return achada
-}
 
 /** Story de um curso online, normal ou Black, no fundo escuro ou claro (o fundo da página segue o tema). */
 function online(curso: CursoOnline, black: boolean, claro: boolean): Story {
