@@ -32,6 +32,8 @@ export * from "./atoms/Tooltip/index"
 
 // ─── Molecules ──────────────────────────────────────────────────────────────
 export * from "./molecules/CardManual/index"
+export * from "./molecules/CardPreco/index"
+export * from "./molecules/CardsDePreco/index"
 export * from "./molecules/FormField/index"
 export * from "./molecules/SearchBar/index"
 export * from "./molecules/Card/index"
@@ -68,3 +70,4 @@ export * from "./organisms/HeroSection/index"
 export * from "./organisms/PortfolioGrid/index"
 export * from "./organisms/StepIndicator/index"
 export * from "./organisms/DataTable/index"
+export * from "./organisms/MonteSeuCombo/index"

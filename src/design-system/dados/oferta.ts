@@ -34,6 +34,19 @@ export type Oferta = {
   linkBlack?: string
 }
 
+/** Workshop presencial No Estúdio (RF14): sem campos de Black, que ele não tem. */
+export type OfertaPresencial = {
+  slug: string
+  nome: string
+  curso: "ne"
+  /** À vista. */
+  preco: number
+  /** Valor de cada uma das 12 parcelas. Sem ela: "12x a confirmar". */
+  parcela?: number
+  checkout: IdCheckout
+  link?: string
+}
+
 /** Preço normal à vista de cada curso online, base do "preço separado". */
 export type PrecosNormaisDosCursos = Readonly<Record<CursoOnline, number>>
 
@@ -61,7 +74,18 @@ export function resumoDePreco(
   return { preco, parcela, precoSeparado, economia: centavos(precoSeparado - preco) }
 }
 
-/** RF11: o link da Hotmart, quando existe; senão, o id de checkout da oferta. */
-export function destinoDoCheckout(oferta: Oferta, emBlack: boolean): string {
+/**
+ * RF11: o link da Hotmart, quando existe; senão, o id de checkout da oferta.
+ * A oferta presencial não tem Black: `emBlack` não muda o destino dela.
+ */
+export function destinoDoCheckout(oferta: Oferta | OfertaPresencial, emBlack: boolean): string {
+  if (!("checkoutBlack" in oferta)) return oferta.link ?? oferta.checkout
   return emBlack ? (oferta.linkBlack ?? oferta.checkoutBlack) : (oferta.linkNormal ?? oferta.checkout)
+}
+
+/** RF7: a oferta cujos cursos são exatamente os marcados, em qualquer ordem; `undefined` se nada marcado ou ausente no dado. */
+export function ofertaDaSelecao(ofertas: readonly Oferta[], cursos: readonly CursoOnline[]): Oferta | undefined {
+  const marcados = new Set(cursos)
+  if (marcados.size === 0) return undefined
+  return ofertas.find((o) => o.cursos.length === marcados.size && o.cursos.every((c) => marcados.has(c)))
 }

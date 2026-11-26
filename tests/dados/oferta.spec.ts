@@ -3,12 +3,15 @@ import {
   destinoDoCheckout,
   formatarMoeda,
   formatarParcela,
+  ofertaDaSelecao,
   resumoDePreco,
   validarOferta,
+  validarOfertaPresencial,
+  type CursoOnline,
   type Oferta,
 } from "../../src/design-system/dados/index"
-import { OFERTAS_MOCK, PRECOS_NORMAIS_MOCK } from "../../src/design-system/mocks/ofertas"
-import { ECONOMIA_MANUAL, OFERTAS_MANUAL } from "../fixtures/manual"
+import { OFERTA_NO_ESTUDIO_MOCK, OFERTAS_MOCK, PRECOS_NORMAIS_MOCK } from "../../src/design-system/mocks/ofertas"
+import { ECONOMIA_MANUAL, OFERTA_NO_ESTUDIO_MANUAL, OFERTAS_MANUAL } from "../fixtures/manual"
 
 /** Funções puras do módulo de dados (oferta), sem navegador. Valores esperados: manual. */
 
@@ -100,4 +103,57 @@ test("CA11: moeda no formato brasileiro, inteiro sem centavos e fração com 2 c
   expect([1397, 144.48, 20.3, 97, 0.5].map(formatarMoeda)).toEqual(
     ["1.397", "144,48", "20,30", "97", "0,50"].map((v) => `R$${NBSP}${v}`),
   )
+})
+
+test("RF7: a seleção acha a oferta das 7 combinações, em qualquer ordem; nada marcado ou oferta ausente dá undefined", () => {
+  const selecoes: readonly (readonly CursoOnline[])[] = [
+    ["adf"],
+    ["lp"],
+    ["mqc"],
+    ["adf", "lp"],
+    ["adf", "mqc"],
+    ["lp", "mqc"],
+    ["adf", "mqc", "lp"],
+  ]
+  expect(selecoes.map((cursos) => ofertaDaSelecao(OFERTAS_MOCK, cursos)?.slug)).toEqual([
+    "antes-da-foto",
+    "luz-na-pratica",
+    "mais-que-um-click",
+    "luz-antes-da-foto",
+    "click-antes-da-foto",
+    "click-luz",
+    "completo",
+  ])
+  const semCompleto = OFERTAS_MOCK.filter((o) => o.slug !== "completo")
+  expect([ofertaDaSelecao(OFERTAS_MOCK, []), ofertaDaSelecao(semCompleto, ["lp", "mqc", "adf"])]).toEqual([
+    undefined,
+    undefined,
+  ])
+})
+
+test("CA12: o mock do No Estúdio tem os valores do manual e passa na validação; dado fora do formato é rejeitado", () => {
+  const { slug, preco, parcela, checkout } = OFERTA_NO_ESTUDIO_MOCK
+  expect({ slug, preco, parcela, checkout }).toEqual(OFERTA_NO_ESTUDIO_MANUAL)
+  expect(validarOfertaPresencial(OFERTA_NO_ESTUDIO_MOCK)).toEqual([])
+  const invalidas: Record<string, unknown> = {
+    "sem preço": { ...OFERTA_NO_ESTUDIO_MOCK, preco: undefined },
+    "parcela negativa": { ...OFERTA_NO_ESTUDIO_MOCK, parcela: -160 },
+    "curso online": { ...OFERTA_NO_ESTUDIO_MOCK, curso: "lp" },
+    "id de outra oferta": { ...OFERTA_NO_ESTUDIO_MOCK, checkout: "#checkout-outro" },
+    "link vazio": { ...OFERTA_NO_ESTUDIO_MOCK, link: " " },
+    "nulo": null,
+  }
+  const rejeitadas = Object.fromEntries(
+    Object.entries(invalidas).map(([caso, o]) => [caso, validarOfertaPresencial(o).length > 0]),
+  )
+  expect(rejeitadas).toEqual(Object.fromEntries(Object.keys(invalidas).map((caso) => [caso, true])))
+})
+
+test("CA10: o checkout do No Estúdio é o id ou o link, com ou sem Black", () => {
+  const comLink = { ...OFERTA_NO_ESTUDIO_MOCK, link: "https://pay.exemplo/ne" }
+  expect([
+    destinoDoCheckout(OFERTA_NO_ESTUDIO_MOCK, false),
+    destinoDoCheckout(OFERTA_NO_ESTUDIO_MOCK, true),
+    destinoDoCheckout(comLink, false),
+  ]).toEqual(["#checkout-no-estudio", "#checkout-no-estudio", "https://pay.exemplo/ne"])
 })

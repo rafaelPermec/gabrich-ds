@@ -1,0 +1,32 @@
+/* Grupo de cards de preço · 2 · 05.05b e 2 · 05.07. Cards de 400 a 460px (largura do protótipo
+   "Cards de Preco", sem token de tamanho), gap 32, centralizados; um por linha quando não cabem.
+   Flex em vez da grade do protótipo: com máximo fixo, o auto-fit conta colunas de 460 e quebra
+   os três cards em 1440px. */
+.grupo {
+  /* Fora dos temas dos cursos não há --card-preco-selo: vale o --selo-garantia do tema. Variável
+     intermediária para não referenciar --selo-garantia nele mesmo (ciclo). */
+  --selo-do-grupo: var(--card-preco-selo, var(--selo-garantia));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--esp-8);
+  width: 100%;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--esp-8);
+  width: 100%;
+}
+
+.cards > * {
+  flex: 1 1 400px;
+  max-width: 460px;
+}
+
+.selo {
+  --selo-garantia: var(--selo-do-grupo);
+}

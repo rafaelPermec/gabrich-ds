@@ -58,7 +58,7 @@
   border: var(--fio) solid var(--border-strong); color: var(--text-primary);
   transition: background-color var(--transition-fast), color var(--transition-fast);
 }
-.toggle:hover, .toggleOn, .toggle[aria-pressed='true'] { background: var(--text-primary); color: var(--bg-base); }
+.toggle:hover, .toggle[aria-checked='true'], .toggle[aria-pressed='true'] { background: var(--text-primary); color: var(--bg-base); }
 .toggle:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 2px; }
 
 /* box de preço */
@@ -76,7 +76,7 @@
 .productBtn:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 2px; }
 .productOn { color: var(--text-primary); }
 .mark { width: 20px; height: 20px; border-radius: var(--raio-disco); border: var(--fio) solid var(--border-strong); position: relative; }
-.productOn .mark::after, .simOn .round::after { content: ''; position: absolute; inset: 5px; border-radius: var(--raio-disco); background: var(--text-primary); }
+.productOn .mark::after { content: ''; position: absolute; inset: 5px; border-radius: var(--raio-disco); background: var(--text-primary); }
 .priceStage { display: grid; gap: var(--space-3); align-content: start; }
 .baseSwitch { display: flex; gap: var(--space-2); justify-content: flex-end; }
 .priceBox { padding: 34px; border: var(--fio) solid var(--border-base); }
@@ -94,23 +94,9 @@
 .guarantee { color: var(--texto-apoio); }
 .boxFrame > button { justify-self: start; }
 
-/* simulador */
-.sim { display: grid; border: var(--fio) solid var(--fio-card); }
-@media (min-width: 900px) { .sim { grid-template-columns: 1.3fr 1fr; } }
-.simList { padding: var(--space-8); display: grid; gap: var(--space-4); align-content: start; }
-.simTitle { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: var(--text-2xl); letter-spacing: -0.03em; line-height: 1; text-transform: lowercase; }
-.pageSwitch { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-.simItems { list-style: none; margin: 0; padding: 0; display: grid; border-top: var(--fio) solid var(--fio-card); }
-.simRow { position: relative; display: grid; grid-template-columns: 20px 1fr auto; align-items: center; gap: var(--space-4); padding: var(--space-4) 0; border-bottom: var(--fio) solid var(--fio-card); cursor: pointer; }
-.simRow input { position: absolute; opacity: 0; width: 20px; height: 20px; }
-.simRow input:focus-visible + .round { outline: 2px solid var(--texto); outline-offset: 3px; }
-.round { width: 20px; height: 20px; border-radius: var(--raio-disco); border: var(--fio) solid var(--texto); position: relative; }
-.simLogo { background: var(--fundo); display: inline-flex; justify-self: start; padding: 10px 14px; }
-.simSum { padding: var(--space-8); background: var(--card); display: grid; gap: var(--space-3); align-content: start; }
-.simName { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: var(--text-xl); line-height: 1.05; text-transform: lowercase; }
-.save { margin: 0; font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
-.simNote { margin: 0; font-family: var(--font-body); font-size: var(--text-base); line-height: var(--leading-relaxed); color: var(--texto-apoio); }
-.simSum > button { justify-self: start; margin-top: var(--space-2); }
+/* monte a sua black friday */
+.combo { display: grid; gap: var(--esp-4); }
+.pageSwitch { display: flex; flex-wrap: wrap; gap: var(--esp-2); }
 
 /* peça de curso */
 .courseWrap { display: grid; gap: var(--space-6); padding-top: var(--space-6); }

@@ -338,6 +338,8 @@ export const cores = {
     areia: "var(--lp-areia)",
     creme: "var(--lp-creme)",
     dourado: "var(--lp-dourado)",
+    /** 2 · 05.05b: fundo do card de preço no escuro (fora de 2 · 01). */
+    cardPreco: "var(--lp-card-preco)",
   },
   mqc: {
     carvao: "var(--mqc-carvao)",
@@ -357,6 +359,8 @@ export const cores = {
     cobre: "var(--adf-cobre)",
     linha: "var(--adf-linha)",
     trama: "var(--adf-trama)",
+    /** 2 · 05.05b: fundo do card de preço no claro (fora de 2 · 01). */
+    cardPrecoClaro: "var(--adf-card-preco-claro)",
   },
   bf: {
     preto: "var(--bf-preto)",
@@ -385,6 +389,38 @@ export const tokensComponente = {
   desabilitado: "var(--desabilitado)",
   divisoria: "var(--divisoria)",
   seloGarantia: "var(--selo-garantia)",
+} as const
+
+/**
+ * 2 · 05.05b: tokens do card de preço, declarados nos 8 temas dos cursos (escuro e claro).
+ * Cores da tabela do card e fontes do preço e do botão de cada curso.
+ */
+export const tokensCardPreco = {
+  fundo: "var(--card-preco-fundo)",
+  fio: "var(--card-preco-fio)",
+  texto: "var(--card-preco-texto)",
+  apoio: "var(--card-preco-apoio)",
+  marcador: "var(--card-preco-marcador)",
+  botao: "var(--card-preco-botao)",
+  botaoTexto: "var(--card-preco-botao-texto)",
+  selo: "var(--card-preco-selo)",
+  fontePreco: "var(--card-preco-fonte-preco)",
+  fonteAVista: "var(--card-preco-fonte-a-vista)",
+  /** Ausente no No Estúdio, que não tem Black. */
+  fonteDePor: "var(--card-preco-fonte-de-por)",
+  fonteBotao: "var(--card-preco-fonte-botao)",
+  botaoTracking: "var(--card-preco-botao-tracking)",
+  botaoCaixa: "var(--card-preco-botao-caixa)",
+} as const
+
+/**
+ * 2 · 05.12: fontes do Monte seu combo, declaradas em dg, lp, mqc e adf (escuro e claro).
+ * As cores vêm dos 12 tokens de componente.
+ */
+export const tokensCombo = {
+  fonteTitulo: "var(--combo-fonte-titulo)",
+  tituloTracking: "var(--combo-titulo-tracking)",
+  fontePreco: "var(--combo-fonte-preco)",
 } as const
 
 /** Estados por tema: nunca vermelho (R21, ADR 0004). */

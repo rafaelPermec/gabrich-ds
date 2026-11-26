@@ -225,6 +225,9 @@ export const OFERTAS_MANUAL = [
   { slug: "completo", precoNormal: 1397, parcelaNormal: 144.48, precoBlack: 697, parcelaBlack: 72.09, descontoCombo: 15, descontoBlack: 57, checkout: "#checkout-completo", checkoutBlack: "#checkout-bf26-completo" },
 ] as const
 
+/** Protótipo `NE Pagina - Manual v2` (card de preço): workshop presencial, sem Black. Valores em reais. */
+export const OFERTA_NO_ESTUDIO_MANUAL = { slug: "no-estudio", preco: 1547, parcela: 160, checkout: "#checkout-no-estudio" } as const
+
 /** 2 · 05.12, tabela completa: preço separado e "você economiza" de cada oferta, fora e na Black. */
 export const ECONOMIA_MANUAL: Readonly<Record<string, { separado: number; economiaNormal?: number; economiaBlack: number }>> = {
   "antes-da-foto": { separado: 197, economiaBlack: 100 },

@@ -1,0 +1,190 @@
+/* Card de preço · manual 2 · 05.05b. Cores e fontes só dos tokens --card-preco-* do data-tema do
+   curso (src/index.css). Espaçamentos do protótipo "Cards de Preco" levados à escala --esp-* (R9). */
+/* Os átomos dentro do card (logo, marcador) leem os tokens de componente: valem os do card.
+   O seletor duplo vence o [data-tema] do mesmo elemento, qualquer que seja a ordem do CSS. */
+.card[data-card-preco] {
+  --texto: var(--card-preco-texto);
+  --acento: var(--card-preco-marcador);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: var(--esp-8);
+  background-color: var(--card-preco-fundo);
+  color: var(--card-preco-texto);
+  border: var(--fio) solid var(--card-preco-fio);
+  border-radius: var(--raio-card);
+}
+
+@media (max-width: 767px) {
+  .card {
+    padding: var(--esp-6);
+  }
+}
+
+.card p {
+  margin: 0;
+}
+
+.logo {
+  align-self: flex-start;
+  max-width: 100%;
+}
+
+/* Tipo e linha abaixo do botão: Space Mono 11 em caixa alta, na cor de apoio. */
+.tipo,
+.garantia {
+  font: var(--dg-rotulo);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--card-preco-apoio);
+}
+.tipo {
+  padding-top: var(--esp-3);
+  letter-spacing: 0.24em;
+}
+.garantia {
+  padding-top: var(--esp-4);
+  letter-spacing: 0.18em;
+  text-align: center;
+}
+
+/* No Estúdio: vagas limitadas no acento, no lugar da etiqueta da Black (protótipo). */
+.vagas {
+  padding-top: var(--esp-4);
+  font: var(--dg-rotulo);
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--card-preco-marcador);
+}
+
+/* Etiqueta da Black: "-50%" na cor do botão do curso, texto preto; "BLACK FRIDAY" preto, texto papel.
+   Space Mono 11 (2 · 05.05b) sobre a etiqueta do manual. */
+.etiqueta {
+  --texto: var(--bf-preto);
+  --fundo: var(--bf-papel);
+  --acento: var(--card-preco-botao);
+  --etiqueta-texto-no-acento: var(--bf-preto);
+  align-self: flex-start;
+  padding-top: var(--esp-4);
+}
+.etiqueta [data-etiqueta] {
+  font-size: 11px;
+}
+
+.dePor {
+  padding-top: var(--esp-6);
+  font: var(--card-preco-fonte-de-por);
+  color: var(--card-preco-apoio);
+}
+
+.parcela {
+  padding-top: var(--esp-6);
+  font: var(--card-preco-fonte-preco);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--card-preco-texto);
+}
+.aposDePor {
+  padding-top: var(--esp-1);
+}
+.vezes {
+  font-size: 0.42em;
+  letter-spacing: 0.02em;
+}
+
+.aVista {
+  padding-top: var(--esp-1);
+  font: var(--card-preco-fonte-a-vista);
+  color: var(--card-preco-apoio);
+}
+
+/* No Estúdio: preço centralizado. */
+.centralizado .parcela,
+.centralizado .aVista {
+  text-align: center;
+}
+
+.fio {
+  width: 100%;
+  height: 0;
+  margin: var(--esp-6) 0;
+  border: 0;
+  border-top: var(--fio) solid var(--card-preco-fio);
+}
+
+/* Lista: Manrope 15/1.5 na cor do texto, gap 12; marcador na cor do marcador do curso. */
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--esp-1);
+  font: var(--dg-corpo);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--card-preco-texto);
+}
+.marca {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  width: var(--esp-6);
+  color: var(--card-preco-marcador);
+}
+.travessao {
+  display: inline;
+}
+/* Triângulo de 7px apontando para a direita (No Estúdio), desenhado com bordas. */
+.triangulo::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 7px solid var(--card-preco-marcador);
+  border-top: 4.5px solid transparent;
+  border-bottom: 4.5px solid transparent;
+}
+
+/* Botão do card: link com a aparência do botão do curso. Altura mínima 60 (protótipo), canto reto.
+   Hover (proposta): inverte para o texto do card, legível nos 8 temas; o tamanho nunca muda. */
+.botao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 60px;
+  margin-top: var(--esp-6);
+  padding: 0 var(--esp-6);
+  font: var(--card-preco-fonte-botao);
+  letter-spacing: var(--card-preco-botao-tracking);
+  text-transform: var(--card-preco-botao-caixa);
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--card-preco-botao);
+  color: var(--card-preco-botao-texto);
+  border-radius: var(--raio-reto);
+}
+.botao:hover {
+  background-color: var(--card-preco-texto);
+  color: var(--card-preco-fundo);
+}
+.botao:focus {
+  outline: none;
+}
+.botao:focus-visible {
+  outline: 2px solid var(--card-preco-texto);
+  outline-offset: 2px;
+}

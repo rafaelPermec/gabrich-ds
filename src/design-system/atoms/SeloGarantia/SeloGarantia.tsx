@@ -16,14 +16,14 @@ export interface SeloGarantiaProps extends Omit<HTMLAttributes<HTMLDivElement>, 
 export function SeloGarantia({ forma = "linha", className, ...rest }: SeloGarantiaProps) {
   if (forma === "quadrado") {
     return (
-      <div className={[styles.selo, styles.quadrado, className].filter(Boolean).join(" ")} {...rest}>
+      <div data-selo-garantia="" className={[styles.selo, styles.quadrado, className].filter(Boolean).join(" ")} {...rest}>
         <span className={styles.sete}>7</span>{" "}
         <span className={styles.rotulo}>dias de garantia</span>
       </div>
     )
   }
   return (
-    <div className={[styles.selo, styles.linha, className].filter(Boolean).join(" ")} {...rest}>
+    <div data-selo-garantia="" className={[styles.selo, styles.linha, className].filter(Boolean).join(" ")} {...rest}>
       {/* Pendente: o ícone "aprovação" de 22px ainda não chegou (task avulsa). */}
       <span className={styles.icone} data-placeholder="icone-aprovacao" aria-hidden="true" />
       <span className={styles.texto}>7 dias de garantia</span>

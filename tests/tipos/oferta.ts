@@ -2,7 +2,8 @@
  * CA3 (RF4, RF5): dado de oferta fora do formato quebra o `pnpm typecheck`.
  * Cada `@ts-expect-error` exige um erro na linha seguinte: se o tipo afrouxar, o typecheck falha.
  */
-import type { Oferta } from "../../src/design-system/dados/index"
+import type { Oferta, OfertaPresencial } from "../../src/design-system/dados/index"
+import type { CardPrecoProps } from "../../src/design-system/molecules/CardPreco/index"
 
 const valida = {
   slug: "completo",
@@ -29,4 +30,33 @@ export const casos: Oferta[] = [
   { ...valida, checkoutBlack: "#checkout-completo" },
   // @ts-expect-error: id sem o prefixo de checkout
   { ...valida, checkout: "completo" },
+]
+
+/** RF14: o No Estúdio não tem preço da Black nem roda sem preço. */
+const noEstudio = {
+  slug: "no-estudio",
+  nome: "No Estúdio",
+  curso: "ne",
+  preco: 1547,
+  checkout: "#checkout-no-estudio",
+} satisfies OfertaPresencial
+
+const { preco: _semPreco, ...semPreco } = noEstudio
+
+export const casosPresenciais: OfertaPresencial[] = [
+  noEstudio,
+  // @ts-expect-error: No Estúdio sem preço
+  semPreco,
+  // @ts-expect-error: No Estúdio com preço da Black
+  { ...noEstudio, precoBlack: 773 },
+]
+
+/** CA3 (RF4, RF5): o card do No Estúdio não tem versão Black. */
+export const casosDoCard: CardPrecoProps[] = [
+  { oferta: noEstudio, lista: [] },
+  { oferta: valida, lista: [], blackFriday: true, descontoDaCampanha: 50 },
+  // @ts-expect-error: No Estúdio no card da Black
+  { oferta: noEstudio, lista: [], blackFriday: true, descontoDaCampanha: 50 },
+  // @ts-expect-error: card da Black sem o desconto da campanha
+  { oferta: valida, lista: [], blackFriday: true },
 ]

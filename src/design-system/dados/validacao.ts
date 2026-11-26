@@ -43,6 +43,25 @@ export function validarOferta(oferta: unknown): string[] {
   return problemas
 }
 
+/** RF14: oferta presencial (No Estúdio), com as mesmas regras de número positivo e id de checkout. */
+export function validarOfertaPresencial(oferta: unknown): string[] {
+  if (typeof oferta !== "object" || oferta === null) return ["oferta ausente"]
+  const o = oferta as Record<string, unknown>
+  const problemas: string[] = []
+  const exigir = (ok: boolean, problema: string) => {
+    if (!ok) problemas.push(problema)
+  }
+
+  exigir(textoPreenchido(o.slug), "slug ausente")
+  exigir(textoPreenchido(o.nome), "nome ausente")
+  exigir(o.curso === "ne", "curso: ne")
+  exigir(numeroPositivo(o.preco), "preco: número positivo")
+  if (o.parcela !== undefined) exigir(numeroPositivo(o.parcela), "parcela: número positivo ou ausente")
+  exigir(o.checkout === `#checkout-${String(o.slug)}`, "checkout: #checkout-<slug>")
+  if (o.link !== undefined) exigir(textoPreenchido(o.link), "link: texto ou ausente")
+  return problemas
+}
+
 /** ISO com offset de Brasília (`DataBrasilia`) e data existente. */
 const DATA_BRASILIA = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d{1,3})?)?-03:00$/
 /** O V8 aceita 30/02 e rola para março; confere o dia contra o mês. */

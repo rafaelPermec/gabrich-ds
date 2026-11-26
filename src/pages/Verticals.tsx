@@ -500,9 +500,9 @@ const verticals: VerticalDef[] = [
         id: "simulator",
         title: "Monte a sua Black Friday",
         scenario:
-          "A pessoa marca o que quer levar. O preço só aparece no resumo, somado, com a economia e o próximo item que mais compensa.",
-        uses: ["Checkbox redondo", "Wordmark", "Button"],
-        rule: "O curso da página atual vem primeiro. Se a combinação não existe, completa com o pacote mais barato que contém tudo.",
+          "O Monte seu combo na Black: a pessoa marca de 1 a 3 cursos e o resumo mostra o preço da oferta da combinação, o desconto e a economia. Troque o curso da página para ver o combo no tema de cada um.",
+        uses: ["MonteSeuCombo", "Marcador", "LogoCurso", "Botao"],
+        rule: "O curso da página vem primeiro e marcado. Preço só no resumo, vindo do dado; nenhuma % calculada na tela.",
         render: bfCases.simulator,
       },
       {
