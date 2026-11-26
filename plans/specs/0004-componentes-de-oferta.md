@@ -1,6 +1,6 @@
 ---
 feature: componentes-de-oferta
-status: em implementação  # rascunho | aprovada | em implementação | concluída
+status: concluída  # rascunho | aprovada | em implementação | concluída
 prd: plans/prd/componentes-de-oferta.md
 branch: feat/componentes-de-oferta
 criado: 2026-11-25
